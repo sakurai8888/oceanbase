@@ -1,6 +1,6 @@
 This is a repository for Oceanbase
 
-
+/*+monitor*/
 
 select top_id,thread,svr_ip,op,output_rows,rescan,db_time/1000
 db_time_ms,(close_time-open_time)open_dt,(last_row_eof_time-first_row_time)
