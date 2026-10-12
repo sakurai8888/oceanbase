@@ -190,115 +190,59 @@ delete from t1 where exists(select 1 from t2 where t2.fname = t1.fname)
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+select to_char(sysdate,'YYYY-MM-DD HH24:Mi:ss'), as CurrentTime, 'POC Test 6.16' as "POC Test Case" from dual;
+
 -- Check for the 6.16
-
-
-CREATE TABLE wide_table_100 (
-id NUMBER(10) PRIMARY KEY,
-num_col_1 NUMBER(15, 2),
-num_col_2 NUMBER(15, 2),
-num_col_3 NUMBER(15, 2),
-num_col_4 NUMBER(15, 2),
-num_col_5 NUMBER(15, 2),
-num_col_6 NUMBER(15, 2),
-num_col_7 NUMBER(15, 2),
-num_col_8 NUMBER(15, 2),
-num_col_9 NUMBER(15, 2),
-num_col_10 NUMBER(15, 2),
-num_col_11 NUMBER(15, 2),
-num_col_12 NUMBER(15, 2),
-num_col_13 NUMBER(15, 2),
-num_col_14 NUMBER(15, 2),
-num_col_15 NUMBER(15, 2),
-num_col_16 NUMBER(15, 2),
-num_col_17 NUMBER(15, 2),
-num_col_18 NUMBER(15, 2),
-num_col_19 NUMBER(15, 2),
-num_col_20 NUMBER(15, 2),
-date_col_21 DATE,
-date_col_22 DATE,
-date_col_23 DATE,
-date_col_24 DATE,
-date_col_25 DATE,
-date_col_26 DATE,
-date_col_27 DATE,
-date_col_28 DATE,
-date_col_29 DATE,
-date_col_30 DATE,
-timestamp_col_31 TIMESTAMP(6),
-timestamp_col_32 TIMESTAMP(6),
-timestamp_col_33 TIMESTAMP(6),
-timestamp_col_34 TIMESTAMP(6),
-timestamp_col_35 TIMESTAMP(6),
-timestamp_col_36 TIMESTAMP(6),
-timestamp_col_37 TIMESTAMP(6),
-timestamp_col_38 TIMESTAMP(6),
-timestamp_col_39 TIMESTAMP(6),
-timestamp_col_40 TIMESTAMP(6),
-varchar2_short_col_41 VARCHAR2(50),
-varchar2_short_col_42 VARCHAR2(50),
-varchar2_short_col_43 VARCHAR2(50),
-varchar2_short_col_44 VARCHAR2(50),
-varchar2_short_col_45 VARCHAR2(50),
-varchar2_short_col_46 VARCHAR2(50),
-varchar2_short_col_47 VARCHAR2(50),
-varchar2_short_col_48 VARCHAR2(50),
-varchar2_short_col_49 VARCHAR2(50),
-varchar2_short_col_50 VARCHAR2(50),
-varchar2_short_col_51 VARCHAR2(50),
-varchar2_short_col_52 VARCHAR2(50),
-varchar2_short_col_53 VARCHAR2(50),
-varchar2_short_col_54 VARCHAR2(50),
-varchar2_short_col_55 VARCHAR2(50),
-varchar2_short_col_56 VARCHAR2(50),
-varchar2_short_col_57 VARCHAR2(50),
-varchar2_short_col_58 VARCHAR2(50),
-varchar2_short_col_59 VARCHAR2(50),
-varchar2_short_col_60 VARCHAR2(50),
-varchar2_long_col_61 VARCHAR2(200),
-varchar2_long_col_62 VARCHAR2(200),
-varchar2_long_col_63 VARCHAR2(200),
-varchar2_long_col_64 VARCHAR2(200),
-varchar2_long_col_65 VARCHAR2(200),
-varchar2_long_col_66 VARCHAR2(200),
-varchar2_long_col_67 VARCHAR2(200),
-varchar2_long_col_68 VARCHAR2(200),
-varchar2_long_col_69 VARCHAR2(200),
-varchar2_long_col_70 VARCHAR2(200),
-varchar2_long_col_71 VARCHAR2(200),
-varchar2_long_col_72 VARCHAR2(200),
-varchar2_long_col_73 VARCHAR2(200),
-varchar2_long_col_74 VARCHAR2(200),
-varchar2_long_col_75 VARCHAR2(200),
-varchar2_long_col_76 VARCHAR2(200),
-varchar2_long_col_77 VARCHAR2(200),
-varchar2_long_col_78 VARCHAR2(200),
-varchar2_long_col_79 VARCHAR2(200),
-varchar2_long_col_80 VARCHAR2(200),
-clob_col_81 CLOB,
-clob_col_82 CLOB,
-clob_col_83 CLOB,
-clob_col_84 CLOB,
-clob_col_85 CLOB,
-clob_col_86 CLOB,
-clob_col_87 CLOB,
-clob_col_88 CLOB,
-clob_col_89 CLOB,
-clob_col_90 CLOB,
-blob_col_91 BLOB,
-blob_col_92 BLOB,
-blob_col_93 BLOB,
-blob_col_94 BLOB,
-blob_col_95 BLOB,
-blob_col_96 BLOB,
-blob_col_97 BLOB,
-blob_col_98 BLOB,
-blob_col_99 BLOB,
-blob_col_100 BLOB
-);
-
-
-
 
 -- 创建宽表;
 CREATE TABLE wide_table_100 (
@@ -404,7 +348,8 @@ blob_col_98 BLOB,
 blob_col_99 BLOB,
 blob_col_100 BLOB
 );
-1.	插入数据;
+
+-- 插入数据;
 INSERT INTO wide_table_100 (
 id,
 num_col_1, num_col_2, num_col_3, num_col_4, num_col_5, num_col_6, num_col_7, num_col_8, num_col_9, num_col_10,
@@ -459,6 +404,16 @@ Commit;
 
 
 
+drop table wide_table_100 ;
+
+
+
+
+
+
+select to_char(sysdate,'YYYY-MM-DD HH24:Mi:ss'), as CurrentTime, 'POC Test 6.17' as "POC Test Case" from dual;
+
+
 -- Check for the 6.17
 --初始化数据;
 create table t(id int);
@@ -487,6 +442,13 @@ WHERE rn > 1;
 select * from (select * from t order by id) where rownum<10; 
 
 
+drop table t;
+
+
+
+
+
+select to_char(sysdate,'YYYY-MM-DD HH24:Mi:ss'), as CurrentTime, 'POC Test 6.18' as "POC Test Case" from dual;
 
 
 -- Check for the 6.18
@@ -514,14 +476,24 @@ select/*+ parallel(1)*/ count(*) from t where id>1000000;
 Select/*+ parallel(32)*/ count(*) from t where id>1000000; 
 
 
+drop table t;
 
 
+
+
+
+
+
+-- select to_char(sysdate,'YYYY-MM-DD HH24:Mi:ss'), as CurrentTime, 'POC Test 6.19' as "POC Test Case" from dual;
 
 -- Check for the 6.19
-(Use HDFS to test ) 
+--(Use HDFS to test ) 
 
 
 
+
+
+select to_char(sysdate,'YYYY-MM-DD HH24:Mi:ss'), as CurrentTime, 'POC Test 6.20.1' as "POC Test Case" from dual;
 -- Check for the 6.20.1
 
 --创建表 test_table1;
@@ -580,6 +552,15 @@ SELECT * FROM test_table2;
 
 
 
+drop table test_table1;
+drop table test_table;
+
+
+
+
+
+
+select to_char(sysdate,'YYYY-MM-DD HH24:Mi:ss'), as CurrentTime, 'POC Test 6.20.2' as "POC Test Case" from dual;
 
 
 -- Check for the 6.20.2
@@ -676,14 +657,14 @@ SELECT * FROM accounts;
 
 
 
+drop table accounts
 
 
 
 
 
 
-
-
+select to_char(sysdate,'YYYY-MM-DD HH24:Mi:ss'), as CurrentTime, 'POC Test 6.20.3' as "POC Test Case" from dual;
 
 
 
@@ -768,6 +749,24 @@ END;
 
 
 
+drop table employees;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+select to_char(sysdate,'YYYY-MM-DD HH24:Mi:ss'), as CurrentTime, 'POC Test 6.20.4' as "POC Test Case" from dual;
+
 
 
 -- Check for the 6.20.4
@@ -806,10 +805,39 @@ SELECT * FROM durable_test WHERE id = 3;
 
 
 
+drop table durable_test; 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+select to_char(sysdate,'YYYY-MM-DD HH24:Mi:ss'), as CurrentTime, 'POC Test 6.20.5' as "POC Test Case" from dual;
 
 -- Check for the 6.20.5
 
@@ -861,15 +889,35 @@ SELECT * FROM t_test WHERE id=1;
 
 
 
+Drop table t_test;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 -- Check for the 6.20.6
 
 
-<??>
+--<??>
 
 
 
+select to_char(sysdate,'YYYY-MM-DD HH24:Mi:ss'), as CurrentTime, 'POC Test 6.21' as "POC Test Case" from dual;
 
 -- Check for the 6.21
 
@@ -881,6 +929,8 @@ create table test1 (ID varchar2(20),name varchar2(50));
 --insert into test1 values(1,'龘');
 -- 查询生test1表中的生僻字
 select * from test1;
+
+drop table test1;
 
 
 
