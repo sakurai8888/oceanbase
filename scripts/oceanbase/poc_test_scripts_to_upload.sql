@@ -657,18 +657,23 @@ SELECT * FROM accounts;
 
 
 
-drop table accounts
+drop table accounts;
 
 
 
 
 
 
-select to_char(sysdate,'YYYY-MM-DD HH24:Mi:ss'), as CurrentTime, 'POC Test 6.20.3' as "POC Test Case" from dual;
+select to_char(sysdate,'YYYY-MM-DD HH24:Mi:ss') as CurrentTime, 'POC Test 6.20.3' as "POC Test Case" from dual;
 
 
 
 -- Check for the 6.20.3
+
+
+
+set serveroutput on;
+
 
 -- 初始化数据；
 CREATE TABLE employees (
@@ -693,6 +698,14 @@ UPDATE employees SET salary = 7000 WHERE emp_id = 1;
 SELECT salary FROM employees WHERE emp_id = 1;
 
 
+--会话1
+ROLLBACK;
+END;
+/
+
+
+
+
 --场景2：不可重复读测试
 --会话1
 -- 开启事务
@@ -715,6 +728,14 @@ UPDATE employees SET salary = 8000 WHERE emp_id = 1;
 COMMIT;
 END;
 /
+
+--会话1 
+UPDATE employees SET salary = 5000 WHERE emp_id = 1;
+commit;
+
+
+
+
 
 --场景3：幻读测试
 --会话1
@@ -765,11 +786,13 @@ drop table employees;
 
 
 
-select to_char(sysdate,'YYYY-MM-DD HH24:Mi:ss'), as CurrentTime, 'POC Test 6.20.4' as "POC Test Case" from dual;
+select to_char(sysdate,'YYYY-MM-DD HH24:Mi:ss') as CurrentTime, 'POC Test 6.20.4' as "POC Test Case" from dual;
 
 
 
 -- Check for the 6.20.4
+
+
 
 -- 创建测试表;
 CREATE TABLE durable_test (
@@ -799,7 +822,7 @@ END;
 
 -- 场景3
 --崩溃后查询数据
--- 模拟数据库崩溃（SHUTDOWN ABORT）
+-- 模拟数据库崩溃（SHUTDOWN ABORT）  -- Kill the windows
 SELECT * FROM durable_test WHERE id = 3;
 
 
@@ -837,7 +860,7 @@ drop table durable_test;
 
 
 
-select to_char(sysdate,'YYYY-MM-DD HH24:Mi:ss'), as CurrentTime, 'POC Test 6.20.5' as "POC Test Case" from dual;
+select to_char(sysdate,'YYYY-MM-DD HH24:Mi:ss') as CurrentTime 'POC Test 6.20.5' as "POC Test Case" from dual;
 
 -- Check for the 6.20.5
 
@@ -868,14 +891,22 @@ commit;
 -- #读取到已提交的数据
 SELECT * FROM t_test WHERE id=1;
 
--- 2.Repeatable read；
+
+
+
+
+
+
+
+--Restart two obclient session and set TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+-- 2.Repeatable read (In Mysql Mode)  SERIALIZABLE (In Oracle) 
 --会话1
-SET TRANSACTION ISOLATION LEVEL REPEATABLE READ;
+ SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
 UPDATE t_test SET name='JACK' WHERE id=1;
 SELECT * FROM t_test WHERE id=1;
 
 --会话2
-SET TRANSACTION ISOLATION LEVEL REPEATABLE READ;
+ SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
 -- # 读出来的数据是TOM
 SELECT * FROM t_test WHERE id=1;
 
@@ -886,7 +917,9 @@ COMMIT;
 -- # 读出来的数据还是TOM
 SELECT * FROM t_test WHERE id=1;
 
+commit;
 
+SELECT * FROM t_test WHERE id=1;
 
 
 Drop table t_test;
@@ -911,9 +944,57 @@ Drop table t_test;
 
 
 -- Check for the 6.20.6
+select to_char(sysdate,'YYYY-MM-DD HH24:Mi:ss') as CurrentTime, 'POC Test 6.20.6' as "POC Test Case" from dual;
 
 
---<??>
+
+
+CREATE TABLE accounts (
+    account_id NUMBER PRIMARY KEY,
+    balance    NUMBER
+);
+
+INSERT INTO accounts VALUES (1, 1000);
+INSERT INTO accounts VALUES (2, 2000);
+COMMIT;
+
+
+-- 1
+UPDATE accounts SET balance = 1100 WHERE account_id = 1;
+
+
+-- 2
+UPDATE accounts SET balance = 2100 WHERE account_id = 2;
+
+
+-- 1
+UPDATE accounts SET balance = 1900 WHERE account_id = 2;
+
+-- 2 
+UPDATE accounts SET balance = 900 WHERE account_id = 1;
+
+-- 2 
+commit;
+-- 1
+commit;
+
+select * from accounts;
+drop table accounts;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
