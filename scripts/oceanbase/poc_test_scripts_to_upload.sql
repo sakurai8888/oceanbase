@@ -493,7 +493,7 @@ drop table t;
 
 
 
-select to_char(sysdate,'YYYY-MM-DD HH24:Mi:ss'), as CurrentTime, 'POC Test 6.20.1' as "POC Test Case" from dual;
+select to_char(sysdate,'YYYY-MM-DD HH24:Mi:ss') as CurrentTime, 'POC Test 6.20.1' as "POC Test Case" from dual;
 -- Check for the 6.20.1
 
 --创建表 test_table1;
