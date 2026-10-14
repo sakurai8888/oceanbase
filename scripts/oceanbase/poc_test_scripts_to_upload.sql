@@ -510,7 +510,7 @@ info VARCHAR2(100)
 
 --开启事务;
 SET AUTOCOMMIT OFF;
-SET SERVEROUTPUT ON；
+SET SERVEROUTPUT ON;
 
 
 
@@ -553,7 +553,7 @@ SELECT * FROM test_table2;
 
 
 drop table test_table1;
-drop table test_table;
+drop table test_table2;
 
 
 
