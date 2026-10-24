@@ -84,7 +84,12 @@ obd cluster restart myobcluster02 -c obproxy
    ```sql
    ALTER PROXYCONFIG SET observer_sys_password = 'proxyro_123';
    ```
+5. Also need to update the obd cluster config file to insert the observer_sys_password = 'proxyro_123' , such that it will take effective when obcluster restart.
+   ```bash
+   obd cluster edit-config myobcluster02
 
+   ###Then add the observer_sys_password = 'proxyro_123' to proxy section
+   ```
 ---
 
 ### Step 4: Verify Client Connections
