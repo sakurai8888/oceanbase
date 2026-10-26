@@ -1,0 +1,26 @@
+select * from oms_step where project_id = (select id from project where name = 'OMS_1792119736901-1');
+
+select * from oms_struct_migration_record where task_id = '2110939967052550146' and extra_msg is not null;
+-- 结构迁移记录
+select * from oms_struct_migration_record where extra_msg is not null;
+select * from oms_struct_migration_record where OBJ_NAME = 'TB_MAP_FI_POS_BK'
+-- 结构迁移SQL语句记录
+select* from oms_struct_migration_sql_record;
+
+
+-- bitmap 索引转换
+select * from oms_struct_migration_record where task_id = '2110939967052550146' and extra_msg like '%[CONVERT] BITMAP INDEX%';
+select OBJ_TYPE,OBJ_SCHEMA,count(*) CON_NUM from oms_struct_migration_record where extra_msg like '%[CONVERT] BITMAP INDEX%' GROUP BY OBJ_TYPE,OBJ_SCHEMA;
+
+
+-- PK/UK 使用DISABLE修饰
+select OBJ_TYPE,OBJ_SCHEMA,OBJ_NAME from oms_struct_migration_record where extra_msg like '%DISABLE NOVALIDATE%';
+select OBJ_TYPE,OBJ_SCHEMA,count(*) CON_NUM from oms_struct_migration_record where extra_msg like '%DISABLE NOVALIDATE%' GROUP BY OBJ_TYPE,OBJ_SCHEMA;
+
+
+-- 索引排序
+select OBJ_TYPE,OBJ_SCHEMA,OBJ_NAME from oms_struct_migration_record where extra_msg like '%[CONVERT]%DESC%ASC%';
+select OBJ_TYPE,OBJ_SCHEMA,count(*) CON_NUM  from oms_struct_migration_record where extra_msg like '%[CONVERT]%DESC%ASC%' GROUP BY OBJ_TYPE,OBJ_SCHEMA;
+
+
+--
