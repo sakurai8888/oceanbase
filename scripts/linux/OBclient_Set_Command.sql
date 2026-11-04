@@ -1,3 +1,6 @@
+-- OBCLIENT NOT WORK
+
+
 set linesize 190
 set linesize 200
 set linesize 240
@@ -32,3 +35,33 @@ set trimspool on
 set trims on
 set verify off
 set verify on
+
+
+-- OBCLIENT WORK
+
+
+set echo off
+set echo on
+set feed off
+set feed on
+set feedback off
+set feedback on
+set heading off
+set heading on
+set pages 100
+set pages 50000
+set pagesize 0
+set pagesize 100
+set pagesize 1000
+set pagesize 2000
+set pagesize 10000
+set pagesize 20000
+set serveroutput off
+set serveroutput on
+set sqlblanklines on
+set term off
+set term on
+set termout off
+set termout on
+
+

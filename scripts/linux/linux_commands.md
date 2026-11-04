@@ -2,7 +2,7 @@
 while true; do echo "===== $(date '+%Y-%m-%d %H:%M:%S') ====="; du -hs *; sleep 5; done
 
 
-## Check space of a folder 
+## Check space of a folder
 du -hs *
 
 
@@ -15,6 +15,6 @@ find /path -name '*.dat' -type -f -exec rm -f {} +
 find /path -name '*.dat' -type -f -exec rm -f {} \;
 
 
+## AWK
 
-
-
+cat testing.txt | ask -F ' ' '{print $2}'
