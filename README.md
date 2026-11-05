@@ -22,8 +22,19 @@ This repository contains materials for **OceanBase database** related technical 
 
 ### Oceanbase (`scripts/oceanbase/`)
 
-- `linux_commands.md` — Useful shell one-liners (disk usage loops,
-  find-and-delete patterns).
+- `Partition_test.sql` — Range-partitioned table example with global
+  partitioned index and SPLIT PARTITION demonstration.
+- `oracle_tenant_plsql_loop.sql` — PL/SQL loop patterns, function,
+  and procedure examples for Oracle-mode tenants.
+- `oceanbase_tde.sql` — Transparent Data Encryption (TDE) setup example.
+- `poc_6_1-14.sql` — PoC test script bundle for section 6.
+
+### Oracle (`scripts/oracle/`)
+
+- `oracle_demo_schema.sql` — Self-contained Oracle-mode demo schema
+  covering tables, partitions, indexes, triggers, sequences, types,
+  functions, procedures, packages, views, and synonyms.
+
 
 
 ## Requirements
