@@ -81,6 +81,7 @@ Updating / installing...
 Set the active shell environment variables to point unixODBC and the dynamic loader to the OceanBase 32-bit installation tree under `/opt/oceanbase-odbc32/`:
 
 ```bash
+export ENABLE_FLT=0
 export ODBCSYSINI=/opt/oceanbase-odbc32/etc
 export ODBCINI=/opt/oceanbase-odbc32/etc/odbc.ini
 export LD_LIBRARY_PATH=/opt/oceanbase-odbc32/unixodbc/lib:$LD_LIBRARY_PATH
