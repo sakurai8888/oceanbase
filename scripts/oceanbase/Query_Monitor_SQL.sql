@@ -47,36 +47,6 @@ group by SQL_ID
 
 
 
-SELECT * FROM sys.gv$sql_plan_monitor;
-
-select * from sys.gv$ob_plan_cache_plan_stat
-
---   Unified Single-Query Correlation
-
-
-SELECT 
-    a.request_time,
-    a.sql_id,
-    a.plan_id,
-    a.trace_id,
-    a.elapsed_time / 1000 AS total_elapsed_ms,
-    p.hit_count AS cache_hits,
-    p.avg_exe_time AS cache_avg_us,
-    m.plan_line_id,
-    m.operator,
-    m.output_rows,
-    a.query_sql
-FROM sys.gv$ob_sql_audit a
-LEFT JOIN sys.gv$ob_plan_cache_plan_stat p 
-       ON a.tenant_id = p.tenant_id 
-      AND a.plan_id = p.plan_id
-LEFT JOIN sys.gv$ob_sql_monitor m 
-       ON a.trace_id = m.trace_id
-WHERE a.query_sql LIKE '%from tb_empdemo01%'
-  AND a.query_sql NOT LIKE '%gv$ob_sql_audit%'
-ORDER BY a.request_time DESC, m.plan_line_id ASC;
-
-
 
 
 
