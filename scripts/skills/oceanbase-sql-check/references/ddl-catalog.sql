@@ -1,0 +1,14692 @@
+-- ==============================================================================
+-- OceanBase Database 4.4.2 — DDL Statement Reference Catalog
+-- Generated: 2026-11-17T07:57:22.459476+00:00
+-- Official source: https://github.com/oceanbase/oceanbase-doc
+-- Source revision: V4.4.2 branch, commit 017c8d35a015afa04ce1e1ce4b95675e3223c878
+-- Archive SHA-256: 0ad0008237fee24d8e4b99214f608bcd0aea49e2668da5ac2f5b7cfe9cd44475
+--
+-- COVERAGE
+-- 68 unique English pages from the complete official Oracle-mode DDL chapter.
+-- 60 unique English MySQL-mode statement pages selected by normalized names
+-- beginning with CREATE, ALTER, DROP, TRUNCATE, RENAME, or COMMENT.
+-- Total: 128 official pages, each included exactly once.
+--
+-- This selection preserves the official DDL chapter's broad object and
+-- administrative scope. It includes table, external table, index, view,
+-- materialized view/log, sequence, synonym, database/database-link, tablegroup,
+-- tablespace, outline, security/user/role, and related documented statements.
+--
+-- SAFETY AND VALIDATION BOUNDARY
+-- Every line is a SQL comment. This is reference material, not a runnable script.
+-- Examples and syntax diagrams were statically extracted, not executed against
+-- a live OceanBase 4.4.2 server. Check tenant mode, exact BP, object types,
+-- datatypes, options, privileges, prerequisites, and restrictions individually.
+-- Never infer Oracle-mode support from MySQL-mode documentation or vice versa.
+--
+-- TABLE OF CONTENTS
+-- [DDL-001] MySQL | ALTER COMPILE
+-- [DDL-002] MySQL | ALTER DATABASE
+-- [DDL-003] MySQL | ALTER LOCATION
+-- [DDL-004] MySQL | ALTER MATERIALIZED VIEW
+-- [DDL-005] MySQL | ALTER MATERIALIZED VIEW LOG
+-- [DDL-006] MySQL | ALTER EXTERNAL TABLE
+-- [DDL-007] MySQL | ALTER OUTLINE
+-- [DDL-008] MySQL | ALTER SENSITIVE RULE
+-- [DDL-009] MySQL | ALTER SEQUENCE
+-- [DDL-010] MySQL | ALTER/CHANGE/MODIFY EXTERNAL_STORAGE_DEST
+-- [DDL-011] MySQL | ALTER SYSTEM FLUSH SEQUENCE CACHE
+-- [DDL-012] MySQL | MAJOR and MINOR
+-- [DDL-013] MySQL | VALIDATE
+-- [DDL-014] MySQL | ALTER TABLE
+-- [DDL-015] MySQL | ALTER TABLEGROUP
+-- [DDL-016] MySQL | ALTER TABLESPACE
+-- [DDL-017] MySQL | ALTER USER
+-- [DDL-018] MySQL | ALTER VIEW
+-- [DDL-019] MySQL | ALTER INSTANCE ROTATE INNODB MASTER KEY
+-- [DDL-020] MySQL | CREATE CONCURRENT_LIMITING_RULE
+-- [DDL-021] MySQL | CREATE DATABASE LINK
+-- [DDL-022] MySQL | CREATE DATABASE
+-- [DDL-023] MySQL | CREATE EXTERNAL CATALOG
+-- [DDL-024] MySQL | CREATE EXTERNAL TABLE
+-- [DDL-025] MySQL | CREATE INDEX
+-- [DDL-026] MySQL | CREATE LOCATION
+-- [DDL-027] MySQL | CREATE MATERIALIZED VIEW
+-- [DDL-028] MySQL | CREATE MATERIALIZED VIEW LOG
+-- [DDL-029] MySQL | CREATE OUTLINE
+-- [DDL-030] MySQL | CREATE FORMAT OUTLINE
+-- [DDL-031] MySQL | CREATE RESTORE POINT
+-- [DDL-032] MySQL | CREATE ROLE
+-- [DDL-033] MySQL | CREATE SEQUENCE
+-- [DDL-034] MySQL | CREATE SENSITIVE RULE
+-- [DDL-035] MySQL | CREATE TABLE
+-- [DDL-036] MySQL | CREATE TABLEGROUP
+-- [DDL-037] MySQL | CREATE TABLESPACE
+-- [DDL-038] MySQL | CREATE USER
+-- [DDL-039] MySQL | CREATE VIEW
+-- [DDL-040] MySQL | CREATE EVENT
+-- [DDL-041] MySQL | DROP CATALOG
+-- [DDL-042] MySQL | DROP CONCURRENT_LIMITING_RULE
+-- [DDL-043] MySQL | DROP DATABASE
+-- [DDL-044] MySQL | DROP INDEX
+-- [DDL-045] MySQL | DROP LOCATION
+-- [DDL-046] MySQL | DROP MATERIALIZED VIEW
+-- [DDL-047] MySQL | DROP MATERIALIZED VIEW LOG
+-- [DDL-048] MySQL | DROP OUTLINE
+-- [DDL-049] MySQL | DROP ROLE
+-- [DDL-050] MySQL | DROP SENSITIVE RULE
+-- [DDL-051] MySQL | DROP TABLE
+-- [DDL-052] MySQL | DROP TABLEGROUP
+-- [DDL-053] MySQL | DROP TABLESPACE
+-- [DDL-054] MySQL | DROP SEQUENCE
+-- [DDL-055] MySQL | DROP USER
+-- [DDL-056] MySQL | DROP VIEW
+-- [DDL-057] MySQL | DROP RESTORE POINT
+-- [DDL-058] MySQL | RENAME USER
+-- [DDL-059] MySQL | RENAME TABLE
+-- [DDL-060] MySQL | TRUNCATE TABLE
+-- [DDL-061] Oracle | ALTER EXTERNAL TABLE
+-- [DDL-062] Oracle | ALTER INDEX
+-- [DDL-063] Oracle | ALTER TABLE
+-- [DDL-064] Oracle | ALTER TABLEGROUP
+-- [DDL-065] Oracle | ALTER TABLESPACE
+-- [DDL-066] Oracle | ALTER USER
+-- [DDL-067] Oracle | ALTER VIEW COMPILE
+-- [DDL-068] Oracle | COMMENT
+-- [DDL-069] Oracle | CREATE CONTEXT
+-- [DDL-070] Oracle | CREATE CONCURRENT_LIMITING_RULE
+-- [DDL-071] Oracle | CREATE DIRECTORY
+-- [DDL-072] Oracle | CREATE DATABASE LINK
+-- [DDL-073] Oracle | CREATE EXTERNAL TABLE
+-- [DDL-074] Oracle | CREATE INDEX
+-- [DDL-075] Oracle | CREATE KEYSTORE
+-- [DDL-076] Oracle | CREATE LOCATION
+-- [DDL-077] Oracle | CREATE MATERIALIZED VIEW
+-- [DDL-078] Oracle | CREATE MATERIALIZED VIEW LOG
+-- [DDL-079] Oracle | CREATE OUTLINE
+-- [DDL-080] Oracle | CREATE PROFILE
+-- [DDL-081] Oracle | ALTER KEYSTORE
+-- [DDL-082] Oracle | CREATE FORMAT OUTLINE
+-- [DDL-083] Oracle | CREATE ROLE
+-- [DDL-084] Oracle | CREATE SEQUENCE
+-- [DDL-085] Oracle | CREATE SENSITIVE RULE
+-- [DDL-086] Oracle | ALTER LOCATION
+-- [DDL-087] Oracle | CREATE SYNONYM
+-- [DDL-088] Oracle | CREATE TABLE
+-- [DDL-089] Oracle | ALTER MATERIALIZED VIEW
+-- [DDL-090] Oracle | CREATE TABLEGROUP
+-- [DDL-091] Oracle | ALTER MATERIALIZED VIEW LOG
+-- [DDL-092] Oracle | CREATE TABLESPACE
+-- [DDL-093] Oracle | CREATE USER
+-- [DDL-094] Oracle | CREATE VIEW
+-- [DDL-095] Oracle | DROP CONTEXT
+-- [DDL-096] Oracle | DROP CONCURRENT_LIMITING_RULE
+-- [DDL-097] Oracle | ALTER OUTLINE
+-- [DDL-098] Oracle | DROP DATABASE LINK
+-- [DDL-099] Oracle | DROP DIRECTORY
+-- [DDL-100] Oracle | DROP INDEX
+-- [DDL-101] Oracle | DROP LOCATION
+-- [DDL-102] Oracle | DROP MATERIALIZED VIEW
+-- [DDL-103] Oracle | DROP MATERIALIZED VIEW LOG
+-- [DDL-104] Oracle | DROP OUTLINE
+-- [DDL-105] Oracle | DROP PROFILE
+-- [DDL-106] Oracle | DROP ROLE
+-- [DDL-107] Oracle | DROP SENSITIVE RULE
+-- [DDL-108] Oracle | DROP SEQUENCE
+-- [DDL-109] Oracle | DROP SYNONYM
+-- [DDL-110] Oracle | DROP TABLE
+-- [DDL-111] Oracle | ALTER PROFILE
+-- [DDL-112] Oracle | DROP TABLEGROUP
+-- [DDL-113] Oracle | DROP TABLESPACE
+-- [DDL-114] Oracle | DROP USER
+-- [DDL-115] Oracle | DROP VIEW
+-- [DDL-116] Oracle | RENAME
+-- [DDL-117] Oracle | TRUNCATE TABLE
+-- [DDL-118] Oracle | MAJOR and MINOR
+-- [DDL-119] Oracle | ALTER ROLE
+-- [DDL-120] Oracle | ALTER SENSITIVE RULE
+-- [DDL-121] Oracle | ALTER SEQUENCE
+-- [DDL-122] Oracle | ALTER SESSION
+-- [DDL-123] Oracle | ALTER SYSTEM ENABLE/DISABLE RESTRICTED SESSION
+-- [DDL-124] Oracle | ALTER SYSTEM FLUSH CACHE
+-- [DDL-125] Oracle | ALTER/CHANGE/MODIFY EXTERNAL_STORAGE_DEST
+-- [DDL-126] Oracle | ALTER SYSTEM FLUSH SEQUENCE CACHE
+-- [DDL-127] Oracle | ALTER SYSTEM SET PARAMETER
+-- [DDL-128] Oracle | VALIDATE
+-- ==============================================================================
+--
+--
+-- ==============================================================================
+-- [DDL-001] MySQL mode | ALTER COMPILE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/1100.alter-compile-of-mysql-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # ALTER COMPILE
+--
+-- ## Purpose
+--
+-- This statement triggers the recompilation of a procedure or function.
+--
+-- ## Privilege requirements
+--
+-- To execute the `ALTER COMPILE` statement, the current user must have the `ALTER` privilege. For more information about the privileges in OceanBase Database, see [Privilege types in MySQL-compatible mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/200.permission-of-mysql-mode/100.permission-classification-of-mysql.md).
+--
+-- ## Syntax
+--
+-- ```sql
+-- ALTER {procedure|function} name COMPILE [reuse settings]
+-- ```
+--
+-- ## Parameters
+--
+-- |                        **Parameter**                         |                                                        **Description**                                                        |
+-- |-------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------|
+-- | procedure |Specifies that the `alter` operation is for a procedure.|
+-- | function  |Specifies that the `alter` operation is for a function.|
+-- | name      |The name of the stored procedure or function to be recompiled.|
+-- | reuse settings |An optional parameter. If you specify the `reuse settings` clause, the parameters used to compile the PL object are the same as those used previously. If you do not specify this clause, the parameters set in the current session are used for compilation.|
+--
+-- ## Examples
+--
+-- ```shell
+-- ```--
+--
+-- ==============================================================================
+-- [DDL-002] MySQL mode | ALTER DATABASE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/1200.alter-database-of-mysql-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # ALTER DATABASE
+--
+-- ## Purpose
+--
+-- This statement is used to modify the properties of a database.
+--
+-- ## Syntax
+--
+-- ```sql
+-- ALTER {DATABASE|SCHEMA} [database_name] [SET] alter_specification [alter_specification ...];
+--
+-- alter_specification:
+--     [DEFAULT] {CHARACTER SET | CHARSET} [=] charset_name
+--   | [DEFAULT] COLLATE [=] collation_name
+--   | {READ ONLY | READ WRITE}
+--   | [DEFAULT] TABLEGROUP [=] {NULL | table_group_name}
+-- ```
+--
+-- ## Parameters
+--
+-- |                        **Parameter**                         |                                                        **Description**                                                        |
+-- |-------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------|
+-- | database_name                                         | Specifies the name of the database whose properties are to be modified. If not specified, the current database will be modified. If the current database is empty, an error will be returned.                                                    |
+-- | \[DEFAULT\] { CHARACTER SET \| CHARSET } charset_name | Specifies the default character set for the database. `CHARACTER SET` and `CHARSET` are synonyms. The `DEFAULT` keyword is optional and does not affect the semantics.                              |
+-- | \[DEFAULT\] COLLATE collation_name                    | Specifies the default collation for the database. The `DEFAULT` keyword is optional and does not affect the semantics.                                                                |
+-- | READ ONLY \| READ WRITE                               | Sets the read-only or read-write property at the database level.                                                                                                       |
+-- | [DEFAULT] TABLEGROUP table_group_name                   | Sets the default table group for the database. `NULL` indicates that the default table group for the database will be canceled. <main id="notice" type='explain'><h4>Note</h4> <p>For V4.4.x versions, starting from V4.4.1, executing this command will actually modify the TableGroup property of all tables under the database. For more information about the aggregation of user tables under a database, see [Aggregation of user tables under a database](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/350.load-balancing-manage/430.tablegroup-weight-management/100.aggregation-of-user-tables-in-a-database.md). After modifying the TableGroup property of a database, the system will not immediately align all user tables to the same log stream. If you want to aggregate user tables as soon as possible:<ul><li>You can manually trigger a partition balance by calling the <code>DBMS_BALANCE.TRIGGER_PARTITION_BALANCE</code> procedure. For more information about manually triggering a partition balance, see [Manually trigger a partition balance](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/350.load-balancing-manage/600.partition-balance-management/200.manually-trigger-a-partition-balancing-task.md). </li><li>Alternatively, you can wait for the scheduled partition balance task to be triggered. For more information about scheduled partition balance tasks, see [Configure a scheduled partition balance task](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/350.load-balancing-manage/600.partition-balance-management/100.configure-a-scheduled-partition-balancing-task.md).</li></ul></p></main>|
+--
+-- ## Examples
+--
+-- Modify the character set of the `test2` database to `UTF8MB4`, the collation to `UTF8MB4_BIN`, and set it to read/write.
+--
+-- ```sql
+--
+--
+-- ```--
+--
+-- ==============================================================================
+-- [DDL-003] MySQL mode | ALTER LOCATION
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/1230.alter-location-of-mysql-mode-in-sql.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # ALTER LOCATION
+--
+-- ## Purpose
+--
+-- This statement is used to modify the properties of a Location object.
+--
+-- <main id="notice" type='explain'>
+--   <h4>Note</h4>
+--   <p>For OceanBase Database V4.4.x, <code>ALTER LOCATION</code> is supported starting from V4.4.1. </p>
+-- </main>
+--
+-- ## Privilege requirements
+--
+-- * Execution privilege:
+--
+--     To execute the `ALTER LOCATION` statement, the current user must have the `CREATE LOCATION` privilege. For more information about privileges in OceanBase Database, see [Privilege types in MySQL-compatible mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/200.permission-of-mysql-mode/100.permission-classification-of-mysql.md).
+--
+-- * Authentication credential privilege:
+--
+--     The provided `ACCESSID` and `ACCESSKEY` must have valid access permissions for the target storage service.
+--
+-- ## Syntax
+--
+-- ```sql
+-- ALTER LOCATION location_name SET
+--     {URL = 'file_path'
+--     | CREDENTIAL = (credential_list)
+--     };
+--
+-- credential_list:
+--     ACCESSID = 'string'
+--     ACCESSKEY = 'string'
+--     HOST = 'string'
+--     [S3_REGION = 'string']
+--     [PRINCIPAL = 'string']
+--     [KEYTAB = 'string']
+--     [KRB5CONF = 'string']
+--     [CONFIGS = 'string']
+--     [USERNAME = 'string']
+-- ```
+--
+-- ## Parameters
+--
+-- |      **Parameter**     | **Description** |
+-- |-------------------|----------|
+-- | location_name     | The name of the Location object to be modified.|
+-- | URL = 'file_path' | Used to modify the external storage path. For more information, see [file_path](#file_path) below.|
+-- | CREDENTIAL        | Used to modify the information required for accessing HDFS or object storage. For more information, see [credential_list](#credential_list) below.|
+--
+-- ### file_path
+--
+-- The path for storing external table files can be in the following formats:
+--
+-- * Local path: `URL = '[file:// | sfile://] local_file_path'`
+--
+--   * `file://`: This protocol header indicates that when encountering files with the same logical path across multiple OBServer nodes, they are treated as different files and processed separately. Each node independently reads the file from its local path.
+--   * `sfile://`: This protocol header indicates that when encountering files with the same logical path across multiple OBServer nodes, the system performs deduplication based on the logical path to ensure only one copy of the data is read (supporting multi-server load balancing).
+--
+--     <main id="notice" type='notice'>
+--       <h4>Note</h4>
+--       <p><ul><li>When using <code>sfile://</code>, the system performs consistency verification of file sizes. If files under the same logical path have inconsistent sizes across different OBServer nodes, the system reports an error <code>OB_INVALID_EXTERNAL_FILE</code> to avoid result errors caused by data inconsistency.</li> <li>For version V4.4.2, starting from V4.4.2 BP2, support for the <code>sfile://</code> protocol header was added to the local URL path format in the <code>ALTER LOCATION</code> syntax.</li></ul></p>
+--     </main>
+--
+--   * `local_file_path`: Can be a relative or absolute path.
+--
+-- * HDFS path: `URL = 'hdfs://localhost:port/PATH'`, where `localhost` is the address of the HDFS cluster, `port` is the port number of the HDFS cluster, and `PATH` is the directory path in HDFS.
+--
+-- * Object storage (OSS/S3) path: `URL = '{oss | s3}://bucket/remote_file_path'`.
+--
+-- <main id="notice" type='notice'>
+--   <h4>Notice</h4>
+--   <p>Do not include parameters in the path when creating a Location object. </p>
+-- </main>
+--
+-- ### credential_list
+--
+-- * `ACCESSID`: the AccessKey ID of the user for accessing object storage.
+-- * `ACCESSKEY`: the AccessKey secret of the user for accessing object storage.
+-- * `HOST`: the host address of the object storage service.
+-- * `S3_REGION`: optional. The service region of the S3 object storage.
+-- * `PRINCIPAL`: optional. The login authentication user when the target HDFS cluster is in a Kerberos environment.
+-- * `KEYTAB`: optional. The authentication key file path when the target HDFS cluster is in a Kerberos environment.
+-- * `KRB5CONF`: optional. The file path for using Kerberos when the target HDFS cluster is in a Kerberos environment.
+-- * `CONFIGS`: optional. Additional cluster configuration items when the target HDFS cluster is in a Kerberos environment.
+-- * `USERNAME`: optional. The unique identifier for the user when the target HDFS cluster is in a Kerberos environment.
+--
+-- ## Examples
+--
+-- Modify the `CREDENTIAL` information of the `test_location_oss` Location object.
+--
+-- ```shell
+--     CREDENTIAL = (
+--         ACCESSID = '******'
+--         ACCESSKEY = '******'
+--         HOST = '******'
+--         );
+-- ```
+--
+-- ## References
+--
+-- For information about viewing files under a Location object, see [SHOW](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/8700.show-of-mysql-mode.md).--
+--
+-- ==============================================================================
+-- [DDL-004] MySQL mode | ALTER MATERIALIZED VIEW
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/1250.alter-materialized-view-of-mysql-mode-in-sql.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # ALTER MATERIALIZED VIEW
+--
+-- ## Purpose
+--
+-- This statement is used to modify the properties of a materialized view.
+--
+-- ## Privilege requirements
+--
+-- To execute the `ALTER MATERIALIZED VIEW` statement, the current user must have the `ALTER` privilege on the target object. For more information about OceanBase Database privileges, see [Privilege types in MySQL-compatible mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/200.permission-of-mysql-mode/100.permission-classification-of-mysql.md).
+--
+-- ## Syntax
+--
+-- ```sql
+-- ALTER MATERIALIZED VIEW [database.]view_name alter_mview_action_list;
+--
+-- alter_mview_action_list:
+--     alter_mview_action [, alter_mview_action ...]
+--
+-- alter_mview_action:
+--     parallel_clause
+--     | REFRESH [nested_refresh_option] [[START WITH expr] [NEXT expr]]
+--
+-- parallel_clause:
+--     NOPARALLEL
+--     | PARALLEL integer
+--     | REFRESH PARALLEL integer
+--
+-- nested_refresh_option:
+--     INDIVIDUAL
+--     | INCONSISTENT
+--     | CONSISTENT
+-- ```
+--
+-- ## Parameters
+--
+-- |        **Parameter**         |       **Description**           |
+-- |-------------------------|--------------------------|
+-- | database.               | Optional. Specifies the database where the materialized view is located. If you omit `database.`, the materialized view is assumed to be in the current session's connected database.|
+-- | view_name               | Specifies the name of the materialized view to be modified.<main id="notice" type='explain'><h4>Note</h4><p>OceanBase Database supports renaming a materialized view by using the <code>RENAME TABLE</code> statement. </p></main>|
+-- | alter_mview_action_list | Specifies the list of operations that can be performed on the materialized view. You can specify multiple operations, separated by commas (`,`). For more information, see [alter_mview_action](#alter_mview_action) below.|
+--
+-- ### alter_mview_action
+--
+-- * `parallel_clause`: specifies the parallelism of the materialized view. Valid values:
+--
+--   * `NOPARALLEL`: default value. The parallelism is 1.
+--   * `PARALLEL integer`: specifies the table-level parallelism, which is the parallelism when querying the materialized view. The value of `integer` must be an integer greater than or equal to 1.
+--   * `REFRESH PARALLEL integer`: specifies the refresh parallelism, which is the parallelism during the refresh of the materialized view. The value of `integer` must be an integer greater than or equal to 0. When the value is 0, the system variable `mview_refresh_dop` is used for the refresh parallelism.
+--
+--     <main id="notice" type='explain'>
+--       <h4>Note</h4>
+--       <p>For V4.4.2, the <code>ALTER MATERIALIZED VIEW</code> statement supports modifying the refresh parallelism by specifying <code>REFRESH PARALLEL integer</code> starting from V4.4.2 BP2.</p>
+--     </main>
+--
+--   **Here is an example:**
+--
+--   * Specify the parallelism when querying the materialized view.
+--
+--     ```sql
+--     ALTER MATERIALIZED VIEW mv1 PARALLEL 5;
+--     ```
+--
+--   * Specify the refresh parallelism of the materialized view.
+--
+--     ```sql
+--     ALTER MATERIALIZED VIEW mv1 REFRESH PARALLEL 3;
+--     ```
+--
+-- * `REFRESH [nested_refresh_option] [[START WITH expr] [NEXT expr]]`: specifies the refresh strategy of a nested materialized view or the time interval of the background refresh task of a materialized view.
+--
+--   * `nested_refresh_option`: optional. Specifies the refresh strategy of a nested materialized view.
+--
+--     * `INDIVIDUAL`: default value. Specifies independent refresh.
+--     * `INCONSISTENT`: specifies cascading inconsistent refresh.
+--     * `CONSISTENT`: specifies cascading consistent refresh.
+--
+--     **Here is an example:**
+--
+--     ```shell
+--     ```
+--
+--     ```shell
+--     ```
+--
+--     ```shell
+--     ```
+--
+--   * `[[START WITH expr] [NEXT expr]]`: specifies the time interval of the background refresh task of a materialized view.
+--
+--     * `[START WITH expr]`: optional. Specifies the start time expression of the refresh plan.
+--     * `[NEXT expr]`: optional. Specifies the next refresh time expression.
+--
+--       <main id="notice" type='notice'>
+--         <h4>Notice</h4>
+--         <p><ul><li>If you use the <code>NEXT</code> clause, the time expression of the refresh plan must be set to a future time. Otherwise, an error will be returned. </li><li>If you want to schedule the refresh task of a materialized view periodically, define the <code>NEXT</code> clause to set the scheduling cycle. </li></ul></p>
+--       </main>
+--
+--     We recommend that you use `sysdate()` to specify the current time in the current time zone. Here are some examples of time expressions:
+--
+--     ```sql
+--     START WITH sysdate() NEXT sysdate() + INTERVAL 1 DAY
+--     ```
+--
+--     This clause indicates that the materialized view will be refreshed every 1 day starting from the current time (`sysdate()`).
+--
+--     **Here is an example:**
+--
+--     ```shell
+--         REFRESH START WITH sysdate();
+--     ```
+--
+--     Only the refresh interval is specified:
+--
+--     ```shell
+--         REFRESH NEXT sysdate() + INTERVAL 1 DAY;
+--     ```
+--
+--     Both the start time and the refresh interval are specified:
+--
+--     ```shell
+--         REFRESH START WITH sysdate() NEXT sysdate() + INTERVAL 1 DAY;
+--     ```
+--
+-- ## References
+--
+-- * [Overview of materialized views](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/100.manage-object-of-mysql-mode/600.manage-views-of-mysql-mode/200.manage-materialized-views-of-mysql-mode/100.materialized-views-overview-of-mysql-mode.md)
+-- * [Create a materialized view](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/100.manage-object-of-mysql-mode/600.manage-views-of-mysql-mode/200.manage-materialized-views-of-mysql-mode/300.create-materialized-views-of-mysql-mode.md)
+-- * [Query a materialized view](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/100.manage-object-of-mysql-mode/600.manage-views-of-mysql-mode/200.manage-materialized-views-of-mysql-mode/600.view-materialized-views-of-mysql-mode.md)
+-- * [Refresh a materialized view](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/100.manage-object-of-mysql-mode/600.manage-views-of-mysql-mode/200.manage-materialized-views-of-mysql-mode/400.refresh-materialized-views-of-mysql-mode.md)--
+--
+-- ==============================================================================
+-- [DDL-005] MySQL mode | ALTER MATERIALIZED VIEW LOG
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/1251.alter-materialized-view-log-of-mysql-mode-in-sql.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # ALTER MATERIALIZED VIEW LOG
+--
+-- ## Purpose
+--
+-- This statement is used to modify the properties of a materialized view log (mlog).
+--
+-- ## Privilege requirements
+--
+-- To execute the `ALTER MATERIALIZED VIEW LOG` statement, the current user must have the `ALTER` privilege on the base table. For more information about OceanBase Database privileges, see [Privilege types in MySQL-compatible mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/200.permission-of-mysql-mode/100.permission-classification-of-mysql.md).
+--
+-- ## Syntax
+--
+-- ```sql
+-- ALTER MATERIALIZED VIEW LOG ON [database.]table_name alter_mlog_action_list;
+--
+-- alter_mview_action_list:
+--     alter_mlog_action [, alter_mlog_action ...]
+--
+-- alter_mlog_action:
+--     parallel_clause
+--     | PURGE [[START WITH expr] [NEXT expr]]
+--     | LOB_INROW_THRESHOLD [=] integer
+--
+-- parallel_clause:
+--     NOPARALLEL
+--     | PARALLEL integer
+-- ```
+--
+-- ## Parameters
+--
+-- |        **Parameter**        |       **Description**           |
+-- |------------------------|--------------------------|
+-- | database.              | Optional. Specifies the database where the materialized view is located. If you omit `database.`, the base table is assumed to be in the database to which the current session is connected.|
+-- | table_name             | Specifies the name of the base table corresponding to the materialized view log.|
+-- | alter_mlog_action_list | A list of operations that can be performed on the materialized view log. Multiple operations can be specified, separated by commas (`,`). For more information, see [alter_mlog_action](#alter_mlog_action) below.|
+--
+-- ### alter_mlog_action
+--
+-- * `parallel_clause`: Modifies the parallelism of the materialized view log table. Valid values:
+--
+--   * `NOPARALLEL`: Parallelism is 1, which is the default setting.
+--   * `PARALLEL integer`: Specifies the parallelism. `integer` can be an integer greater than or equal to 1.
+--
+--   **Here is an example:**
+--
+--   ```sql
+--   -- First, create a base table.
+--       id INT PRIMARY KEY,
+--       name VARCHAR(50)
+--   );
+--
+--   -- Create a materialized view log.
+--
+--   -- Set the parallelism to 5.
+--
+--   -- Set the parallelism to 1 (default).
+--   ```
+--
+-- * `PURGE [[START WITH expr] [NEXT expr]]`: Modifies the time interval for the background cleanup task of the materialized view log.
+--
+--   * `[START WITH expr]`: Optional. Specifies the initial cleanup time for the materialized view log.
+--   * `[NEXT expr]`: Optional. Specifies the next cleanup time for the materialized view log.
+--
+--   <main id="notice" type='notice'>
+--     <h4>Notice</h4>
+--     <p>Make sure that the time expressions <code>START WITH expr</code> and <code>NEXT expr</code> are set to future time points. Otherwise, an error will occur. </p>
+--   </main>
+--
+--   We recommend that you use `sysdate()` to represent the current time in the current time zone. Here are some examples of time expressions:
+--
+--   ```sql
+--   START WITH sysdate() NEXT sysdate() + INTERVAL 1 DAY
+--   ```
+--
+--   The preceding clause indicates that the system will clear expired materialized view log records starting from the current time (`sysdate()`) and every 1 day.
+--
+--   **Here is an example:**
+--
+--   ```sql
+--   ```
+--
+--   ```sql
+--   ```
+--
+--   ```sql
+--   ```
+--
+-- * `LOB_INROW_THRESHOLD [=] integer`: Modifies the inline storage length threshold for LOBs in the materialized view log. This parameter can only be increased.
+--
+--   <main id="notice" type='explain'>
+--     <h4>Note</h4>
+--     <p>The default value of <code>LOB_INROW_THRESHOLD</code> is 8 KB. The default value of <code>LOB_INROW_THRESHOLD</code> for mlogs is not controlled by the system variable <a href="../../../../800.configuration-items-and-system-variables/200.system-variable/300.global-system-variable/6300.ob_default_lob_inrow_threshold-global.md">ob_default_lob_inrow_threshold</a>. </p>
+--   </main>
+--
+--   **Here is an example:**
+--
+--   ```sql
+--   ```
+--
+-- ## References
+--
+-- [Materialized view logs](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/100.manage-object-of-mysql-mode/600.manage-views-of-mysql-mode/200.manage-materialized-views-of-mysql-mode/200.materialized-views-log-of-mysql-mode.md)--
+--
+-- ==============================================================================
+-- [DDL-006] MySQL mode | ALTER EXTERNAL TABLE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/1300.alter-external-table-of-mysql-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # ALTER EXTERNAL TABLE
+--
+-- ## Purpose
+--
+-- This statement is used to manually update the data of an external table. If the data of an external table comes from a list of files, you must manually refresh the table data.
+--
+-- ## Syntax
+--
+-- ```sql
+-- ALTER EXTERNAL TABLE table_name REFRESH
+-- ```
+--
+-- ## Parameters
+--
+-- `table_name` specifies the name of the external table to be refreshed.
+--
+-- ## Examples
+--
+-- ```sql
+-- -- Make sure that the corresponding external table exists before you execute this statement.
+-- ```
+--
+-- ## References
+--
+-- [CREATE EXTERNAL TABLE](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/2200.create-external-table-of-mysql-mode.md)--
+--
+-- ==============================================================================
+-- [DDL-007] MySQL mode | ALTER OUTLINE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/1300.alter-outline-of-mysql-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # ALTER OUTLINE
+--
+-- ## Purpose
+--
+-- You can use this statement to add a bound outline and throttling rules. This statement supports only outlines created by using `SQL_TEXT`.
+--
+-- ## Syntax
+--
+-- ```sql
+-- ALTER OUTLINE outline_name ADD stmt [ TO target_stmt ];
+-- ```
+--
+-- ## Parameters
+--
+-- | **Parameter** | **Description** |
+-- |----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+-- | outline_name | The name of the outline to be modified.  |
+-- | stmt | It is generally a DML statement with hints and original arguments.  |
+-- | TO target_stmt | If `TO target_stmt` is not specified, when the parameterized SQL statement accepted by the database is the same as the parameterized text of `stmt` without a hint, the database binds the SQL statement to the hint in `stmt` to generate an execution plan. If you want to bind plans to statements that have hints, use `TO target_stmt` to specify the original SQL statement.   <br>**Notice**: When you specify `target_stmt`, you must ensure that `stmt` exactly matches `target_stmt` when hints are removed.  |
+--
+-- ## Examples
+--
+-- * Execute `ALTER OUTLINE` to add a throttling rule.
+--
+--   ```sql
+--    ```
+--
+-- * Execute `ALTER OUTLINE` to add an execution plan.
+--
+--   ```sql
+--    ```
+--
+-- ## Considerations
+--
+-- * Only one execution plan can be specified for the same `outline_name`. If an execution plan has been specified by using the `CREATE OUTLINE` statement, you cannot add the execution plan by executing `ALTER OUTLINE`.
+--
+-- * Similar to `CREATE OUTLINE`, when you use `ALTER OUTLINE`, you cannot specify both the throttling rule and the execution plan simultaneously.--
+--
+-- ==============================================================================
+-- [DDL-008] MySQL mode | ALTER SENSITIVE RULE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/1350.alter-sensitive-rule-of-mysql-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # ALTER SENSITIVE RULE
+--
+-- ## Purpose
+--
+-- This statement is used to modify the sensitive data protection rules.
+--
+-- ## Privilege requirements
+--
+-- To execute the `ALTER SENSITIVE RULE` statement, the current user must have the `CREATE SENSITIVE RULE` privilege. For more information about OceanBase Database privileges, see [Privilege classification in MySQL-compatible mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/200.permission-of-mysql-mode/100.permission-classification-of-mysql.md).
+--
+-- ## Syntax
+--
+-- ```sql
+-- -- Add a sensitive column.
+-- ALTER SENSITIVE RULE <rule_name> ADD COLUMN <sensitive_field_list>;
+-- -- Drop a sensitive column.
+-- ALTER SENSITIVE RULE <rule_name> DROP COLUMN <sensitive_field_list>;
+-- -- Enable the rule.
+-- ALTER SENSITIVE RULE <rule_name> ENABLE;
+-- -- Disable the rule.
+-- ALTER SENSITIVE RULE <rule_name> DISABLE;
+-- -- Modify the encryption algorithm.
+-- ALTER SENSITIVE RULE <rule_name> USING ENCRYPTION [= <encryption_method>];
+-- ```
+--
+-- ## Parameters
+--
+-- The following table describes the parameters.
+--
+-- | Parameter | Data type | Default value | Description |
+-- |---|---|---|---|
+-- | rule_name | String |  | The name of the sensitive rule, which must be unique within the tenant. |
+-- | sensitive_field_list | String |  | The columns to be encrypted, in the format of `db.table(col1, col2), db2.table2(col3, col4), ...`. Each sensitive item specifies one or more columns in a table, with columns separated by commas. Sensitive items are separated by commas. The `db` parameter can be empty, in which case the current connected database is used by default. |
+-- | encryption_method | String |  | The encryption method. The default value is `aes-256`, which refers to the AES-256-ECB encryption algorithm. The value range is described in the following table. |
+--
+-- The `encryption_method` parameter can take the following values:
+--
+-- | Value (used in SQL syntax) | Actual encryption algorithm | Key length | Mode | Description |
+-- |---|----------|----------|------|------|
+-- | aes-256 | AES-256-ECB | 256 bits | ECB | Default algorithm |
+-- | aes-128 | AES-128-ECB | 128 bits | ECB |  |
+-- | aes-192 | AES-192-ECB | 192 bits | ECB |  |
+-- | aes-128-gcm | AES-128-GCM | 128 bits | GCM | High security level. Provides authenticated encryption (AEAD). |
+-- | aes-192-gcm | AES-192-GCM | 192 bits | GCM | High security level. Provides authenticated encryption (AEAD). |
+-- | aes-256-gcm | AES-256-GCM | 256 bits | GCM | High security level. Provides authenticated encryption (AEAD). |
+-- | sm4-cbc | SM4-CBC |  | CBC | High security level. |
+-- | sm4-GCM | SM4-GCM |  | GCM | High security level. Provides authenticated encryption (AEAD). |
+--
+-- The following limits apply:
+--
+-- * The `sensitive_field_list` parameter for `ADD/DROP COLUMN` is the same as that in the `CREATE SENSITIVE RULE` statement.
+-- * The columns added by `ADD COLUMN` cannot be protected by any existing rules.
+-- * The columns dropped by `DROP COLUMN` must be protected by the specified rule.
+-- * `DISABLE` temporarily disables the sensitive rule but does not delete it (rules are enabled by default after creation).
+--
+-- ## Examples
+--
+-- Here are some examples:
+--
+-- ```sql
+-- -- Add the columns c in tbl2 and x in db2.tbl3 to the sensitive rule r1.
+-- ALTER SENSITIVE RULE r1 ADD COLUMN tbl2(c), db2.tbl3(x);
+-- -- Drop the column c in tbl2 from the sensitive rule r1.
+-- ALTER SENSITIVE RULE r1 DROP COLUMN tbl2(c);
+-- -- Enable the sensitive rule r1.
+-- ALTER SENSITIVE RULE r1 ENABLE;
+-- -- Disable the sensitive rule r1.
+-- ALTER SENSITIVE RULE r1 DISABLE;
+-- -- Change the encryption algorithm of the sensitive rule r1 to the default algorithm.
+-- ALTER SENSITIVE RULE r1 USING ENCRYPTION;
+-- -- Change the encryption algorithm of the sensitive rule r1 to sm4-cbc.
+-- ALTER SENSITIVE RULE r1 USING ENCRYPTION = 'sm4-cbc';
+-- ```
+--
+-- # References
+--
+-- * [CREATE SENSITIVE RULE](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/2550.create-sensitive-rule-of-mysql-mode.md)
+-- * [DROP SENSITIVE RULE](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/3680.drop-sensitive-rule-of-mysql-mode.md)--
+--
+-- ==============================================================================
+-- [DDL-009] MySQL mode | ALTER SEQUENCE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/1400.alter-sequence-of-mysql-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # ALTER SEQUENCE
+--
+-- ## Purpose
+--
+-- This statement is used to modify the increment, minimum, and maximum values, cache size, and behavior of an existing sequence. The changes only affect subsequent sequence numbers.
+--
+--   <main id="notice" type='explain'>
+--     <h4>Note</h4>
+--     <p>Users can only modify sequences in their own schema or those for which they have the <code>ALTER</code> object privilege. </p>
+--   </main>
+--
+-- ## Syntax
+--
+-- ```sql
+-- ALTER SEQUENCE [ schema. ] sequence_name
+--     [ INCREMENT BY int_value ]
+--     [ START WITH int_value ]
+--     [ MINVALUE int_value | NOMINVALUE ]
+--     [ MAXVALUE int_value | NOMAXVALUE ]
+--     [ CACHE int_value | NOCACHE ]
+--     [ ORDER | NOORDER ]
+--     [ CYCLE | NOCYCLE ]
+--     [ RESTART ]
+-- ```
+--
+-- ## Parameters
+--
+-- |           Parameter           |                                                                                                                                                                          Description                                                                                                                                                                          |
+-- |------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+-- | schema.                | The schema that contains the sequence. If you omit the schema, the database changes the sequence in the schema in which the current user is located.                                                                                                                                                                                                                                                                              |
+-- | sequence_name          | The name of the sequence to be changed.                                                                                                                                                                                                                                                                                                                                            |
+-- | RESTART                | Resets the sequence value. When ascending, the sequence starts from `MINVALUE`; when descending, the sequence starts from `MAXVALUE`.                                                                                                                                                                                                                                               |
+-- | START WITH int_value   | The starting value of the sequence. The value of `int_value` ranges from \[-(10<sup>27</sup>-1) \~ (10<sup>28</sup>-1)\].                                                                                                                                                                                                                                                                                           |
+-- | MINVALUE int_value     | The minimum value of the sequence. The value of `int_value` ranges from \[-(10<sup>27</sup>-1) \~ (10<sup>27</sup>-1)\].                                                                                                                                                                                                                                                                                           |
+-- | NOMINVALUE             | If you specify `NOMINVALUE`, the minimum value is 1 when ascending, and -(10<sup>27</sup>-1) when descending.                                                                                                                                                                                                                                                                                                   |
+-- | MAXVALUE int_value     | The maximum value of the sequence. The value of `int_value` ranges from \[(-10<sup>27</sup>+1) \~ (10<sup>28</sup>-1)\]. The newly specified `MAXVALUE` must be greater than the current sequence number. <br>**Notice** *When you specify both `MINVALUE` and `MAXVALUE`, `MINVALUE` must be less than `MAXVALUE`. The difference between `MAXVALUE` and `MINVALUE` must be greater than or equal to the value of `int_value` in INCREMENT BY.*    |
+-- | NOMAXVALUE             | If you change the value to `NOMAXVALUE`, the maximum value for ascending sequences is (10<sup>28</sup>-1), and the maximum value for descending sequences is -1.                                                                                                                                                                                                                                                                                                    |
+-- | INCREMENT BY int_value | Changes the increment step for the sequence. `int_value` cannot be 0. If specified as a positive number, the sequence is ascending; if specified as a negative number, the sequence is descending. The default value is 1 if not specified.                                                                                                                                                                                                                                                              |
+-- | CACHE int_value        | Changes the number of preallocated increment values in memory. The default value of `int_value` is 20. The value of `CACHE int_value` must be greater than 1. If `CACHE INT_VALUE` is set to 1, it is equivalent to `NOCACHE`.                                                                                                                                                                                                                            |
+-- | NOCACHE                | Changes the sequence value to not be preallocated. If both `CACHE` and `NOCACHE` are omitted, the database defaults to caching 20 sequence numbers.                                                                                                                                                                                                                                                                           |
+-- | ORDER                  | Changes the sequence value to be generated in order.                                                                                                                                                                                                                                                                                                                                        |
+-- | NOORDER                | If you change the value to `NOORDER`, it specifies that the sequence values are not guaranteed to be generated in order.                                                                                                                                                                                                                                                                                                                     |
+-- | CYCLE                  | Changes the sequence value to be generated in a cycle, meaning the sequence continues to generate values after reaching its maximum or minimum value. For ascending sequences, it generates the minimum value after reaching the maximum value. For descending sequences, it generates the maximum value after reaching the minimum value. <br>**Note**  <ul><li> If you specify `CYCLE`, and `int_value` in `INCREMENT BY` is less than 0, you must also specify `MINVALUE`. </li>   <li> If you specify `CYCLE`, the number of `CACHE` values cannot exceed one cycle. </li></ul>                           |
+-- | NOCYCLE                | `NOCYCLE` is the default value. If you change the value to `NOCYCLE`, it specifies that the sequence cannot generate more values after reaching its maximum or minimum value.                                                                                                                                                                                                                                                                                             |
+--
+-- ## Examples
+--
+-- * Modify the maximum value of the `seq1` sequence and specify that the increment value is recycled.
+--
+--   ```sql
+--   -- First, create the sequence: CREATE SEQUENCE seq1;
+--   ```
+--
+-- * Change the maximum value and increment value of the `seq3` sequence, enable the `CYCLE` and `ORDER` options, and specify `NOCACHE` to indicate that the sequence values are not preallocated.
+--
+--   ```sql
+--   -- First, create the sequence: CREATE SEQUENCE seq3;
+--   ```
+--
+-- * Reset the sequence value.
+--
+--   ```sql
+--   -- First, create the sequence: CREATE SEQUENCE seq3;
+--   ```
+--
+-- * Set the starting value and reset the sequence.
+--
+--   ```sql
+--   -- First, create the sequence: CREATE SEQUENCE seq3;
+--   ```
+--
+-- * The `RESTART` option can be placed anywhere in the clause. The following two SQL statements for resetting the sequence value are equivalent.
+--
+--   ```sql
+--   -- First, create the sequence: CREATE SEQUENCE seq3;
+--
+--   ```--
+--
+-- ==============================================================================
+-- [DDL-010] MySQL mode | ALTER/CHANGE/MODIFY EXTERNAL_STORAGE_DEST
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/1430.alter-system-change-external-storage-dest-of-mysql-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # ALTER/CHANGE/MODIFY EXTERNAL_STORAGE_DEST
+--
+-- ## Purpose
+--
+-- This statement is used to change the source-side configuration of the backup or archive path for the current tenant, including the `zone`, `idc`, or `region` configuration, I/O throttling parameters (`max_iops` and `max_bandwidth`), and key information such as `access_id` and `access_key`. The new configuration will overwrite the original configuration.
+--
+-- ## Limitations and considerations
+--
+-- * Only user tenants can execute this statement. System tenants (sys tenants) cannot execute this statement.
+--
+-- * Before you modify the `zone`, `idc`, or `region` configurations of a path, if you need to set the region or IDC level, you must first use the `ALTER SYSTEM MODIFY ZONE zone_name SET REGION=region_name;` or `ALTER SYSTEM MODIFY ZONE zone_name SET IDC=idc_name;` statement to set the region or IDC information. It is recommended to set the source configuration at the IDC level. This allows you to use an IDC with more network bandwidth resources for backup tasks, providing a broader range of optional nodes. Additionally, you do not need to monitor changes in zones within the IDC of the cluster.
+--
+-- * When modifying the source configuration of a backup path, if a backup task is currently running, the running task may take up to a few minutes to recognize the configuration changes. During this period, nodes outside the configured scope may still access the backup path, potentially generating cross-facility or cross-regional traffic.
+--
+-- * Only object storage paths support changing I/O throttling parameters (`max_iops` and `max_bandwidth`) as well as `access_id` and `access_key` information. If you attempt to set I/O throttling parameters (`max_iops` and `max_bandwidth`) or `access_id` and `access_key` information for an NFS path, the system will return an unsupported error with the error code `1235`.
+--
+-- * When setting the `ACCESS_INFO` attribute (`access_id` and `access_key` information) for an object storage path, if the parameter format is incorrect (for example, if there are extra `=` signs or if `access_id` or `access_key` is missing), the system will return the error `OB_OBJECT_STORAGE_PERMISSION_DENIED` (error code `-9116`).
+--
+-- * When accessing an object path using the Assume Role method for a backup path or an archive path:
+--
+--   * If you set `ACCESS_INFO = 'access_id=new_access_id&access_key=new_access_key'`, the system will return an error.
+--
+--   * If you only set the I/O throttling parameters in the `ATTRIBUTE` section without setting the `ACCESS_INFO` attribute, the system may indicate that it is unsupported or that the settings will not take effect.
+--
+-- * You can set the same `ATTRIBUTE` + `ACCESS_INFO` properties multiple times for the same path.
+--
+-- ## Privilege requirements
+--
+-- The user who executes this statement must have the `ALTER SYSTEM` privilege. For more information about the privileges of OceanBase Database, see [Privilege types in MySQL-compatible mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/200.permission-of-mysql-mode/100.permission-classification-of-mysql.md).
+--
+-- ## Syntax
+--
+-- ```sql
+-- ALTER SYSTEM {ALTER|CHANGE|MODIFY} EXTERNAL_STORAGE_DEST
+--   PATH [=] 'path'
+--   SET [ATTRIBUTE = '[{zone=zone_name | idc=idc_name | region=region_name}][&max_iops=iops_num][&max_bandwidth=bandwidth_num]']
+--   [ACCESS_INFO = 'access_id=new_access_id&access_key=new_access_key'];
+-- ```
+--
+-- ## Parameters
+--
+-- |          Parameter                                     |         Description                                      |
+-- |---------------------------------------------------|--------------------------------------------------|
+-- | path                                              | The backup or archive path where the key information to be modified is stored. This path must be a backup or archive path that has been set for the current tenant, and it must be an object storage path that contains the `host` information. For example, the path format is `oss://oceanbase-test-bucket/backup/databackup?host=***` in the case of Alibaba Cloud OSS. |
+-- | zone=zone_name \| idc=idc_name \| region=region_name | The source of the current backup or archive path. You can choose `zone`, `idc`, or `region` as the source. You can specify only one of them at a time or not specify any. If you do not explicitly specify a value, the default value is not set.<p>When you modify the source of the archive path:<ul><li>Since all traffic of log archiving is written by the leader replica, the access priority of the log archive path does not vary. The only restriction is on the nodes that can access the archive path. If you want to set multiple zones, multiple IDCs, or multiple regions, separate the values with commas (,) or semicolons (;). For example, `zone=z1,z2;z3` specifies `z1`, `z2`, and `z3` as the sources of the archive path.</li> <li>When you modify `zone`, `idc`, or `region`, the leader replica must be in the specified `zone`, `idc`, or `region`. Otherwise, log archiving cannot proceed.</li></ul></p> <p>When you modify the source of the backup path:<ul><li>If you want to set multiple zones, multiple IDCs, or multiple regions, separate the zones, IDCs, and regions with commas (,) and semicolons (;). Specifically:<ul><li>A comma (,) indicates that the nodes in the zones, IDCs, or regions on both sides have the same priority when selecting nodes to execute the backup task.</li> <li>A semicolon (;) indicates that the nodes in the zone, IDC, or region on the left have higher priority than those on the right. That is, the nodes in the zone, IDC, or region on the left are prioritized for executing the backup task.</li></ul>For example, if you set `zone=z1,z2;z3`, it specifies `z1`, `z2`, and `z3` as the sources of the backup path. `z1` and `z2` have the same priority, and both have a higher priority than `z3`.</li> <li>When you modify the `zone`, `idc`, or `region` configuration of the backup path, the leader node of the Root Service must be in the specified `zone`, `idc`, or `region`. Otherwise, the backup task will fail to write backup metadata to the target backup path, resulting in the failure of the backup task. We recommend that you set the source of the backup path to include the primary zone.</li></ul></p> |
+-- | max_iops        | The maximum IOPS allowed for the current backup or archive path. The value is a positive integer, indicating the number of I/O requests per second. If not explicitly set, the IOPS is not restricted, and the underlying object storage and network capabilities determine the IOPS.<p>Example: `max_iops=1000`</p> |
+-- | max_bandwidth   | The maximum bandwidth allowed for the current backup or archive path. The value is a positive integer with a unit. Supported units are kb, mb, and gb, representing KB/s, MB/s, and GB/s, respectively. If not explicitly set, the bandwidth is not restricted.<p>Example: `max_bandwidth=1000mb`</p>  |
+-- | access_id=new_access_id&access_key=new_access_key | The new `access_id` and `access_key` information after the change. Both `access_id` and `access_key` must be provided. |
+--
+-- ## Examples
+--
+-- ### Change the source endpoint of an archive path
+--
+-- Assume that the original source endpoint of an archive path is `zone=z1,z2,z3`. Now, you need to change the source endpoint to `region=region1`. After the change, only nodes in `region1` can access this path.
+--
+--   * OSS
+--
+--     ```shell
+--     ```
+--
+--   * NFS
+--
+--     ```shell
+--     ```
+--
+--   * S3
+--
+--     ```shell
+--     ```
+--
+--   * Object storage services that support the S3 protocol (OBS, GCS, and COS)
+--
+--     ```shell
+--     ```
+--
+--     ```shell
+--     ```
+--
+--     ```shell
+--     ```
+--
+-- ### Change the source endpoint of a backup path
+--
+-- Assume that the original source endpoint of a backup path is `zone=z1,z2;z3`. Now, you need to change the source endpoint to `idc=idc1;idc2`. After the change, nodes in `idc1` and `idc2` can access this path. The nodes in `idc1` have higher priority than those in `idc2`.
+--
+--   * OSS
+--
+--     ```shell
+--     ```
+--
+--   * NFS
+--
+--     ```shell
+--     ```
+--
+--   * S3
+--
+--     ```shell
+--     ```
+--
+--   * Object storage services that support the S3 protocol (OBS, GCS, and COS)
+--
+--     ```shell
+--     ```
+--
+--     ```shell
+--     ```
+--
+--     ```shell
+--     ```
+--
+-- ### Change the `access_id` and `access_key` of an archive path
+--
+-- * OSS
+--
+--     ```shell
+--     ```
+--
+--   * S3
+--
+--     ```shell
+--     ```
+--
+--   * Object storage services that support the S3 protocol (OBS, GCS, and COS)
+--
+--     ```shell
+--     ```
+--
+--     ```shell
+--     ```
+--
+--     ```shell
+--     ```
+--
+-- ### Change the `access_id` and `access_key` of a backup path
+--
+-- * OSS
+--
+--     ```shell
+--     ```
+--
+--   * S3
+--
+--     ```shell
+--     ```
+--
+--   * Object storage services that support the S3 protocol (OBS, GCS, and COS)
+--
+--     ```shell
+--     ```
+--
+--     ```shell
+--     ```
+--
+--     ```shell
+--     ```
+--
+-- ### Set I/O throttling parameters (`max_iops` and `max_bandwidth`) of an archive path
+--
+-- You can set both the `max_iops` and `max_bandwidth` parameters, or set only one of them. You can set I/O throttling parameters only for object storage paths. You cannot set I/O throttling parameters for NFS paths.
+--
+-- * OSS
+--
+--   Set both the `max_iops` and `max_bandwidth` parameters. Example:
+--
+--   ```shell
+--   ```
+--
+--   Set only the `max_iops` parameter. Example:
+--
+--   ```shell
+--   ```
+--
+--   Set only the `max_bandwidth` parameter. Example:
+--
+--   ```shell
+--   ```
+--
+-- * S3
+--
+--   Set both the `max_iops` and `max_bandwidth` parameters. Example:
+--
+--   ```shell
+--   ```
+--
+-- * Object storage services that support the S3 protocol (OBS, GCS, and COS)
+--
+--   Set both the `max_iops` and `max_bandwidth` parameters. Example:
+--
+--   ```shell
+--   ```
+--
+--   ```shell
+--   ```
+--
+--   ```shell
+--   ```
+--
+-- ### Set I/O throttling parameters for backup paths (`max_iops` and `max_bandwidth`)
+--
+-- <main id="notice" type='explain'>
+-- <h4>Note</h4>
+-- <p>Consider the following recommendations when you set I/O throttling parameters:</p>
+-- <ul><li>In a highly concurrent, bandwidth-sensitive multi-tenant environment, you can set different <code>max_iops</code> or <code>max_bandwidth</code> values for different backup paths to isolate the impact of backup operations on online business bandwidth and IOPS.</li>
+-- <li>We recommend that you start with lower values and gradually adjust them based on your actual network bandwidth and object storage throttling strategy. For example, you can start by setting <code>max_iops=500&max_bandwidth=100mb</code> and then fine-tune the values based on backup duration and business peak times.</li></ul>
+-- </main>
+--
+-- You can set both the `max_iops` and `max_bandwidth` parameters, or set only one of them. I/O throttling parameters are supported only for object storage paths, not for NFS paths.
+--
+-- * OSS
+--
+--   The following example shows how to set both the `max_iops` and `max_bandwidth` parameters.
+--
+--   ```shell
+--   ```
+--
+--   The following example shows how to set only the `max_iops` parameter.
+--
+--   ```shell
+--   ```
+--
+--   The following example shows how to set only the `max_bandwidth` parameter.
+--
+--   ```shell
+--   ```
+--
+-- * S3
+--
+--   The following example shows how to set both the `max_iops` and `max_bandwidth` parameters.
+--
+--   ```shell
+--   ```
+--
+-- * Object storage compatible with the S3 protocol (OBS, GCS, and COS)
+--
+--   The following example shows how to set both the `max_iops` and `max_bandwidth` parameters.
+--
+--   ```shell
+--   ```
+--
+--   ```shell
+--   ```
+--
+--   ```shell
+--   ```
+--
+-- ## References
+--
+-- * [Modify the source backup path configuration](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/600.backup-and-recovery/400.data-backup/710.modify-the-configuration-of-backup-destination.md)
+--
+-- * [Backup path and archive path source configuration case](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/600.backup-and-recovery/1500.configuration-case-the-source-of-backup-dest-and-archive-dest.md)
+--
+-- * [Update the key information of object storage](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/600.backup-and-recovery/450.change-sk-and-ak-for-the-backup-path-or-logarchive-path.md)--
+--
+-- ==============================================================================
+-- [DDL-011] MySQL mode | ALTER SYSTEM FLUSH SEQUENCE CACHE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/1450.alter-system-flush-sequence-cache-of-mysql-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # ALTER SYSTEM FLUSH SEQUENCE CACHE
+--
+-- ## Purpose
+--
+-- This statement is used to clear the sequence cache.
+--
+-- <main id="notice" type='explain'>
+--   <h4>Note</h4>
+--   <p>This statement was introduced in OceanBase Database V4.4.1. </p>
+-- </main>
+--
+-- ## Privilege requirements
+--
+-- To execute this statement, the current user must have the `ALTER SYSTEM` privilege. For more information about OceanBase Database privileges, see [Privilege classification in MySQL-compatible mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/200.permission-of-mysql-mode/100.permission-classification-of-mysql.md).
+--
+-- ## Syntax
+--
+-- ```sql
+-- ALTER SYSTEM FLUSH SEQUENCE CACHE
+--     SEQUENCE_NAME = sequence_name
+--     [DATABASES = 'database_name']
+--     [GLOBAL];
+-- ```
+--
+-- ## Parameters
+--
+-- |               Parameter              |         Description      |
+-- |---------------------------------|------------------|
+-- | SEQUENCE_NAME = 'sequence_name' | Specifies the name of the sequence whose local cache needs to be cleared.|
+-- | DATABASES = 'database_name'     | Optional. Specifies the database in which to execute this operation. If this parameter is not specified, the operation is executed in the current database.|
+-- | GLOBAL                          | Optional. Specifies to clear the cache on all nodes. If this parameter is not specified, the cache is cleared only on the current node.|
+--
+-- ## Examples
+--
+-- * Clear the cache of the sequence named `test_seq1` on the current node in the current tenant and database.
+--
+--     ```shell
+--         SEQUENCE_NAME = test_seq1;
+--     ```
+--
+-- * Clear the cache of the sequence named `test_seq1` on all nodes in the current tenant and database.
+--
+--     ```shell
+--         SEQUENCE_NAME = test_seq1
+--         GLOBAL;
+--     ```
+--
+-- * Clear the cache of the sequence named `test_seq1` on all nodes in the current tenant and the database named `test`.
+--
+--     ```shell
+--         SEQUENCE_NAME = test_seq1
+--         DATABASES = 'test'
+--         GLOBAL;
+--     ```
+--
+-- ## References
+--
+-- For more information about the syntax for creating a sequence, see [CREATE SEQUENCE](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/2500.create-sequence-of-mysql-mode.md).--
+--
+-- ==============================================================================
+-- [DDL-012] MySQL mode | MAJOR and MINOR
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/1500.alter-system-freeze-of-mysql-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # MAJOR and MINOR
+--
+-- ## Purpose
+--
+-- You can use this statement to initiate a major or minor compaction in the storage layer for a user tenant from the current tenant. You can initiate a major or minor compaction at the tenant or partition level.
+--
+-- ## Syntax
+--
+-- ```sql
+-- ALTER SYSTEM merge_action;
+--
+-- merge_action:
+--       MAJOR FREEZE [TABLET_ID = tablet_id]
+--     | MINOR FREEZE [TABLET_ID = tablet_id]
+--     | {SUSPEND | RESUME} MERGE
+--     | CLEAR MERGE ERROR
+-- ```
+--
+-- ## Parameters
+--
+-- | **Parameter** | **Description** |
+-- |---------------------------|------------------|
+-- | MAJOR FREEZE | Initiates a major compaction. <main id="notice" type='explain'><h4>Note</h4><p>A user tenant can initiate a major compaction only for the current tenant.</p></main>  |
+-- | MINOR FREEZE | Initiates a minor compaction.  <main id="notice" type='explain'><h4>Note</h4><p>A user tenant can initiate a minor compaction only for the current tenant.</p></main>  |
+-- | {SUSPEND \| RESUME} MERGE | Suspends or resumes a major compaction. <main id="notice" type='explain'><h4>Note</h4><p>A user tenant can suspend or resume a major compaction only for the current tenant.</p></main>  |
+-- | CLEAR MERGE ERROR | Removes major compaction error tags. <main id="notice" type='explain'><h4>Note</h4><p>A user tenant can remove major compaction error tags only in the current tenant.</p></main>  |
+-- | TABLET_ID | The partition on which a major or minor compaction is performed.  |
+--
+-- ## Examples
+--
+-- ### Major compaction in the storage layer
+--
+-- * Initiate a major compaction for a user tenant.
+--
+--   ```sql
+--    Query OK, 0 rows affected
+--    ```
+--
+-- * Initiate a major compaction at the partition level for a user tenant.
+--
+--   ```shell
+--    Query OK, 0 rows affected
+--    ```
+--
+-- * Suspend the major compaction of a user tenant.
+--
+--   ```sql
+--    Query OK, 0 rows affected
+--    ```
+--
+-- * Resume the major compaction of a user tenant.
+--
+--   ```sql
+--    Query OK, 0 rows affected
+--    ```
+--
+-- * Remove the major compaction error tags of a user tenant.
+--
+--   ```sql
+--    Query OK, 0 rows affected
+--    ```
+--
+-- ### Minor compaction in the storage layer
+--
+-- * Initiate a minor compaction for a user tenant.
+--
+--   ```sql
+--    Query OK, 0 rows affected
+--    ```
+--
+-- * Initiate a minor compaction at the partition level for a user tenant.
+--
+--   ```shell
+--    Query OK, 0 rows affected
+--    ```--
+--
+-- ==============================================================================
+-- [DDL-013] MySQL mode | VALIDATE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/1560.alter-system-validate-of-mysql-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # VALIDATE
+--
+-- ## Purpose
+--
+-- The `ALTER SYSTEM VALIDATE` statement is used to perform physical backup verification.
+--
+-- ## Limitations and considerations
+--
+-- * For V4.4.2, the `ALTER SYSTEM VALIDATE` statement is supported starting from V4.4.2 BP2.
+--
+-- * Since verification tasks frequently access backup media to read data, thereby competing for network resources with backup tasks, it is recommended to execute verification tasks when the user tenant has not performed a backup task and the system load is low.
+--
+-- * When specifying the verification level for backup verification:
+--
+--   * For version V4.4.2, backup sets and log archive pieces prior to V4.4.2 BP2 (excluding V4.4.2 BP2) do not support basic verification, meaning file integrity verification is not supported.
+--
+--   * For backup sets earlier than V4.3.4, physical verification is not supported, meaning the correctness of physical data and logical consistency verification are not supported.
+--
+-- ## Privilege requirements
+--
+-- This command must be executed by the administrator user of each tenant. Specifically:
+--
+-- * The default administrator user in MySQL-compatible mode is the `root` user.
+--
+-- * The default administrator user in Oracle-compatible mode is the `SYS` user.
+--
+-- ## Syntax
+--
+-- ```sql
+-- ALTER SYSTEM VALIDATE { BACKUP | BACKUPSET [= 'backup_set_id_list'] | ARCHIVELOG_PIECE [= 'piece_id_list'] }
+--     [ DATA_BACKUP_DEST = 'data_backup_path' ]
+--     [ LOG_ARCHIVE_DEST = 'log_archive_path' ]
+--     [ LEVEL = { 'basic' | 'physical' } ];
+--
+-- backup_set_id_list:
+--     backup_set_id[,backup_set_id,...]
+--
+-- piece_id_list:
+--     piece_id[,piece_id,...]
+-- ```
+--
+-- ## Parameters
+--
+-- | Parameter | Description |
+-- | ------------------ | --------------------------------------------------------- |
+-- | BACKUP | Verify all backup sets and log archive pieces under the entire backup path and archive path in the current user tenant. Specifying a verification path is not supported.`DATA_BACKUP_DEST`or`LOG_ARCHIVE_DEST`), which means it does not support cross-cluster or cold standby scenarios. |
+-- | BACKUPSET | Verify the specified backup set. If the backup set is not specified,`backup_set_id`, it verifies all backup sets in the current backup path. <main id="notice" type='notice'><h4>Note</h4><p>If you do not specify <code>backup_set_id</code>, the system will obtain all backup sets in the currently configured backup path for verification, which can result in a large number of verification tasks and take a long time. If you are sure that you do not need to verify all backup sets, it is recommended to specify <code>backup_set_id</code> in the verification command.</p></main> |
+-- | ARCHIVELOG_PIECE | Verify the specified log archive piece. If the archive piece is not specified,`piece_id`, then verify all log archive pieces in the current archive path.  <main id="notice" type='notice'><h4>Note</h4><p>If you do not specify <code>piece_id</code>, the system will retrieve and verify all archive pieces in the currently configured archive path, which can result in a large number of verification tasks and take a considerable amount of time. If you are sure that you do not need to verify all archive pieces, it is recommended to specify <code>piece_id</code> in the verification command.</p></main> |
+-- | DATA_BACKUP_DEST | Optional. Specifies the backup path of the data to be verified. If this parameter is not specified, the backup path configured for the current tenant backup is verified by default. <main id="notice" type='notice'><h4>Notice</h4><p>OceanBase Database does not support specifying multiple paths in a single command. Therefore, when verifying an incremental backup set under a specified path by specifying the <code>backup_set_id</code>, an error may occur with code 9120 because information about other backup sets on which the incremental backup set depends cannot be read.</p></main> |
+-- | LOG_ARCHIVE_DEST | Optional. Specifies the log archive path to be verified. If this parameter is not specified, the system will verify the archive path configured for the current tenant by default. |
+-- | LEVEL | Specifies the verification level. Valid values: <ul><li>`basic`: Indicates that only the integrity of the file list is checked.</li> <li>`physical`: Indicates that both the correctness of physical data and logical consistency are checked.</li></ul><p>If this parameter is not specified, the default value is`physical`.</p> |
+--
+-- ## Examples
+--
+-- ### Verify all backup sets and log archive pieces in the entire backup path and archive path
+--
+-- The user tenant initiates a basic verification for all backup sets and archive pieces under the current backup and archive paths.
+--
+-- ```shell
+-- ```
+--
+-- ### Verify a specified backup set or log archive piece
+--
+-- **Verify the backup set**
+--
+-- * The user tenant initiates a basic verification for all backup sets under the current backup path of this tenant.
+--
+--   ```shell
+--   ```
+--
+-- * The user tenant initiates a physical verification for the backup sets with `backup_set_id` 1 and 2 under the current backup path of this tenant.
+--
+--   ```shell
+--   ```
+--
+-- **Verify log archive pieces**
+--
+-- * The user tenant initiates a basic verification for all archived pieces under the current archive path.
+--
+--   ```shell
+--   ```
+--
+-- * The user tenant initiates a physical verification for the log archive pieces with `piece_id` 1 and 2 under the current archive path.
+--
+--   ```shell
+--   ```
+--
+-- ### Verify backup sets or log archive pieces in a specified path
+--
+-- **Verify the backup set**
+--
+-- * The user tenant initiates a basic verification for all backup sets under the specified backup path of this tenant.
+--
+--   ```shell
+--   ```
+--
+-- * A user tenant initiates a physical verification for backup sets with `backup_set_id` 1 or 2 under the specified backup path of its own tenant.
+--
+--   ```shell
+--   ```
+--
+-- **Verify log archive pieces**
+--
+-- * The user tenant initiates a basic verification for all archive pieces of the current tenant under the specified archive path.
+--
+--   ```shell
+--   ```
+--
+-- * A user tenant initiates a physical verification for the log archive pieces with `piece_id` 1 and 2 under the specified archive path for that tenant.
+--
+--   ```shell
+--   ```
+--
+-- ## References
+--
+-- * [Overview of backup verification](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/600.backup-and-recovery/550.backup-validation/100.backup-validation-overview.md)
+--
+-- * [Verify the entire backup and archive paths](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/600.backup-and-recovery/550.backup-validation/200.validate-the-data-backup-dest-and-log-archive-dest.md)
+--
+-- * [Verify a specified backup set or log archive piece](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/600.backup-and-recovery/550.backup-validation/300.validate-the-backupset-and-archivepiece.md)
+--
+-- * [Verify a backup set or log archive piece in a specified path](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/600.backup-and-recovery/550.backup-validation/400.validate-the-backupset-or-archivepiece-at-the-specified-dest.md)--
+--
+-- ==============================================================================
+-- [DDL-014] MySQL mode | ALTER TABLE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/1600.alter-table-of-mysql-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # ALTER TABLE
+--
+-- ## Purpose
+--
+-- This statement is used to modify the structure of an existing table, such as changing the table and its attributes, adding columns, changing columns and their attributes, and deleting columns.
+--
+-- ## Syntax
+--
+-- ```sql
+-- alter_table_stmt:
+--     ALTER TABLE table_name alter_table_action_list;
+--
+-- alter_table_action_list:
+--     alter_table_action [, alter_table_action ...]
+--
+-- alter_table_action:
+--       ADD [COLUMN] column_definition
+--           [ opt_position_column ]
+--     | ADD [COLUMN] (column_definition_list)
+--     | ADD [CONSTRAINT [constraint_name]] UNIQUE {INDEX | KEY}
+--           [index_name] index_desc
+--     | ADD [CONSTRAINT [constraint_name]] FOREIGN KEY
+--           [index_name] index_desc
+--           REFERENCES reference_definition
+--           [match_action][opt_reference_option_list]
+--     | ADD PRIMARY KEY (column_name)
+--     | ADD CONSTRAINT [constraint_name] CHECK (expression)[[NOT] ENFORCED]
+--     | ADD PARTITION (range_partition_list)
+--     | ADD {INDEX | KEY} [index_name] [index_type] (key_part,...) [index_option_list][index_column_group_option]
+--     | ADD FULLTEXT [INDEX | KEY] [index_name](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/column_name, [column_name ...]) [WITH PARSER tokenizer_option] [PARSER_PROPERTIES[=](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/parser_properties_list)] [LOCAL]
+--     | ADD COLUMN GROUP([all columns, ]each column) [DELAYED]
+--     | ALTER [COLUMN] column_name {
+--           SET DEFAULT const_value
+--         | DROP DEFAULT
+--       }
+--     | ALTER {CHECK | CONSTRAINT} symbol [NOT] ENFORCED
+--     | ALTER INDEX index_name [VISIBLE | INVISIBLE] [STORAGE_CACHE_POLICY = {"hot"|"auto"|"none"}]
+--     | CHANGE [COLUMN] column_name column_definition
+--     | DROP [COLUMN] column_name [, DROP COLUMN column_name ...]
+--     | DROP {PARTITION | SUBPARTITION} partition_name_list
+--     | DROP TABLEGROUP
+--     | DROP FOREIGN KEY fk_name
+--     | DROP PRIMARY KEY [, ADD PRIMARY KEY (column)]
+--     | DROP CHECK constraint_name
+--     | DROP COLUMN GROUP([all columns, ]each column)
+--     | MODIFY [COLUMN] column_definition
+--     | RENAME COLUMN old_col_name [TO|AS] new_col_name
+--     | RENAME [TO|AS] table_name
+--     | RENAME {INDEX | KEY} old_index_name [TO|AS] new_index_name
+--     | [SET] table_option_list
+--     | TRUNCATE {PARTITION | SUBPARTITION} partition_name_list
+--     | EXCHANGE PARTITION partition_name WITH TABLE origin_table_name WITHOUT VALIDATION
+--     | REORGANIZE PARTITION partition_name INTO (split_range_partition_list)
+--     | PARTITION BY {RANGE [COLUMNS](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/[column_name_list]) [SIZE('size_value')] [range_partition_list]
+--                    | partition_option}
+--     | MODIFY PARTITION partition_name ADD SUBPARTITION (add_subpartition_option)
+--     | ALTER {PARTITION | SUBPARTITION} partition_name STORAGE_CACHE_POLICY = {"hot" | "auto" | "none"}
+--     | FORCE
+--
+-- column_definition_list:
+--     column_definition [, column_definition ...]
+--
+-- column_definition:
+--     column_name data_type
+--     [DEFAULT const_value] [AUTO_INCREMENT]
+--     [NULL | NOT NULL] [[PRIMARY] KEY] [UNIQUE [KEY]] [COMMENT string_value] [SKIP_INDEX(skip_index_option_list)] [ON UPDATE CURRENT_TIMESTAMP] [ opt_position_column ]
+--
+-- skip_index_option_list:
+--     skip_index_option [,skip_index_option ...]
+--
+-- skip_index_option:
+--     MIN_MAX
+--     | SUM
+--
+-- opt_position_column:
+--     FIRST | BEFORE | AFTER column_name
+--
+-- index_desc:
+--    (column_desc_list) [index_type] [index_option_list]
+--
+-- match_action:
+--    MATCH {SIMPLE | FULL | PARTIAL}
+--
+-- opt_reference_option_list:
+--    reference_option [,reference_option ...]
+--
+-- reference_option:
+--    ON {DELETE | UPDATE} {RESTRICT | CASCADE | SET NULL | NO ACTION | SET DEFAULT}
+--
+-- column_desc_list:
+--     column_desc [, column_desc ...]
+--
+-- column_desc:
+--      column_name [(length)] [ASC | DESC]
+--
+-- key_part:
+--     {index_col_name [(length)] | (expr)} [ASC | DESC]
+--
+-- index_type:
+--     USING BTREE
+--
+-- index_option_list:
+--     index_option [ index_option ...]
+--
+-- index_option:
+--      [GLOBAL | LOCAL]
+--     | block_size
+--     | compression
+--     | STORING(column_name_list)
+--     | COMMENT string_value
+--     | STORAGE_CACHE_POLICY (storage_cache_policy_option)
+--
+-- index_column_group_option:
+--     WITH COLUMN GROUP([all columns, ]each column)
+--
+-- tokenizer_option:
+--     SPACE
+--     | NGRAM
+--     | BENG
+--     | IK
+--     | NGRAM2
+--
+-- parser_properties_list:
+--     parser_properties, [parser_properties]
+--
+-- parser_properties:
+--     min_token_size = int_value
+--     | max_token_size = int_value
+--     | ngram_token_size = int_value
+--     | ik_mode = 'char_value'
+--     | min_ngram_size = int_value
+--     | max_ngram_size = int_value
+--
+-- table_option_list:
+--     table_option [ table_option ...]
+--
+-- table_option:
+--       TABLEGROUP = tablegroup_name
+--     | block_size
+--     | lob_inrow_threshold [=] num
+--     | compression
+--     | AUTO_INCREMENT [=] INT_VALUE
+--     | COMMENT string_value
+--     | parallel_clause
+--     | TABLE_MODE [=] 'table_mode_value'
+--     | AUTO_INCREMENT_CACHE_SIZE [=] INT_VALUE
+--     | READ {ONLY | WRITE}
+--     | DUPLICATE_SCOPE= 'none | cluster'
+--     | enable_macro_block_bloom_filter [=] {True | False}
+--     | DYNAMIC_PARTITION_POLICY [=] (dynamic_partition_policy_list)
+--     | SEMISTRUCT_ENCODING_TYPE [=] 'encoding' # This parameter is deprecated in Version V4.4.1. Use SEMISTRUCT_PROPERTIES instead.
+--     | SEMISTRUCT_PROPERTIES [=] (encoding_type=encoding|none[,freq_threshold=INT_VALUE])
+--     | STORAGE_CACHE_POLICY (storage_cache_policy_option)
+--
+-- parallel_clause:
+--     {NOPARALLEL | PARALLEL integer}
+--
+-- table_mode_value:
+--     NORMAL
+--     | QUEUING
+--     | MODERATE
+--     | SUPER
+--     | EXTREME
+--
+-- dynamic_partition_policy_list:
+--     dynamic_partition_policy_option [, dynamic_partition_policy_option ...]
+--
+-- dynamic_partition_policy_option:
+--     ENABLE = {true | false}
+--     | PRECREATE_TIME = {'-1' | '0' | 'n {hour | day | week | month | year}'}
+--     | EXPIRE_TIME = {'-1' | '0' | 'n {hour | day | week | month | year}'}
+--
+-- partition_option:
+--       PARTITION BY HASH(expression)
+--       [subpartition_option] PARTITIONS partition_count
+--     | PARTITION BY KEY([column_name_list])
+--       [subpartition_option] PARTITIONS partition_count
+--     | PARTITION BY RANGE {(expression) | COLUMNS (column_name_list)}
+--       [subpartition_option] (range_partition_list)
+--
+-- subpartition_option:
+--       SUBPARTITION BY HASH(expression)
+--       SUBPARTITIONS subpartition_count
+--     | SUBPARTITION BY KEY(column_name_list)
+--       SUBPARTITIONS subpartition_count
+--     | SUBPARTITION BY RANGE {(expression) | COLUMNS (column_name_list)}
+--       (range_subpartition_list)
+--
+-- storage_cache_policy_option:
+--     GLOBAL = {"hot" | "auto" | "none"}
+--     | timeline_strategy_list
+--
+-- timeline_strategy_list:
+--     BOUNDARY_COLUMN = column_name [,BOUNDARY_COLUMN_UNIT = {"s"| "ms"}] ,HOT_RETENTON = intnum retention_time_unit
+--
+--
+-- retention_time_unit:
+--     YEAR
+--     | MONTH
+--     | WEEK
+--     | DAY
+--     | HOUR
+--     | MINUTE
+--
+-- split_range_partition_list:
+--     PARTITION split_partition_name VALUES LESS THAN (value)
+--     [, PARTITION split_partition_name VALUES LESS THAN (value) ...]
+--      , PARTITION split_partition_name VALUES LESS THAN (source_value)
+--
+-- range_partition_list:
+--     range_partition [, range_partition ...]
+--
+-- range_partition:
+--     PARTITION partition_name
+--     VALUES LESS THAN {(expression_list) | MAXVALUE}
+--     [STORAGE_CACHE_POLICY = {"hot" | "auto" | "none"}]
+--
+-- range_subpartition_list:
+--     range_subpartition [, range_subpartition ...]
+--
+-- range_subpartition:
+--     SUBPARTITION subpartition_name
+--     VALUES LESS THAN {(expression_list) | MAXVALUE}
+--     [STORAGE_CACHE_POLICY = {"hot" | "auto" | "none"}]
+--
+-- expression_list:
+--     expression [, expression ...]
+--
+-- column_name_list:
+--     column_name [, column_name ...]
+--
+-- partition_name_list:
+--     partition_name [, partition_name ...]
+--
+-- partition_count | subpartition_count:
+--     INT_VALUE
+--
+-- add_subpartition_option:
+--     {SUBPARTITION subpartition_name VALUES LESS THAN range_partition_expr
+--         [, SUBPARTITION subpartition_name VALUES LESS THAN range_partition_expr] ...}
+--     | {SUBPARTITION subpartition_name VALUES IN list_partition_expr
+--         [, SUBPARTITION subpartition_name VALUES IN list_partition_expr] ...}
+-- ```
+--
+-- ## Parameters
+--
+-- |                           **Parameter**                           |        **Description**             |
+-- |------------------------------------------------------------|---------------------------------------------------------------------|
+-- | ADD \[COLUMN\]                                             | Adds a column. Generated columns are supported.     |
+-- | \[FIRST  \| BEFORE \| AFTER column_name\]                  | Specifies the position of the new column. The new column can be the first column of the table or located before or after the `column_name` column. Currently, OceanBase Database only supports setting the position of a column in the `ADD COLUMN` clause.     |
+-- | CHANGE \[COLUMN\]                                          | Modifies the column name and column definition. Only the length of specific character data types (`VARCHAR`, `VARBINARY`, `CHAR`, etc.) can be modified.    |
+-- | MODIFY \[COLUMN\]                                          | Modifies column attributes. |
+-- | ALTER \[COLUMN\] {SET DEFAULT const_value \| DROP DEFAULT} | Modifies the default value of a column.  |
+-- | DROP \[COLUMN\]                                            | Drops a column.<main id="notice" type='notice'><h4>Notice</h4><p>Primary key columns cannot be dropped. </p></main>|
+-- | ADD FOREIGN KEY                                            | Adds a foreign key. If no foreign key name is specified, the foreign key name will be automatically generated in the format of `table name` + `OBFK` + `creation time`. For example, the foreign key name created for the `t1` table at 00:00:00 on August 1, 2021 is `t1_OBFK_1627747200000000`. A foreign key allows cross-table referencing of related data. When an `UPDATE` or `DELETE` operation affects the key values of rows in the parent table that match those in the child table, the result depends on the `ON UPDATE` and `ON DELETE` clauses of the reference operation:<ul><li>`CASCADE`: When a row in the parent table is deleted or updated, the corresponding row in the child table is automatically deleted or updated. </li><li>`SET NULL`: When a row in the parent table is deleted or updated, the foreign key column in the child table is set to `NULL`. </li><li>`RESTRICT`: Prevents the deletion or update of a row in the parent table. </li><li>`NO ACTION`: Specifies deferred checking. </li></ul> Additionally, the `SET DEFAULT` operation is supported. |
+-- | ADD PRIMARY KEY                                            | Adds a primary key. You can specify one or more columns as the primary key. If multiple columns are specified, they form a composite primary key.               |
+-- | ADD FULLTEXT \[INDEX \| KEY\]                              | Adds a full-text index. For more information, see [Create a full-text index](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/100.manage-object-of-mysql-mode/500.manage-indexes-of-mysql-mode/200.create-an-index-of-mysql-mode.md).|
+-- | WITH PARSER tokenizer_option                 | Optional. Specifies the tokenizer for the full-text index. For more information, see [tokenizer_option](#tokenizer_option).|
+-- | PARSER_PROPERTIES\[=\](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/parser_properties_list) | Optional. Specifies the properties of the tokenizer. For more information, see [parser_properties](#parser_properties).|
+-- | ALTER INDEX                                                | Modifies the visibility of an index. If the index status is `INVISIBLE`, the SQL optimizer will not select this index.    |
+-- | key_part        | Creates a (function) index. |
+-- | index_col_name  | Specifies the column name for the index. ASC (ascending) is supported for each column name, but DESC (descending) is not. The default is ascending. The sorting order for the index is as follows: first, sort by the value of the first column in `index_col_name`; then, sort by the value of the next column name, and so on. |
+-- | expr            | Specifies a valid function index expression, which can be a boolean expression, for example, `c1=c1`.<br>**Notice** OceanBase Database does not allow you to create a function index on a generated column.             |
+-- | ADD \[PARTITION\]                                          | Adds a partition to a partitioned table.  |
+-- | DROP {PARTITION \| SUBPARTITION}                           | Drops a partition: <ul><li> `PARTITION`: Drops the specified partition of the Range or List type. If the specified partition contains subpartitions, all subpartitions under this partition are also dropped. The partition definition and data are cleared, and the indexes on the partition are maintained. </li>   <li> `SUBPARTITION`: Drops the specified subpartition of the `*-RANGE` or `*-LIST` type. The subpartition definition and data are cleared. The indexes on the partition are maintained. </li></ul>    Separate multiple partition names with commas.<br> **Notice**  When you drop a partition, avoid active transactions or queries on the partition. Otherwise, an error may occur or some exceptions may be thrown.   |
+-- | TRUNCATE {PARTITION \| SUBPARTITION}                       | Drops data in a partition: <ul><li> `PARTITION`: Clears all data in the specified partition of the Range or List type. If the specified partition contains subpartitions, all data in the subpartitions under this partition are also cleared. The indexes on the partition are maintained. </li>   <li> `SUBPARTITION`: Clears all data in the specified subpartition of the `*-RANGE` or `*-LIST` type. The indexes on the partition are maintained. </li> </ul>   Separate multiple partition names with commas.<br> **Notice**  When you drop data in a partition, avoid active transactions or queries on the partition. Otherwise, an error may occur or some exceptions may be thrown. |
+-- | RENAME COLUMN old_col_name \[TO\|AS] new_col_name| Renames a column. Only the column name is modified, and the column definition remains unchanged.   <main id="notice" type='notice'><h4>Notice</h4> <p><ul><li>If the target name already exists in the table, an error will be returned. </li><li>If a column is renamed in a circular manner, such as <code>ALTER TABLE t1 RENAME COLUMN a to b, RENAME COLUMN b to a;</code>, the operation will be executed normally. </li><li>If an index or foreign key constraint is created on the column to be renamed, the <code>RENAME COLUMN</code> statement can be executed normally, and the index definition and foreign key constraint will be automatically updated. </li><li>On the same <code>ALTER TABLE</code> statement, you cannot simultaneously include <code>RENAME COLUMN</code> and <code>ADD PARTITION</code> or <code>ALTER COLUMN</code>. </li></ul></p></main>|
+-- | RENAME \[TO\|AS] table_name                                   | Renames a table.  <main id="notice" type='notice'><h4>Notice</h4><p>During the <code>RENAME TABLE</code> operation, table locking and read/write defense measures are added, which will increase the operation time. To avoid affecting other users' DDL operations, we recommend that you do not perform batch <code>RENAME TABLE</code> operations. </p></main>|
+-- | RENAME \[TO\] table_name                                   | Renames a table.  <main id="notice" type='notice'><h4>Notice</h4><p>During the <code>RENAME TABLE</code> operation, table locking and read/write defense measures are added, which will increase the operation time. To avoid affecting other users' DDL operations, we recommend that you do not perform batch <code>RENAME TABLE</code> operations. </p></main>|
+-- | RENAME {INDEX \| KEY}                                      | Renames an index or key.   |
+-- | DROP \[TABLEGROUP\]                                        | Drops a table group.  |
+-- | DROP \[FOREIGN KEY\]                                       | Drops a foreign key.  |
+-- | DROP \[PRIMARY KEY\]                                       | Drops a primary key.<main id="notice" type='explain'><h4>Note</h4><p>In MySQL mode, you cannot drop a primary key in the following cases: <ul><li>The table is a parent table that contains foreign key information. </li> <li>The table is a child table, and the primary key column contains a foreign key reference. </li> </ul> </p>|
+-- | \[SET\] table_option                                       | Sets table-level attributes. Valid values: <ul><li> `REPLICA_NUM`: specifies the number of replicas for a table. This option is not supported. </li>   <li> `tablegroup_name`: specifies the table group to which the table belongs. </li>   <li> `BLOCK_SIZE`: specifies the microblock size of a table. The default value is `16384` (16 KB). The value ranges from \[1024, 1048576\]. </li>  <li> `lob_inrow_threshold`: specifies the `INROW` threshold. If the size of LOB data exceeds this threshold, it will be stored in the LOB Meta table as `OUTROW` data. The default value is 4 KB. </li>   <li> `COMPRESSION`: specifies the compression method for a table. The default value is `None`, which indicates no compression. </li>   <li> `AUTO_INCREMENT`: specifies the next value of the auto-increment column in a table. You can increase or decrease the value. <main id="notice" type='notice'><h4>Notice</h4><p>When you decrease the value of the auto-increment column in a table, note the following: </br> If the table already contains data and the maximum value in the auto-increment column is greater than or equal to the new <code>AUTO_INCREMENT</code> value, the new <code>AUTO_INCREMENT</code> value will be automatically adjusted to the next value of the maximum value in the auto-increment column. For example, if the current maximum value of the auto-increment column is 5 and the current <code>AUTO_INCREMENT</code> value is 8, and the <code>AUTO_INCREMENT</code> value is set to any value between 0 and 6, the actual <code>AUTO_INCREMENT</code> value will be adjusted to 6 after the statement is executed. </p></main></li>   <li> `comment`: specifies the comment of a table. </li>   <li> `PROGRESSIVE_MERGE_NUM`: specifies the number of steps for progressive major compactions. The value ranges from \[0, 100\]. </li>   <li> `parallel_clause`: specifies the parallelism at the table level. </li> <li> `NOPARALLEL`: specifies a parallelism of `1`. This is the default value. </li>   <li> `PARALLEL integer`: specifies the parallelism. The value of `integer` must be greater than or equal to `1`. </li> </ul>     |
+-- | CHECK                                                      | Modifies the `CHECK` constraint. Valid operations: <ul><li> Adds a new `CHECK` constraint. </li>   <li> Drops the `CHECK` constraint with the specified name `constraint_name`. </li>  </ul>  |
+-- | \[NOT\] ENFORCED                                           | Specifies whether to enforce the `CHECK` constraint with the specified name `constraint_name`. <ul><li> If you omit this option or specify `ENFORCED`, the constraint is created and enforced. This is the default behavior. </li>   <li> If you specify `NOT ENFORCED`, the constraint is created but not enforced. </li> </ul>   |
+-- | ADD COLUMN GROUP([all columns, ]each column) [DELAYED] | Change the table to a columnar table. The specific explanation is as follows: <ul><li><code>ADD COLUMN GROUP(all columns, each column)</code>: Change the table to a hybrid row-columnar table. </li><li><code>ADD COLUMN GROUP(each column)</code>: Change the table to a columnar table. </li><li>`DELAYED`: an optional parameter indicating that the conversion from a row-based table to a columnar table is performed asynchronously. After the command is executed, the storage format in the table definition is modified, but the actual conversion from a row-based table to a columnar table is performed during a major compaction. This operation does not block current DML operations and is an online DDL operation. If you do not specify `DELAYED`, the default is offline DDL, which synchronously converts a row-based table to a columnar table. <main id="notice" type='notice'><h4>Notice</h4><p><ul><li>Currently, you can specify <code>DELAYED</code> only when you change a row-based table to a columnar table (<code>each column</code>) or a hybrid row-columnar table (<code>all columns, each column</code>). </li><li>After you execute the <code>DELAYED</code> command to convert a row-based table to a columnar table, the query performance may not meet expectations until the baseline data is fully compacted because the data storage format has not been truly converted. </li></ul></p></main></li></ul>|
+-- | DROP COLUMN GROUP([all columns, ]each column) | Change the storage format of the table. The specific explanation is as follows: <ul><li><code>DROP COLUMN GROUP(all columns, each column)</code>: Change the table to a hybrid row-columnar table. </li><li><code>DROP COLUMN GROUP(all columns)</code>: Change the table to a row-based table. </li><li><code>DROP COLUMN GROUP(each column)</code>: Change the table to a columnar table. </li></ul>|
+-- | index_column_group_option | Specify the index options. The specific explanation is as follows: <ul><li><code>WITH COLUMN GROUP(all columns, each column)</code>: Specify to add a hybrid row-columnar index. </li><li><code>WITH COLUMN GROUP(all columns)</code>: Specify to add a row-based index. </li><li><code>WITH COLUMN GROUP(each column)</code>: Specify to add a columnar index. </li></ul>|
+-- | SKIP_INDEX | Modify the Skip Index attribute of a column. Valid values: <ul><li><code>MIN_MAX</code>: the most general aggregate data type in Skip Index. It stores the maximum and minimum values and the count of NULL values of the indexed column at the index node level. This type of data can accelerate the pushdown of filters and `MIN/MAX` aggregates. </li><li><code>SUM</code>: used to accelerate the pushdown of `SUM` aggregates for numeric types. </li></ul>  <main id="notice" type='notice'><h4>Notice</h4><p><ul><li>Do not create a Skip Index for a column of the JSON or spatial data type. </li><li>Do not create a Skip Index for a generated column. </li></ul></p></main>|
+-- | EXCHANGE PARTITION partition_name WITH TABLE origin_table_name | Specify a partition exchange. In this statement, `partition_name` specifies the name of the partition in the partitioned table, and `origin_table_name` specifies the name of the source table, which is a non-partitioned table or a partitioned table. For more information about partition exchange, see [Partition exchange](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/100.manage-object-of-mysql-mode/300.manage-partitions-of-mysql-mode/1000.exchange-partition-of-mysql-mode.md).|
+-- | TABLE_MODE | An optional parameter that specifies the major compaction trigger threshold and strategy, which control the major compaction behavior after data is dumped. For more information about the values, see [table_mode_value](#table_mode_value).|
+-- | AUTO_INCREMENT_CACHE_SIZE | Specify the number of cached auto-increment values. The default value is 0, indicating that the system uses the tenant-level parameter [auto_increment_cache_size](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/800.configuration-items-and-system-variables/200.system-variable/300.global-system-variable/100.auto_increment_cache_size-global.md) to set the size of the cache for auto-increment columns.|
+-- | READ {ONLY \| WRITE} | Specify the read/write permissions of the table. The specific explanation is as follows: <ul><li>`READ ONLY`: indicates that the table can be read but not modified or deleted. <main id="notice" type='notice'><h4>Notice</h4><p>The <code>READ ONLY</code> parameter at the table level takes effect only for users without the <code>SUPER</code> privilege. </p></main></li><li>`READ WRITE`: the default value, indicating that the table can be read, modified, and deleted. </li></ul>|
+-- | DUPLICATE_SCOPE | Change the duplicate table attribute of the table. Valid values: <ul><li>`none`: indicates that the table is a normal table. </li><li>`cluster`: indicates that the table is a duplicate table. </li></ul> For more information about changing the duplicate table attribute, see [Change the duplicate table attribute](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/100.manage-object-of-mysql-mode/200.manage-tables-of-mysql-mode/650.change-duplicate-scope-of-mysql-mode.md).|
+-- | enable_macro_block_bloom_filter [=] {True \| False} | Specify whether to persist the Bloom filter at the macro block level. Valid values: <ul><li><code>True</code>: enable the persistence of the Bloom filter at the macro block level. </li></ul><ul></li></li><li><code>False</code>: disable the persistence of the Bloom filter at the macro block level. </li></ul>|
+-- | DYNAMIC_PARTITION_POLICY \[=\] \(dynamic_partition_policy_list\) | Change the dynamic partition management attribute of the table. `dynamic_partition_policy_list` specifies the list of configurable parameters of the dynamic partition strategy, separated by commas. For more information about the parameters, see [dynamic_partition_policy_option](#dynamic_partition_policy_option).|
+-- | REORGANIZE PARTITION | Used to manually split a partition. The relevant parameters are as follows: <ul><li>`partition_name`: specifies the name of the partition to be split. </li><li>`split_partition_name`: specifies the name of the new partition after splitting. </li><li>`value`: specifies the split boundary (value range). The `value` range defined for splitting a partition must be the same as the `value` range of the source partition, and the `value` must be defined in ascending order. </li><li>`source_value`: specifies the original boundary (value range) of the partition to be split. This is the last partition split, and its `value` is equivalent to the `value` of the source partition. </li></ul> For more information about manual partition splitting, see [Manually split a partition](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/100.manage-object-of-mysql-mode/300.manage-partitions-of-mysql-mode/250.partition-splitting-of-mysql-mode/200.manual-partition-splitting-of-mysql-mode.md). <main id="notice" type='notice'><h4>Notice</h4><p>In OceanBase Database in MySQL mode, the current version only supports splitting one partition into multiple partitions. It does not support splitting multiple partitions into multiple partitions. </p></main> |
+-- | PARTITION BY | Used to modify the automatic partitioning attributes of a table or modify the partitioning rules. The relevant parameters are as follows: <ul><li> `partition_option`: specifies the option for modifying the partitioning rules. For more information, see [Modify partitioning rules](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/100.manage-object-of-mysql-mode/300.manage-partitions-of-mysql-mode/300.modify-partition-rules-of-mysql-mode.md). </li><li> `RANGE [COLUMNS](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/[column_name_list]) [SIZE('size_value')]`: specifies the automatic partitioning attributes of a table. For more information, see the syntax for modifying the automatic partitioning attributes of a table in [Automatic partition splitting](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/100.manage-object-of-mysql-mode/300.manage-partitions-of-mysql-mode/250.partition-splitting-of-mysql-mode/300.automatic-partition-splitting-of-mysql-mode.md). <main id="notice" type='explain'><h4>Note</h4><p>For V4.4.2, the lower limit of the automatic partition splitting threshold has been adjusted from 128 MB to 1 MB starting from V4.4.2 BP1. </p></main> </li></ul>|
+-- | MODIFY PARTITION partition_name ADD SUBPARTITION (add_subpartition_option) | Indicates adding a subpartition. <main id="notice" type='notice'><h4>Notice</h4><p>Adding a subpartition is not supported for partitions of the HASH or KEY type. </p></main>|
+-- | add_subpartition_option | Indicates the definition of the added subpartition. |
+-- | range_partition_expr    | Indicates the RANGE/RANGE COLUMNS partition expression. |
+-- | list_partition_expr     | Indicates the LIST/LIST COLUMNS partition expression. |
+-- | FORCE | Used to drop obsolete columns. <main id="notice" type='explain'><h4>Note</h4><p>When some columns are deleted, they still occupy physical storage space even if they are no longer used. To remove these obsolete columns and reclaim the related space, you must drop them. </p></main>|
+-- | SEMISTRUCT_ENCODING_TYPE | Optional. Specifies the semistructured encoding type. Valid values: <ul><li>`''`: disables semistructured encoding. </li><li>`'encoding'`: enables semistructured encoding. </li></ul><main id="notice" type='notice'><h4>Notice</h4><p>Starting from V4.4.1, the <code>semistruct_encoding_type</code> parameter is deprecated. Use <code>semistruct_properties</code> instead. </p></main>|
+-- | SEMISTRUCT_PROPERTIES | Optional. Specifies the semistructured encoding type in key-value pairs. Valid values: <ul><li>`encoding_type`: specifies the semistructured encoding type. Valid values: `encoding` or `none`. Default value: `none`. </li><li>`freq_threshold`: specifies the frequency threshold. Valid value: `(0, 100]`. Default value: `90`. Paths in a JSON object that appear more frequently than this threshold are stored as independent subcolumns. These subcolumns are called frequent columns. A lower `freq_threshold` value increases the number of frequent columns, thereby improving the compression ratio, but also increases the query performance overhead. </li></ul></br>For more information about how to use the semistructured encoding, see <a href="../100.basic-elements-of-mysql-mode/100.data-type-of-mysql-mode/800.json-formatted-data-type-of-mysql-mode/200.create-a-json-value-of-mysql-mode.md">Use semistructured encoding</a>. <main id="notice" type='notice'><h4>Notice</h4><p>This parameter is supported starting from V4.4.1. </p></main>|
+-- |STORAGE_CACHE_POLICY| This parameter is not applicable at present. |
+-- |ALTER {PARTITION \| SUBPARTITION} partition_name STORAGE_CACHE_POLICY| This parameter is not applicable at present. |
+--
+-- ### table_mode_value
+--
+-- <main id="notice" type='explain'>
+--   <h4>Note</h4>
+--   <p>The following table lists the <code>TABLE_MODE</code> modes. All modes except <code>NORMAL</code> represent <code>QUEUING</code> tables. A <code>QUEUING</code> table is the most basic table type. The following modes (except <code>NORMAL</code>) represent more aggressive compaction strategies. </p>
+-- </main>
+--
+-- * `NORMAL`: The default value. In this mode, the probability of triggering a major compaction after a data dump is very low.
+-- * `QUEUING`: In this mode, the probability of triggering a major compaction after a data dump is low.
+-- * `MODERATE`: In this mode, the probability of triggering a major compaction after a data dump is moderate.
+-- * `SUPER`: In this mode, the probability of triggering a major compaction after a data dump is high.
+-- * `EXTREME`: In this mode, the probability of triggering a major compaction after a data dump is very high.
+--
+-- For more information about major compactions, see [Adaptive major compactions](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/200.system-management/500.manage-data-storage/200.merge-management/320.adaptive-compaction.md).
+--
+-- ### tokenizer_option
+--
+-- * `SPACE`: The default value. In this mode, the text is tokenized by spaces. You can specify the following parameters:
+--
+--   | Parameter | Value range |
+--   |------------------|---------|
+--   | min_token_size   | [1, 16] |
+--   | max_token_size   | [10, 84]|
+--
+-- * `NGRAM`: In this mode, the text is tokenized based on N-grams (Chinese). You can specify the following parameters:
+--
+--   | Parameter | Value range |
+--   |------------------|---------|
+--   | ngram_token_size | [1, 10] |
+--
+-- * `NGRAM2`: In this mode, the text is tokenized into continuous characters of length between `min_ngram_size` and `max_ngram_size`. You can specify the following parameters:
+--
+--   | Parameter | Value range |
+--   |------------------|---------|
+--   | min_ngram_size   | [1, 16] |
+--   | max_ngram_size   | [1, 16] |
+--
+-- * `BENG`: In this mode, the text is tokenized based on basic English (Beng). You can specify the following parameters:
+--
+--   | Parameter | Value range |
+--   |------------------|---------|
+--   | min_token_size   | [1, 16] |
+--   | max_token_size   | [10, 84]|
+--
+-- * `IK`: In this mode, the text is tokenized based on the IK (Chinese) tokenizer. Currently, only the `utf-8` character set is supported. You can specify the following parameter:
+--
+--   | Parameter | Value range |
+--   |------------------|---------|
+--   | ik_mode          | <ul><li>`smart`</li><li>`max_word`</li></ul>|
+--
+-- You can use the [TOKENIZE](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/400.functions-of-mysql-mode/960.text-processing-functions-of-mysql-mode/200.tokenize-of-mysql-mode.md) function to view the tokenization result of the text in the specified tokenizer and JSON format.
+--
+-- ### parser_properties
+--
+-- * `min_token_size`: The minimum token length. Default value: 3. Value range: 1 to 16.
+--
+-- * `max_token_size`: The maximum token length. Default value: 84. Value range: 10 to 84.
+--
+-- * `ngram_token_size`: The N-gram token length. This parameter is valid only for the `NGRAM` tokenizer. Default value: 2. Value range: 1 to 10.
+--
+-- * `ik_mode`: The tokenization mode of the `IK` tokenizer. Valid values:
+--
+--   * `smart`: The default value. The dictionary is used to improve the accuracy of tokenization. The boundaries of the dictionary are prioritized, which may reduce unnecessary expansions.
+--   * `max_word`: The dictionary is used to identify the defined words, but it does not affect the maximum expansion of tokenization. Even if the dictionary contains defined words, the `max_word` mode still attempts to split the text into more words.
+--
+-- * `min_ngram_size`: The minimum token length. Value range: [1,16].
+--
+-- * `max_ngram_size`: The maximum token length. Value range: [1,16].
+--
+-- **Here is an example:**
+--
+-- 1. Create a table named `tbl1`.
+--
+--    ```sql
+--    CREATE TABLE tbl1 (col1 VARCHAR(200), col2 TEXT);
+--    ```
+--
+-- 2. Add a full-text index named `fidx` to the `tbl1` table.
+--
+--    ```sql
+--    ALTER TABLE tbl1 ADD FULLTEXT INDEX fidx(col2) WITH PARSER ik PARSER_PROPERTIES=(ik_mode='max_word');
+--    ```
+--
+-- ### dynamic_partition_policy_option
+--
+-- * `ENABLE = {true | false}`: Specifies whether to enable dynamic partition management. Valid values:
+--
+--   * `true`: The default value. Dynamic partition management is enabled.
+--   * `false`: Dynamic partition management is disabled.
+--
+-- * `PRECREATE_TIME = {'-1' | '0' | 'n {hour | day | week | month | year}'}`: Specifies the precreation time. When dynamic partition management is scheduled, partitions are precreated so that **the upper bound of the maximum partition > now() + precreate_time**. Valid values:
+--
+--   * `-1`: The default value. No partitions are precreated.
+--   * `0`: Only the current partition is precreated.
+--   * `n {hour | day | week | month | year}`: Partitions are precreated for the specified time span. For example, `3 hour` indicates that partitions for the last 3 hours are precreated.
+--
+--   <main id="notice" type='explain'>
+--     <h4>Note</h4>
+--     <p><ul><li>When multiple partitions are to be precreated, the interval between the boundaries of adjacent partitions is <code>TIME_UNIT</code>. </li><li>The boundary of the first precreated partition is the ceiling of the upper bound of the existing maximum partition, rounded up to the nearest multiple of <code>TIME_UNIT</code>. </li></ul></p>
+--   </main>
+--
+-- * `EXPIRE_TIME = {'-1' | '0' | 'n {hour | day | week | month | year}'}`: Optional. Specifies the partition expiration time. When dynamic partition management is scheduled, all **partitions whose upper bound < now() - expire_time** are deleted. Valid values:
+--
+--   * `-1`: The default value. Partitions never expire.
+--   * `0`: All partitions except the current one expire.
+--   * `n {hour | day | week | month | year}`: The partition expiration time. For example, `1 day` indicates that a partition expires after 1 day.
+--
+-- For more information about dynamic partition tables, see [Modify a dynamic partition table](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/100.manage-object-of-mysql-mode/300.manage-partitions-of-mysql-mode/260.dynamic-partition-of-mysql-mode/400.modify-dynamic-partition-table-of-mysql-mode.md).
+--
+-- **Here is an example:**
+--
+-- ```sql
+-- ALTER TABLE tbl2 SET DYNAMIC_PARTITION_POLICY(
+--     ENABLE = true,
+--     PRECREATE_TIME = '1 day',
+--     EXPIRE_TIME = '-1'
+-- );
+-- ```
+--
+-- ### storage_cache_policy
+--
+-- No action is required.
+--
+-- ### partition_storage_cache_policy
+--
+-- No action is required.
+--
+-- ## Examples
+--
+-- ### Add and drop columns
+--
+-- Create a sample table named `tbl1` and execute the `DESCRIBE` command to view the table information.
+--
+-- ```sql
+-- Query OK, 0 rows affected
+--
+-- +-------+------------+----------+--------+---------+-------+
+-- | Field | Type       | Null     | Key    | Default | Extra |
+-- +-------+------------+----------+--------+---------+-------+
+-- | c1    | int(11)    | NO       | PRI    | NULL    |       |
+-- | c2    | varchar(50)| YES      |        | NULL    |       |
+-- +-------+------------+----------+--------+---------+-------+
+-- ```
+--
+-- * Add the `c3` column and execute the `DESCRIBE` command to view the table information.
+--
+--   ```sql
+--   Query OK, 1 row affected
+--
+--   +-------+------------+----------+--------+---------+-------+
+--   | Field | Type       | Null     | Key    | Default | Extra |
+--   +-------+------------+----------+--------+---------+-------+
+--   | c1    | int(11)    | NO       | PRI    | NULL    |       |
+--   | c2    | varchar(50)| YES      |        | NULL    |       |
+--   | c3    | int(11)    | YES      |        | NULL    |       |
+--   +-------+------------+----------+--------+---------+-------+
+--   3 row affected
+--   ```
+--
+-- * Drop the `c3` column and execute the `DESCRIBE` command to view the table information.
+--
+--   ```sql
+--   Query OK, 1 row affected
+--
+--   +-------+------------+----------+--------+---------+-------+
+--   | Field | Type       | Null     | Key    | Default | Extra |
+--   +-------+------------+----------+--------+---------+-------+
+--   | c1    | int(11)    | NO       | PRI    | NULL    |       |
+--   | c2    | varchar(50)| YES      |        | NULL    |       |
+--   +-------+------------+----------+--------+---------+-------+
+--   2 row affected
+--   ```
+--
+-- * Rename the `c2` column to `c3` in the `tbl1` table and execute the `DESCRIBE` command to view the table information.
+--
+--   ```sql
+--   Query OK, 1 row affected
+--
+--   +-------+------------+----------+--------+---------+-------+
+--   | Field | Type       | Null     | Key    | Default | Extra |
+--   +-------+------------+----------+--------+---------+-------+
+--   | c1    | int(11)    | NO       | PRI    | NULL    |       |
+--   | c3    | varchar(50)| YES      |        | NULL    |       |
+--   +-------+------------+----------+--------+---------+-------+
+--   2 rows affected
+--   ```
+--
+-- * Add the `c4` column to the `tbl1` table and set it as the first column of the table. Then, execute the `DESCRIBE` command to view the table information.
+--
+--   ```sql
+--   Query OK, 1 row affected
+--
+--   +-------+------------+----------+--------+---------+-------+
+--   | Field | Type       | Null     | Key    | Default | Extra |
+--   +-------+------------+----------+--------+---------+-------+
+--   | c4    | int(11)    | YES      |        | NULL    |       |
+--   | c1    | int(11)    | NO       | PRI    | NULL    |       |
+--   | c3    | varchar(50)| YES      |        | NULL    |       |
+--   +-------+------------+----------+--------+---------+-------+
+--   3 row affected
+--   ```
+--
+-- * Add the `c2` column after the `c1` column in the `tbl1` table and execute the `DESCRIBE` command to view the table information.
+--
+--   ```sql
+--   Query OK, 1 row affected
+--
+--   +-------+------------+----------+--------+---------+-------+
+--   | Field | Type       | Null     | Key    | Default | Extra |
+--   +-------+------------+----------+--------+---------+-------+
+--   | c4    | int(11)    | YES      |        | NULL    |       |
+--   | c1    | int(11)    | NO       | PRI    | NULL    |       |
+--   | c2    | int(11)    | YES      |        | NULL    |       |
+--   | c3    | varchar(50)| YES      |        | NULL    |       |
+--   +-------+------------+----------+--------+---------+-------+
+--   4 row affected
+--   ```
+--
+-- * Add the `c5` column before the `c4` column in the `tbl1` table and execute the `DESCRIBE` command to view the table information.
+--
+--   ```sql
+--   Query OK, 1 row affected
+--
+--   +-------+------------+----------+--------+---------+-------+
+--   | Field | Type       | Null     | Key    | Default | Extra |
+--   +-------+------------+----------+--------+---------+-------+
+--   | c5    | int(11)    | YES      |        | NULL    |       |
+--   | c4    | int(11)    | YES      |        | NULL    |       |
+--   | c1    | int(11)    | NO       | PRI    | NULL    |       |
+--   | c2    | int(11)    | YES      |        | NULL    |       |
+--   | c3    | varchar(50)| YES      |        | NULL    |       |
+--   +-------+------------+----------+--------+---------+-------+
+--   5 row affected
+--   ```
+--
+-- * Add the `fk1` foreign key constraint to the `tbl2` table. When an `UPDATE` operation affects the key values in the parent table that match the rows in the child table, execute the `SET NULL` operation.
+--
+--   ```sql
+--   Query OK, 0 row affected
+--   Query OK, 0 row affected
+--   Query OK, 0 row affected
+--   ```
+--
+-- * Drop the `fk1` foreign key constraint from the `tbl3` table.
+--
+--   ```sql
+--   Query OK, 0 row affected
+--   ```
+--
+-- * Drop the primary key from the `tbl2` table.
+--
+--   ```sql
+--   Query OK, 0 row affected
+--   ```
+--
+-- ### Index operations
+--
+-- * Rename the `ind1` index in the `tbl2` table to `ind2`.
+--
+--   ```sql
+--   Query OK, 0 row affected
+--
+--   Query OK, 0 row affected
+--   Query OK, 0 row affected
+--   ```
+--
+-- * Create an index named `ind3` on the `tbl2` table, referencing the `c1` and `c2` columns.
+--
+--   ```sql
+--   Query OK, 0 row affected
+--   ```
+--
+--   You can execute the `SHOW INDEX` statement to view the created index.
+--
+--   ```sql
+--   +-------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+-----------+---------------+---------+
+--   | Table | Non_unique | Key_name | Seq_in_index | Column_name | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment   | Index_comment | Visible |
+--   +-------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+-----------+---------------+---------+
+--   | tbl2  |          0 | PRIMARY  |            1 | c1          | A         |        NULL | NULL     | NULL   |      | BTREE      | available |               | YES     |
+--   | tbl2  |          1 | ind2     |            1 | c2          | A         |        NULL | NULL     | NULL   |  YES | BTREE      | available |               | YES     |
+--   | tbl2  |          1 | ind3     |            1 | c1          | A         |        NULL | NULL     | NULL   |      | BTREE      | available |               | YES     |
+--   | tbl2  |          1 | ind3     |            2 | c2          | A         |        NULL | NULL     | NULL   |  YES | BTREE      | available |               | YES     |
+--   +-------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+-----------+---------------+---------+
+--   4 rows in set
+--   ```
+--
+-- * Drop the `ind2` index from the `tbl2` table.
+--
+--   ```sql
+--   Query OK, 0 row affected
+--   ```
+--
+--   <main id="notice" type='explain'>
+--     <h4>Note</h4>
+--     <p>In actual O&M scenarios, you can use the preceding methods to perform atomic index changes. </p>
+--   </main>
+--
+-- * Add three function indexes to the `t1_func` table. One of the indexes is named `i2`, and the other two are automatically generated by the system with names in the format of `functional_index` followed by a number.
+--
+--   ```shell
+--   Query OK, 0 rows affected
+--   Query OK, 0 rows affected
+--   Query OK, 0 rows affected
+--   +---------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+--   | Table   | Create Table                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+--   +---------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+--   | t1_func | CREATE TABLE `t1_func` (
+--   `c1` int(11) DEFAULT NULL,
+--   `c2` int(11) DEFAULT NULL,
+--   KEY `i1` (((`c1` + `c2`) < 1)) BLOCK_SIZE 16384 LOCAL,
+--   KEY `functional_index` (concat(`c1`,'a')) BLOCK_SIZE 16384 LOCAL,
+--   KEY `functional_index_2` ((`c1` + 1)) BLOCK_SIZE 16384 LOCAL,
+--   KEY `i2` (concat(`c1`,'a')) BLOCK_SIZE 16384 LOCAL
+--   ) DEFAULT CHARSET = utf8mb4 ROW_FORMAT = DYNAMIC COMPRESSION = 'zstd_1.3.8' REPLICA_NUM = 1 BLOCK_SIZE = 16384 USE_BLOOM_FILTER = FALSE TABLET_SIZE = 134217728 PCTFREE = 0 |
+--   +---------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+--   1 row in set
+--   ```
+--
+-- * Create a columnstore index on the table.
+--
+--   1. Execute the following SQL statement to create the `tbl3` table.
+--
+--      ```sql
+--      CREATE TABLE tbl3 (col1 INT, col2 VARCHAR(50));
+--      ```
+--
+--   2. Create a columnstore index named `idx1_tbl3` on the `tbl3` table, referencing the `col1` column.
+--
+--      ```sql
+--      ALTER TABLE tbl3 ADD INDEX idx1_tbl3 (col1) WITH COLUMN GROUP(each column);
+--      ```
+--
+-- * Modify the index to be invisible.
+--
+--   <main id="notice" type='explain'>
+--     <h4>Note</h4>
+--     <p>After an index is set to invisible, you can see the <code>/*!80000 INVISIBLE */</code> tag in the table structure. </p>
+--   </main>
+--
+--   1. Create the `tbl4` table.
+--
+--      ```sql
+--      CREATE TABLE tbl4 (col1 INT PRIMARY KEY, col2 INT, col3 INT);
+--      ```
+--
+--   2. Create an index named `idx1_tbl4`.
+--
+--      ```sql
+--      CREATE INDEX idx1_tbl4 ON tbl4(col2);
+--      ```
+--
+--   3. Modify the `idx1_tbl4` index to be invisible.
+--
+--      ```sql
+--      ALTER TABLE tbl4 ALTER INDEX idx1_tbl4 INVISIBLE;
+--      ```
+--
+--   4. View the structure of the `tbl4` table again.
+--
+--      ```sql
+--      SHOW CREATE TABLE tbl4;
+--      ```
+--
+--      The return result is as follows:
+--
+--      ```shell
+--      +-------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+--      | Table | Create Table                                                                                                                                                                                                                                                                                                                                                                                                              |
+--      +-------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+--      | tbl4  | CREATE TABLE `tbl4` (
+--        `col1` int(11) NOT NULL,
+--        `col2` int(11) DEFAULT NULL,
+--        `col3` int(11) DEFAULT NULL,
+--        PRIMARY KEY (`col1`),
+--        KEY `idx1_tbl4` (`col2`) BLOCK_SIZE 16384 LOCAL /*!80000 INVISIBLE */
+--      ) DEFAULT CHARSET = utf8mb4 ROW_FORMAT = DYNAMIC COMPRESSION = 'zstd_1.3.8' REPLICA_NUM = 1 BLOCK_SIZE = 16384 USE_BLOOM_FILTER = FALSE TABLET_SIZE = 134217728 PCTFREE = 0 WITH COLUMN GROUP(each column) |
+--      +-------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+--      1 row in set
+--      ```
+--
+-- ### Partition operations
+--
+-- * Clear all data in the `M202001` and `M202002` partitions of the `t_log_part_by_range` partitioned table.
+--
+--   ```sql
+--       log_id      bigint NOT NULL
+--       , log_value varchar(50)
+--       , log_date  timestamp NOT NULL
+--   ) PARTITION BY RANGE(UNIX_TIMESTAMP(log_date))
+--   (
+--       PARTITION M202001 VALUES LESS THAN(UNIX_TIMESTAMP('2020/02/01'))
+--       , PARTITION M202002 VALUES LESS THAN(UNIX_TIMESTAMP('2020/03/01'))
+--       , PARTITION M202003 VALUES LESS THAN(UNIX_TIMESTAMP('2020/04/01'))
+--       , PARTITION M202004 VALUES LESS THAN(UNIX_TIMESTAMP('2020/05/01'))
+--       , PARTITION M202005 VALUES LESS THAN(UNIX_TIMESTAMP('2020/06/01'))
+--   );
+--   Query OK, 0 rows affected
+--
+--   Query OK, 0 rows affected
+--   ```
+--
+-- * Add a partition named `M202006` to the `t_log_part_by_range` partitioned table.
+--
+--   ```sql
+--       log_id      bigint NOT NULL
+--       , log_value varchar(50)
+--       , log_date  timestamp NOT NULL
+--   ) PARTITION BY RANGE(UNIX_TIMESTAMP(log_date))
+--   (
+--       PARTITION M202001 VALUES LESS THAN(UNIX_TIMESTAMP('2020/02/01'))
+--       , PARTITION M202002 VALUES LESS THAN(UNIX_TIMESTAMP('2020/03/01'))
+--       , PARTITION M202003 VALUES LESS THAN(UNIX_TIMESTAMP('2020/04/01'))
+--       , PARTITION M202004 VALUES LESS THAN(UNIX_TIMESTAMP('2020/05/01'))
+--       , PARTITION M202005 VALUES LESS THAN(UNIX_TIMESTAMP('2020/06/01'))
+--   );
+--   Query OK, 0 rows affected
+--
+--            (PARTITION M202006 VALUES LESS THAN(UNIX_TIMESTAMP('2020/07/01'))
+--            );
+--   ```
+--
+-- ### Change the parallelism
+--
+-- * Change the parallelism of the `tbl3` table to `2`.
+--
+--   ```sql
+--   ```
+--
+--   In addition to using the `ALTER TABLE table_name PARALLEL int;` statement to change the parallelism of a table, you can also use the `PARALLEL` hint. The syntax is as follows: `alter /*+ parallel(int) */ table`.
+--
+-- ### Operations related to column types
+--
+-- * Modify the ordinary column `col1` of the `tbl4` table to an auto-increment column.
+--
+--   ```sql
+--   Query OK, 0 rows affected
+--
+--   Query OK, 0 rows affected
+--   ```
+--
+-- * Add the `col1` column as the primary key of the `tbl4` table, and then change the primary key to `col2`.
+--
+--   ```sql
+--   Query OK, 0 rows affected
+--
+--   Query OK, 0 rows affected
+--   ```
+--
+-- * Add a `CHECK` constraint.
+--
+--   ```sql
+--   Query OK, 0 rows affected
+--
+--   Query OK, 0 rows affected
+--   ```
+--
+-- * Remove the `CHECK` constraint from the `tbl7` table.
+--
+--   ```sql
+--   Query OK, 0 rows affected
+--   ```
+--
+-- * Modify the column type to `NOT NULL`.
+--
+--   ```sql
+--       deptno           NUMBER(2,0),
+--       dname            VARCHAR(14),
+--       location         VARCHAR(13),
+--       CONSTRAINT pk_dept PRIMARY KEY(deptno)
+--   );
+--   Query OK, 0 rows affected
+--
+--       empno         NUMBER(4,0) NOT NULL,
+--       empname       VARCHAR(10) NOT NULL,
+--       job           VARCHAR(9) NOT NULL,
+--       mgr           NUMBER(4,0) NOT NULL,
+--       hiredate      DATE NOT NULL,
+--       sal           NUMBER(7,2) DEFAULT NULL,
+--       comm          NUMBER(7,2) DEFAULT NULL,
+--       deptno        NUMBER(2,0) DEFAULT NULL,
+--       CONSTRAINT PK_emp PRIMARY KEY (empno),
+--       CONSTRAINT FK_deptno  FOREIGN KEY (deptno)  REFERENCES dept (deptno)
+--   );
+--   Query OK, 0 rows affected
+--
+--   Query OK, 0 rows affected
+--   ```
+--
+-- #### Rename a column and add a NOT NULL constraint
+--
+--   <main id="notice" type='notice'>
+--     <h4>Notice</h4>
+--     <p>You can rename a column and add a <code>not null</code> constraint only if the following conditions are met: <ul><li>You can rename only one column and add only one <code>not null</code> constraint at a time. </li><li>You can add only one <code>not null</code> constraint. </li><li>You can perform only the <code>alter_column</code> operation, and cannot create an index or partition. </li><li>The column that you rename and the column that you add a <code>not null</code> constraint to must be the same column. </li></ul></p>
+--   </main>
+--
+-- ```sql
+-- Query OK, 0 rows affected (2.421 sec)
+-- ```
+--
+-- #### Add NOT NULL constraints to two columns
+--
+--   <main id="notice" type='notice'>
+--       <h4>Notice</h4>
+--       <p>You can add <code>NOT NULL</code> constraints to two columns only if the following conditions are met: <ul><li>You can add <code>NOT NULL</code> constraints to only two columns. </li><li>You can add only one <code>not null</code> constraint. </li><li>You can perform only the <code>alter_column</code> operation, and cannot create an index or partition. </li><li>You cannot modify other columns except for the two columns to which you add <code>not null</code> constraints. </li></ul></p>
+--     </main>
+--
+-- Execute the following command to add `NOT NULL` constraints to the `C1` and `c2` columns:
+--
+-- ```sql
+-- Query OK, 0 rows affected (2.605 sec)
+-- ```
+--
+-- #### Change the column type of a column with a prefix index
+--
+-- <main id="notice" type='notice'>
+--     <h4>Notice</h4>
+--     <p>You can change the column type of a column with a prefix index only if the following conditions are met: <ul><li>The original column type is <code>char</code>. </li><li>The target column type is <code>varchar</code>. </li><li>The length of the original column and the target column are the same. </li></ul></p>
+--   </main>
+--
+-- 1. Execute the following command to create a table named `test_alter5` that contains a column named `c1` of the `CHAR(20)` data type and has a prefix index named `idx_c1` on the `c1` column:
+--
+--    ```sql
+--    ```
+--
+-- 2. Execute the following command to change the data type of the `c1` column to `varchar(20)`:
+--
+--    ```sql
+--    ```
+--
+-- #### Change the foreign key constraint rules
+--
+-- 1. Execute the following command to create a table named `t1` and add a unique constraint to the integer column `c1`:
+--
+--    ```sql
+--    ```
+--
+-- 2. Execute the following command to create a table named `t2` that contains an integer column named `c1` and define a foreign key constraint:
+--
+--    ```sql
+--    ```
+--
+-- 3. Execute the following command to query the `INFORMATION_SCHEMA.REFERENTIAL_CONSTRAINTS` system table and obtain the update and delete rules of the foreign key constraint named `fk_cst_test`:
+--
+--    ```sql
+--    ```
+--
+--    The return result is as follows:
+--
+--    ```sql
+--    +-------------+-------------+
+--    | update_rule | delete_rule |
+--    +-------------+-------------+
+--    | SET NULL    | NO ACTION   |
+--    +-------------+-------------+
+--    ```
+--
+--    * `UPDATE_RULE`: `SET NULL` indicates that the foreign key is set to `NULL` when the value of the primary key is updated.
+--    * `DELETE_RULE`: `NO ACTION` indicates that the constraint is checked when the primary key is deleted, and the operation may be blocked.
+--
+-- ### Rename a column
+--
+-- * The `RENAME COLUMN` operation does not change the column definition. It only modifies the column name. If the target name already exists in the table, the `RENAME COLUMN` operation will return an error. However, if you rename the column back to its original name, no error will be returned.
+--
+--   ```shell
+--   Query OK, 0 rows affected
+--
+--   ERROR 1060 (42S21): Duplicate column name 'b'
+--
+--   Query OK, 0 rows affected
+--   ```
+--
+-- * If an index is created on the column that you want to rename, the `RENAME COLUMN` operation can be executed normally, and the index definition will be automatically updated.
+--
+--   ```shell
+--   Query OK, 0 rows affected
+--
+--   +-------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+-----------+---------------+---------+------------+
+--   | Table | Non_unique | Key_name | Seq_in_index | Column_name | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment   | Index_comment | Visible | Expression |
+--   +-------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+-----------+---------------+---------+------------+
+--   | tbl9  |          1 | idx_a    |            1 | a           | A         |        NULL | NULL     | NULL   | YES  | BTREE      | available |               | YES     | NULL       |
+--   +-------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+-----------+---------------+---------+------------+
+--   1 row in set
+--
+--   Query OK, 0 rows affected
+--
+--   +-------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+-----------+---------------+---------+------------+
+--   | Table | Non_unique | Key_name | Seq_in_index | Column_name | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment   | Index_comment | Visible | Expression |
+--   +-------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+-----------+---------------+---------+------------+
+--   | tbl9  |          1 | idx_a    |            1 | c           | A         |        NULL | NULL     | NULL   | YES  | BTREE      | available |               | YES     | NULL       |
+--   +-------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+-----------+---------------+---------+------------+
+--   1 row in set
+--   ```
+--
+-- * If the column that you want to rename is referenced by a prefix index, the `RENAME COLUMN` operation can be executed normally, and the prefix index will be automatically updated.
+--
+--   ```shell
+--   DROP TABLE tbl9;
+--   Query OK, 0 rows affected
+--
+--   DESC tbl9;
+--   Query OK, 0 rows affected
+--
+--   +-------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+-----------+---------------+---------+------------+
+--   | Table | Non_unique | Key_name | Seq_in_index | Column_name | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment   | Index_comment | Visible | Expression |
+--   +-------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+-----------+---------------+---------+------------+
+--   | tbl9  |          0 | PRIMARY  |            1 | c2_1        | A         |        NULL | NULL     | NULL   |      | BTREE      | available |               | YES     | NULL       |
+--   | tbl9  |          1 | i1       |            1 | c2_         | A         |        NULL | 10       | NULL   | YES  | BTREE      | available |               | YES     | NULL       |
+--   +-------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+-----------+---------------+---------+------------+
+--   2 rows in set
+--   ```
+--
+-- * If a foreign key constraint is defined on the column that you want to rename, the `RENAME COLUMN` operation can be executed normally, and the foreign key constraint will be automatically updated.
+--
+--   ```shell
+--   Query OK, 0 rows affected
+--
+--
+--   +-------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+--   | Table | Create Table                                                                                                                                                                                                                                                                                                                                                      |
+--   +-------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+--   | tbl11 | CREATE TABLE `tbl11` (
+--   `b` int(11) DEFAULT NULL,
+--   CONSTRAINT `tbl11_OBFK_1694681944513338` FOREIGN KEY (`b`) REFERENCES `test`.`tbl10`(`a`) ON UPDATE RESTRICT ON DELETE RESTRICT
+--   ) DEFAULT CHARSET = utf8mb4 ROW_FORMAT = DYNAMIC COMPRESSION = 'zstd_1.3.8' REPLICA_NUM = 1 BLOCK_SIZE =  16384 USE_BLOOM_FILTER = FALSE TABLET_SIZE = 134217728 PCTFREE = 0 |
+--   +-------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+--   1 row in set
+--
+--   Query OK, 0 rows affected
+--
+--   +-------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+--   | Table | Create Table                                                                                                                                                                                                                                                                                                                                                      |
+--   +-------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+--   | tbl11 | CREATE TABLE `tbl11` (
+--   `b` int(11) DEFAULT NULL,
+--   CONSTRAINT `tbl11_OBFK_1694681944513338` FOREIGN KEY (`b`) REFERENCES `test`.`tbl10`(`c`) ON UPDATE RESTRICT ON DELETE RESTRICT
+--   ) DEFAULT CHARSET = utf8mb4 ROW_FORMAT = DYNAMIC COMPRESSION = 'zstd_1.3.8' REPLICA_NUM = 1 BLOCK_SIZE = 16384 USE_BLOOM_FILTER = FALSE TABLET_SIZE = 134217728 PCTFREE = 0 |
+--   +-------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+--   1 row in set
+--   ```
+--
+-- OceanBase Database does not support modifying or automatically updating the following scenarios:
+--
+-- * If the column that you want to rename is referenced by a generated list expression, the column name cannot be modified, and an error will be returned when the `RENAME COLUMN` operation is executed.
+--
+--   ```shell
+--
+--   ERROR 3108 (HY000): Column 'a' has a generated column dependency
+--   ```
+--
+-- * If the column that you want to rename is referenced by a partitioning expression, the column name cannot be modified, and an error will be returned when the `RENAME COLUMN` operation is executed.
+--
+--   ```shell
+--   ERROR 3855 (HY000): Column 'c' has a partitioning function dependency and cannot be dropped or renamed.
+--   ```
+--
+-- * If the column that you want to rename is referenced by a `CHECK` constraint, the column name cannot be modified, and an error will be returned when the `RENAME COLUMN` operation is executed.
+--
+--   ```shell
+--   ERROR 3959 (HY000): Check constraint 'd_check' uses column 'd', hence column cannot be dropped or renamed.
+--   ```
+--
+-- * If the column that you want to rename is referenced by a function-based index, the column name cannot be modified, and an error will be returned when the `RENAME COLUMN` operation is executed.
+--
+--   ```shell
+--   DROP TABLE IF EXISTS tbl12;
+--   Query OK, 0 rows affected
+--
+--   ERROR 3837 (HY000): Column 'i' has a functional index dependency and cannot be dropped or renamed.
+--   ```
+--
+-- * If the column that you want to rename is referenced by a view, the `RENAME COLUMN` operation will succeed, but querying the view will return an error. You need to manually modify the view definition.
+--
+--   ```shell
+--   Query OK, 0 rows affected
+--
+--   Query OK, 0 rows affected
+--
+--   Empty set
+--
+--   Query OK, 0 rows affected
+--
+--   ERROR 1356 (42S22): View 'test.v1' references invalid table(s) or column(s) or function(s) or definer/invoker of view lack rights to use them
+--   ```
+--
+-- * If the column that you want to rename is referenced by a stored procedure, the `RENAME COLUMN` operation will succeed, but the `CALL` procedure will return an error. You need to manually modify the stored procedure.
+--
+--   ```shell
+--   Query OK, 0 rows affected
+--
+--   Query OK, 0 rows affected
+--
+--   Empty set
+--
+--   Query OK, 0 rows affected
+--
+--   ERROR 1054 (42S22): Unknown column 'a' in 'field list'
+--   ```
+--
+-- ### Modify the columnstore attribute of a table
+--
+-- 1. Run the following SQL statement to create a table named `tbl1`.
+--
+--    ```sql
+--    CREATE TABLE tbl1 (col1 INT PRIMARY KEY, col2 VARCHAR(50));
+--    ```
+--
+-- 2. Change the table `tbl1` to a rowstore and columnstore redundant table, and then delete the rowstore and columnstore redundant attributes.
+--
+--    ```sql
+--    ALTER TABLE tbl1 ADD COLUMN GROUP(all columns, each column);
+--    ```
+--
+--    ```sql
+--    ALTER TABLE tbl1 DROP COLUMN GROUP(all columns, each column);
+--    ```
+--
+-- 3. Change the table `tbl1` to a columnstore table, and then delete the columnstore attribute.
+--
+--    ```sql
+--    ALTER TABLE tbl1 ADD COLUMN GROUP(each column);
+--    ```
+--
+--    ```sql
+--    ALTER TABLE tbl1 DROP COLUMN GROUP(each column);
+--    ```
+--
+-- ### Modify the Skip Index attribute of a column
+--
+-- Run the following SQL statement to create a table named `test_skidx`.
+--
+-- ```sql
+-- CREATE TABLE test_skidx(
+--   col1 INT SKIP_INDEX(MIN_MAX, SUM),
+--   col2 FLOAT SKIP_INDEX(MIN_MAX),
+--   col3 VARCHAR(1024) SKIP_INDEX(MIN_MAX),
+--   col4 CHAR(10)
+--   );
+-- ```
+--
+-- * Change the Skip Index attribute of column `col2` in the `test_skidx` table to the `SUM` Skip Index type.
+--
+--   ```sql
+--   ALTER TABLE test_skidx MODIFY COLUMN col2 FLOAT SKIP_INDEX(SUM);
+--   ```
+--
+-- * Add the Skip Index attribute to a new column in the `test_skidx` table. Add the `MIN_MAX` Skip Index type to column `col4` in the `test_skidx` table.
+--
+--   ```sql
+--   ALTER TABLE test_skidx MODIFY COLUMN col4 CHAR(10) SKIP_INDEX(MIN_MAX);
+--   ```
+--
+-- * Delete the Skip Index attribute of a column in the `test_skidx` table. Delete the Skip Index attribute of column `col1` in the `test_skidx` table.
+--
+--   ```sql
+--   ALTER TABLE test_skidx MODIFY COLUMN col1 INT SKIP_INDEX();
+--   ```
+--
+--   or
+--
+--   ```sql
+--   ALTER TABLE test_skidx MODIFY COLUMN col1 INT;
+--   ```
+--
+-- ### Modify the table attribute
+--
+-- Disable the persistent macroblock-level Bloom filter for the `tb` table.
+--
+-- ```sql
+-- ALTER TABLE tb SET enable_macro_block_bloom_filter = False;
+-- ```
+--
+-- ## References
+--
+-- [Change a table](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/100.manage-object-of-mysql-mode/200.manage-tables-of-mysql-mode/600.change-table-of-mysql-mode.md)--
+--
+-- ==============================================================================
+-- [DDL-015] MySQL mode | ALTER TABLEGROUP
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/1700.alter-tablegroup-of-mysql-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # ALTER TABLEGROUP
+--
+-- ## Purpose
+--
+-- You can use this statement to add multiple tables to a table group and modify the `SHARDING` attribute of the table group.
+--
+-- ## Syntax
+--
+-- * Add multiple tables to a table group.
+--
+--   ```sql
+--    ALTER TABLEGROUP tablegroup_name ADD [TABLE] table_name [, table_name...];
+--    ```
+--
+-- * Modify the partitioning rules of a table group.
+--
+--   ```sql
+--    ALTER TABLEGROUP tablegroup_name tablegroup_option;
+--
+--    tablegroup_option:
+--        SHARDING = 'NONE' | 'PARTITION' | 'ADAPTIVE'
+--    ```
+--
+-- ## Parameters
+--
+-- | **Parameter** | **Description** |
+-- |-------------------|---------------------------------------------------------------------------------------------------------------------|
+-- | tablegroup_name | The name of the table group. If multiple tables are added, separate the tables with a comma (,). When multiple tables are added, the table names can be duplicate. If a table to be added already exists in the table group, OceanBase Database does not return an error.  |
+-- | SHARDING | The attribute of the table group. If you do not specify the `SHARDING` attribute, an `ADAPTIVE` table group is created by default. Valid values of `SHARDING`:<ul><li>`NONE`: No limitations are set on tables to be added to a table group. </li><li>`PARTITION`: The partitioning method of tables to be added to a table group must be the same as that of all tables in the table group in terms of the partitioning type, number of partitions, and partition values. </li><li>`ADAPTIVE`: The partitioning and subpartitioning methods of tables to be added to a table group must be the same as those of all tables in the table group in terms of the partitioning type, number of partitions, and partition values. </li></ul>Two tables are considered using the same partitioning method when they meet the following conditions:<ul><li>Have the same partitioning type such as HASH-RANGE partitioning. </li><li>Have the same number of referenced columns and the same number of partitions. (for HASH-partitioned tables) </li><li>Have the same number of referenced columns, the same number of partitions, and the same range definitions. (for RANGE-partitioned tables) </li></ul>Subpartitions in the table group must also meet the preceding requirements.  |
+--
+-- ## Examples
+--
+-- * Create a table group named `tblgroup1` with the `SHARDING` attribute `NONE`, and add the partitioned tables `tbl1` and `tbl2` to the table group.
+--
+--   ```shell
+--    Query OK, 0 rows affected
+--
+--        PARTITION BY LIST(col1) SUBPARTITION BY LIST COLUMNS(col2)
+--          (PARTITION p0 VALUES in (01)
+--             (SUBPARTITION mp0 VALUES in ('01'),
+--              SUBPARTITION mp1 VALUES in ('02')),
+--           PARTITION p1 VALUES in (02)
+--              (SUBPARTITION mp3 VALUES in ('01'),
+--               SUBPARTITION mp4 VALUES in ('02'))
+--           );
+--    Query OK, 0 rows affected
+--
+--        PARTITION BY LIST(col1) SUBPARTITION BY LIST COLUMNS(col2)
+--          (PARTITION p0 VALUES in (01)
+--            (SUBPARTITION mp0 VALUES in ('01'),
+--              SUBPARTITION mp1 VALUES in ('02')),
+--           PARTITION p1 VALUES in (02)
+--             (SUBPARTITION mp3 VALUES in ('01'),
+--              SUBPARTITION mp4 VALUES in ('02'))
+--           );
+--    Query OK, 0 rows affected
+--
+--    Query OK, 0 rows affected
+--    ```
+--
+--   Because the partitioning methods of `tbl1` and `tbl2` are the same, the `SHARDING` attribute can be set to `PARTITION` or `ADAPTIVE`.
+--
+--   ```shell
+--    Query OK, 0 rows affected
+--
+--    Query OK, 0 rows affected
+--    ```
+--
+-- * Create a table group named `tblgroup2` with the `SHARDING` attribute `NONE`, and add a non-partitioned table named `tbl1` and a partitioned table named `tbl2` to the table group.
+--
+--   ```shell
+--    Query OK, 0 rows affected
+--
+--    Query OK, 0 rows affected
+--
+--        PARTITION BY LIST(col1)
+--          (PARTITION p0 VALUES IN (1, 2, 3),
+--           PARTITION p1 VALUES IN (5, 6),
+--           PARTITION p2 VALUES IN (DEFAULT)
+--          );
+--    Query OK, 0 rows affected
+--
+--    Query OK, 0 rows affected
+--    ```
+--
+--   Because the table group `tblgroup2` contains both a non-partitioned table and a partitioned table, the `SHARDING` attribute cannot be set to `PARTITION` or `ADAPTIVE`.
+--
+--   ```shell
+--    ERROR 4179 (HY000): not all tables are non-partitioned or partitioned, modify tablegroup sharding attribute not allowed
+--
+--    ERROR 4179 (HY000): not all tables are non-partitioned or partitioned, modify tablegroup sharding attribute not allowed
+--    ```
+--
+-- * Create a table group named `tblgroup3` with the `SHARDING` attribute `NONE`, and add partitioned tables `tbl1` and `tbl2` to the table group.
+--
+--   ```shell
+--    Query OK, 0 rows affected
+--
+--       PARTITION BY LIST(col1) SUBPARTITION BY LIST COLUMNS(col2)
+--        (PARTITION p0 VALUES in (01)
+--          (SUBPARTITION mp0 VALUES in ('01'),
+--           SUBPARTITION mp1 VALUES in ('02'),
+--           SUBPARTITION mp2 VALUES in ('03')
+--           ),
+--         PARTITION p1 VALUES in (02)
+--           (SUBPARTITION mp3 VALUES in ('01'),
+--            SUBPARTITION mp4 VALUES in ('02'),
+--            SUBPARTITION mp5 VALUES in ('03'))
+--         );
+--    Query OK, 0 rows affected
+--
+--       PARTITION BY LIST(col1) SUBPARTITION BY LIST COLUMNS(col2)
+--        (PARTITION p0 VALUES in (01)
+--          (SUBPARTITION mp0 VALUES in ('01'),
+--           SUBPARTITION mp1 VALUES in ('02')),
+--         PARTITION p1 VALUES in (02)
+--          (SUBPARTITION mp3 VALUES in ('01'),
+--           SUBPARTITION mp4 VALUES in ('02'))
+--         );
+--    Query OK, 0 rows affected
+--
+--    Query OK, 0 rows affected
+--    ```
+--
+--   The partitioning types of the `tbl1` and `tbl2` tables in the table group `tblgroup3` are the same, while their subpartitioning types are different (with different numbers of subpartitions). Therefore, the `SHARDING` attribute can be set to `PARTITION`, but not `ADAPTIVE`.
+--
+--   ```shell
+--    Query OK, 0 rows affected
+--
+--    ERROR 4179 (HY000): subpartition num not matched, modify tablegroup sharding attribute not allowed
+--    ```
+--
+-- * Create a table group named `tblgroup4` with the `SHARDING` attribute `ADAPTIVE`, and modify the number of partitions for the tables `tbl1` and `tbl2` in the table group. Then, all tables in the table group are partitioned differently. The new table `tbl3` cannot be added to the table group.
+--
+--   ```shell
+--    Query OK, 0 rows affected
+--
+--        PARTITION BY RANGE(col1) SUBPARTITION BY RANGE(col2)
+--          SUBPARTITION TEMPLATE
+--           (SUBPARTITION mp0 VALUES LESS THAN(2020),
+--            SUBPARTITION mp1 VALUES LESS THAN(2021),
+--            SUBPARTITION mp2 VALUES LESS THAN(2022))
+--           (PARTITION p0 VALUES LESS THAN(100),
+--            PARTITION p1 VALUES LESS THAN(200));
+--    Query OK, 0 rows affected
+--
+--        PARTITION BY RANGE(col1) SUBPARTITION BY RANGE(col2)
+--          SUBPARTITION TEMPLATE
+--           (SUBPARTITION mp0 VALUES LESS THAN(2020),
+--            SUBPARTITION mp1 VALUES LESS THAN(2021),
+--            SUBPARTITION mp2 VALUES LESS THAN(2022))
+--          (PARTITION p0 VALUES LESS THAN(100),
+--           PARTITION p1 VALUES LESS THAN(200));
+--    Query OK, 0 rows affected
+--
+--    Query OK, 0 rows affected
+--
+--        ADD PARTITION (PARTITION p3 VALUES LESS THAN(400),
+--                       PARTITION p4 VALUES LESS THAN(500));
+--    Query OK, 0 rows affected
+--
+--    Query OK, 0 rows affected
+--
+--        PARTITION BY RANGE(col1) SUBPARTITION BY RANGE(col2)
+--          SUBPARTITION TEMPLATE
+--           (SUBPARTITION mp0 VALUES LESS THAN(2020),
+--            SUBPARTITION mp1 VALUES LESS THAN(2021),
+--            SUBPARTITION mp2 VALUES LESS THAN(2022))
+--           (PARTITION p0 VALUES LESS THAN(100),
+--            PARTITION p1 VALUES LESS THAN(200));
+--    Query OK, 0 rows affected
+--
+--    ERROR 4179 (HY000): partition num not equal, add table to tablegroup not allowed
+--    ```
+--
+-- ## References
+--
+-- * [CREATE TABLEGROUP](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/2700.create-tablegroup-of-mysql-mode.md)
+--
+-- * [DROP TABLEGROUP](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/3800.drop-tablegroup-of-mysql-mode.md)
+--
+-- * [Manage tables in a table group](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/100.manage-object-of-mysql-mode/400.manage-table-groups-of-mysql-mode/100.about-table-groups-of-mysql-mode.md)
+--
+-- * [View information about a table group](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/100.manage-object-of-mysql-mode/400.manage-table-groups-of-mysql-mode/300.view-the-information-of-a-table-group-of-mysql-mode.md)--
+--
+-- ==============================================================================
+-- [DDL-016] MySQL mode | ALTER TABLESPACE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/1750.alter-tablespace-of-mysql-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # ALTER TABLESPACE
+--
+-- ## Purpose
+--
+-- You can use this statement to modify the encryption method of a tablespace.
+--
+-- ## Required privileges
+--
+-- To execute the `ALTER TABLESPACE` statement, you must have the `CREATE TABLESPACE` privilege. For more information about privileges in OceanBase Database, see [Privilege types in MySQL-compatible mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/200.permission-of-mysql-mode/100.permission-classification-of-mysql.md).
+--
+-- ## Syntax
+--
+-- * Modify an encrypted tablespace.
+--
+--   ```sql
+--   ALTER TABLESPACE tablespace_name ENCRYPTION [=] 'tablespace_encryption_option';
+--
+--   tablespace_encryption_option:
+--       N
+--       | Y
+--       | AES-256
+--       | AES-256-GCM
+--       | AES-128
+--       | AES-128-GCM
+--       | AES-192
+--       | AES-192-GCM
+--       | SM4-CBC
+--       | SM4-GCM
+--   ```
+--
+-- * Modify a tablespace.
+--
+--   ```sql
+--   ALTER TABLESPACE tablespace_name
+--     {ADD | DROP} DATAFILE 'file_name'
+--     [INITIAL_SIZE [=] size]
+--     [WAIT]
+--     ENGINE [=] engine_name
+--   ```
+--
+--   <main id="notice" type='notice'>
+--     <h4>Notice</h4>
+--     <p>Only the keyword syntax is supported. The functionality does not actually take effect. You cannot use this keyword in combination with <code>ENCRYPTION</code>. Otherwise, a syntax error will be returned. </p>
+--   </main>
+--
+-- ## Parameters
+--
+-- |    Parameter     |      Description       |
+-- |------------------------------|-------------------------|
+-- | tablespace_name              | The name of the tablespace to be modified. |
+-- | tablespace_encryption_option | The encryption algorithm used by the tablespace to be modified. For a detailed introduction to the encryption algorithms, see [tablespace_encryption_option](#tablespace_encryption_option). |
+--
+-- ### tablespace_encryption_option
+--
+-- * `N`: specifies not to enable encryption for the tablespace.
+-- * `Y`: If `Y` is specified, the AES-256 encryption algorithm is used by default.
+-- * `AES-256`: uses a 256-bit key for encryption and decryption.
+-- * `AES-256-GCM`: uses Galois/Counter Mode (GCM) with a 256-bit key.
+-- * `AES-128`: uses a 128-bit key for encryption and decryption.
+-- * `AES-128-GCM`: uses GCM with a 128-bit key.
+-- * `AES-192`: uses a 192-bit key for encryption and decryption.
+-- * `AES-192-GCM`: uses GCM with a 192-bit key.
+-- * `SM4-CBC`: uses the SM4 algorithm in Cipher Block Chaining (CBC) mode, where before each block of data is encrypted, it undergoes an XOR operation with the encrypted output of the previous block.
+-- * `SM4-GCM`: uses the SM4 algorithm in GCM mode, which provides both encryption and authentication functionalities.
+--
+-- <main id="notice" type='explain'>
+--   <h4>Note</h4>
+--   <p><ul><li>Advanced Encryption Standard (AES) is a symmetric encryption algorithm, meaning the same key is used for both data encryption and decryption. The AES algorithm is block-based, typically encrypting data in 128-bit blocks. </li><li>AES-GCM is an operational mode employed for block encryption algorithms, such as AES, providing both encryption and data authentication (also known as message authentication code). </li><li>The block size of the SM4 algorithm is 128 bits, and the key length is also 128 bits. </li></ul></p>
+-- </main>
+--
+-- ## Examples
+--
+-- Enable the unencrypted tablespace named `tablespace001` to use the SM4-GCM encryption algorithm.
+--
+-- ```shell
+-- ALTER TABLESPACE tablespace001 ENCRYPTION = 'SM4-GCM';
+-- ```--
+--
+-- ==============================================================================
+-- [DDL-017] MySQL mode | ALTER USER
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/1800.alter-user-of-mysql-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # ALTER USER
+--
+-- ## Purpose
+--
+-- This statement is mainly used to perform the following operations:
+--
+-- * Modify the password of an OceanBase Database user.
+--
+-- * Lock or unlock a user. A locked user cannot log in to the database.
+--
+--   <main id="notice" type='explain'>
+--     <h4>Note</h4>
+--     <p>In addition to modifying the password of the current user, you must have the <code>CREATE USER</code> privilege to execute this statement. </p>
+--   </main>
+--
+-- * Specify the default activated role for a user upon login.
+--
+-- * Modify the resource options of a user.
+--
+-- ## Limitations and considerations
+--
+-- * After you use the `SET PASSWORD` or `ALTER USER` statement to change a user's password, the cached old passwords become invalid immediately, and you can no longer log in with the old passwords.
+-- * Authentication string format validation: `IDENTIFIED AS`/`BY PASSWORD` validates the `$S$` format and rejects incorrect formats such as `$A$` (e.g., `sha2`).
+-- * The standard MySQL Connector can connect to users who use the `caching_sha2_password` authentication plugin.
+-- * `ob_sm3_password` is an authentication plugin specific to OceanBase. Standard MySQL Connector or incompatible ODP may not be able to establish connections to users using this authentication plugin.
+--
+-- ## Privilege requirements
+--
+-- To execute the `ALTER USER` statement, the current user must have the `CREATE USER` privilege. For more information about the privileges of OceanBase Database, see [Privilege types in MySQL-compatible mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/200.permission-of-mysql-mode/100.permission-classification-of-mysql.md).
+--
+-- ## Syntax
+--
+-- * Modify the password of a user:
+--
+--   ```sql
+--   ALTER USER 'user_name'
+--   IDENTIFIED [WITH auth_plugin]  BY 'password' | IDENTIFIED [WITH auth_plugin] AS 'auth_string'
+--
+--   auth_plugin:
+--       mysql_native_password
+--       | caching_sha2_password
+--       | ob_sm3_password
+--   ```
+--
+-- * Change a user password and retain the current password (in a dual-password scenario, starting from V4.4.2 BP1):
+--
+--   ```sql
+--   ALTER USER 'user_name' IDENTIFIED BY 'password' RETAIN CURRENT PASSWORD;
+--   ```
+--
+-- * Discard the retained old password (starting from V4.4.2 BP1):
+--
+--   ```sql
+--   ALTER USER 'user_name' DISCARD OLD PASSWORD;
+--   ```
+--
+--
+--
+-- * Lock a user:
+--
+--   ```sql
+--   ALTER USER 'user_name' [ACCOUNT LOCK | ACCOUNT UNLOCK];
+--   ```
+--
+-- * Specify the default activated role for a user upon login:
+--
+--   ```sql
+--   ALTER USER user_name DEFAULT ROLE {NONE | ALL | role_name [, role_name ...]};
+--   ```
+--
+-- * Modify the resource options of a user:
+--
+--   ```sql
+--   ALTER USER user_name WITH  resource_option [resource_option];
+--
+--   resource_option:
+--       MAX_CONNECTIONS_PER_HOUR integer
+--       | MAX_USER_CONNECTIONS integer
+--   ```
+--
+-- ## Parameters
+--
+-- |     **Parameter**   | **Description** |
+-- |----------------|----------|
+-- | user_name      | The name of the user.|
+-- | auth_plugin    | Specifies the authentication method for the user. For more information, see [auth_plugin](#auth_plugin).|
+-- | password       | The new password.|
+-- | IDENTIFIED WITH auth_plugin AS 'auth_string' | Specifies the authentication plugin as `auth_plugin` and stores the `auth_string` value in the `mysql.user` table. If the plugin requires a hashed string, it is assumed that the string is already in the required hashed format.<main id="notice" type='notice'><h4>Notice <h4><p>The <code>caching_sha2_password</code> option is supported starting with MySQL Database Server V4.4.2 BP2.</p></main>|
+-- | ACCOUNT LOCK   | Locks the user.|
+-- | ACCOUNT UNLOCK | Unlocks the user.|
+-- | NONE           | Disables all roles granted to the user.|
+-- | ALL            | Activates all roles granted to the user.|
+-- | role_name      | The name of the role. Multiple roles can be activated by separating their names with commas (`,`).|
+-- | resource_option | The resource options for the user. Multiple resource options can be specified by separating them with spaces. <ul><li>`MAX_CONNECTIONS_PER_HOUR`: Specifies the maximum number of connections allowed per hour. `integer` is an integer representing the maximum number of connections allowed.</li><li>`MAX_USER_CONNECTIONS`: Specifies the maximum number of connections allowed per user. `integer` is an integer representing the maximum number of connections allowed.</li></ul>|
+-- | RETAIN CURRENT PASSWORD | Used with `IDENTIFIED BY`: sets a new password while retaining the old one, entering a dual-password state.<main id="notice" type='explain'><h4>Note</h4><p>This feature is supported starting from V4.4.2 BP1. </p></main> |
+-- | DISCARD OLD PASSWORD | Discards the previously retained old password, keeping only the current one.<main id="notice" type='explain'><h4>Note</h4><p>This feature is supported starting from V4.4.2 BP1. </p></main> |
+--
+-- ### auth_plugin
+--
+-- * `mysql_native_password`: The traditional password authentication plugin, using the SHA-1 hash algorithm.
+-- * `caching_sha2_password`: A password authentication plugin based on SHA-256, providing a higher level of security.
+--
+--   <main id="notice" type='explain'>
+--     <h4>Note</h4>
+--     <p>For V4.4.2, authentication plugin <code>caching_sha2_password</code> is supported starting from V4.4.2 BP2. </p>
+--   </main>
+--
+-- * `ob_sm3_password`: This plugin fully reuses `caching_sha2_password`'s authentication protocol and state machine (AuthSwitch, fast/authenticating/completing, TLS/RSA key-passing), but maintains independent algorithms and metadata. It uses the SM3 hash algorithm instead of SHA-256 for password storage and authentication verification.
+--
+--   <main id="notice" type='explain'>
+--     <h4>Note</h4>
+--     <p>For V4.4.2, authentication plugin <code>ob_sm3_password</code> is supported starting from V4.4.2 BP3. </p>
+--   </main>
+--
+-- ## Examples
+--
+-- * Execute the following command to change the password of the `sqluser01` user to `******`.
+--
+--   ```sql
+--   ```
+--
+-- * Change the password of the `sqluser01` user to `NewSecret` and retain the old password (dual password).
+--
+--   ```sql
+--   ```
+--
+-- * After the business switch is completed, discard the old password.
+--
+--   ```sql
+--   ```
+--
+-- * Specify to use the mysql_native_password authentication plugin.
+--
+--   ```sql
+--   ALTER USER 'sqluser01'
+--   IDENTIFIED WITH mysql_native_password
+--              AS '******';
+--   ```
+--
+-- * Specify to use the caching_sha2_password authentication plugin.
+--
+--   ```sql
+--   ALTER USER 'sqluser02'
+--   IDENTIFIED WITH caching_sha2_password
+--              BY '******';
+--   ```
+--
+-- * Lock the `obsqluser01` user.
+--
+--   ```sql
+--   ```
+--
+-- * Unlock the `obsqluser01` user.
+--
+--   ```sql
+--   ```
+--
+-- * Specify that the `user001` user activates the `role001` and `role002` roles by default upon login.
+--
+--   ```sql
+--   ALTER USER user001 DEFAULT ROLE role001, role002;
+--   ```
+--
+-- * Write the serialized authentication string (`$S$...`) directly.
+--
+--     ```shell
+--     ```
+--
+-- ## References
+--
+-- * [Dual Password Management](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/200.identification-and-authentication/100.identification-and-authentication-of-mysql-mode/400.dual-password-of-mysql-mode.md)
+-- * [Activate a role](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/200.permission-of-mysql-mode/340.role-management-of-mysql-mode/500.activating-roles-of-mysql-mode.md)
+-- * [View roles](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/200.permission-of-mysql-mode/340.role-management-of-mysql-mode/600.view-roles-of-mysql-mode.md)
+-- * [CURRENT_ROLE](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/400.functions-of-mysql-mode/600.information-functions-of-mysql-mode/550.current-role-of-mysql-mode.md)--
+--
+-- ==============================================================================
+-- [DDL-018] MySQL mode | ALTER VIEW
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/1900.alter-view-of-mysql-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # ALTER VIEW
+--
+-- ## Purpose
+--
+-- This statement is used to modify the definition of a view.
+--
+-- ## Privilege requirements
+--
+-- To execute the `ALTER VIEW` statement, the current user must have the `DROP` and `CREATE VIEW` privileges. For more information about OceanBase Database privileges, see [Privilege classification in MySQL-compatible mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/200.permission-of-mysql-mode/100.permission-classification-of-mysql.md).
+--
+-- ## Syntax
+--
+-- ```sql
+-- ALTER VIEW view_name [(column_name_list)]
+--     AS select_stmt;
+--
+-- column_name_list:
+--     column_name [, column_name ...]
+-- ```
+--
+-- ## Parameters
+--
+-- |      Parameter        |                        Description                                 |
+-- |------------------|------------------------------------------------------------|
+-- | view_name        | The name of the view.|
+-- | column_name_list | Optional. The list of column names of the view. If you do not specify the column names, the column names retrieved by the `SELECT` statement will be used as the view column names. The columns retrieved by the `SELECT` statement can be simple references to table columns, or expressions that use functions, constants, operators, and so on. The view column names are subject to the following restrictions:<ul><li>The column names must be unique and cannot be repeated. </li><li>The number of names in `column_name_list` must be equal to the number of columns retrieved by the `SELECT` statement. </li></ul>|
+-- | column_name      | The name of a view column.|
+-- | select_stmt      | The query (`SELECT`) statement used to define the view. It specifies the definition of the view, which can select data from base tables or other views. For more information about the specific structure and options of query statements, see [SELECT statement](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/8100.select-of-mysql-mode/100.select-of-mysql-mode.md).|
+--
+-- ## Examples
+--
+-- Modify the definition of the `v1` view to select data from the `test_tbl2` table.
+--
+-- 1. Create the `test_tbl1` table.
+--
+--    ```sql
+--    CREATE TABLE test_tbl1 (col1 INT, col2 INT);
+--    ```
+--
+-- 2. Create the `v1` view based on the `test_tbl1` table.
+--
+--    ```sql
+--    CREATE VIEW v1
+--        AS SELECT * FROM test_tbl1;
+--    ```
+--
+-- 3. Create the `test_tbl2` table.
+--
+--    ```sql
+--    CREATE TABLE test_tbl2 (col1 INT, col2 INT, col3 INT);
+--    ```
+--
+-- 4. Modify the definition of the `v1` view to select data from the `test_tbl2` table.
+--
+--    ```sql
+--    ALTER VIEW v1 AS SELECT * FROM test_tbl2;
+--    ```
+--
+-- 5. View the definition of the `v1` view again.
+--
+--    ```sql
+--    SHOW CREATE VIEW v1;
+--    ```
+--
+--    The return result is as follows:
+--
+--    ```shell
+--    +------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------+----------------------+
+--    | View | Create View                                                                                                                                                                | character_set_client | collation_connection |
+--    +------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------+----------------------+
+--    | v1   | CREATE VIEW `v1` AS select `db_test`.`test_tbl2`.`col1` AS `col1`,`db_test`.`test_tbl2`.`col2` AS `col2`,`db_test`.`test_tbl2`.`col3` AS `col3` from `db_test`.`test_tbl2` | utf8mb4              | utf8mb4_general_ci   |
+--    +------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------+----------------------+
+--    1 row in set
+--    ```
+--
+-- ## References
+--
+-- * [Manage normal views](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/100.manage-object-of-mysql-mode/600.manage-views-of-mysql-mode/100.manage-normal-views-of-mysql-mode.md)
+--
+-- * [DROP VIEW](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/4100.drop-view-of-mysql-mode.md)--
+--
+-- ==============================================================================
+-- [DDL-019] MySQL mode | ALTER INSTANCE ROTATE INNODB MASTER KEY
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/1950.alter-instance-of-mysql-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # ALTER INSTANCE ROTATE INNODB MASTER KEY
+--
+-- ## Purpose
+--
+-- The `ALTER INSTANCE ROTATE INNODB MASTER KEY` statement is used to replace or rotate the master encryption key of the primary tenant when Transparent Data Encryption (TDE) is enabled. This statement does not accept any parameters and performs a single function: key rotation.
+--
+-- When you execute `ALTER INSTANCE ROTATE INNODB MASTER KEY`, a new master key is generated to replace the current one. The new master key is securely stored in a configured key store. All tablespaces (or data) that were encrypted using the old master key will be gradually re-encrypted and switched to the new master key.
+--
+-- ## Limitations and considerations
+--
+-- The system tenant cannot use this statement.
+--
+-- The system tenant is not allowed to use the `ALTER INSTANCE ROTATE INNODB MASTER KEY` statement to replace or rotate the master encryption key of the primary tenant.
+--
+-- If you are a regular tenant, you can use the `ALTER INSTANCE ROTATE INNODB MASTER KEY` statement to replace or rotate the master encryption key of the primary tenant.
+--
+-- ## Syntax
+--
+-- ```sql
+-- ALTER INSTANCE ROTATE INNODB MASTER KEY;
+-- ```
+--
+-- ## Parameters
+--
+-- |Field              |Description                         |
+-- |-----------------|-----------------------------|
+-- |ROTATE           | Generate a new key to replace the old key. |
+-- |INNODB MASTER KEY| The master encryption key used by the InnoDB storage engine in MySQL-compatible mode. This key is used to encrypt tablespaces in the database.  |
+--
+-- ## Examples
+--
+-- ```shell
+-- /* Set the encryption method to internal TDE. */
+-- /* Display the current encryption method configuration. */
+-- /* Generate a new master encryption key. */
+-- ```--
+--
+-- ==============================================================================
+-- [DDL-020] MySQL mode | CREATE CONCURRENT_LIMITING_RULE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/2050.create-concurrent_limiting_rule-of-mysql-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # CREATE CONCURRENT_LIMITING_RULE
+--
+-- <main id="notice" type='explain'>
+--   <h4>Note</h4>
+--   <p>For V4.3.X versions, this statement is available starting from OceanBase Database V4.3.5 BP3. <br>For V4.4.X versions, this statement is available starting from OceanBase Database V4.4.1.</p>
+--   </main>
+--
+-- ## Purpose
+--
+-- This statement is used to create a throttling rule and specify the throttling scope to limit the concurrency of specific SQL statements.
+--
+-- ## Privilege requirements
+--
+-- To execute the `CREATE CONCURRENT_LIMITING_RULE` statement, the current user must have the CREATE privilege. For more information about OceanBase Database privileges, see [Privilege classification in MySQL-compatible mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/200.permission-of-mysql-mode/100.permission-classification-of-mysql.md).
+--
+-- ## Syntax
+--
+-- ```sql
+-- CREATE CONCURRENT_LIMITING_RULE [ IF NOT EXISTS ] `ccl_rule_name`
+-- ON `database`.`table`
+-- TO '<usename>'@'ip'
+-- FOR { ALL | UPDATE | SELECT | INSERT | DELETE }
+-- filter_options:
+--     [ FILTER BY KEYWORD('KEYWORD1', 'KEYWORD2',…) ]
+--  with_options:
+--     WITH MAX_CONCURRENCY = value1 [per sql]
+-- ```
+--
+-- ## Parameters
+--
+-- |  Parameter             |       Description        |
+-- |----------------------------|----------|
+-- |`ccl_rule_name`|Required. The name of the throttling rule.<main id="notice" type='explain'><h4>Note</h4><p>To avoid conflicts with SQL keywords, we recommend that you add backticks (`) before and after the rule name. </p></main>|
+-- |`database`.`table`|Required. The name of the database and table. You can use the asterisk (*) to match any name.<main id="notice" type='explain'><h4>Note</h4><p>To avoid conflicts with SQL keywords, we recommend that you add backticks (`) before and after the rule name. </p></main>|
+-- |`<username>@<host>`|Required. The name of the account. The username can be specified as * to match all users. The host can be specified as % to match any host.|
+-- |`ALL`\|`UPDATE \| SELECT \| INSERT\| DELETE`|Required. The type of the SQL statement. The following types are supported: `ALL`, `UPDATE`, `SELECT`, `INSERT`, and `DELETE`. <main id="notice" type='explain'><h4>Note</h4><p>Each throttling rule can only specify one type of SQL statement. </p></main>|
+-- |`[ filter_options ]`|Optional. The throttling keywords.<main id="notice" type='explain'><h4>Note</h4><p><ul><li>The keywords are concatenated with the wildcard <code>%</code>. For example, if you specify three keywords <code>'asdasd', 'c2 = 123', 'xxyyzz'</code>, they are concatenated into <code>'%asdasd%c2 = 123%xxyyzz%'</code>. Subsequent SQL text matching is performed based on this string. </li><li>If a keyword contains <code>'_'</code>, it is escaped. For example, <code>'table_t1'</code> is recorded as <code>'%table\_t1%'</code>. </li><li> The number of throttling keywords is not limited, but the length of the concatenated string must not exceed <code>OB_MAX_VARCHAR_LENGTH=1048576</code>. </li></ul></p></main>|
+-- |`with_options`|Required. The concurrency limit and the throttling statistics granularity. Currently, only the `MAX_CONCURRENCY` parameter is supported. It specifies the maximum concurrency of SQL statements that match the throttling rule.|
+--
+-- ## Examples
+--
+-- Execute the following command to throttle SQL statements based on keywords:
+--
+-- ```shell
+-- ON *.* TO '%'@'%' FOR SELECT
+-- FILTER BY KEYWORD('table1', 'table2', 'c1') WITH MAX_CONCURRENCY 100;
+-- ```--
+--
+-- ==============================================================================
+-- [DDL-021] MySQL mode | CREATE DATABASE LINK
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/2100.create-database-link-of-mysql-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # CREATE DATABASE LINK
+--
+-- ## Purpose
+--
+-- You can use this statement to create a DBLink for accessing a specified remote database. In this statement, you must specify the DBLink name and the username, tenant name, database name, password, IP address, port number, and cluster name of the remote database.
+--
+-- In MySQL-compatible mode of OceanBase Database, you can create a DBLink to access a MySQL-compatible tenant in a remote OceanBase cluster from the local MySQL-compatible tenant. You can also create a DBLink to access another MySQL-compatible tenant in the same OceanBase cluster from the current MySQL-compatible tenant. You cannot use a DBLink to access a native MySQL database from a MySQL-compatible tenant in an OceanBase cluster, or vice versa.
+--
+-- A DBLink in OceanBase Database in MySQL-compatible mode can be used to read the following types of data:
+--
+-- * Numeric data types: `TINYINT`, `SMALLINT`, `MEDIUMINT`, `INT`, `BIGINT`, `FLOAT`, `DOUBLE`, and `DECIMAL`
+--
+-- * Datetime data types: `DATE`, `TIME`, `YEAR`, `DATETIME`, and `TIMESTAMP`
+--
+-- * String data types: `CHAR`, `VARCHAR`, `TINYBLOB`, `TINYTEXT`, `BLOB`, `TEXT`, `MEDIUMTEXT`, `LONGBLOB`, and `LONGTEXT`
+--
+-- * Other data types: `ENUM` and `SET`
+--
+-- ## Syntax
+--
+-- ```sql
+-- CREATE DATABASE LINK [IF NOT EXISTS] dblink_name CONNECT TO user_name@tenant_name DATABASE database_name IDENTIFIED BY password HOST 'ip:port' [CLUSTER cluster_name];
+-- ```
+--
+-- ## Parameters
+--
+-- | Parameter | Description |
+-- | --- | --- |
+-- | dblink_name | The name of the DBLink. |
+-- | IF NOT EXISTS | If you specify `IF NOT EXISTS` and the DBLink to be created already exists, the system does not report an error and does not create the DBLink again. If you do not specify this parameter and the DBLink to be created already exists, the system reports an error. |
+-- | user_name | The username of the remote database. |
+-- | tenant_name | The tenant name of the remote database. |
+-- | password | The password corresponding to the username of the remote database. If the password contains any special character other than digits and letters, it must be enclosed in single or double quotation marks to avoid syntax errors. Special characters are `~!@#%^&*_-+=\|(){}[]:;,.?/`. |
+-- | database_name | The database name of the remote MySQL-compatible tenant. When you use the DBLink to read data, this database is accessed by default. If you need to access another database, specify the database for the target table in the SQL statement. |
+-- | ip | The IP address of the remote database. It can be the IP address of the OceanBase Database Proxy (ODP) of the OceanBase cluster or the IP address of an OBServer node in the cluster. If you use the IP address of an OBServer node, the local database and the OBServer node must be able to communicate with each other. <main id="notice" type='explain'><h4>Note</h4><p>You can also specify the domain name for accessing the remote OceanBase database, for example, <code>example.com:port</code>. You can use the corresponding domain name to connect to a remote database based on the actual environment. </p></main>|
+-- | port | The port number of the remote database. It can be the port number of the ODP of the cluster or the port number of an OBServer node in the cluster. If you use the port number of an OBServer node, the local database and the OBServer node must be able to communicate with each other. |
+-- | cluster_name | The name of the remote OceanBase cluster. The cluster name must be specified only when the IP address and port number are those of an ODP and the startup method of the ODP is `ConfigUrl`. The cluster name is case-sensitive and must be enclosed in double quotation marks (" "). |
+--
+-- ## Examples
+--
+-- * Create a DBLink named `ob_dblink` that can be used to connect to an OBServer node in a remote OceanBase cluster. The tenant of the remote database is `mysql`. (You can specify any MySQL-compatible tenant.) The username is `user1`, and the database name is `test`. You can specify the password, IP address, and port number based on the actual environment.
+--
+--   ```shell
+--   Query OK, 1 row affected
+--   ```
+--
+-- * Create a DBLink named `ob_dblink_proxy` that can be used to connect to a remote OceanBase cluster. The tenant of the remote database is `mysql`, which is the default one. (You can specify any MySQL-compatible tenant.) The username is `user1` and the database name is `test`. You can specify the password, IP address, and port number based on the actual environment.
+--
+--   ```shell
+--   Query OK, 1 row affected
+--   ```
+--
+-- After a DBLink is created, you can use it in queries or drop it when it is no longer needed. For more information, see [SELECT](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/8100.select-of-mysql-mode/100.select-of-mysql-mode.md).
+--
+-- You can query the `oceanbase.DBA_DB_LINKS` view for information about the created DBLink. For more information, see [DBA_DB_LINKS](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/700.system-views/500.system-view-of-oracle-mode/200.dictionary-view-of-oracle-mode/7900.dba_db_links.md).
+--
+-- ## References
+--
+-- * [SELECT](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/8100.select-of-mysql-mode/100.select-of-mysql-mode.md)
+--
+-- * [DBA_DB_LINKS](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/700.system-views/500.system-view-of-oracle-mode/200.dictionary-view-of-oracle-mode/7900.dba_db_links.md)--
+--
+-- ==============================================================================
+-- [DDL-022] MySQL mode | CREATE DATABASE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/2100.create-database-of-mysql-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # CREATE DATABASE
+--
+-- ## Purpose
+--
+-- You can use this statement to create a database and specify default attributes of the database, such as the default character set and collation of the database.
+--
+-- <main id="notice" type='explain'>
+--   <h4>Note</h4>
+--   <p><code>CREATE DATABASE</code> is equivalent to <code>CREATE SCHEMA</code>. </p>
+-- </main>
+--
+-- ## Required privileges
+--
+-- To execute the `CREATE DATABASE` statement, you must have the global `CREATE` privilege. For more information about privileges in OceanBase Database, see [Privilege types in MySQL-compatible mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/200.permission-of-mysql-mode/100.permission-classification-of-mysql.md).
+--
+-- ## Syntax
+--
+-- ```sql
+-- CREATE {DATABASE | SCHEMA} [IF NOT EXISTS] database_name [database_option...]
+--
+-- database_option:
+--       [DEFAULT] {CHARACTER SET | CHARSET} charset_name
+--     [DEFAULT] COLLATE collate_name
+--     | {READ ONLY | READ WRITE}
+--     | [DEFAULT] TABLEGROUP {table_group_name | NULL}
+-- ```
+--
+-- ## Parameters
+--
+-- |   Parameter   |     Description    |
+-- |-------|-----------|
+-- | IF NOT EXISTS | Specifies not to create the database if the database already exists. If the database already exists and `IF NOT EXISTS` is not specified, an error is reported. |
+-- | database_name | The name of the database to be created. |
+-- | [DEFAULT] {CHARACTER SET \| CHARSET} charset_name  | The character set of the database. |
+-- | [DEFAULT] COLLATE collate_name | The collation of the database. |
+-- | {READ ONLY \| READ WRITE} | The read/write property of the database. <ul><li>`READ ONLY`: specifies that the database is in read-only mode and no write operations are allowed for the database. </li><li>`READ WRITE`: specifies that the database is in read/write mode and both read and write operations are allowed for the database. </li></ul>|
+-- | [DEFAULT] TABLEGROUP {table_group_name \| NULL} | The default table group of the database. You can specify a table group or cancel the default table group for the database. |
+--
+-- ## Examples
+--
+-- * Create a database named `test1` and set its character set to `UTF-8`.
+--
+--   ```shell
+--   ```
+--
+-- * Create a database named `test2` that supports read and write operations.
+--
+--   ```shell
+--   ```
+--
+-- ## References
+--
+-- * For more information about how to grant user privileges, see [Grant direct privileges](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/200.permission-of-mysql-mode/200.authority-of-mysql-mode.md).
+--
+-- * For more information about how to verify whether a database is created, see [View databases](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/100.manage-object-of-mysql-mode/100.manage-databases-of-mysql-mode/200.view-a-database-of-mysql-mode.md).
+--
+-- * For more information about how to modify a created database, see [Modify a database](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/100.manage-object-of-mysql-mode/100.manage-databases-of-mysql-mode/300.modify-a-database-of-mysql-mode.md).
+--
+-- * For more information about how to drop a created database, see [Drop a database](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/100.manage-object-of-mysql-mode/100.manage-databases-of-mysql-mode/400.delete-a-database-of-mysql-mode.md).--
+--
+-- ==============================================================================
+-- [DDL-023] MySQL mode | CREATE EXTERNAL CATALOG
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/2150.create-external-catalog-of-mysql-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # CREATE EXTERNAL CATALOG
+--
+-- ## Purpose
+--
+-- This statement is used to create an external data catalog (External Catalog) in the database, which is used to connect to external data sources and retrieve metadata about external data. It allows direct querying of external data without the need for data import or migration.
+--
+-- ## Limitations and considerations
+--
+-- * Currently, only `ODPS`, `HMS`, and `JDBC` types of External Catalogs are supported. The `JDBC` type is supported starting from V4.4.2 BP4 and currently only supports connecting to SQL Server data sources.
+-- * Before creating an HMS Catalog, if the HMS is expected to access file data stored in HDFS, the Java SDK environment must be deployed. For detailed information on configuring the Java SDK environment, see [Deploy the OceanBase Database Java SDK environment](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/400.deploy/300.deploy-oceanbase-enterprise-edition/500.deploy-the-ob-java-sdk-environment.md).
+-- * Before creating a JDBC Catalog, the Java SDK environment must be deployed, and the devdeps-java-extensions RPM package must be version 1.0.6 or later. For detailed information on configuring the Java SDK environment, see [Deploy the OceanBase Database Java SDK environment](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/400.deploy/300.deploy-oceanbase-enterprise-edition/500.deploy-the-ob-java-sdk-environment.md).
+-- * Objects under a JDBC Catalog are read-only and do not support modification statements such as `INSERT`, `UPDATE`, `DELETE`, `ALTER TABLE`, and `DROP TABLE`.
+--
+-- ## Privilege requirements
+--
+-- To execute the `CREATE EXTERNAL CATALOG` statement, the current user must have the `CREATE CATALOG` privilege. For more information about OceanBase Database privileges, see [Privilege types in MySQL-compatible mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/200.permission-of-mysql-mode/100.permission-classification-of-mysql.md).
+--
+-- ## Syntax
+--
+-- ```sql
+-- CREATE EXTERNAL CATALOG [IF NOT EXISTS] external_catalog_name
+--     PROPERTIES [=] (properties_type_options);
+--
+-- properties_type_options:
+--     odps_type_list
+--     | hms_type_list
+--     | jdbc_type_list
+--
+-- odps_type_list:
+--     TYPE = 'ODPS',
+--     [ACCESSTYPE = 'accesstype_string',]
+--     ACCESSID = 'string',
+--     ACCESSKEY = 'string',
+--     STSTOKEN = 'string',
+--     ENDPOINT = 'string',
+--     TUNNEL_ENDPOINT = 'string',
+--     PROJECT_NAME = 'string',
+--     [QUOTA_NAME = 'string',]
+--     [COMPRESSION = 'compression_string',]
+--     REGION = 'string'
+--
+-- hms_type_list:
+--     TYPE = 'HMS',
+--     URI = "string"
+--     [, KRB5CONF = "string"]
+--     [, KEYTAB = "string"]
+--     [, PRINCIPAL = "string"]
+--     [, MAX_CLIENT_POOL_SIZE = 20]
+--     [, SOCKET_TIMEOUT = 10000000]
+--
+-- jdbc_type_list:
+--     TYPE = 'JDBC',
+--     URL = 'string'
+--
+-- accesstype_string:
+--     aliyun
+--     | sts
+--     | app
+--
+-- compression_string:
+--     zlib
+--     | zstd
+--     | lz4
+--     | odps_lz4
+-- ```
+--
+-- ## Parameters
+--
+-- |    **Parameter**     | **Description** |
+-- |-----------------|----------|
+-- | IF NOT EXISTS   | Optional. If this clause is specified, no error is returned even if the external data catalog to be created already exists in the current tenant. Instead, a warning is returned. If this clause is not specified, an error is returned. |
+-- | external_catalog_name | The name of the external data catalog to be created. |
+-- | PROPERTIES [=] (properties_type_options) | The properties of the external data catalog. For more information, see [properties_type_options](#properties_type_options). |
+--
+-- ### properties_type_options
+--
+-- * `odps_type_list`: The properties of the ODPS external data catalog (ODPS Catalog). For more information, see [odps_type_list](#odps_type_list).
+-- * `hms_type_list`: The properties of the HMS external data catalog (HMS Catalog). For more information, see [hms_type_list](#hms_type_list).
+-- * `jdbc_type_list`: The properties of the JDBC external data catalog (JDBC Catalog). For more information, see [jdbc_type_list](#jdbc_type_list).
+--
+-- ### odps_type_list
+--
+-- * `TYPE`: The type of the external data catalog. Valid value: `ODPS`. This value indicates that the external table reads and writes data from and to MaxCompute.
+-- * `ACCESSTYPE`: Optional. The type of the MaxCompute account. Default value: `aliyun`. Valid values (case-insensitive):
+--
+--   * `aliyun`
+--   * `sts`
+--   * `app`
+--
+-- * `ACCESSID`: The AccessKey ID of the account. If the value of `ACCESSTYPE` is `aliyun` or `app`, the AccessKey ID of the `aliyun` or `app` account or the RAM user with MaxCompute access permissions.
+-- * `ACCESSKEY`: The AccessKey secret of the account. If the value of `ACCESSTYPE` is `aliyun` or `app`, the AccessKey secret of the `aliyun` or `app` account or the RAM user with MaxCompute access permissions.
+-- * `STSTOKEN`: The token. If the value of `ACCESSTYPE` is `sts`, the token for accessing MaxCompute.
+-- * `ENDPOINT`: The endpoint of MaxCompute.
+-- * `TUNNEL_ENDPOINT`: The endpoint of Tunnel. MaxCompute Catalog uses Tunnel SDK to obtain data.
+-- * `PROJECT_NAME`: The name of the project space in MaxCompute. A project space is the basic organizational unit of MaxCompute, similar to a database or schema in a traditional database.
+-- * `QUOTA_NAME`: Optional. The name of the quota. A quota in MaxCompute represents a resource pool for computing, access, and writing. If you have configured a quota, you can use this parameter to specify the quota.
+-- * `COMPRESSION`: Optional. The compression format of the data source. If this parameter is not specified, compression is not enabled. Valid values (case-insensitive):
+--
+--   * `zlib`
+--   * `zstd`
+--   * `lz4`
+--   * `odps_lz4`
+--
+-- * `REGION`: The region where MaxCompute is enabled.
+--
+-- ### hms_type_list
+--
+-- * `TYPE`: The type of the external data catalog. Valid value: `HMS`. This value indicates that the external table reads data from Hive-managed data.
+-- * `URI`: The Thrift URI of the `HMS` service. The format is `thrift://$host:$port`, where:
+--
+--   * `$host`: the IP address of the `thrift` server.
+--   * `$port`: the port of the `thrift` server. The default port for `HMS` is 9083.
+--
+-- * `KRB5CONF`: Optional. The path of the Kerberos configuration file required to access the `HMS` service that uses Kerberos authentication.
+--
+--     <main id="notice" type='notice'>
+--       <h4>Notice</h4>
+--       <p>You must set the <code>KRB5CONF</code> parameter only when Kerberos authentication is enabled for <code>HMS</code>. </p>
+--     </main>
+--
+-- * `KEYTAB`: Optional. The path of the `KEYTAB` key file required to access the `HMS` service that uses Kerberos authentication. If OceanBase Database is deployed in a distributed manner, the corresponding OBServer node must have this file.
+--
+--     <main id="notice" type='notice'>
+--       <h4>Notice</h4>
+--       <p>You must set the <code>KEYTAB</code> parameter only when Kerberos authentication is enabled for <code>HMS</code>. </p>
+--     </main>
+--
+-- * `PRINCIPAL`: Optional. The name of the Kerberos principal required to access the `HMS` service that uses Kerberos authentication. The name is usually in the `service/HOST@REGION.com` format, for example, `hive/hadoop@QA.COM`.
+--
+--     <main id="notice" type='notice'>
+--       <h4>Notice</h4>
+--       <p>You must set the <code>PRINCIPAL</code> parameter only when Kerberos authentication is enabled for <code>HMS</code>. </p>
+--     </main>
+--
+-- * `MAX_CLIENT_POOL_SIZE`: Optional. The maximum number of available client queues for the current catalog. Default value: 20. This indicates that the current HMS catalog can start up to 20 clients to connect to the `HMS` service.
+-- * `SOCKET_TIMEOUT`: Optional. The timeout period for client access to the current catalog. Default value: 10000000 (10 seconds).
+--
+-- ### jdbc_type_list
+--
+-- * `TYPE`: Specifies the type of the external data catalog. Valid value: `JDBC` (case-insensitive).
+-- * `URL`: Specifies the JDBC connection string for connecting to the external data source. The format is `jdbc:<subprotocol>:<connection_properties>`. It cannot be empty and must be less than 1,024 characters long. Currently, only SQL Server connection strings are supported. The format is as follows: `jdbc:sqlserver://$host:$port;databaseName=$database_name;user=$user_name;password=$password[;property=value...]`, where:
+--
+--   * `$host`: The IP address or hostname of the SQL Server service.
+--   * `$port`: The port of the SQL Server service.
+--   * `$database_name`: The name of the SQL Server database to access.
+--   * `$user_name`: The username for accessing SQL Server.
+--   * `$password`: The password for accessing SQL Server.
+--   * `property=value`: Optional. Other connection properties supported by the SQL Server JDBC driver, for example, `encrypt=true`.
+--
+--   <main id="notice" type='notice'>
+--     <h4>Notice</h4>
+--     <p><ul>
+--       <li><code>jdbc_type_list</code> supports only the <code>TYPE</code> and <code>URL</code> attributes. Specifying other attributes (for example, <code>URI</code>) will result in an <code>Invalid argument</code> error.</li>
+--       <li>When specifying a subprotocol other than SQL Server (for example, <code>jdbc:mysql:</code>, <code>jdbc:postgresql:</code>), the creation statement may execute successfully, but accessing objects under this catalog will result in an error.</li>
+--     </ul></p>
+--   </main>
+--
+--   <main id="notice" type='explain'>
+--     <h4>Note</h4>
+--     <p>OceanBase Database encrypts the value of <code>URL</code>. When executing the <code>SHOW CREATE CATALOG</code> statement, only the prefix <code>jdbc:&lt;subprotocol&gt;:</code> is displayed for <code>URL</code>; the rest is shown as <code>********</code>.</p>
+--   </main>
+--
+-- ## Examples
+--
+-- * Create an external data catalog of the `ODPS` type.
+--
+--     ```shell
+--         PROPERTIES = (
+--             TYPE = 'ODPS',
+--             ACCESSID = '$odps_accessid',
+--             ACCESSKEY = '$odps_accesskey',
+--             ENDPOINT = '$odps_endpoint',
+--             TUNNEL_ENDPOINT = 'http://xxx.maxcompute.aliyun.com',
+--             PROJECT_NAME = 'mysqltest_regression_sqlqa',
+--             QUOTA_NAME = '',
+--             COMPRESSION_CODE = ''
+--         );
+--     ```
+--
+-- * Create an external data catalog of the `HMS` type.
+--
+--   * Create an HMS catalog with simple authentication. No location authentication is required.
+--
+--       ```shell
+--           PROPERTIES = (
+--               TYPE = 'HMS',
+--               URI = "thrift://xxx.xxx.xxx.xxx:xxxx"
+--           );
+--       ```
+--
+--   * Create an HMS catalog with Kerberos authentication.
+--
+--       ```shell
+--           PROPERTIES = (
+--               TYPE = 'HMS',
+--               URI = "thrift://xxx.xxx.xxx.xxx:xxxx",
+--               PRINCIPAL = "hive/xxx@xxx.COM",
+--               KEYTAB = "/xxx/xxx/xxx/hadoop.keytab",
+--               KRB5CONF = "/etc/xxx.conf"
+--           );
+--       ```
+--
+-- * Create an `JDBC` external catalog to connect to the SQL Server database `sales_db`.
+--
+--     ```shell
+--         PROPERTIES = (
+--             TYPE = 'JDBC',
+--             URL = 'jdbc:sqlserver://xxx.xxx.xxx.xxx:1433;databaseName=sales_db;user=$user_name;password=$password;encrypt=true'
+--         );
+--     ```
+--
+-- ## Location authentication
+--
+-- OceanBase Database HMS Catalog supports key management through External Location to ensure secure access to external storage. When accessing tables in HMS, the system automatically matches the corresponding External Location based on the table path. If a match is found, it uses the associated key for authentication.
+--
+-- ### Location authentication scenarios
+--
+-- Based on the storage type and security requirements, Location authentication is divided into the following scenarios:
+--
+-- | **Storage type** | **Authentication method** |
+-- |-------------|---------------|
+-- | OSS         | AK/SK authentication.|
+-- | HDFS        | HDFS supports the following authentication methods:<ul><li>No authentication (no Kerberos required, and no HDFS user needs to be specified). </li><li>User authentication (no Kerberos required, but access must be made as a specific HDFS user). </li><li>Kerberos authentication, with HDFS operating in a single NameNode (non-HA mode). </li><li>Kerberos authentication, with HDFS operating in high availability (HA) mode. </li><li>No Kerberos enabled, but HDFS operating in high availability (HA) mode. </li></ul>|
+--
+-- ### Configuration steps
+--
+-- 1. Determine the Location authentication scenario.
+--
+--     Based on the storage type and security requirements, select the appropriate authentication scenario.
+--
+-- 2. Create a Location object.
+--
+--     Use the `CREATE LOCATION` statement to create a Location object for the selected scenario. For more information, see [CREATE LOCATION](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/2230.create-location-of-mysql-mode-in-sql.md).
+--
+-- 3. Associate the catalog.
+--
+--     No additional configuration is required when creating the catalog. The system automatically matches the Location based on the storage path of the corresponding table.
+--
+-- ### Example of configuring Location authentication scenarios
+--
+-- #### OSS storage authentication
+--
+-- Create a Location object for accessing Alibaba Cloud OSS object storage.
+--
+-- ```shell
+-- CREATE LOCATION oss_credential
+--     URL = 'oss://bucket-name/path'
+--     CREDENTIAL = (
+--         ACCESSID = 'your-access-key-id'
+--         ACCESSKEY = 'your-access-key-secret'
+--         HOST = 'oss-region.aliyuncs.com'
+--     );
+-- ```
+--
+-- #### HDFS storage authentication
+--
+-- * Scenario 1: No authentication mode.
+--
+--     No Location needs to be created. This is suitable for development or testing environments where Kerberos authentication is not enabled in the HDFS cluster (i.e., `hadoop.security.authentication=simple`).
+--
+-- * Scenario 2: User authentication mode.
+--
+--     No Kerberos is required, but access must be made as a specific HDFS user.
+--
+--     <main id="notice" type='explain'>
+--       <h4>Note</h4>
+--       <p>This is suitable for clusters where Kerberos authentication is not enabled, but specific HDFS users are required to access certain paths. </p>
+--     </main>
+--
+--     Create a Location: Specify the HDFS user.
+--
+--     ```shell
+--     CREATE LOCATION hdfs_user
+--         URL = 'hdfs://namenode:8020/'
+--         CREDENTIAL (
+--             USER = 'hdfs_user_name'
+--         );
+--     ```
+--
+-- * Scenario 3: Kerberos enabled, HDFS operating in single NameNode (non-HA) mode.
+--
+--     <main id="notice" type='explain'>
+--       <h4>Note</h4>
+--       <p>The <code>dfs.data.transfer.protection</code> parameter in <code>CONFIGS</code> must match the configuration of the HDFS cluster. </p>
+--     </main>
+--
+--     Create a Location: Kerberos authentication + single-point HDFS.
+--
+--     ```shell
+--     CREATE LOCATION hdfs_kerberos_single
+--         URL = 'hdfs://namenode.example.com:8020/'
+--         CREDENTIAL (
+--             PRINCIPAL = "hdfs/xxx@xxx.COM",
+--             KEYTAB = "/data/hdfs.keytab",
+--             KRB5CONF = "/data/krb5.conf",
+--             CONFIGS = 'dfs.data.transfer.protection=integrity'
+--         );
+--     ```
+--
+-- * Scenario 4: Kerberos enabled, HDFS operating in high availability (HA) mode.
+--
+--     ```shell
+--     CREATE LOCATION hdfs_kerberos_ha
+--         URL = 'hdfs://${nameservice id}'
+--         CREDENTIAL (
+--             PRINCIPAL = "hdfs/xxx@xxx.COM",
+--             KEYTAB = "/etc/ob/hdfs.keytab",
+--             KRB5CONF = "/etc/krb5.conf",
+--             CONFIGS = 'dfs.data.transfer.protection=${string}#dfs.nameservices=${nameservice id}#dfs.ha.namenodes.${nameservice id}=${namenode1}, ${namenode2}#dfs.namenode.rpc-address.${nameservice id}.${namenode1}=${namenode 1 address}#dfs.namenode.rpc-address.${nameservice id}.${namenode2}=${namenode 2 address}#dfs.ha.automatic-failover.enabled.${nameservice id}=true#dfs.client.failover.proxy.provider.${nameservice id}=org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider'
+--             );
+--     ```
+--
+-- * Scenario 5: Kerberos not enabled, but HDFS operating in high availability (HA) mode.
+--
+--     <main id="notice" type='explain'>
+--       <h4>Note</h4>
+--       <p>If Kerberos is not enabled, but HDFS is operating in high availability (HA) mode, the <code>PRINCIPAL</code>, <code>KEYTAB</code>, and <code>KRB5CONF</code> parameters do not need to be set. </p>
+--     </main>
+--
+--     ```shell
+--     CREATE LOCATION hdfs_location_ha
+--         URL = 'hdfs://${nameservice id}'
+--         CREDENTIAL (
+--             CONFIGS = 'dfs.nameservices=${nameservice id}#dfs.ha.namenodes.${nameservice id}=${namenode1}, ${namenode2}#dfs.namenode.rpc-address.${nameservice id}.${namenode1}=${namenode 1 address}#dfs.namenode.rpc-address.${nameservice id}.${namenode2}=${namenode 2 address}#dfs.ha.automatic-failover.enabled.${nameservice id}=true#dfs.client.failover.proxy.provider.${nameservice id}=org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider'
+--             );
+--     ```
+--
+-- ## References
+--
+-- * [Overview of catalogs](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/100.manage-object-of-mysql-mode/1000.manage-catalog-of-mysql-mode/100.catalog-overview-of-mysql-mode.md)
+-- * [Create a catalog](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/100.manage-object-of-mysql-mode/1000.manage-catalog-of-mysql-mode/200.create-catalog-of-mysql-mode.md)
+-- * [View a catalog](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/100.manage-object-of-mysql-mode/1000.manage-catalog-of-mysql-mode/300.view-catalog-of-mysql-mode.md)
+-- * [Delete a catalog](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/100.manage-object-of-mysql-mode/1000.manage-catalog-of-mysql-mode/400.delete-catalog-of-mysql-mode.md)
+-- * [Deploy the OceanBase Database Java SDK environment](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/400.deploy/300.deploy-oceanbase-enterprise-edition/500.deploy-the-ob-java-sdk-environment.md)--
+--
+-- ==============================================================================
+-- [DDL-024] MySQL mode | CREATE EXTERNAL TABLE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/2200.create-external-table-of-mysql-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # CREATE EXTERNAL TABLE
+--
+-- ## Purpose
+--
+-- This statement is used to create an external table in a database.
+--
+-- The data of an external table is stored in an external storage service (such as the local file system, object storage, HDFS, or MaxCompute). OceanBase Database stores the table definition and access path. An external table is a **read-only** object that can be used for queries. It does not support DML operations, nor does it support defining constraints or creating indexes.
+--
+-- ## Privilege requirements
+--
+-- * To execute `CREATE EXTERNAL TABLE`, the current user must have the `CREATE` privilege. For more information, see [Privilege types in MySQL-compatible mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/200.permission-of-mysql-mode/100.permission-classification-of-mysql.md).
+-- * When creating an external table by referencing a Location object, you must have the `READ` privilege on that Location.
+--
+--   ```sql
+--   GRANT READ ON LOCATION test_location_local TO user001 WITH GRANT OPTION;
+--   ```
+--
+-- ## Version information
+--
+-- | Feature/Parameter | Supported Versions |
+-- | ------------- | ---------- |
+-- | Read from HDFS external table | V4.3.5 BP1 and later |
+-- | `IGNORE_LAST_EMPTY_COLUMN` | V4.3.5 BP2 and later |
+-- | `API_MODE`、`SPLIT`(ODPS external table) | V4.3.5 BP3 and later |
+--
+-- ## Syntax
+--
+-- ```sql
+-- CREATE EXTERNAL TABLE table_name (column_definition [, column_definition ...])
+--     LOCATION = 'file_name'
+--     {FORMAT = (format_type_options)
+--      | PROPERTIES = (properties_type_options)}
+--     [PARTITION BY (column_name [, column_name ...])]
+--     [PARTITION_TYPE = USER_SPECIFIED]
+--     [PATTERN = 'regex_pattern']
+--     [AUTO_REFRESH = 'xxx'];
+--
+-- column_definition:
+--     column_name column_type [AS expr]
+--
+-- format_type_options:
+--     type_csv_option
+--     | type_parquet_option
+--     | type_orc_option
+--
+-- type_csv_option:
+--     TYPE = 'CSV'
+--     LINE_DELIMITER = '<string>' | <expr>
+--     FIELD_DELIMITER = '<string>' | <expr>
+--     ESCAPE = '<character>' | <expr>
+--     FIELD_OPTIONALLY_ENCLOSED_BY = '<character>' | <expr>
+--     ENCODING = 'charset'
+--     NULL_IF = ('<string>' | <expr>, '<string>' | <expr> ...)
+--     SKIP_HEADER = <int>
+--     SKIP_BLANK_LINES = {TRUE | FALSE}
+--     TRIM_SPACE = {TRUE | FALSE}
+--     EMPTY_FIELD_AS_NULL = {TRUE | FALSE}
+--     IGNORE_LAST_EMPTY_COLUMN = {TRUE | FALSE}
+--
+-- type_parquet_option:
+--     TYPE = 'PARQUET'
+--
+-- type_orc_option:
+--     TYPE = 'ORC'
+--
+-- properties_type_options:
+--     type_odps_option
+--
+-- type_odps_option:
+--     TYPE = 'ODPS'
+--     ACCESSID = '<string>'
+--     ACCESSKEY = '<string>'
+--     ENDPOINT = '<string>',
+--     PROJECT_NAME = '<string>',
+--     SCHEMA_NAME = '<string>',
+--     TABLE_NAME = '<string>',
+--     QUOTA_NAME = '<string>',
+--     COMPRESSION_CODE = '<string>',
+--     API_MODE = {"tunnel_api" | "storage_api"},
+--     SPLIT = {"byte" | "row"}
+-- ```
+--
+-- ## Usage
+--
+-- When creating an external table, you need to specify `LOCATION` and choose either **`FORMAT`** or **`PROPERTIES`** based on the external table type (the two are mutually exclusive and cannot be used together):
+--
+-- | clause | Applicable External Table Types | Description |
+-- | ------ | -------------- | ------ |
+-- | `FORMAT = (...)` | File-based external tables (CSV, PARQUET, and ORC) | Specify External **File Format** and Parsing Options |
+-- | `PROPERTIES = (...)` | ODPS External Table | Specify the MaxCompute connection parameter and API mode. **This option is not** for file formats. |
+--
+-- Other common clauses:
+--
+-- | clause | Description |
+-- | ------ | ------ |
+-- | `LOCATION` | External data paths (local, OSS/S3, HDFS, etc.).. |
+-- | `PATTERN` | Regular expression, filter.`LOCATION`The files in the specified directory. If not specified, all files in the directory are accessed. The matching results are written to the system table during creation, and access is performed according to this list during scanning. |
+-- | `AUTO_REFRESH` | Foreign table metadata refresh strategy:`OFF`(Default),`INTERVAL`、`IMMEDIATE`. |
+-- | `PARTITION_TYPE = USER_SPECIFIED` | Used for manual partition management. |
+-- | `AS expr` / `metadata$filecol{N}` | Manual column mapping. Once specified, you must define a mapping for all columns; automatic sequential mapping will then be invalid. |
+--
+-- ## Parameters
+--
+-- | **Parameter** | **Description** |
+-- | ---------- | ---------- |
+-- | table_name | The name of the external table. |
+-- | column_name | Column name. By default, file columns and external table columns correspond one by one in the order they are defined. |
+-- | column_type | Column type; cannot be defined.`DEFAULT`、`NOT NULL`、`UNIQUE`、`CHECK`、`PRIMARY KEY`、`FOREIGN KEY`constraints. |
+-- | AS expr | Manual column mapping. Through`metadata$filecol{N}`Specifies that the external table column corresponds to the Nth column in the file (where N starts from 1). For example,`c2 INT AS (metadata$filecol4)`. Note that if manual column mapping is specified, the automatic mapping relationship will be invalid, and all columns must be manually mapped. |
+-- | LOCATION | The data path of the external table, which typically points to a separate directory. When creating the external table, files in this directory (including subdirectories) are collected. For more information about creating a LOCATION object, see [CREATE LOCATION](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/620.obap/400.data-lake/200.data-lake-integration/300.url-external-table.md). |
+-- | FORMAT | File external table format options. For more information, see [format_type_options](#format_type_options). |
+-- | PROPERTIES | Options for connecting to an ODPS external table. For more information, see [properties_type_options](#properties_type_options). |
+-- | PATTERN | Specify a regular expression pattern string to filter.`LOCATION`files in the directory. For each`LOCATION`The file path in the directory. If a file path matches this pattern string, the external table accesses the file; otherwise, it skips the file. If this parameter is not specified, the default access permission is granted.`LOCATION`All files in the directory. External tables will`LOCATION`Files under the specified path that meet the criteria of`PATTERN`The file list is stored in a database system table. During external table scanning, this list is used to access external files. |
+-- | PARTITION_TYPE | Set to`USER_SPECIFIED`The user manually adds or drops partitions. |
+-- | AUTO_REFRESH | Used for automatic refresh of external tables. Valid values: <ul><li>`OFF`: The default value, which indicates that automatic refresh is disabled. </li><li>`INTERVAL`: Allows the external table to be accessed through`dbms_external_table`to manage auto-refresh rules. </li><li>`IMMEDIATE`: Indicates that the external table META related to each SQL access needs to be refreshed. </li></ul> |
+--
+-- ## Supported path formats for LOCATION
+--
+-- ### Local path
+--
+-- * When the file is local, the local `LOCATION` format is: `LOCATION = '[file:// | sfile://] local_file_path'`
+--
+--   * `file://`: This protocol header indicates that when encountering files with the same logical path across multiple OBServer nodes, they are treated as different files and processed separately. Each node independently reads the file from its local path.
+--   * `sfile://`: This protocol header indicates that when encountering files with the same logical path across multiple OBServer nodes, the system deduplicates them based on the logical path to ensure only one copy of the data is read (supports multi-server load balancing).
+--
+--     <main id="notice" type='notice'>
+--       <h4>Note</h4>
+--       <p><ul><li>When using <code>sfile://</code>, the system performs consistency verification of file sizes. If files under the same logical path have inconsistent sizes across different OBServer nodes, the system reports the <code>OB_INVALID_EXTERNAL_FILE</code> error to avoid result errors caused by data inconsistency.</li> <li>For version V4.4.2, starting from V4.4.2 BP2, the <code>sfile://</code> protocol header is supported in the local Location format of the <code>CREATE EXTERNAL TABLE</code> syntax.</li></ul></p>
+--     </main>
+--
+--   * `local_file_path`: Can be a relative path or an absolute path. If a relative path is provided, the current directory must be the installation directory of OceanBase Database. `secure_file_priv` is used to configure the file paths that OBServer nodes are authorized to access. `local_file_path` can only be a subpath of the `secure_file_priv` path.
+--
+-- ### Object storage (OSS / S3)
+--
+-- `LOCATION = '{oss|s3}://$ACCESS_ID:$ACCESS_KEY@$HOST:s3_region/remote_file_path'`
+--
+-- * `$ACCESS_ID`, `$ACCESS_KEY`, and `$HOST` are the access information required to access Alibaba Cloud OSS, AWS S3, and object storage compatible with the S3 protocol.
+-- * `s3_region`: The S3 region. The credentials are stored in an encrypted format in the system table.
+--
+-- <main id="notice" type='notice'>
+--   <h4>Notice</h4>
+--   <p>In an object storage URL, parameters are separated by <code>&</code>. Parameter values can only contain English letters, numbers, <code>/-_$+=</code>, and wildcard characters. Otherwise, the setting may fail.</p>
+-- </main>
+--
+-- ### HDFS Path
+--
+-- **Single NameNode:**
+--
+-- `LOCATION = 'hdfs://host:port/path'`
+--
+-- **Hadoop HA (logical nameservice):**
+--
+-- `LOCATION = 'hdfs://nameserviceID/path'`
+--
+-- The client OBServer side must include the `nameservice` definition and failover strategy for the HA cluster.
+--
+-- **Kerberos authentication:**
+--
+-- Append query parameters to the URL: `?principal=...&keytab=...&krb5conf=...&configs=...`
+--
+-- | URL parameters | Description |
+-- | ---------- | ------ |
+-- | principal | The Kerberos login principal refers to the user undergoing authentication. |
+-- | keytab | Key File Path |
+-- | krb5conf | Path to the Kerberos configuration file (for example,`/etc/krb5.conf`) |
+-- | configs | Additional HDFS configuration. The default value is empty. Multiple items are separated with`#`Separation. The Kerberos environment typically requires setting`dfs.data.transfer.protection`; In a high-availability environment, you also need to configure parameters such as nameservice, namenode address, and failover. |
+--
+-- In a HA + Kerberos environment, common `configs` parameters (multiple parameters are separated by `#`):
+--
+-- | Parameter | Description |
+-- | -------- | ------ |
+-- | `dfs.data.transfer.protection` | Data transmission protection level, which must be consistent with the cluster configuration. |
+-- | `dfs.nameservices` | HA Cluster Nameservice ID |
+-- | `dfs.ha.namenodes.{nameservice}` | List of Standby IDs for the NameNode |
+-- | `dfs.namenode.rpc-address.{nameservice}.{nn}` | RPC Address of Each NameNode |
+-- | `dfs.ha.automatic-failover.enabled.{nameservice}` | Whether to enable automatic failover |
+-- | `dfs.client.failover.proxy.provider.{nameservice}` | The failover proxy class, typically`ConfiguredFailoverProxyProvider` |
+--
+-- The example format is as follows:
+--
+-- ```text
+-- dfs.data.transfer.protection=integrity#dfs.nameservices=mycluster#dfs.ha.namenodes.mycluster=nn1,nn2#...
+-- ```
+--
+-- <main id="notice" type='notice'>
+--   <h4>Notice</h4>
+--   <p>HA-related parameters are bound to <code>nameservice</code> and must be consistent with the cluster's <code>hdfs-site.xml</code>. For a complete example of HA configuration, see <a href="#Example 3: hdfs-ha--kerberos">Example 3</a> below and the Location configuration instructions in <a href="../../../../../620.obap/400.data-lake/100.data-catalog/100.catalog-overview.md">Load a Hive table through Catalog</a>.</p>
+-- </main>
+--
+-- <main id="notice" type='explain'>
+--   <h4>Note</h4>
+--   <p>Before accessing an HDFS external table, you must deploy the Java/JNI/HDFS environment on the OBServer node and configure cluster parameters such as <code>ob_enable_java_env</code>. For more information, see <a href="../../../../../400.deploy/300.deploy-oceanbase-enterprise-edition/500.deploy-the-ob-java-sdk-environment.md">Deploy the OceanBase Java SDK environment</a>.</p>
+-- </main>
+--
+-- ## File format and attribute description (format_type_options)
+--
+-- ### CSV format parameters (Type = 'CSV')
+--
+-- | Parameter | Description | Default Value/Value Range |
+-- | ---- | ---- | ------ |
+-- | `LINE_DELIMITER` | Row delimiter | `\n` |
+-- | `FIELD_DELIMITER` | Column delimiter | `\t` |
+-- | `ESCAPE` | Escape character (1 byte) | `\` |
+-- | `FIELD_OPTIONALLY_ENCLOSED_BY` | field wrapper | empty |
+-- | `ENCODING` | Character Set | UTF8MB4 |
+-- | `NULL_IF` | Strings treated as NULL | empty |
+-- | `SKIP_HEADER` | Number of Lines to Skip in the File Header | — |
+-- | `SKIP_BLANK_LINES` | Whether to skip empty lines | `FALSE` |
+-- | `TRIM_SPACE` | Trim leading and trailing spaces of fields | `FALSE` |
+-- | `EMPTY_FIELD_AS_NULL` | Whether an empty string is considered NULL | `FALSE` |
+-- | `IGNORE_LAST_EMPTY_COLUMN` | Whether to ignore trailing empty columns | `TRUE` |
+-- | `COMPRESSION` | Optional. Specifies the file compression format. | Valid values: <ul><li>`GZIP`/`DEFLATE`: GZIP-compressed files.</ul></li><ul><li>`ZSTD`: ZSTD-compressed files.</ul></li><ul><li>`NONE`: indicates that the file is not compressed (default).</ul></li><ul><li>`SNAPPY_BLOCK`: Hadoop-SNAPPY compressed files.</ul></li> |
+--
+-- <main id="notice" type='explain'>
+--   <h4>Note</h4>
+--   <p>For V4.3.5, <code>IGNORE_LAST_EMPTY_COLUMN</code> is supported starting from V4.3.5 BP2.</p>
+-- </main>
+--
+-- ### format_type_options
+--
+-- #### `TYPE = 'CSV'`
+--
+-- The default values for each parameter are shown in the table above. The following are the constraints and considerations:
+--
+-- * `ESCAPE`: Specifies the escape character for the CSV file, which must be 1 byte. Default value is `ESCAPE ='\'`.
+-- * `ENCODING`: Supported character sets are listed in [Character sets](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/100.basic-elements-of-mysql-mode/300.character-set-and-collation-of-mysql-mode/200.character-set-of-mysql-mode.md). Default is UTF8MB4.
+-- * `FIELD_OPTIONALLY_ENCLOSED_BY`: When the file contains `NULL` values (not the string `"NULL"`), this parameter must be explicitly configured and cannot be empty.
+--
+--     <main id="notice" type='notice'>
+--       <h4>Notice</h4>
+--       <p>When an external table data file contains <code>NULL</code> values (not the string <b>NULL</b>, i.e., not <b>"NULL"</b>), the <code>FIELD_OPTIONALLY_ENCLOSED_BY</code> parameter must be explicitly configured and its value cannot be empty.</p>
+--     </main>
+--
+-- #### `TYPE = 'PARQUET'`
+--
+-- Specifies the external file format as Parquet.
+--
+-- #### `TYPE = 'ORC'`
+--
+-- Specifies the external file format as ORC.
+--
+-- ### properties_type_options
+--
+-- #### `TYPE = 'ODPS'`
+--
+-- Used to create a MaxCompute (ODPS) external table, accessing a remote table via API (not a file path external table).
+--
+-- | Parameter | Description |
+-- | ------ | ------ |
+-- | ACCESSID | Alibaba Cloud AccessKey ID, used for identity authentication. |
+-- | ACCESSKEY | Specifies the AccessKey secret corresponding to the AccessKey ID for authentication. |
+-- | ENDPOINT | ODPS service connection address |
+-- | PROJECT_NAME | ODPS Project Name |
+-- | SCHEMA_NAME | Optional. The name of the ODPS schema. |
+-- | TABLE_NAME | ODPS Table Name |
+-- | QUOTA_NAME | Optional. The quota name. |
+-- | COMPRESSION_CODE | Optional. Compression format:`ZLIB`、`ZSTD`、`LZ4`、`ODPS_LZ4`; If not specified, compression is disabled. |
+-- | API_MODE | API mode:`tunnel_api`(Default) or`storage_api`. |
+-- | SPLIT | Use`storage_api`Sharding method during:`byte`or`row`. |
+--
+-- `API_MODE`: Specifies the API mode for calling ODPS. Valid values:
+--
+-- <main id="notice" type='explain'>
+--    <h4>Note</h4>
+--    <p>For OceanBase Database V4.3.5, <code>API_MODE</code> and <code>SPLIT</code> parameters are supported starting from V4.3.5 BP3.</p>
+-- </main>
+--
+-- * `tunnel_api` (default):
+--
+--   * No special network configuration required: Suitable for all deployment scenarios, as OceanBase Database and MaxCompute do not need to reside in the same Virtual Private Cloud (VPC).
+--
+--   * No additional MaxCompute permissions required: Authentication can be completed with only the AccessID and AccessKey; there is no need to enable MaxCompute Storage API permissions.
+--
+--   * Applicable environments:
+--
+--     * OceanBase Database and MaxCompute are not deployed in the same VPC.
+--     * The MaxCompute Storage API is not enabled.
+--     * Low latency requirements for data transmission.
+--
+-- * `storage_api`:
+--
+--   * Network dependency: OceanBase Database and MaxCompute must be deployed in the same VPC to achieve low-latency, high-throughput data transmission.
+--
+--   * Permission dependency: You must enable the Storage API permission in MaxCompute and ensure that the AccessKey has the corresponding permissions.
+--
+--   * Applicable environments:
+--
+--     * OceanBase Database and MaxCompute are in the same VPC.
+--     * The MaxCompute Storage API is enabled.
+--     * The data volume is extremely large or real-time requirements are high.
+--
+-- * `SPLIT`: When using `storage_api`, specifies whether to split tasks by `byte` or `row` for allocation to threads. Set this parameter to `byte` when the byte size of data in rows of a table varies greatly, and set it to `row` in other cases.
+--
+-- For details on scenario implementation and partition mapping, see [ODPS external tables](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/620.obap/400.data-lake/200.data-lake-integration/200.odps-external-table.md).
+--
+-- ## Usage instructions
+--
+-- * External tables are read-only objects and do not support DML, constraints, or indexes.
+-- * The file list is collected based on the `LOCATION` and `PATTERN` parameters during creation. To add files to the directory, you must execute `ALTER EXTERNAL TABLE ... REFRESH`. For more information, see [Update the file list of an external table](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/1300.alter-external-table-of-mysql-mode.md).
+-- * For more information about external file deletion, modification, concurrent access, `secure_file_priv`, and HDFS/ODPS environments, see [About external tables and external files](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/100.manage-object-of-mysql-mode/200.manage-tables-of-mysql-mode/1000.manage-external-tables-of-mysql-mode/100.about-external-tables-of-mysql-mode.md) and [Manage external files](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/100.manage-object-of-mysql-mode/200.manage-tables-of-mysql-mode/1000.manage-external-tables-of-mysql-mode/300.manage-external-files-of-mysql-mode.md).
+-- * When you do not need to persist table objects and only temporarily read from external files, you can use the [FILES table function](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/400.functions-of-mysql-mode/760.table-functions-of-mysql-mode/200.files-table-function-of-mysql-mode.md).
+--
+-- ## Examples
+--
+-- ### Example 1: Local CSV external table
+--
+-- 1. Prepare the data. First, set the path of `secure_file_priv` to `/home/admin/`. Place the CSV file `extdata.csv` corresponding to the external table data to be imported in the `/home/admin/test` directory of the current local connection OBServer node.
+--
+--    The following example shows how to set the global security path.
+--
+--    ```shell
+--    Query OK, 0 rows affected
+--    obclinet> \q
+--    Bye
+--    ```
+--
+--    <main id="notice" type='explain'>
+--      <h4>Note</h4>
+--      <p>Because <code>secure_file_priv</code> is a <code>GLOBAL</code> variable, you must execute <code>\q</code> to exit and make it effective.</p>
+--    </main>
+--
+--    The content of the CSV file is as follows:
+--
+--    ```shell
+--    1,'Dave','Smith','dsmith@outlook.com','friend',32
+--    2,'Xena','Johnson','xjonson@outlook.com','contact',45
+--    3,'Fred','Jackon','fjackson@outlook.com','co-worker',19
+--    4,'Alma','Tyler','atyler@outlook.com','friend',53
+--    ```
+--
+-- 2. After logging in to the database as a user tenant, create an external table named `contacts`.
+--
+--    ```shell
+--        id    INT,
+--        firstname  VARCHAR(100),
+--        lastname   VARCHAR(100),
+--        email      VARCHAR(255),
+--        category   CHAR(30),
+--        age        NUMBER
+--       )
+--       LOCATION = '/home/admin/test'
+--       FORMAT = (
+--         TYPE = 'CSV'
+--         FIELD_DELIMITER = ','
+--         FIELD_OPTIONALLY_ENCLOSED_BY ='\''
+--        )
+--      PATTERN = 'extdata.csv';
+--    ```
+--
+-- 3. Query data from the external table `contacts`.
+--
+--    ```shell
+--    +----+-----------+----------+----------------------+-----------+------+
+--    | id | firstname | lastname | email                | category  | age  |
+--    +----+-----------+----------+----------------------+-----------+------+
+--    |  1 | Dave      | Smith    | dsmith@outlook.com   | friend    |   32 |
+--    |  2 | Xena      | Johnson  | xjonson@outlook.com  | contact   |   45 |
+--    |  3 | Fred      | Jackon   | fjackson@outlook.com | co-worker |   19 |
+--    |  4 | Alma      | Tyler    | atyler@outlook.com   | friend    |   53 |
+--    +----+-----------+----------+----------------------+-----------+------+
+--    4 rows in set
+--    ```
+--
+-- ### Example 2: HDFS CSV external table (without Kerberos)
+--
+-- Prerequisite: You have completed [Java SDK environment deployment](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/400.deploy/300.deploy-oceanbase-enterprise-edition/500.deploy-the-ob-java-sdk-environment.md), which is required when accessing HDFS.
+--
+-- ```sql
+-- CREATE EXTERNAL TABLE test_tbl1_csv_mysql (
+--     id INT,
+--     name VARCHAR(50),
+--     c_date DATE
+-- )
+-- LOCATION = 'hdfs://${hadoop_namenode_host}:${hadoop_namenode_port}/user'
+-- FORMAT = (
+--     TYPE = 'CSV'
+--     FIELD_DELIMITER = ','
+--     FIELD_OPTIONALLY_ENCLOSED_BY = '\''
+-- )
+-- PATTERN = 'test_tbl1.csv';
+--
+-- SELECT * FROM test_tbl1_csv_mysql;
+-- ```
+--
+-- <main id="notice" type='notice'>
+--   <h4>Notice</h4>
+--   <p>Replace <code>${hadoop_namenode_host}</code> and <code>${hadoop_namenode_port}</code> with the actual HDFS NameNode address and port.</p>
+-- </main>
+--
+-- ### Example 3: HDFS HA + Kerberos
+--
+-- Prerequisites:
+--
+-- * You have completed the [Java SDK environment deployment](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/400.deploy/300.deploy-oceanbase-enterprise-edition/500.deploy-the-ob-java-sdk-environment.md).
+-- * The Kerberos credential files, such as the keytab and krb5.conf files, have been deployed on all OBServer nodes.
+-- * The HA parameters in `configs` are consistent with the cluster's `nameservice` configuration.
+--
+-- ```sql
+-- CREATE EXTERNAL TABLE test_ha (
+--     id INT,
+--     r_name VARCHAR(100),
+--     age INT
+-- )
+-- LOCATION = 'hdfs://mycluster/hadoop_ha_test?principal=ha/xxx@xxx.com&keytab=/path/to/ha.keytab&krb5conf=/path/to/krb5conf_file&configs=dfs.data.transfer.protection=integrity#dfs.nameservices=mycluster#dfs.ha.namenodes.mycluster=nn1,nn2#dfs.namenode.rpc-address.mycluster.nn1=localhost1:port#dfs.namenode.rpc-address.mycluster.nn2=localhost2:port#dfs.ha.automatic-failover.enabled.mycluster=true#dfs.client.failover.proxy.provider.mycluster=org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider'
+-- FORMAT = (
+--     TYPE = 'CSV'
+--     FIELD_DELIMITER = ','
+--     FIELD_OPTIONALLY_ENCLOSED_BY = '\''
+-- )
+-- PATTERN = 'test_simple.csv';
+--
+-- SELECT * FROM test_ha;
+-- ```
+--
+-- ### Example 4: HDFS Kerberos single-node
+--
+-- The prerequisites are the same as those in Example 3. In a single-NameNode environment, `LOCATION` can be simplified to:
+--
+-- ```sql
+-- CREATE EXTERNAL TABLE partsupp (
+--     PS_PARTKEY    INTEGER,
+--     PS_SUPPKEY    INTEGER,
+--     PS_AVAILQTY   INTEGER,
+--     PS_SUPPLYCOST DECIMAL(15,2),
+--     PS_COMMENT    VARCHAR(199)
+-- )
+-- LOCATION = 'hdfs://localhost:8020/tpch_csv?principal=principal_str&keytab=/path/to/keytab&krb5conf=/path/to/krb5conf_file&configs=xxx=xxx#xxx=xxx'
+-- FORMAT = (
+--     TYPE = 'CSV'
+--     FIELD_DELIMITER = '|'
+--     FIELD_OPTIONALLY_ENCLOSED_BY = '"'
+-- )
+-- PATTERN = 'partsupp.tbl';
+-- ```
+--
+-- ## References
+--
+-- * [About external tables and external files](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/100.manage-object-of-mysql-mode/200.manage-tables-of-mysql-mode/1000.manage-external-tables-of-mysql-mode/100.about-external-tables-of-mysql-mode.md)
+-- * [Create and query external tables](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/100.manage-object-of-mysql-mode/200.manage-tables-of-mysql-mode/1000.manage-external-tables-of-mysql-mode/200.create-a-external-table-of-mysql-mode.md)
+-- * [ODPS external tables](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/620.obap/400.data-lake/200.data-lake-integration/200.odps-external-table.md)
+-- * [FILES table function](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/400.functions-of-mysql-mode/760.table-functions-of-mysql-mode/200.files-table-function-of-mysql-mode.md)
+-- * [Manage external files](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/100.manage-object-of-mysql-mode/200.manage-tables-of-mysql-mode/1000.manage-external-tables-of-mysql-mode/300.manage-external-files-of-mysql-mode.md)
+-- * [Update external table file list](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/1300.alter-external-table-of-mysql-mode.md)
+-- * [Deploy the OceanBase Java SDK environment](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/400.deploy/300.deploy-oceanbase-enterprise-edition/500.deploy-the-ob-java-sdk-environment.md)--
+--
+-- ==============================================================================
+-- [DDL-025] MySQL mode | CREATE INDEX
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/2200.create-index-of-mysql-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # CREATE INDEX
+--
+-- ## Purpose
+--
+-- This statement is used to create an index. An index is a structure created on a table that sorts the values of one or more columns in the database table. Its main purpose is to improve query speed and reduce the performance overhead of the database system.
+--
+-- OceanBase Database currently supports unique and non-unique indexes. When creating an index, you can use the `STORING(column_name,...)` clause to specify redundant columns in the index table. In addition to the columns specified by the user, the index table will automatically include the primary key columns of the primary table (or the hidden primary key columns if no primary key exists). Storing additional columns in the index provides the database optimizer with more options.
+--
+-- ## Limitations and considerations
+--
+-- * If all indexed columns are deleted from a table, the indexes created on the table become invalid.
+-- * Full-text indexes can be created only on columns of the `CHAR`, `VARCHAR`, and `TEXT` data types.
+-- * Only local (`LOCAL`) full-text indexes can be created in the current version.
+-- * The `UNIQUE` keyword cannot be specified when creating a full-text index.
+-- * When creating a full-text index that involves multiple columns, ensure that the columns have the same character set.
+-- * The `WITH PARSER {SPACE | NGRAM | BENG | IK}` option can be specified only when creating a full-text index.
+--
+-- ## Privilege requirements
+--
+-- To execute the `CREATE INDEX` statement, the current user must have at least the INDEX privilege on the corresponding object. For more information about the privileges of OceanBase Database, see [Privilege types in MySQL-compatible mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/200.permission-of-mysql-mode/100.permission-classification-of-mysql.md).
+--
+-- ## Syntax
+--
+-- ```sql
+-- CREATE [hint_options] [index_type] INDEX [IF NOT EXISTS] index_name
+--     [USING BTREE] ON table_name (sort_column_key [, sort_column_key... ])
+--     [WITH PARSER tokenizer_option]
+--     [PARSER_PROPERTIES[=](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/parser_properties_list)]
+--     [index_option...] [partition_option] [index_column_group_option]
+--
+-- index_type:
+--     SPATIAL
+--     | UNIQUE
+--     | FULLTEXT
+--
+-- sort_column_key:
+--       column_name [(integer)] [ASC] [ID id]
+--     | (index_expr) [ASC] [ID id]
+--
+-- tokenizer_option:
+--     SPACE
+--     | NGRAM
+--     | BENG
+--     | IK
+--     | NGRAM2
+--
+-- parser_properties_list:
+--     parser_properties, [parser_properties]
+--
+-- parser_properties:
+--     min_token_size = int_value
+--     | max_token_size = int_value
+--     | ngram_token_size = int_value
+--     | ik_mode = 'char_value'
+--     | min_ngram_size = int_value
+--     | max_ngram_size = int_value
+--
+-- index_option:
+--       GLOBAL
+--     | LOCAL
+--     | BLOCK_SIZE integer
+--     | COMMENT STRING_VALUE
+--     | STORING (column_name [, column_name...])
+--     | WITH_ROWID
+--     | WITH PARSER STRING_VALUE
+--     | index_using_algorithm
+--     | visibility_option
+--     | DATA_TABLE_ID data_table_id
+--     | INDEX_TABLE_ID index_table_id
+--     | VIRTUAL_COLUMN_ID virtual_column_id
+--     | MAX_USED_PART_ID used_part_id
+--     | STORAGE_CACHE_POLICY(storage_cache_policy_option)
+--
+-- index_column_group_option:
+--     WITH COLUMN GROUP([all columns, ]each column)
+--
+-- storage_cache_policy_option:
+--     GLOBAL = {"hot"|"auto"|"none"}
+--     | timeline_strategy_list
+--
+-- timeline_strategy_list:
+--     BOUNDARY_COLUMN = column_name
+--     [, BOUNDARY_COLUMN_UNIT = {"s"|"ms"}]
+--     [, HOT_RETENTION = intnum retention_time_unit]
+--
+--
+-- retention_time_unit:
+--     YEAR
+--     | MONTH
+--     | WEEK
+--     | DAY
+--     | HOUR
+--     | MINUTE
+-- ```
+--
+-- ## Parameters
+--
+-- | Parameter | Description |
+-- |--------|---------|
+-- | hint_options | The hint options. This parameter is optional. Currently, only the `parallel` option is supported. For example, `/*+ parallel(10) */`. |
+-- | index_type   | The type of the index. This parameter is optional. For more information, see [index_type](#index_type). |
+-- | IF NOT EXISTS | Indicates whether to skip index creation if the index already exists. If the index exists and the `IF NOT EXISTS` option is not specified, an error is returned. |
+-- | index_name  | The name of the index to be created. |
+-- | USING BTREE | The index structure to be used. This parameter is optional. For more information, see **USING BTREE**. |
+-- | table_name | The name of the table on which to create the index. You can directly specify the table name or use the `schema_name.table_name` format to specify the table name and the name of the database to which the table belongs. |
+-- | sort_column_key | The key of the sort column. You can specify multiple sort columns when you create an index. Separate the sort columns with commas (`,`). For more information, see [sort_column_key](#sort_column_key). |
+-- | WITH PARSER tokenizer_option                 | The tokenizer to be used for a full-text index. This parameter is optional. For more information, see [tokenizer_option](#tokenizer_option).|
+-- | PARSER_PROPERTIES\[=\](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/parser_properties_list) | The properties of the tokenizer. This parameter is optional. For more information, see [parser_properties](#parser_properties).|
+-- | index_option | The index options. You can specify multiple index options when you create an index. Separate the index options with spaces. For more information, see [index_option](#index_option).|
+-- | index_column_group_option | The index options. For more information, see [index_column_group_option](#index_column_group_option).|
+-- |STORAGE_CACHE_POLICY | This parameter is not used.|
+--
+-- ### index_type
+--
+-- * `SPATIAL`: specifies the creation of a spatial index.
+-- * `UNIQUE`: specifies the creation of a unique index.
+-- * `FULLTEXT`: specifies the creation of a full-text index.
+--
+-- For more information about creating indexes, see [Create an index](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/100.manage-object-of-mysql-mode/500.manage-indexes-of-mysql-mode/200.create-an-index-of-mysql-mode.md).
+--
+-- ### sort_column_key
+--
+-- * `column_name [(integer)] [ASC] [ID id]`: specifies a column name as a sort key.
+--
+--   * `column_name`: the name of the column to be sorted.
+--
+--   * `integer`: an optional parameter that specifies the maximum length of the sort key.
+--
+--   * `ASC`: an optional parameter that specifies ascending order. Descending order (DESC) is not supported.
+--
+--   * `ID id`: an optional parameter that specifies the ID of the sort key.
+--
+--   For example, create an index named `index3` on the `c1` column of the `t3` table, and sort the index in ascending order.
+--
+--   ```sql
+--   CREATE INDEX index3 ON t3 (c1 ASC);
+--   ```
+--
+-- * `(index_expr) [ASC] [ID id]`: specifies an index expression as a sort key. An index expression can be defined using an expression or a function. It can include the following options:
+--
+--   * `(index_expr)`: the index expression, which can be a boolean expression, such as `c1=c1`. OceanBase Database does not support creating function indexes on generated columns. For information about the expressions supported by function indexes, see [Supported system functions for function indexes](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/100.manage-object-of-mysql-mode/500.manage-indexes-of-mysql-mode/500.function-index-list-of-supported-functions-of-mysql-mode.md).
+--
+--   * `ASC`: an optional parameter that specifies ascending order. Descending order (DESC) is not supported.
+--
+--   * `ID id`: an optional parameter that specifies the ID of the sort key.
+--
+--   For example, create an index named `index4` on the `t4` table, specify `c1+c2` as the index expression, and sort the index in ascending order.
+--
+--   ```sql
+--   CREATE INDEX index4 ON t4 ((c1 + c2) ASC);
+--   ```
+--
+-- You can specify multiple sort columns when creating an index. Separate multiple sort columns with commas (,). For example, create an index named `index5` on the `t5` table, and specify `c1` and `c2+c3` as the sort keys.
+--
+-- ```sql
+-- CREATE INDEX index5 ON t5 (c1, (c2+c3));
+-- ```
+--
+-- ### tokenizer_option
+--
+-- * `SPACE`: the default value. Specifies the use of space-based tokenization. You can specify the following parameters:
+--
+--   | Parameter | Value range |
+--   |------------------|---------|
+--   | min_token_size   | [1, 16] |
+--   | max_token_size   | [10, 84]|
+--
+-- * `NGRAM`: specifies the use of N-gram-based tokenization for Chinese text. You can specify the following parameters:
+--
+--   | Parameter | Value range |
+--   |------------------|---------|
+--   | ngram_token_size | [1, 10] |
+--
+-- * `NGRAM2`: specifies the use of N-gram-based tokenization for text. You can specify the following parameters:
+--
+--   | Parameter | Value range |
+--   |------------------|---------|
+--   | min_ngram_size   | [1, 16] |
+--   | max_ngram_size   | [1, 16] |
+--
+-- * `BENG`: specifies the use of basic English-based tokenization. You can specify the following parameters:
+--
+--   | Parameter | Value range |
+--   |------------------|---------|
+--   | min_token_size   | [1, 16] |
+--   | max_token_size   | [10, 84]|
+--
+-- * `IK`: specifies the use of IK-based tokenization for Chinese text. Only the `utf-8` character set is supported. You can specify the following parameter:
+--
+--   | Parameter | Value range |
+--   |------------------|---------|
+--   | ik_mode          | <ul><li>`smart`</li><li>`max_word`</li></ul>|
+--
+-- You can use the [TOKENIZE](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/400.functions-of-mysql-mode/960.text-processing-functions-of-mysql-mode/200.tokenize-of-mysql-mode.md) function to view the tokenization results of text based on the specified tokenizer and JSON-formatted parameters.
+--
+-- ### parser_properties
+--
+-- * `min_token_size`: the minimum token length. Default value: 3. Value range: 1 to 16.
+--
+-- * `max_token_size`: the maximum token length. Default value: 84. Value range: 10 to 84.
+--
+-- * `ngram_token_size`: the token length for the `NGRAM` tokenizer. This parameter is valid only for the `NGRAM` tokenizer. Default value: 2. Value range: 1 to 10.
+--
+-- * `ik_mode`: the tokenization mode for the `IK` tokenizer. Valid values:
+--
+--   * `smart`: the default value. The dictionary is used to improve tokenization accuracy. The boundaries of dictionary words are prioritized, which may reduce unnecessary extensions.
+--   * `max_word`: the dictionary is used to identify words, but it does not affect the maximum extension of tokenization. Even if the dictionary defines words, the `max_word` mode will still attempt to split the text into more words.
+--
+-- **Here is an example:**
+--
+-- 1. Create a table named `tbl1`.
+--
+--    ```sql
+--    CREATE TABLE tbl1 (col1 VARCHAR(200), col2 TEXT);
+--    ```
+--
+-- 2. Create a full-text index on the `col2` column of the `tbl1` table, specify the `IK` tokenizer, and set the tokenizer properties using `PARSER_PROPERTIES`.
+--
+--    ```sql
+--    CREATE FULLTEXT INDEX fidx_tbl1 ON tbl1(col2) WITH PARSER IK PARSER_PROPERTIES=(ik_mode='max_word');
+--    ```
+--
+-- ### index_option
+--
+-- * `GLOBAL`: specifies to create a global index.
+--
+-- * `LOCAL`: specifies to create a local index.
+--
+-- * `BLOCK_SIZE integer`: specifies the size of an index block, that is, the number of bytes in each index block.
+--
+-- * `COMMENT STRING_VALUE`: specifies a comment for the index.
+--
+-- * `STORING (column_name [, column_name...])`: specifies the columns to be stored in the index. Separate multiple columns with commas (`,`).
+--
+-- * `WITH_ROWID`: specifies to create an index that contains row identifiers.
+--
+-- * `WITH PARSER STRING_VALUE`: specifies the parser required for the index.
+--
+-- * `index_using_algorithm`: specifies the algorithm used for the index. You can specify USING BTREE or USING HASH. However, you cannot create a multivalued index by using the USING HASH option.
+--
+-- * `visibility_option`: specifies the visibility of the index.
+--
+-- * `DATA_TABLE_ID data_table_id`: specifies the data table ID to which the index belongs.
+--
+-- * `INDEX_TABLE_ID index_table_id`: specifies the index table ID.
+--
+-- * `VIRTUAL_COLUMN_ID virtual_column_id`: specifies the virtual column ID.
+--
+-- * `MAX_USED_PART_ID used_part_id`: specifies the maximum partition ID used by the index.
+--
+-- ### index_column_group_option
+--
+-- * `WITH COLUMN GROUP(all columns, each column)`: specifies to create a rowstore columnstore redundant index.
+-- * `WITH COLUMN GROUP(each column)`: specifies to create a columnstore index.
+--
+-- ### storage_cache_policy
+--
+-- No action is required at this time.
+--
+-- ## Examples
+--
+-- ### Example 1
+--
+-- Run the following SQL statements to create a columnstore index for a table.
+--
+-- 1. Run the following SQL statement to create a table named `test_tbl1`.
+--
+--    ```sql
+--    CREATE TABLE test_tbl1 (col1 INT, col2 VARCHAR(50));
+--    ```
+--
+-- 2. Run the following SQL statement to create a columnstore index named `idx1_test_tbl1` for the `test_tbl1` table, and specify the `col1` column as the reference column.
+--
+--    ```sql
+--    CREATE INDEX idx1_test_tbl1 ON test_tbl1 (col1) WITH COLUMN GROUP(each column);
+--    ```
+--
+-- ## References
+--
+-- * [Index overview](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/100.oceanbase-database-concepts/400.database-objects/200.database-objects-of-mysql-mode/300.index-of-oracle-mode/100.index-overview-of-mysql-mode.md)
+--
+-- * [Create an index](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/100.manage-object-of-mysql-mode/500.manage-indexes-of-mysql-mode/200.create-an-index-of-mysql-mode.md)
+--
+-- * [View indexes](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/100.manage-object-of-mysql-mode/500.manage-indexes-of-mysql-mode/300.view-indexes-of-mysql-mode.md)
+--
+-- * [Delete an index](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/100.manage-object-of-mysql-mode/500.manage-indexes-of-mysql-mode/400.delete-an-index-of-mysql-mode.md)--
+--
+-- ==============================================================================
+-- [DDL-026] MySQL mode | CREATE LOCATION
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/2230.create-location-of-mysql-mode-in-sql.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # CREATE LOCATION
+--
+-- ## Purpose
+--
+-- This statement is used to create a Location object. A Location object stores the access path and authentication information for external tables and temporary external tables, which are used by the database to read or write external data.
+--
+-- <main id="notice" type='explain'>
+--   <h4>Note</h4>
+--   <p>For OceanBase Database V4.4.x, the <code>CREATE LOCATION</code> statement is supported starting from V4.4.1. </p>
+-- </main>
+--
+-- ## Privilege requirements
+--
+-- * Execution privilege:
+--
+--     To execute the `CREATE LOCATION` statement, the current user must have the `CREATE LOCATION` privilege. For more information about privileges in OceanBase Database, see [Privilege types in MySQL-compatible mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/200.permission-of-mysql-mode/100.permission-classification-of-mysql.md).
+--
+-- * Credential privilege:
+--
+--     The provided `ACCESSID` and `ACCESSKEY` must have valid access permissions for the target storage service.
+--
+-- ## Syntax
+--
+-- ```sql
+-- CREATE [OR REPLACE] LOCATION location_name
+--     URL = 'file_path'
+--     [CREDENTIAL = (
+--         ACCESSID = 'string'
+--         ACCESSKEY = 'string'
+--         HOST = 'string'
+--         [S3_REGION = 'string',]
+--         [PRINCIPAL = 'string',]
+--         [KEYTAB = 'string',]
+--         [KRB5CONF = 'string',]
+--         [CONFIGS = 'string',]
+--         [USERNAME = 'string']
+--         )
+--     ];
+-- ```
+--
+-- ## Parameters
+--
+-- |    **Parameter**   | **Description** |
+-- |---------------|----------|
+-- | OR REPLACE    | Optional. Specifies that if the corresponding Location object already exists, the new Location object definition will replace the existing one. |
+-- | location_name | The name of the Location object to be created. |
+-- | URL = 'file_path' | Specifies the external storage path. Supported storage types include: local files, HDFS, OSS, and S3. For more information, see [file_path] below. |
+-- | CREDENTIAL    | Optional. Specifies the information required to access the path. This parameter is not required for local paths. |
+-- | ACCESSID      | Specifies the AccessKey ID for accessing the object storage. |
+-- | ACCESSKEY     | Specifies the AccessKey secret for accessing the object storage. |
+-- | HOST          | Specifies the host address of the object storage service. |
+-- | S3_REGION     | Optional. Specifies the service region for S3 object storage. |
+-- | PRINCIPAL     | Optional. When the target HDFS cluster is configured with Kerberos, this parameter specifies the login authentication user. |
+-- | KEYTAB        | Optional. When the target HDFS cluster is configured with Kerberos, this parameter specifies the authentication key file. |
+-- | KRB5CONF      | Optional. When the target HDFS cluster is configured with Kerberos, this parameter specifies the Kerberos environment to be used. |
+-- | CONFIGS       | Optional. When the target HDFS cluster is configured with Kerberos, this parameter specifies additional Hadoop client configuration parameters in the `key=value` format, separated by `#`. For more information, see [configs_option](#configs_option) below. |
+-- | USERNAME      | Optional. When the target HDFS cluster is configured with Kerberos, this parameter specifies the unique identifier for the user. |
+--
+-- ### file_path
+--
+-- The path for storing external table files has the following formats:
+--
+-- * Local path format: `URL = '[file:// | sfile://] local_file_path'`
+--
+--   * `file://`: This protocol header indicates that when encountering files with the same logical path across multiple OBServer nodes, they are treated as different files and processed separately. Each node independently reads the file from its local path.
+--   * `sfile://`: This protocol header indicates that when encountering files with the same logical path across multiple OBServer nodes, the system performs deduplication based on the logical path to ensure only one copy of data is read (supporting multi-server load balancing).
+--
+--     <main id="notice" type='notice'>
+--       <h4>Note</h4>
+--       <p><ul><li>When using <code>sfile://</code>, the system performs consistency verification of file sizes. If files under the same logical path have inconsistent sizes across different OBServer nodes, the system reports an error <code>OB_INVALID_EXTERNAL_FILE</code> to avoid result errors caused by data inconsistency.</li> <li>For version V4.4.2, support for the <code>sfile://</code> protocol header was added to the local URL path format in the <code>CREATE LOCATION</code> syntax starting from V4.4.2 BP2.</li></ul></p>
+--     </main>
+--
+--   * `local_file_path`: Can be a relative or absolute path.
+--
+-- * HDFS path format: `URL = 'hdfs://localhost:port/PATH'`, where `localhost` is the HDFS address, `port` is the HDFS port number, and `PATH` is the directory path in HDFS.
+--
+-- * Object storage (OSS/S3) path format: `URL = '{oss | s3}://bucket/remote_file_path'`.
+--
+-- <main id="notice" type='notice'>
+--   <h4>Notice</h4>
+--   <p>The path for creating a Location object should not contain parameters. </p>
+-- </main>
+--
+-- ### configs_option
+--
+-- | Parameter | Description |
+-- |------|------|
+-- | dfs.data.transfer.protection=${string} | Specifies the SASL protection level for secure connections used during data block read/write operations. Valid values are as follows: <ul><li>`integrity`: Provides authentication and integrity protection.</li><li>`authentication`: Provides only authentication functionality, without integrity or privacy protection.</li><li>`privacy`: Provides authentication, integrity, and privacy protection.</li></ul> |
+-- | dfs.nameservices=${nameservice id} | Specifies the `namesevice` (alias) for the current HA cluster. For example, `dfs.nameservices=mycluster` defines the logical cluster name as `mycluster`. |
+-- | dfs.ha.namenodes.${nameservice id}=${namenode1}, ${namenode2} | Specifies the list of namenode backup IDs for the HA cluster. For example, `dfs.ha.namenodes.mycluster=nn1,nn2` specifies that the cluster has two NameNodes: `nn1` and `nn2`. |
+-- | dfs.namenode.rpc-address.${nameservice id}.${namenode1}=${namenode 1 address} | Specifies the specific namenode for `namenode1` to facilitate client routing. For example, `dfs.namenode.rpc-address.mycluster.nn1=test1:18020` specifies the RPC address for `nn1`. |
+-- | dfs.namenode.rpc-address.${nameservice id}.${namenode2}=${namenode 2 address} | Specifies the specific namenode for `namenode2` to facilitate client routing. For example, `dfs.namenode.rpc-address.mycluster.nn2=test2:18020` specifies the RPC address for `nn2`. |
+-- | dfs.ha.automatic-failover.enabled.${nameservice id}=true | Enables automatic failover, allowing the HA cluster to automatically obtain and respond to requests using an available namenode. |
+-- | dfs.client.failover.proxy.provider.${nameservice id}=org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider | Specifies the logical tool class for HA cluster failover, which can also be customized and uploaded to the HA cluster as needed. |
+--
+-- ## Examples
+--
+-- * Create a Location object with the storage location set to local.
+--
+--     ```shell
+--         URL = 'file://home/admin/test_csv';
+--     ```
+--
+-- * Create a Location object with the storage location set to OSS.
+--
+--     ```shell
+--         URL = 'oss://dir'
+--         CREDENTIAL = (
+--             ACCESSID = '******',
+--             ACCESSKEY = '******',
+--             HOST = '****'
+--         );
+--     ```
+--
+-- * Create a Location object with the authentication mode set to user authentication.
+--
+--     You do not need to use Kerberos, but you must access it with a specific HDFS user.
+--
+--     <main id="notice" type='explain'>
+--       <h4>Note</h4>
+--       <p>This example is applicable to a cluster that does not use Kerberos authentication, but where specific HDFS users are required to access the HDFS paths.</p>
+--     </main>
+--
+--     ```shell
+--     CREATE LOCATION hdfs_user
+--         URL = 'hdfs://namenode:8020/'
+--         CREDENTIAL (
+--             USERNAME = 'hdfs_user_name'
+--         );
+--     ```
+--
+-- * Create a Location object with Kerberos enabled and HDFS in single NameNode mode (non-HA mode).
+--
+--     <main id="notice" type='explain'>
+--       <h4>Note</h4>
+--       <p>The value of <code>dfs.data.transfer.protection</code> in <code>CONFIGS</code> must be consistent with the HDFS cluster configuration.</p>
+--     </main>
+--
+--     ```shell
+--     CREATE LOCATION hdfs_kerberos_single
+--         URL = 'hdfs://namenode.example.com:8020/'
+--         CREDENTIAL (
+--             PRINCIPAL = "hdfs/xxx@xxx.COM",
+--             KEYTAB = "/data/hdfs.keytab",
+--             KRB5CONF = "/data/krb5.conf",
+--             CONFIGS = 'dfs.data.transfer.protection=integrity'
+--         );
+--     ```
+--
+-- * Create a Location object with Kerberos enabled and HDFS in HA mode.
+--
+--     ```shell
+--     CREATE LOCATION hdfs_kerberos_ha
+--         URL = 'hdfs://${nameservice id}'
+--         CREDENTIAL (
+--             PRINCIPAL = "hdfs/xxx@xxx.COM",
+--             KEYTAB = "/etc/ob/hdfs.keytab",
+--             KRB5CONF = "/etc/krb5.conf",
+--             CONFIGS = 'dfs.data.transfer.protection=${string}#dfs.nameservices=${nameservice id}#dfs.ha.namenodes.${nameservice id}=${namenode1}, ${namenode2}#dfs.namenode.rpc-address.${nameservice id}.${namenode1}=${namenode 1 address}#dfs.namenode.rpc-address.${nameservice id}.${namenode2}=${namenode 2 address}#dfs.ha.automatic-failover.enabled.${nameservice id}=true#dfs.client.failover.proxy.provider.${nameservice id}=org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider'
+--             );
+--     ```
+--
+-- * Kerberos is not enabled, but HDFS is in HA mode.
+--
+--     <main id="notice" type='explain'>
+--       <h4>Note</h4>
+--       <p>If Kerberos is not enabled, but HDFS is in HA mode, you do not need to set the <code>PRINCIPAL</code>, <code>KEYTAB</code>, and <code>KRB5CONF</code> parameters.</p>
+--     </main>
+--
+--     ```shell
+--     CREATE LOCATION hdfs_location_ha
+--         URL = 'hdfs://${nameservice id}'
+--         CREDENTIAL (
+--             CONFIGS = 'dfs.nameservices=${nameservice id}#dfs.ha.namenodes.${nameservice id}=${namenode1}, ${namenode2}#dfs.namenode.rpc-address.${nameservice id}.${namenode1}=${namenode 1 address}#dfs.namenode.rpc-address.${nameservice id}.${namenode2}=${namenode 2 address}#dfs.ha.automatic-failover.enabled.${nameservice id}=true#dfs.client.failover.proxy.provider.${nameservice id}=org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider'
+--             );
+--     ```
+--
+-- ## References
+--
+-- * For more information about viewing files in a Location object, see [SHOW](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/8700.show-of-mysql-mode.md).
+-- * For more information about modifying a Location object, see [ALTER LOCATION](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/1230.alter-location-of-mysql-mode-in-sql.md).
+-- * For more information about deleting files in a Location object, see [REMOVE](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/7680.remove-table-mysql-mode.md).
+-- * For more information about deleting a Location object, see [DROP LOCATION](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/3530.drop-location-of-mysql-mode.md).--
+--
+-- ==============================================================================
+-- [DDL-027] MySQL mode | CREATE MATERIALIZED VIEW
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/2250.create-materialized-views-of-mysql-mode-in-sql.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # CREATE MATERIALIZED VIEW
+--
+-- ## Purpose
+--
+-- This statement is used to create a materialized view.
+--
+-- A materialized view is a special type of database object that stores a copy of the query results and is periodically refreshed (or manually refreshed) to keep the data up to date. Materialized views can contain operations such as aggregations, joins, and subqueries, and can be indexed and partitioned to further improve performance.
+--
+-- ## Privilege requirements
+--
+-- You must have the `CREATE TABLE` privilege to create a materialized view. For more information about the privileges of OceanBase Database, see [Privilege types in MySQL-compatible mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/200.permission-of-mysql-mode/100.permission-classification-of-mysql.md).
+--
+-- ## Syntax
+--
+-- ```sql
+-- CREATE MATERIALIZED VIEW view_name [([column_list] [PRIMARY KEY(column_list)])]
+--     [table_option_list]
+--     [partition_option]
+--     [mv_column_group_option]
+--     [refresh_clause]
+--     [query_rewrite_clause]
+--     [on_query_computation_clause]
+--     AS view_select_stmt;
+--
+-- column_list:
+--     column_name [, column_name ...]
+--
+-- refresh_clause:
+--     REFRESH [refresh_option [PARALLEL n] [nested_refresh_option]] [mv_refresh_on_clause]
+--     | NEVER REFRESH
+--
+-- refresh_option:
+--     COMPLETE
+--     | FAST
+--     | FORCE
+--
+-- nested_refresh_option:
+--     INDIVIDUAL
+--     | INCONSISTENT
+--     | CONSISTENT
+--
+-- mv_refresh_on_clause:
+--     [ON DEMAND] [[START WITH expr] [NEXT expr]]
+--
+-- query_rewrite_clause:
+--     DISABLE QUERY REWRITE
+--     | ENABLE QUERY REWRITE
+--
+-- on_query_computation_clause:
+--     DISABLE ON QUERY COMPUTATION
+--     | ENABLE ON QUERY COMPUTATION
+--
+-- mv_column_group_option:
+--     WITH COLUMN GROUP(all columns)
+--     | WITH COLUMN GROUP(each column)
+--     | WITH COLUMN GROUP(all columns, each column)
+-- ```
+--
+-- ## Parameters
+--
+-- <main id="notice" type='explain'>
+--   <h4>Note</h4>
+--   <p>You cannot directly create an index in the statement for creating a materialized view. You can use the <a href="2200.create-index-of-mysql-mode.md">CREATE INDEX</a> or <a href="1600.alter-table-of-mysql-mode.md">ALTER TABLE</a> statement to create an index for a materialized view. </p>
+-- </main>
+--
+-- |       **Parameter**        |       **Description**           |
+-- |-----------------------|--------------------------|
+-- | view_name             | The name of the materialized view to be created. |
+-- | column_list       | Optional. The list of columns of the materialized view. If you want to specify the names of the view columns explicitly, you can use the column_list clause and separate the column names with commas. <main id="notice" type='explain'><h4>Note</h4><p><ul><li>The view must have unique column names, just like the base table. By default, the column names of the view are the same as those retrieved in the <code>SELECT</code> statement. </li><li>The number of column names specified in the <code>column_list</code> clause must be the same as the number of columns retrieved in the <code>SELECT</code> statement. </li></ul></p></main>|
+-- | column_name           | The name of the column of the materialized view. By default, the column names retrieved in the `SELECT` statement are used as the view column names. |
+-- | PRIMARY KEY           | The primary key of the materialized view. <main id="notice" type='notice'><h4>Notice</h4><p><ul><li>If you do not specify the column names of the materialized view, the column names used in the primary key of the materialized view must be the same as those retrieved in the <code>SELECT</code> statement. </li><li>If you specify the column names of the materialized view, you must separate the column names from the <code>PRIMARY KEY</code> definition with a comma. </li></ul></p></main>|
+-- | table_option_list | Optional. The table options of the materialized view. Like a regular table, a materialized view can have table options. For more information, see [CREATE TABLE](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/2600.create-table-of-mysql-mode.md). |
+-- | partition_option  | Optional. The partitioning options of the materialized view. Like a regular table, a materialized view can be partitioned. For more information, see [CREATE TABLE](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/2600.create-table-of-mysql-mode.md). |
+-- | mv_column_group_option      | Optional. The storage format of the materialized view. If you do not specify this option, a rowstore materialized view is created by default. For more information, see [mv_column_group_option](#mv_column_group_option). |
+-- | refresh_clause        | Optional. The refresh method of the materialized view. For more information, see [refresh_clause](#refresh_clause). |
+-- | mv_refresh_on_clause  | Optional. The refresh timing of the materialized view. For more information, see [mv_refresh_on_clause](#mv_refresh_on_clause). |
+-- | query_rewrite_clause  | Optional. Specifies whether to enable automatic query rewriting for the materialized view. For more information, see [query_rewrite_clause](#query_rewrite_clause). |
+-- | on_query_computation_clause | Optional. Specifies whether the materialized view is a real-time materialized view. For more information, see [on_query_computation_clause](#on_query_computation_clause). |
+-- | view_select_stmt      | The query (SELECT) statement for defining the data of the materialized view. This statement is used to retrieve data from the base table and store the result in the materialized view. The syntax of `view_select_stmt` is the same as that of a regular `SELECT` statement. For more information, see [SELECT statement](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/8100.select-of-mysql-mode/100.select-of-mysql-mode.md). <main id="notice" type='explain'><h4>Note</h4><p><ul><li>OceanBase Database allows you to create a full-refresh materialized view with an external table as the base table. </li><li>OceanBase Database allows you to add the <code>AS OF PROCTIME()</code> clause to the base table when you create a materialized view. If you use the <code>AS OF PROCTIME()</code> clause outside the base table definition, an error is returned. The <code>AS OF PROCTIME()</code> clause is used to skip the refresh of this table during incremental refreshes. In addition, an mlog is not required for the <code>AS OF PROCTIME()</code> table. </li><li>OceanBase Database allows you to declare a regular view as a dimension table (<code>AS OF PROCTIME()</code>) and use it as the base table for incremental-refresh materialized views. </li></ul></p></main>|
+--
+-- ### mv_column_group_option
+--
+-- * `WITH COLUMN GROUP(all columns)`: Specifies to create a materialized view in rowstore format.
+-- * `WITH COLUMN GROUP(each column)`: Specifies to create a materialized view in columnstore format.
+-- * `WITH COLUMN GROUP(all columns, each column)`: Specifies to create a materialized view in rowstore-columnstore redundant format.
+--
+-- <main id="notice" type='explain'>
+--   <h4>Note</h4>
+--   <p>You can run the <code>SHOW CREATE TABLE view_name;</code> or <code>SHOW CREATE VIEW view_name;</code> statement to view the definition of the materialized view and determine its storage format.</p>
+-- </main>
+--
+-- ### refresh_clause
+--
+-- * `REFRESH [refresh_option [PARALLEL n] [nested_refresh_option]] [mv_refresh_on_clause]`: Specifies the refresh method and parallelism of the materialized view.
+--
+--   * `refresh_option`: specifies the refresh method of the materialized view. This is an optional parameter. If you do not specify any refresh method, the default value is `FORCE`.
+--
+--     * `COMPLETE`: specifies a complete refresh. A complete refresh recalculates all data in the materialized view to ensure that the data in the materialized view is consistent with that in the source table.
+--     * `FAST`: specifies an incremental refresh. An incremental refresh refreshes only the data in the materialized view that is related to the changes in the source table, without recalculating the entire materialized view.
+--
+--       <main id="notice" type='notice'>
+--         <h4>Notice</h4>
+--         <p><ul><li>When you use the <code>REFRESH FAST</code> method to refresh a materialized view, you must create a materialized view log (mlog) for the base table before you create the materialized view. </li><li>Columns used in the incremental refresh of the materialized view must be in the mlog. </li></ul>For more information about how to create a materialized view log, see <a href="../../../../300.database-object-management/100.manage-object-of-mysql-mode/600.manage-views-of-mysql-mode/200.manage-materialized-views-of-mysql-mode/200.materialized-views-log-of-mysql-mode.md">Materialized view logs</a>.</p>
+--       </main>
+--
+--     * `FORCE`: the default value. Specifies a hybrid refresh. First, an incremental refresh is attempted. If the incremental refresh fails, a complete refresh is performed.
+--     * `nested_refresh_option`: specifies the refresh strategy of the nested materialized view. This is an optional parameter. If you do not specify a refresh strategy, the default value is `INDIVIDUAL`. Valid values:
+--
+--       * `INDIVIDUAL`: the default value. Specifies an independent refresh.
+--       * `INCONSISTENT`: specifies a cascading refresh that does not maintain consistency.
+--       * `CONSISTENT`: specifies a cascading refresh that maintains consistency.
+--
+--       <main id="notice" type='explain'>
+--         <h4>Note</h4>
+--         <p>For a non-nested materialized view, no cascading refresh is performed regardless of the specified refresh strategy. In this case, the refresh strategy is ignored and an independent refresh is performed. The three specified refresh strategies take effect only for background tasks. When you manually use the PL package (<a href="../../../../600.pl-reference/200.pl-mysql/1000.pl-system-package-mysql/9950.dbms-mview-mysql/300.refresh-mysql.md">DBMS_MVIEW.REFRESH</a>) to schedule a refresh, the refresh is performed based on the specified PL parameters.</p>
+--       </main>
+--
+--   * `PARALLEL n`: specifies the refresh parallelism, which is the degree of parallelism used during the refresh of the materialized view. `n` must be an integer greater than or equal to 0. When `n` is 0, the system variable `mview_refresh_dop` is used to determine the refresh parallelism.
+--
+--     <main id="notice" type='explain'>
+--       <h4>Note</h4>
+--       <p>For version V4.4.2, starting from V4.4.2 BP2, you can specify the refresh parallelism in the <code>REFRESH ... PARALLEL n</code> clause of the <code>REFRESH</code> statement.</p>
+--     </main>
+--
+-- * `NEVER REFRESH`: specifies that the materialized view does not need to be refreshed. That is, the materialized view is refreshed only when it is created and cannot be refreshed again after it is created.
+--
+-- ### mv_refresh_on_clause
+--
+-- <main id="notice" type='explain'>
+--   <h4>Note</h4>
+--   <p>Except for using the <code>mv_refresh_on_clause</code> clause to define the refresh plan, you can also manually refresh a materialized view by calling the <code>dbms_mviews.refresh</code> stored procedure.</p>
+-- </main>
+--
+-- * `ON DEMAND`: an optional parameter. Specifies to refresh the materialized view on demand.
+-- * `[[START WITH expr] [NEXT expr]]`: an optional parameter. Specifies the refresh interval.
+--
+--   * `[START WITH expr]`: an optional parameter. Specifies the time expression for the start of the refresh plan.
+--   * `[NEXT expr]`: an optional parameter. Specifies the time expression for the next refresh.
+--
+--     <main id="notice" type='notice'>
+--       <h4>Notice</h4>
+--       <p><ul><li>If you use the <code>NEXT</code> clause, the time expression of the refresh plan must be set to a future time. Otherwise, an error will be returned. </li><li>If you want to schedule the automatic refresh of the materialized view periodically, set the scheduling cycle by using the <code>NEXT</code> clause. </li></ul></p>
+--     </main>
+--
+-- We recommend that you use `sysdate()` to represent the current time in the current time zone. Here is an example of a time expression:
+--
+-- ```sql
+-- START WITH sysdate() NEXT sysdate() + INTERVAL 1 DAY
+-- ```
+--
+-- The preceding clause indicates that the materialized view is refreshed every 1 day starting from the current time (`sysdate()`).
+--
+-- ### query_rewrite_clause
+--
+-- <main id="notice" type='notice'>
+--   <h4>Notice</h4>
+--   <p>This feature applies only to materialized views that contain only the <code>SELECT JOIN</code> and <code>WHERE</code> clauses, that is, SPJ queries. Materialized views that do not meet the conditions will not be used for rewriting, but no error will be returned. </p>
+-- </main>
+--
+-- * `DISABLE QUERY REWRITE`: the default value. Specifies that automatic rewriting is disabled for the current materialized view.
+-- * `ENABLE QUERY REWRITE`: specifies that automatic rewriting is enabled for the current materialized view.
+--
+-- For more information about materialized view rewriting, see [Materialized view query rewriting](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/100.manage-object-of-mysql-mode/600.manage-views-of-mysql-mode/200.manage-materialized-views-of-mysql-mode/500.materialized-views-rewrite-of-mysql-mode.md).
+--
+-- ### on_query_computation_clause
+--
+-- * `DISABLE ON QUERY COMPUTATION`: the default value, which specifies to create a regular materialized view.
+-- * `ENABLE ON QUERY COMPUTATION`: specifies to create a real-time materialized view.
+--
+--   <main id="notice" type='notice'>
+--     <h4>Notice</h4>
+--     <p><ul><li>Materialized views that use the <code>MIN</code> or <code>MAX</code> function do not support real-time materialized views. </li><li>Aggregated materialized views with outer joins do not support real-time materialized views. </li><li>Materialized views with set queries do not support real-time materialized views. </li><li>Nested materialized views cannot be created as real-time materialized views. </li></ul></p>
+--   </main>
+--
+-- For more information about real-time materialized views, see the **Create a real-time materialized view** section in [Create a materialized view](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/100.manage-object-of-mysql-mode/600.manage-views-of-mysql-mode/200.manage-materialized-views-of-mysql-mode/300.create-materialized-views-of-mysql-mode.md).
+--
+-- ## Examples
+--
+-- 1. Create a table named `test_tbl1`.
+--
+--    ```sql
+--    CREATE TABLE test_tbl1 (col1 INT PRIMARY KEY, col2 VARCHAR(20), col3 INT, col4 INT);
+--    ```
+--
+-- 2. Create a materialized view named `mv_test_tbl1`. Partition the materialized view by the `col1` column into 8 partitions. Refresh the materialized view using the complete refresh method, starting from the current date and refreshing every 1 day. Query the records in the `test_tbl1` table that satisfy the condition `col3 >= 30` as the base table and use the query results as the data for the materialized view.
+--
+--    ```sql
+--    CREATE MATERIALIZED VIEW mv_test_tbl1
+--      PARTITION BY HASH(col1) PARTITIONS 8
+--      REFRESH COMPLETE START WITH sysdate() NEXT sysdate() + INTERVAL 1 DAY
+--      AS SELECT col1, col2, col3
+--        FROM test_tbl1
+--        WHERE col3 >= 30;
+--    ```
+--
+-- 3. Create a materialized view named `mv2_test_tbl1` and specify the primary key.
+--
+--    ```sql
+--    CREATE MATERIALIZED VIEW mv2_test_tbl1(c1, c2, c3, PRIMARY KEY(c1))
+--          AS SELECT col1, col2, col3
+--            FROM test_tbl1;
+--    ```
+--
+-- 4. Create a columnar format materialized view named `mv3_test_tbl1`.
+--
+--    ```sql
+--    CREATE MATERIALIZED VIEW mv3_test_tbl1
+--      WITH COLUMN GROUP(each column)
+--      AS SELECT col1, col2, col3
+--        FROM test_tbl1;
+--    ```
+--
+-- 5. View the definition of the materialized view `mv3_test_tbl1`.
+--
+--    ```sql
+--    SHOW CREATE VIEW mv3_test_tbl1;
+--    ```
+--
+-- ## References
+--
+-- * [Overview of materialized views](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/100.manage-object-of-mysql-mode/600.manage-views-of-mysql-mode/200.manage-materialized-views-of-mysql-mode/100.materialized-views-overview-of-mysql-mode.md)
+--
+-- * [Create materialized views](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/100.manage-object-of-mysql-mode/600.manage-views-of-mysql-mode/200.manage-materialized-views-of-mysql-mode/300.create-materialized-views-of-mysql-mode.md)
+--
+-- * [Query materialized views](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/100.manage-object-of-mysql-mode/600.manage-views-of-mysql-mode/200.manage-materialized-views-of-mysql-mode/600.view-materialized-views-of-mysql-mode.md)
+--
+-- * [Delete materialized views](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/100.manage-object-of-mysql-mode/600.manage-views-of-mysql-mode/200.manage-materialized-views-of-mysql-mode/700.delete-materialized-views-of-mysql-mode.md)
+--
+-- * [Refresh materialized views](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/100.manage-object-of-mysql-mode/600.manage-views-of-mysql-mode/200.manage-materialized-views-of-mysql-mode/400.refresh-materialized-views-of-mysql-mode.md)--
+--
+-- ==============================================================================
+-- [DDL-028] MySQL mode | CREATE MATERIALIZED VIEW LOG
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/2251.create-materialized-views-log-of-mysql-mode-in-sql.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # CREATE MATERIALIZED VIEW LOG
+--
+-- ## Purpose
+--
+-- This statement is used to create a materialized view log.
+--
+-- A materialized view log (MLOG) records incremental updates to the base table to support fast refreshes of materialized views. An MLOG is a tracking table that monitors changes to the base table and applies these changes to the corresponding materialized view to enable fast refreshes.
+--
+-- <main id="notice" type='explain'>
+--   <h4>Note</h4>
+--   <p>In OceanBase Database, the <code>mlog</code> table does not support specifying partitions. The partitions of the <code>mlog</code> table are bound to those of the base table.</p>
+-- </main>
+--
+-- ## Privilege requirements
+--
+-- To create a materialized view log, you must have the `CREATE TABLE` privilege and the `SELECT` privilege on the base table. For more information about privileges in OceanBase Database, see [Privilege types in MySQL-compatible mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/200.permission-of-mysql-mode/100.permission-classification-of-mysql.md).
+--
+-- ## Syntax
+--
+-- ```sql
+-- CREATE MATERIALIZED VIEW LOG ON [database.] table
+--     [parallel_clause]
+--     [with_clause]
+--     [mv_log_purge_clause];
+--
+-- parallel_clause:
+--     NOPARALLEL
+--     | PARALLEL integer
+--
+-- with_clause:
+--     WITH [ {PRIMARY KEY | ROWID | SEQUENCE}
+--             [ { , PRIMARY KEY | , ROWID | , SEQUENCE }]... ]
+--         (column_name [, column_name]...)
+--         [new_values_clause]
+--
+-- new_values_clause:
+--     {INCLUDING | EXCLUDING} NEW VALUES
+--
+-- mv_log_purge_clause:
+--     PURGE {IMMEDIATE [ SYNCHRONOUS ]
+--         | START WITH datetime_expr [NEXT datetime_expr]
+--         | [START WITH datetime_expr] NEXT datetime_expr
+--         }
+-- ```
+--
+-- ## Parameters
+--
+-- |       **Parameter**      |       **Description**           |
+-- |---------------------|--------------------------|
+-- | database.             | Optional. Specifies the database where the base table of the materialized view log is located. If omitted, the base table is assumed to be in your own database.|
+-- | table               | Specifies the name of the base table corresponding to the materialized view log.|
+-- | parallel_clause     | Optional. Specifies the degree of parallelism (dop) for creating the materialized view log. For more information, see [parallel_clause](#parallel_clause) below.|
+-- | with_clause         | Optional. Specifies the auxiliary columns included in the materialized view log. It indicates whether to record the primary key (`PRIMARY KEY`) and row identifier (`ROWID`) when the base table changes, and can also be used to add a sequence (`SEQUENCE`) to provide additional sorting information for the materialized view log. For more information, see [with_clause](#with_clause) below.|
+-- | column_name         | Optional. Specifies the name of the column whose value will be recorded in the materialized view log for all modified rows.|
+-- | new_values_clause   | Optional. Specifies whether to record both the old and new values in the materialized view log during update operations. For more information, see [new_values_clause](#new_values_clause) below.|
+-- | mv_log_purge_clause | Optional. Specifies the time when data in the materialized view log will be purged. For more information, see [mv_log_purge_clause](#mv_log_purge_clause) below.|
+--
+-- ### parallel_clause
+--
+-- * `NOPARALLEL`: The default configuration, with a parallelism level of `1`.
+--
+-- * `PARALLEL integer`: Specifies the parallelism level, where `integer` must be greater than or equal to `1`.
+--
+-- ### with_clause
+--
+-- * `PRIMARY KEY`: Indicates that the materialized view log records the primary key columns of the base table. This option is only effective for tables with a primary key. If not specified, the system will automatically add this attribute to the materialized view log, meaning it will default to including the primary key columns.
+--
+-- * `ROWID`: Indicates that the materialized view log records the row identifiers (`ROWID`) of the base table. If not specified, the system will automatically add this attribute to the materialized view log, meaning it will default to including the `M_ROW$$` column.
+--
+-- * `SEQUENCE`: Indicates that the materialized view log records the sequence numbers (`seq_no`) of multiple-row updates within a transaction. The system will automatically add this attribute to the materialized view log, meaning it will default to including the `SEQUENCE$$` column.
+--
+-- ### new_values_clause
+--
+-- * `INCLUDING`: The default setting, indicating that both new and old values can be saved in the materialized view log. If you want the materialized view to support fast refreshes, you must specify `INCLUDING NEW VALUES`.
+--
+-- * `EXCLUDING`: Indicates that new values will not be recorded in the materialized view log. Do not use `EXCLUDING NEW VALUES`, as it will result in an error.
+--
+-- ### mv_log_purge_clause
+--
+-- <main id="notice" type='notice'>
+--   <h4>Notice</h4>
+--   <p>Data in the materialized view log will only be purged after the materialized view has been successfully refreshed.</p>
+-- </main>
+--
+-- * `IMMEDIATE`: Specifies that the corresponding materialized view log will be purged immediately after each refresh. The default value is `SYNCHRONOUS`.
+--
+--   * `SYNCHRONOUS`: Optional. Specifies that the purge will be executed synchronously.
+--
+-- * `START WITH datetime_expr [NEXT datetime_expr]`:
+--
+--   * `START WITH datetime_expr`: Specifies the initial purge time for the materialized view log.
+--   * `[NEXT datetime_expr]`: Optional. Specifies the next purge time for the materialized view log. Used to set the next purge time.
+--
+-- * `[START WITH datetime_expr] NEXT datetime_expr`: If only the `NEXT datetime_expr` parameter is specified and not the `START WITH datetime_expr` parameter, the initial purge time for the materialized view log will be set to the value of the `NEXT datetime_expr` parameter.
+--
+-- <main id="notice" type='notice'>
+--   <h4>Notice</h4>
+--   <p>Make sure that the time expressions <code>START WITH datetime_expr</code> and <code>NEXT datetime_expr</code> are set to future dates and times, otherwise an error will occur.</p>
+-- </main>
+--
+-- We recommend using `sysdate()` to represent the current time in the current time zone. Here is an example of a time expression:
+--
+-- ```sql
+-- START WITH sysdate() NEXT sysdate() + INTERVAL 1 DAY
+-- ```
+--
+-- The above clause indicates that expired materialized view log records will be purged every 1 day starting from the current time (`sysdate()`).
+--
+-- ## Examples
+--
+-- 1. Create a table named `test_tbl1`.
+--
+--     ```shell
+--     ```
+--
+-- 2. Create a materialized view log on the `test_tbl1` table. Specify a parallelism of `5` for processing the materialized view log and record changes to the `col2` column, including both the old and new values. Configure the materialized view log to start from the current date and to clean up expired records every `1` day.
+--
+--     ```shell
+--         PARALLEL 5
+--         WITH SEQUENCE(col2) INCLUDING NEW VALUES
+--         PURGE START WITH sysdate() NEXT sysdate() + INTERVAL 1 DAY;
+--     ```
+--
+-- 3. View the information about the materialized view log on the `test_tbl1` table.
+--
+--     ```shell
+--     ```
+--
+--     The return result is as follows:
+--
+--     ```shell
+--     +------------+-------------+------+------+---------+-------+
+--     | Field      | Type        | Null | Key  | Default | Extra |
+--     +------------+-------------+------+------+---------+-------+
+--     | col1       | int(11)     | NO   | PRI  | NULL    |       |
+--     | col2       | varchar(20) | YES  |      | NULL    |       |
+--     | SEQUENCE$$ | bigint(20)  | NO   | PRI  | NULL    |       |
+--     | DMLTYPE$$  | varchar(1)  | YES  |      | NULL    |       |
+--     | OLD_NEW$$  | varchar(1)  | YES  |      | NULL    |       |
+--     +------------+-------------+------+------+---------+-------+
+--     5 rows in set
+--     ```
+--
+-- ## References
+--
+-- [Materialized view logs](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/100.manage-object-of-mysql-mode/600.manage-views-of-mysql-mode/200.manage-materialized-views-of-mysql-mode/200.materialized-views-log-of-mysql-mode.md)--
+--
+-- ==============================================================================
+-- [DDL-029] MySQL mode | CREATE OUTLINE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/2300.create-outline-of-mysql-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # CREATE OUTLINE
+--
+-- ## Purpose
+--
+-- This statement is used to create an outline. You can create an outline in two ways: by using the `SQL_TEXT` parameter, which specifies the original statement with parameters executed by the user, or by using the `SQL_ID` parameter.
+--
+--   <main id="notice" type='explain'>
+--     <h4>Note</h4>
+--     <p>To create an outline, you must be in the corresponding database. </p>
+--   </main>
+--
+-- When the `SQL_ID` is the same, the outline created by using the `SQL_TEXT` parameter will overwrite the outline created by using the `SQL_ID` parameter. The outline created by using the `SQL_TEXT` parameter has a higher priority.
+--
+-- In addition, OceanBase Database distinguishes different SQL statements by using the `SQL_ID`, which is obtained by encrypting the `SQL_TEXT` with MD5. If the SQL texts are the same except for an extra line break or tab, the `SQL_ID` will be different. In a production system, we recommend that you bind an outline to an SQL statement by using the `SQL_ID`.
+--
+-- ## Syntax
+--
+-- * Create an outline by using the `SQL_TEXT` parameter.
+--
+--   ```sql
+--   CREATE [OR REPLACE] OUTLINE outline_name ON stmt [ TO target_stmt ]
+--   ```
+--
+-- * Create an outline by using the `SQL_ID` parameter.
+--
+--   ```sql
+--   CREATE OUTLINE outline_name ON sql_id USING HINT hint;
+--   ```
+--
+-- ## Parameters
+--
+-- |     **Parameter**     |                                                                                                                                **Description**                                                                                                                                |
+-- |----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+-- | outline_name   | The name of the outline to be created.                                                                                                                                                                                                                                                   |
+-- | OR REPLACE     | If you specify `OR REPLACE`, the existing outline will be replaced when you create a new one.                                                                                                                                                                                                                |
+-- | stmt           | A DML statement with hints and parameters.                                                                                                                                                                                                                                          |
+-- | TO target_stmt | If you do not specify `TO target_stmt`, the database will bind the SQL statement with the same parameters as the `stmt` statement to the hint in the `stmt` statement. If you want to fix the execution plan of a statement with hints, you must specify `TO target_stmt` to indicate the original SQL statement. <br>**Notice**  When you use `target_stmt`, the `stmt` statement and the `target_stmt` statement must be exactly the same after the hints are removed. </br> |
+-- | sql_id         | If the SQL statement corresponding to the `sql_id` parameter has hints, the hints specified in the outline will overwrite all hints in the original statement.                                                                                                                                                                                                 |
+-- | hint           | The format is `/*+ xxx */`.                                                                                                                                                                                                                                                   |
+--
+-- ## Examples
+--
+-- * Create an outline by using the `SQL_TEXT` parameter.
+--
+--   ```sql
+--   ON SELECT/*+ index(t1 idx_c2)*/ * FROM t1 WHERE c2 = 1;
+--   ```
+--
+-- * Create an outline by using the `SQL_ID` parameter.
+--
+--   ```sql
+--   ON 'ED570339F2C856BA96008A29EDF04C74'
+--   USING HINT /*+ index(t1 idx_c2)*/ ;
+--   ```
+--
+-- ## References
+--
+-- [Plan binding](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/1000.performance-tuning-guide/500.sql-optimization/400.sql-optimization/700.manage-execution-plans/200.plan-binding.md)--
+--
+-- ==============================================================================
+-- [DDL-030] MySQL mode | CREATE FORMAT OUTLINE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/2350.create-format-outline-of-mysql-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # CREATE FORMAT OUTLINE
+--
+-- ## Purpose
+--
+-- This statement is used to create a fuzzy outline. A fuzzy outline can be created in two ways: one is by using `FORMAT_SQL_TEXT` (the parameterized original statement executed by the user), and the other is by using `FORMAT_SQL_ID`.
+--
+-- ## Limitations and considerations
+--
+-- * To create an outline, you must execute the statement under the corresponding user.
+--
+-- * When `FORMAT_SQL_ID` is the same, the outline created by using `FORMAT_SQL_TEXT` will overwrite the outline created by using `FORMAT_SQL_ID`. The outline created by using `FORMAT_SQL_TEXT` has a higher priority. Additionally, OceanBase Database distinguishes different SQL statements by using `FORMAT_SQL_ID`, which is generated by taking the `MD5` hash of `FORMAT_SQL_TEXT`. In a production system, it is recommended to bind outlines by using `FORMAT_SQL_ID`.
+--
+--   <main id="notice" type='explain'>
+--     <h4>Note</h4>
+--     <p><ul><li>The matching rules of <code>FORMAT_SQL_TEXT</code> ignore changes in parameters, case differences, and non-syntactic symbols such as spaces and line breaks. For an <code>IN</code> expression, normalization is performed, and only the text content after these processing steps is compared.</li><li><code>FORMAT_SQL_ID</code> is generated by first formatting <code>FORMAT_SQL_TEXT</code> (removing extra spaces and line breaks, and converting all characters to uppercase or lowercase), and then applying the <code>MD5</code> hash encryption to the formatted result.</li></ul></p>
+--   </main>
+--
+-- * For V4.4.2, starting from V4.4.2 BP3, Format Outline supports both text protocol and prepared statement protocol (PS) scenarios.
+--
+-- ## Syntax
+--
+-- ```sql
+-- /* Use FORMAT_SQL_TEXT to create an outline. */
+-- CREATE [OR REPLACE] FORMAT OUTLINE outline_name ON format_stmt [ TO format_target_stmt ]
+--
+-- /* Use FORMAT_SQL_ID to create an outline. */
+-- CREATE [OR REPLACE] FORMAT OUTLINE outline_name ON format_sql_id USING HINT hint;
+-- ```
+--
+-- ## Parameters
+--
+-- |        Parameter          |            Description             |
+-- |----------------------|----------------------------|
+-- | outline_name         | The name of the fuzzy outline to be created.|
+-- | OR REPLACE           | If you specify `OR REPLACE`, and the outline to be created already exists, the existing outline will be replaced.|
+-- | format_stmt          | The original SQL statement, which is the SQL statement or operation to which the outline will be applied. <main id="notice" type='explain'><h4>Note</h4><p>OceanBase Database automatically converts unformatted SQL text into formatted SQL text internally.</p></main>|
+-- | TO format_target_stmt | Optional. Specifies the target SQL statement to which `format_stmt` will be converted or applied. This allows the outline to also be applicable to other SQL statements. You can use the TO format_target_stmt option to declare these SQL statements. <main id="notice" type='notice'><h4>Notice</h4><p><ul><li>If you want to fix the plan for a statement containing a hint, use <code>format_target_stmt</code> to specify the original SQL.</li><li>When using the <code>TO format_target_stmt</code> clause, the original SQL <code>format_stmt</code> must match <code>format_target_stmt</code> after removing hints and formatting.</li></ul></p></main>|
+-- | format_sql_id        | The `format_stmt` obtained after a series of rules are applied to the SQL statement to be bound, and then the `MD5` value is calculated based on `format_stmt` to obtain `format_sql_id`.|
+--
+-- ## Examples
+--
+-- * Create an outline by using `FORMAT_SQL_TEXT`.
+--
+--   ```sql
+--   CREATE FORMAT OUTLINE my_outline ON SELECT * FROM employees WHERE department_id = ?;
+--   ```
+--
+-- * Create an outline by using `FORMAT_SQL_ID`.
+--
+--   ```sql
+--   CREATE FORMAT OUTLINE my_sql_id_outline ON 'ED570339F2C856BA96008A29EDF04C74' USING HINT /*+ index(t1 idx_c2)*/;
+--
+--   ```
+--
+-- ## References
+--
+-- For more information about using outlines, see [Plan binding](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/1000.performance-tuning-guide/500.sql-optimization/400.sql-optimization/700.manage-execution-plans/200.plan-binding.md).--
+--
+-- ==============================================================================
+-- [DDL-031] MySQL mode | CREATE RESTORE POINT
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/2400.create-restore-point-of-mysql-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # CREATE RESTORE POINT
+--
+-- ## Purpose
+--
+-- You can use this statement to create a restore point. By using this feature, you can retain a data snapshot of the current moment and later perform queries based on this data snapshot. Currently, rolling back data to this restore point is not supported.
+--
+-- After creating a restore point, you can query the `SNAPSHOT` value of this restore point in the `V$RESTORE_POINT` view, and then retrieve the values in the data snapshot using the syntax `SELECT * FROM table_name AS OF SNAPSHOT snapshot;`.
+--
+-- <main id="notice" type='notice'>
+--   <h4>Notice</h4>
+--   <p><ul><li>OceanBase Database V4.x does not support the CREATE RESTORE POINT statement. </li><li>You cannot create or drop restore points in the sys tenant. </li></ul></p>
+-- </main>
+--
+-- ## Limitations
+--
+-- The limitations for the restore point feature are as follows:
+--
+-- * Physical backups are not supported.
+--
+-- * Primary/secondary database is not supported.
+--
+-- * Each tenant is limited to `10` restore points.
+--
+-- * After you create a restore point, if DDL statements are executed on tables that existed before the creation of the restore point, the system will throw an error.
+--
+-- * Since the restore point functionality depends on GTS for maintaining global consistent snapshots, GTS needs to be enabled when you use restore points.
+--
+--   The SQL command to enable GTS is as follows:
+--
+--   ```sql
+--   ```
+--
+-- ## Syntax
+--
+-- ```sql
+-- CREATE RESTORE POINT restore_point;
+-- ```
+--
+-- ## Parameters
+--
+-- | Parameter | Description |
+-- |---------------|----------|
+-- | restore_point | The name of the restore point.  |
+--
+-- ## Examples
+--
+-- 1. Create a table named `test1`.
+--
+--    ```sql
+--    ```
+--
+-- 2. Insert a row of data.
+--
+--    ```sql
+--    ```
+--
+-- 3. Create a restore point `rp1`.
+--
+--    ```sql
+--    ```
+--
+-- 4. Insert additional data into the `test1` table and commit these data.
+--
+--    ```sql
+--    ```
+--
+-- 5. Query the current version of data in the `test1` table.
+--
+--    ```sql
+--    +------+------+
+--    | c1   | c2   |
+--    +------+------+
+--    |    1 |    1 |
+--    |    2 |    2 |
+--    |    3 |    3 |
+--    +------+------+
+--    3 rows in set
+--    ```
+--
+-- 6. View the information of the created restore point `rp1` and query the historical versions of data based on the version number.
+--
+--    ```sql
+--    ```
+--
+--    The result is as follows:
+--
+--    ```shell
+--    +-----------+------------------+----------------------------+------+
+--    | TENANT_ID | SNAPSHOT         | TIME                       | NAME |
+--    +-----------+------------------+----------------------------+------+
+--    |      1001 | 1630407064663511 | 2021-08-31 18:51:04.665692 | rp1  |
+--    +-----------+------------------+----------------------------+------+
+--    1 row in set
+--
+--    +------+------+
+--    | c1   | c2   |
+--    +------+------+
+--    |    1 |    1 |
+--    +------+------+
+--    1 row in set
+--    ```--
+--
+-- ==============================================================================
+-- [DDL-032] MySQL mode | CREATE ROLE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/2450.create-role-of-mysql-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # CREATE ROLE
+--
+-- ## Purpose
+--
+-- You can use this statement to create a role. You can use roles to manage database privileges.
+--
+-- ## Limitations and considerations
+--
+-- * The `CREATE ROLE` statement does not support specifying security authentication plugins, such as `ob_sm3_password` or `caching_sha2_password`, for a role.
+--
+-- ## Required privileges
+--
+-- * You must have the `CREATE USER` or `CREATE ROLE` privilege. For more information about privileges in OceanBase Database, see [Privilege types in MySQL-compatible mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/200.permission-of-mysql-mode/100.permission-classification-of-mysql.md).
+--
+-- * If the value of the system variable `read_only` is `1` in the current tenant, the tenant is in read-only mode. In this case, you must also have the `SUPER` privilege to execute the `CREATE ROLE` statement.
+--
+--   The system variable `read_only` specifies whether the tenant is in read-only mode. The default value is `0`, indicating that the tenant is in read-write mode. For more information about the system variable `read_only`, see [read_only](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/800.configuration-items-and-system-variables/200.system-variable/300.global-system-variable/11100.read_only-global.md).
+--
+-- ## Syntax
+--
+-- ```sql
+-- CREATE ROLE [IF NOT EXISTS] role_name [, role_name ...];
+-- ```
+--
+-- ## Parameters
+--
+-- | **Parameter** | **Description** |
+-- |----------|----------|
+-- | IF NOT EXISTS | Optional. If you specify this clause, a warning instead of an error message is generated when the role to be created already exists in the current tenant.  |
+-- | role_name | The name of the role to be created. Separate the names of multiple roles with commas (`,`).  |
+--
+-- ## Examples
+--
+-- * Create a role named `role001`.
+--
+--   ```sql
+--   ```
+--
+-- * Create the `role001` and `role002` roles.
+--
+--   ```sql
+--   ```
+--
+--   The return result is as follows:
+--
+--   ```shell
+--   Query OK, 0 rows affected, 1 warning
+--   ```
+--
+--   Use the `SHOW WARNINGS;` statement to query warnings. The return result is as follows:
+--
+--   ```shell
+--   +-------+------+-----------------------------------------------+
+--   | Level | Code | Message                                       |
+--   +-------+------+-----------------------------------------------+
+--   | Note  | 3163 | Authorization ID 'role001'@'%' already exists |
+--   +-------+------+-----------------------------------------------+
+--   1 row in set
+--   ```
+--
+-- ## References
+--
+-- * [Create a role](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/200.permission-of-mysql-mode/340.role-management-of-mysql-mode/200.create-a-role-for-mysql-tenant-of-mysql-mode.md)
+-- * [Add privileges to a role](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/200.permission-of-mysql-mode/340.role-management-of-mysql-mode/300.grant-privileges-to-a-role-of-mysql-mode.md)
+-- * [Grant a role to a user or role](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/200.permission-of-mysql-mode/340.role-management-of-mysql-mode/400.grant-a-role-to-a-role-or-user-of-mysql-mode.md)
+-- * [View roles](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/200.permission-of-mysql-mode/340.role-management-of-mysql-mode/600.view-roles-of-mysql-mode.md)
+-- * [Indirectly grant privileges](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/200.permission-of-mysql-mode/350.indirect-authority-of-mysql-mode.md)--
+--
+-- ==============================================================================
+-- [DDL-033] MySQL mode | CREATE SEQUENCE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/2500.create-sequence-of-mysql-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # CREATE SEQUENCE
+--
+-- ## Purpose
+--
+-- You can use this statement to create a sequence. A sequence is a database object. You can generate a unique integer from a sequence.
+--
+-- If two users increment the same sequence concurrently, the sequence numbers obtained by the two users have an interval. One user can never obtain the sequence number generated by the other user. Sequence numbers are generated independently of the table. Therefore, you can use the same sequence for multiple tables.
+--
+-- After creating a sequence, you can use the `CURRVAL` pseudocolumn to return the current sequence value or use the `NEXTVAL` pseudocolumn to return the new increment value in the SQL statement. For more information, see [Sequence pseudocolumns](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/800.overview-of-pseudo-columns-of-mysql-mode/300.sequence-pseudo-column-of-mysql-mode.md).
+--
+-- ## Syntax
+--
+-- ```sql
+-- CREATE SEQUENCE [ IF NOT EXISTS ] [ schema. ] sequence_name
+-- { START WITH int_value
+-- |[ INCREMENT BY int_value ]
+-- |[ MINVALUE int_value | NOMINVALUE ]
+-- |[ MAXVALUE int_value | NOMAXVALUE ]
+-- |[ CACHE int_value | NOCACHE ]
+-- |[ ORDER | NOORDER ]
+-- |[ CYCLE | NOCYCLE ]
+-- }
+-- ;
+-- ```
+--
+-- ## Parameters
+--
+-- | Parameter | Description |
+-- |------------------------|-----------------------------------------------|
+-- | schema. | The schema where the sequence resides. If this parameter is not specified, the database creates the sequence in the schema of the current user.  |
+-- | sequence_name | The name of the sequence to be created.  |
+-- | IF NOT EXISTS | If the sequence name already exists and `IF NOT EXISTS` is not specified, an error is returned.  |
+-- | MINVALUE int_value | The minimum value of the sequence. Value range of `int_value`: \[-(10<sup>27</sup>-1), (10<sup>27</sup>-1)\].  |
+-- | NOMINVALUE | `NOMINVALUE` is the default value. If `NOMINVALUE` is specified, the minimum value is 1 for an ascending sequence and -(10<sup>27</sup>-1) for a descending sequence.  |
+-- | MAXVALUE int_value | The maximum value of the sequence. Value range of `int_value`: [(-10<sup>27</sup>+1), (10<sup>28</sup>-1)].  <br>**Notice**  <ul><li>When `MINVALUE` and `MAXVALUE` are both specified, `MINVALUE` must be smaller than `MAXVALUE`. </li>   <li>  The difference between `MAXVALUE` and `MINVALUE` must be greater than or equal to `INCREMENT BY int_value`.  </li></ul> |
+-- | NOMAXVALUE | `NOMAXVALUE` is the default value. If `NOMAXVALUE` is specified, the maximum value is (10<sup>28</sup>-1) for an ascending sequence and -1 for a descending sequence.  |
+-- | START WITH int_value | The start value of the sequence. `int_value` must be smaller than or equal to `MAXVALUE`, and greater than or equal to `MINVALUE`. If no start value is specified, the start value is the minimum value for an ascending sequence and the maximum value for a descending sequence.  |
+-- | INCREMENT BY int_value | The increment of the sequence. `int_value` cannot be 0. If the value is positive, the sequence ascends. If the value is negative, the sequence descends. If this parameter is not specified, the default value is 1.  |
+-- | CACHE int_value | The number of sequence values pre-allocated in the memory. By default, `int_value` is 20. The value of `CACHE int_value` must be greater than 1. If the value of `CACHE int_value` is 1, it is equivalent to `NOCACHE`.  |
+-- | NOCACHE | Specifies that no sequence values are pre-allocated. If neither `CACHE` nor `NOCACHE` is specified, the database caches 20 sequence values by default.  |
+-- | ORDER | Specifies that sequence values are generated in order.  |
+-- | NOORDER | `NOORDER` is the default value, which means it is not assured that sequence values are generated in order.  |
+-- | CYCLE | Specifies that sequence values are generated cyclically. That is, when the sequence reaches its maximum or minimum value, new sequence values will also be generated. If the sequence ascends and reaches its maximum value, the minimum sequence value will be generated. If the sequence descends and reaches its minimum value, the maximum sequence value will be generated.  <br>**Notice**  <ul><li> If `CYCLE` is specified and the value of `INCREMENT BY int_value` is smaller than 0, `MINVALUE` must be specified. </li>   <li>  If `CYCLE` is specified, the number of values in the cache cannot be greater than the number of values in the cycle. </li></ul> </br> |
+-- | NOCYCLE | `NOCYCLE` is the default value. If it is specified, no more values are generated when the sequence reaches its maximum or minimum value.  |
+--
+-- ## Examples
+--
+-- Create a sequence named `seq1` in the `test` schema and set the increment to 2. In the following example, 1 is returned for the first reference to `seq1.nextval`, and 3 is returned for the second reference. The return value of each subsequent reference is greater than that of the previous reference by 2.
+--
+-- ```sql
+-- Query OK, 0 rows affected
+--
+-- +--------+
+-- | nextval|
+-- +--------+
+-- | 1      |
+-- +--------+
+-- 1 row in set
+--
+-- +--------+
+-- | nextval|
+-- +--------+
+-- | 3      |
+-- +--------+
+-- 1 row in set
+-- ```--
+--
+-- ==============================================================================
+-- [DDL-034] MySQL mode | CREATE SENSITIVE RULE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/2550.create-sensitive-rule-of-mysql-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # CREATE SENSITIVE RULE
+--
+-- ## Purpose
+--
+-- This statement is used to create a sensitive data protection rule.
+--
+-- ## Privilege requirements
+--
+-- To execute the `CREATE SENSITIVE RULE` statement, the current user must have the `CREATE SENSITIVE RULE` privilege. For more information about OceanBase Database privileges, see [Privilege types in MySQL-compatible mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/200.permission-of-mysql-mode/100.permission-classification-of-mysql.md).
+--
+-- ## Syntax
+--
+-- ```sql
+-- CREATE SENSITIVE RULE <rule_name>
+-- ON <sensitive_field_list>
+-- USING ENCRYPTION [ = <encryption_method>];
+-- ```
+--
+-- ## Parameters
+--
+-- The parameters are described as follows:
+--
+-- | Parameter | Data type | Default value | Description |
+-- |---|---|---|---|
+-- | rule_name | String |  | The name of the encryption rule, which must be unique within a tenant. |
+-- | sensitive_field_list | String |  | The columns to be encrypted, in the format of `db.table(col1, col2), db2.table2(col3, col4), ...`. Each sensitive item specifies one or more columns in a table, with columns separated by commas. Sensitive items are separated by commas, and the rule specifies the columns to be protected. A single rule can protect multiple columns across multiple users and tables. Parameter description:<ul><li>If `db` is not specified, the current connected database is used by default.</li><li>`table` cannot be empty or `*`.</li><li>`(col_list)` cannot be empty or `*`.</li></ul> |
+-- | encryption_method | String |  | If `USING ENCRYPTION` is used without parameters, the default encryption algorithm is used, which is `aes-256` by default. This refers to the AES-256-ECB encryption algorithm. It can also be written as `USING ENCRYPTION = DEFAULT`, with the same meaning. |
+--
+-- The allowed values for `encryption_method` are as follows:
+--
+-- | Value (used in SQL syntax) | Actual encryption algorithm | Key length | Mode | Description |
+-- |---|----------|----------|------|------|
+-- | aes-256 | AES-256-ECB | 256 bits | ECB | Default algorithm |
+-- | aes-128 | AES-128-ECB | 128 bits | ECB |  |
+-- | aes-192 | AES-192-ECB | 192 bits | ECB |  |
+-- | aes-128-gcm | AES-128-GCM | 128 bits | GCM | High security level, provides authenticated encryption (AEAD) |
+-- | aes-192-gcm | AES-192-GCM | 192 bits | GCM | High security level, provides authenticated encryption (AEAD) |
+-- | aes-256-gcm | AES-256-GCM | 256 bits | GCM | High security level, provides authenticated encryption (AEAD) |
+-- | sm4-cbc | SM4-CBC |  | CBC | High security level |
+-- | sm4-GCM | SM4-GCM |  | GCM | High security level, provides authenticated encryption (AEAD) |
+--
+-- When creating a sensitive rule, the following considerations apply:
+--
+-- * The rule takes effect immediately after creation.
+-- * The rule name is globally unique within the tenant, but only for sensitive rules, not for objects. That is, a table named `R1` and a sensitive rule named `R1` can coexist, but two sensitive rules named `R1` cannot.
+-- * Data protection is only at the **column level**, not at the table or database level. That is, you cannot create data protection rules for entire tables or databases. If you want to encrypt all columns of a table, you must explicitly specify all column names.
+-- * A single rule can protect one or more columns. Cross-database and cross-table protection is allowed.
+--
+-- When creating a sensitive rule, the following limitations apply:
+--
+-- * Data protection rules can only be applied to columns of user tables (including views). They cannot be applied to columns of system tables.
+-- * A column can only be protected by one rule.
+--
+-- ## Examples
+--
+-- Here are some examples:
+--
+-- ```sql
+-- -- Create a sensitive rule named r1 to protect columns a of tbl1, columns b and c of tbl2, and columns e and f of db2.tbl3.
+-- -- Use the default encryption algorithm AES-256-ECB.
+-- CREATE SENSITIVE RULE r1 ON tbl1(a), tbl2(b, c), db2.tbl3(e,f)
+-- USING ENCRYPTION;
+--
+-- -- Create a sensitive rule named r2 to protect columns x and y of tbl4 and column z of tbl5.
+-- -- Use the SM4-CBC encryption algorithm.
+-- CREATE SENSITIVE RULE r2 ON tbl4(x, y), tbl5(z)
+-- USING ENCRYPTION = 'sm4-cbc';
+-- ```
+--
+-- # References
+--
+-- * [DROP SENSITIVE RULE](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/3680.drop-sensitive-rule-of-mysql-mode.md)
+-- * [ALTER SENSITIVE RULE](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/1350.alter-sensitive-rule-of-mysql-mode.md)--
+--
+-- ==============================================================================
+-- [DDL-035] MySQL mode | CREATE TABLE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/2600.create-table-of-mysql-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # CREATE TABLE
+--
+-- ## Purpose
+--
+-- This statement creates a new table in the database.
+--
+-- ## Syntax
+--
+-- ```sql
+-- CREATE [hint_options] [TEMPORARY] TABLE [IF NOT EXISTS] table_name
+--       (table_definition_list) [table_option_list] [partition_option] [[MERGE_ENGINE = {delete_insert | partial_update}] table_column_group_option] [IGNORE | REPLACE] [AS] select;
+--
+-- CREATE TABLE [TEMPORARY] [IF NOT EXISTS] table_name
+--       LIKE table_name;
+--
+-- table_definition_list:
+--     table_definition [, table_definition ...]
+--
+-- table_definition:
+--       column_definition_list
+--     | [CONSTRAINT [constraint_name]] PRIMARY KEY index_desc
+--     | [CONSTRAINT [constraint_name]] UNIQUE {INDEX | KEY}
+--             [index_name] index_desc
+--     | [CONSTRAINT [constraint_name]] FOREIGN KEY
+--             [index_name] index_desc
+--             REFERENCES reference_definition
+--             [match_action][opt_reference_option_list]
+--     | [FULLTEXT] {INDEX | KEY} [index_name] [index_type] (key_part,...) [WITH PARSER tokenizer_option] [PARSER_PROPERTIES[=](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/parser_properties_list)]
+--       [index_option_list] [index_column_group_option]
+--     | index_json_clause
+--     | [CONSTRAINT [constraint_name]] CHECK(expression) constranit_state
+--
+-- column_definition_list:
+--     column_definition [, column_definition ...]
+--
+-- column_definition:
+--      column_name data_type
+--          [DEFAULT const_value] [AUTO_INCREMENT]
+--          [NULL | NOT NULL] [[PRIMARY] KEY] [UNIQUE [KEY]] [COMMENT string_value] [SKIP_INDEX(skip_index_option_list)] [ON UPDATE CURRENT_TIMESTAMP]
+--    | column_name data_type
+--          [GENERATED ALWAYS] AS (expr) [VIRTUAL | STORED]
+--          [opt_generated_column_attribute]
+--
+-- skip_index_option_list:
+--     skip_index_option [,skip_index_option ...]
+--
+-- skip_index_option:
+--     MIN_MAX
+--     | SUM
+--
+-- index_desc:
+--    (column_desc_list) [index_type] [index_option_list]
+--
+-- match_action:
+--    MATCH {SIMPLE | FULL | PARTIAL}
+--
+-- opt_reference_option_list:
+--    reference_option [,reference_option ...]
+--
+-- reference_option:
+--    ON {DELETE | UPDATE} {RESTRICT | CASCADE | SET NULL | NO ACTION | SET DEFAULT}
+--
+-- tokenizer_option:
+--     SPACE
+--     | NGRAM
+--     | BENG
+--     | IK
+--     | NGRAM2
+--
+-- parser_properties_list:
+--     parser_properties, [parser_properties]
+--
+-- parser_properties:
+--     min_token_size = int_value
+--     | max_token_size = int_value
+--     | ngram_token_size = int_value
+--     | ik_mode = 'char_value'
+--     | min_ngram_size = int_value
+--     | max_ngram_size = int_value
+--
+-- key_part:
+--     {index_col_name [(length)] | (expr)} [ASC | DESC]
+--
+-- index_type:
+--     USING BTREE
+--
+-- index_option_list:
+--     index_option [ index_option ...]
+--
+-- index_option:
+--       [GLOBAL | LOCAL]
+--     | block_size
+--     | compression
+--     | STORING(column_name_list)
+--     | COMMENT string_value
+--     | STORAGE_CACHE_POLICY(storage_cache_policy_option)
+--
+-- table_option_list:
+--     table_option [ table_option ...]
+--
+-- table_option:
+--       [DEFAULT] {CHARSET | CHARACTER SET} [=] charset_name
+--     | [DEFAULT] COLLATE [=] collation_name
+--     | table_tablegroup
+--     | block_size
+--     | lob_inrow_threshold [=] num
+--     | compression
+--     | AUTO_INCREMENT [=] INT_VALUE
+--     | COMMENT string_value
+--     | ROW_FORMAT [=] REDUNDANT|COMPACT|DYNAMIC|COMPRESSED|DEFAULT
+--     | PCTFREE [=] num
+--     | parallel_clause
+--     | DUPLICATE_SCOPE [=] 'none|cluster'
+--     | TABLE_MODE [=] 'table_mode_value'
+--     | auto_increment_cache_size [=] INT_VALUE
+--     | READ {ONLY | WRITE}
+--     | ORGANIZATION [=] {INDEX | HEAP}
+--     | enable_macro_block_bloom_filter [=] {True | False}
+--     | DYNAMIC_PARTITION_POLICY [=] (dynamic_partition_policy_list)
+--     | SEMISTRUCT_ENCODING_TYPE [=] 'encoding' # This parameter is deprecated in Version V4.4.1. Use SEMISTRUCT_PROPERTIES instead.
+--     | MICRO_BLOCK_FORMAT_VERSION [=] {1|2}
+--     | STORAGE_CACHE_POLICY (storage_cache_policy_option)
+--
+--
+-- parallel_clause:
+--     {NOPARALLEL | PARALLEL integer}
+--
+-- table_mode_value:
+--     NORMAL
+--     | QUEUING
+--     | MODERATE
+--     | SUPER
+--     | EXTREME
+--
+-- dynamic_partition_policy_list:
+--     dynamic_partition_policy_option [, dynamic_partition_policy_option ...]
+--
+-- dynamic_partition_policy_option:
+--     ENABLE = {true | false}
+--     | TIME_UNIT = {'hour' | 'day' | 'week' | 'month' | 'year'}
+--     | PRECREATE_TIME = {'-1' | '0' | 'n {hour | day | week | month | year}'}
+--     | EXPIRE_TIME = {'-1' | '0' | 'n {hour | day | week | month | year}'}
+--     | TIME_ZONE = {'default' | 'time_zone'}
+--     | BIGINT_PRECISION = {'none' | 'us' | 'ms' | 's'}
+--
+-- partition_option:
+--       PARTITION BY HASH(expression)
+--       [subpartition_option] PARTITIONS partition_count
+--     | PARTITION BY KEY([column_name_list])
+--       [subpartition_option] PARTITIONS partition_count
+--     | PARTITION BY RANGE {(expression) | COLUMNS (column_name_list)}
+--       [subpartition_option] (range_partition_list) [STORAGE_CACHE_POLICY = {"hot" | "auto" | "none"}]
+--     | PARTITION BY LIST {(expression) | COLUMNS (column_name_list)}
+--       [subpartition_option] PARTITIONS partition_count
+--     | PARTITION BY RANGE [COLUMNS](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/[column_name_list]) [SIZE('size_value')] (range_partition_list)
+--
+--
+--
+-- subpartition_option:
+--       SUBPARTITION BY HASH(expression)
+--       SUBPARTITIONS subpartition_count
+--     | SUBPARTITION BY KEY(column_name_list)
+--       SUBPARTITIONS subpartition_count
+--     | SUBPARTITION BY RANGE {(expression) | COLUMNS (column_name_list)}
+--       (range_subpartition_list) [STORAGE_CACHE_POLICY = {"hot" | "auto" | "none"}]
+--     | SUBPARTITION BY LIST(expression)
+--
+--
+-- storage_cache_policy_option:
+--     GLOBAL = {"hot" | "auto" | "none"}
+--     | timeline_strategy_list
+--
+-- timeline_strategy_list:
+--     BOUNDARY_COLUMN = column_name [,BOUNDARY_COLUMN_UNIT = {"s"| "ms"}] ,HOT_RETENTON = intnum retention_time_unit
+--
+-- retention_time_unit:
+--     YEAR
+--     | MONTH
+--     | WEEK
+--     | DAY
+--     | HOUR
+--     | MINUTE
+-- range_partition_list:
+--     range_partition [, range_partition ...]
+--
+-- range_partition:
+--     PARTITION partition_name
+--     VALUES LESS THAN {(expression_list) | MAXVALUE}
+--     [STORAGE_CACHE_POLICY = {"hot" | "auto" | "none"}]
+--
+-- range_subpartition_list:
+--     range_subpartition [, range_subpartition ...]
+--
+-- range_subpartition:
+--     SUBPARTITION subpartition_name
+--     VALUES LESS THAN {(expression_list) | MAXVALUE}
+--     [STORAGE_CACHE_POLICY = {"hot" | "auto" | "none"}]
+--
+-- expression_list:
+--     expression [, expression ...]
+--
+-- column_name_list:
+--     column_name [, column_name ...]
+--
+-- partition_name_list:
+--     partition_name [, partition_name ...]
+--
+-- partition_count | subpartition_count:
+--     INT_VALUE
+--
+-- table_column_group_option/index_column_group_option:
+--       WITH COLUMN GROUP(all columns)
+--     | WITH COLUMN GROUP(each column)
+--     | WITH COLUMN GROUP(all columns, each column)
+--
+-- index_json_clause:
+--     [UNIQUE] INDEX idx_json_name((CAST(json_column_name->'$.json_field_name' AS UNSIGNED ARRAY)))
+--     | INDEX idx_json_name(column_name, [column_name, ...] (CAST(json_column_name->'$.json_field_name' AS CHAR(n) ARRAY)))
+-- ```
+--
+-- ## Parameters
+--
+-- |                        **Parameter**                        |        **Description**        |
+-- |------------------------------------------------------|-----------------------------------|
+-- | hint_options | Optional. Specifies the Hint option. You can manually specify the bypass import Hint, including APPEND, DIRECT, and NO_DIRECT. The corresponding Hint format is <code>/*+ [APPEND \| DIRECT(need_sort,max_error,load_type)] parallel(N) \|NO_DIRECT */</code>. For more information about bypass import in the CREATE TABLE AS SELECT statement, see the **Use the CREATE TABLE AS SELECT statement to bypass import** section in [Full bypass import](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/620.obap/300.obap-data-collection/300.obap-import-data/20.bypass-import/200.full-bypass-import.md). |
+-- | TEMPORARY | Optional. Indicates that the table is a temporary table.<main id="notice" type='explain'><h4>Note</h4><p>For OceanBase Database V4.4.x, this parameter is supported starting from V4.4.2. </p></main>|
+-- | IF NOT EXISTS | If you specify `IF NOT EXISTS`, an error will not be returned even if the table to be created already exists. If you do not specify this option and the table to be created already exists, an error will be returned. |
+-- | IGNORE \| REPLACE | Optional. Specifies how to handle rows with duplicate unique key values when you use the `CREATE TABLE ... SELECT` statement. If you do not specify <code>IGNORE</code> or <code>REPLACE</code>, an error will be returned when there are rows with duplicate unique key values. <ul><li><code>IGNORE</code>: If a unique key value in the new table conflicts with a row in the copied data, the conflicting row will be ignored and will not be copied to the new table. In other words, the <code>IGNORE</code> option skips duplicate data and copies only rows that do not cause unique key conflicts. </li><li><code>REPLACE</code>: If a row with duplicate unique key values is encountered, the existing row in the new table will be replaced with the new data. </li></ul>|
+-- | PRIMARY KEY                                          | Specifies the primary key of the created table. If you do not specify this option, a hidden primary key will be used. OceanBase Database allows you to modify the primary key of a table or add a primary key to a table by using the `ALTER TABLE` statement. For more information, see [ALTER TABLE](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/1600.alter-table-of-mysql-mode.md).     |
+-- | FOREIGN KEY                                          | Specifies the foreign key of the created table. If you do not specify the foreign key name, the foreign key name will be automatically generated as the table name + `OBFK` + the creation time. (For example, the foreign key name created for the `t1` table on August 1, 2021, at 00:00:00 is `t1_OBFK_1627747200000000`.) A foreign key allows cross-table references to related data. When a `UPDATE` or `DELETE` operation affects the key values in the parent table that match the rows in the child table, the result depends on the `ON UPDATE` and `ON DELETE` clauses: <ul><li>`CASCADE`: Indicates that when a row is deleted or updated in the parent table, the corresponding rows in the child table are automatically deleted or updated. </li><li>`SET NULL`: Indicates that when a row is deleted or updated in the parent table, the foreign key column in the child table is set to `NULL`. </li><li>`RESTRICT`: Indicates that the deletion or update operation on the parent table is rejected. </li><li>`NO ACTION`: Specifies deferred checking. </li></ul> Additionally, the `SET DEFAULT` operation is supported.  |
+-- | FULLTEXT | Optional. Specifies whether to create a full-text index. For more information about creating a full-text index, see the **Create a full-text index** section in [Create an index](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/100.manage-object-of-mysql-mode/500.manage-indexes-of-mysql-mode/200.create-an-index-of-mysql-mode.md).<main id="notice" type='notice'><h4>Notice</h4><p>Only local full-text indexes are supported in the current version. </p></main>|
+-- | WITH PARSER tokenizer_option                 | Optional. Specifies the tokenizer for the full-text index. For more information, see [tokenizer_option](#tokenizer_option) below.|
+-- | PARSER_PROPERTIES\[=\](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/parser_properties_list) | Optional. Specifies the properties of the tokenizer. For more information, see [parser_properties](#parser_properties) below.|
+-- | KEY \| INDEX                                         | Specifies the key or index of the created table. If you do not specify the index name, the index name will be automatically generated as the first column of the index reference. If the index name is duplicated, the index name will be generated as the column name + underscore (_) + sequence number. (For example, if the index created using the `c1` column is duplicated, the index will be named `c1_2`.) You can use the `SHOW INDEX` statement to view the indexes on a table.    |
+-- | key_part        | Creates a (function) index. |
+-- | index_col_name  | Specifies the column name of the index. ASC (ascending) is supported after each column name, but DESC (descending) is not supported. The default is ascending. The sorting method for the index is as follows: first, sort by the value of the first column in `index_col_name`; for records with the same value in this column, sort by the value of the next column name; and so on. |
+-- | expr            | Specifies a valid function index expression, which can be a Boolean expression, for example, `c1=c1`. <main id="notice" type='notice'><h4>Notice</h4><p> OceanBase Database does not allow you to create function indexes on generated columns in the current version. </p></main>              |
+-- | ROW_FORMAT                                           | Specifies whether to enable the Encoding storage format for the table. <ul><li> `redundant`: Does not enable the Encoding storage format.   <li> `compact`: Does not enable the Encoding storage format.</li>   <li> `dynamic`: Enables the Encoding storage format.   <li> `compressed`: Enables the Encoding storage format.</li>   <li> `default`: Equivalent to `dynamic` mode.</li></ul>    |
+-- | \[GENERATED ALWAYS\] AS (expr) \[VIRTUAL \| STORED\] | Creates a generated column. `expr` specifies the expression used to calculate the column value. <ul><li> `VIRTUAL`: The column value is not stored. Instead, it is calculated immediately after any `BEFORE` trigger when a row is read. Virtual columns do not occupy storage space. </li>   <li> `STORED`: The column value is evaluated and stored when a row is inserted or updated. Stored columns do occupy storage space and can be indexed. </li></ul>    |
+-- | BLOCK_SIZE                                           | Specifies the microblock size of the table.  |
+-- | lob_inrow_threshold                                  | Specifies the `INROW` threshold for the `LOB` field. If the size of a `LOB` field exceeds this threshold, the excess data will be stored in the `OUTROW` format in the LOB Meta table. The default value is controlled by the variable `ob_default_lob_inrow_threshold`.|
+-- | COMPRESSION                                          | Specifies the compression algorithm for the table. Valid values: <ul><li> `none`: No compression algorithm is used.</li>   <li> `lz4_1.0`: The `lz4` compression algorithm is used.</li>   <li> `zstd_1.0`: The `zstd` compression algorithm is used.</li>  <li> `snappy_1.0`: The `snappy` compression algorithm is used.</li> </ul>    |
+-- | CHARSET \| CHARACTER SET                             | Specifies the default character set for columns in the table. For more information about the character sets, see [Character sets](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/100.basic-elements-of-mysql-mode/300.character-set-and-collation-of-mysql-mode/200.character-set-of-mysql-mode.md).    |
+-- | COLLATE                                              | Specifies the default collation for columns in the table. For more information about the collations, see [Collations](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/100.basic-elements-of-mysql-mode/300.character-set-and-collation-of-mysql-mode/300.collation-of-mysql-mode.md).  |
+-- | table_tablegroup                                     | Specifies the `tablegroup` to which the table belongs.   |
+-- | AUTO_INCREMENT                                       | Specifies the initial value for the auto-increment column. OceanBase Database supports using an auto-increment column as a partitioning key.  |
+-- | COMMENT                                              | Comments. Not case-sensitive.|
+-- | PCTFREE                                              | Specifies the percentage of space reserved for macroblocks.   |
+-- | parallel_clause                                      | Specifies the parallelism level for the table: <ul><li> `NOPARALLEL`: The parallelism level is `1`, which is the default. </li>  <li> `PARALLEL integer`: Specifies the parallelism level, where `integer` is greater than or equal to `1`. </li></ul>    |
+-- | DUPLICATE_SCOPE |  Specifies the replication attribute of the table. Valid values:<ul><li> `none`: The table is a regular table. This is the default value.</li><li> `cluster`: The table is a replicated table. The Leader needs to replicate transactions to all F (full-featured) and R (read-only) replicas of the current tenant. </li></ul>OceanBase Database currently only supports replicated tables at the `cluster` level.|
+-- | CHECK                                                | Restricts the range of values in the column. <ul><li> If you define a `CHECK` constraint for a single column, you can specify the constraint in the column definition and assign a name to it.</li>   <li> If you define a `CHECK` constraint for a table, the constraint applies to multiple columns in the table and can appear before the column definitions. When you drop the table, the `CHECK` constraints created in the table are also dropped.</li></ul> You can view the constraint information in the following ways: <li> Use the `SHOW CREATE TABLE` statement. </li>  <li> View the `information_schema.TABLE_CONSTRAINTS` view. </li>  <li> View the `information_schema.CHECK_CONSTRAINTS` view.  </li> </ul>    |
+-- | constraint_name                                      | The name of the constraint, which can be up to 64 characters in length. <ul><li> The constraint name can contain spaces at the beginning, middle, and end, but the name must be enclosed in backticks (`).   <li> The constraint name can contain the special character "$".   <li> If the constraint name is a reserved word, it must be enclosed in backticks. Otherwise, an error will be returned.   <li> The names of `CHECK` constraints must be unique within the same database. </ul>    |
+-- | expression                                           | The constraint expression. <ul><li> `expression` cannot be empty.   <li> The result of `expression` must be a boolean value.  <li> `expression` cannot contain columns that do not exist. </ul>   |
+-- | MERGE_ENGINE = {delete_insert \| partial_update} | Optional. Specifies the update model for the table. Valid values:<ul><li>`partial_update`: The default value, indicating that the existing update model remains unchanged.</li><li>`delete_insert`: Indicates that the `merge on write` model is used, where `update` operations are converted into `delete` and `insert` operations, and all columns are written. </li></ul> <main id="notice" type='explain'><h4>Note</h4><p>After the <code>MERGE_ENGINE</code> parameter is specified when creating a table, its configuration value cannot be modified. </p></main>|
+-- | table_column_group_option/index_column_group_option | Specifies the columnar storage options for the table or index. The following table describes the options: <ul><li><code>WITH COLUMN GROUP(all columns, each column)</code>: Specifies to create a redundant rowstore and columnstore table or index. </li><li><code>WITH COLUMN GROUP(all columns)</code>: Specifies to add a rowstore table or index. </li><li><code>WITH COLUMN GROUP(each column)</code>: Specifies to create a columnstore table or index. </li></ul>|
+-- | SKIP_INDEX | Specifies the Skip Index attribute of the column. Valid values: <ul><li><code>MIN_MAX</code>: This is the most commonly used aggregate data type in Skip Index. It stores the maximum and minimum values and the count of null values of the indexed column at the granularity of index nodes. This type of data can accelerate the pushdown of filters and `MIN/MAX` aggregations. </li><li> <code>SUM</code>: This is used to accelerate the pushdown of `SUM` aggregations for numeric types. </li></ul>  <main id="notice" type='notice'><h4>Notice</h4><p><ul><li> You cannot create a Skip Index for columns of the JSON or spatial data type. </li><li> Generated columns cannot have Skip Indexes. </li></ul></p></main>|
+-- | index_json_clause | Specifies the clause for creating a multi-value index. For more information about multi-value indexes, see the **Create a multi-value index** section in [Create an index](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/100.manage-object-of-mysql-mode/500.manage-indexes-of-mysql-mode/200.create-an-index-of-mysql-mode.md).<main id="notice" type='notice'><h4>Notice</h4><p>Multi-value indexes are currently in the experimental stage. We recommend that you do not use them in a production environment to avoid affecting system stability.</p></main>|
+-- | json_column_name  | Specifies the name of the `JSON` data type column in the table.|
+-- | idx_json_name     | Specifies the name of the multi-value index to be created.|
+-- | json_field_name   | Specifies the name of the field in the JSON column to be indexed.|
+-- | TABLE_MODE        | Optional. Specifies the merge trigger threshold and merge strategy, which control the merge behavior after data is dumped. For more information about the values, see [table_mode_value](#table_mode_value) below.|
+-- | auto_increment_cache_size | Optional. Specifies the number of cached auto-increment values. The default value is 0, which indicates that this parameter is not configured. In this case, the system uses the tenant-level parameter [auto_increment_cache_size](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/800.configuration-items-and-system-variables/200.system-variable/300.global-system-variable/100.auto_increment_cache_size-global.md) as the cache size for auto-increment columns.|
+-- | READ {ONLY \| WRITE} | Specifies the read/write permissions for the table. Valid values: <ul><li>`READ ONLY`: indicates that the table can be read but cannot be modified or deleted.<main id="notice" type='notice'><h4>Notice</h4><p>The <code>READ ONLY</code> parameter at the table level does not take effect for users with the <code>SUPER</code> privilege. It only takes effect for ordinary users.</p></main></li><li>`READ WRITE`: default value. Indicates that the table can be read, modified, and deleted.</li></ul>|
+-- | ORGANIZATION [=] {INDEX \| HEAP} | Optional. Specifies the storage order of data rows in the table, that is, the table organization mode. Valid values: <ul><li>`INDEX`: specifies an index-organized table.</li><li>`HEAP`: specifies a heap-organized table.</li></ul> If this option is not specified, its value is the same as the value of the [default_table_organization](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/800.configuration-items-and-system-variables/100.system-configuration-items/400.tenant-level-configuration-items/2150.default_table_organization.md) parameter.|
+-- | enable_macro_block_bloom_filter [=] {True \| False} | Specifies whether to persist the bloom filter at the macroblock level. Valid values: <ul><li><code>True</code>: enables persistence of the bloom filter at the macroblock level.</li></ul><ul></li></li><li><code>False</code>: disables persistence of the bloom filter at the macroblock level.</li></ul>|
+-- | DYNAMIC_PARTITION_POLICY \[=\] \(dynamic_partition_policy_list\) | Specifies the dynamic partition management attribute of the table to automatically create and delete partitions. `dynamic_partition_policy_list` specifies the configurable parameters of the dynamic partition strategy. Parameters are separated by commas. For more information, see [dynamic_partition_policy_option](#dynamic_partition_policy_option) below.|
+-- | PARTITION BY RANGE \[COLUMNS\]\(\[column_name_list\]\) \[SIZE\('size_value'\)\] | Specifies the clause for creating an automatic partition table. For more information, see the syntax for creating an automatic partition table in [Automatic partition splitting](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/100.manage-object-of-mysql-mode/300.manage-partitions-of-mysql-mode/250.partition-splitting-of-mysql-mode/300.automatic-partition-splitting-of-mysql-mode.md).<main id="notice" type='explain'><h4>Note</h4><p>For V4.4.2, the lower limit of the automatic partition splitting threshold has been adjusted from 128 MB to 1 MB starting from V4.4.2 BP1. </p></main>|
+-- | SEMISTRUCT_ENCODING_TYPE | Optional. Specifies the encoding type for semi-structured data. Valid values: <ul><li>`''`: disables semi-structured encoding.</li><li>`'encoding'`: enables semi-structured encoding.</li></ul><main id="notice" type='notice'><h4>Notice</h4><p>Starting from V4.4.1, <code>semistruct_encoding_type</code> is deprecated. Instead, use <code>semistruct_properties</code>.</p></main>|
+-- | SEMISTRUCT_PROPERTIES | Optional. Specifies the encoding type for semi-structured data in key-value pairs. Valid values: <ul><li>`encoding_type`: specifies the encoding type for semi-structured data. Valid values: `encoding` or `none`. Default value: `none`.</li><li>`freq_threshold`: specifies the frequency threshold. Valid value range: `(0, 100]`. Default value: `90`. Paths in JSON objects that appear with a frequency higher than this threshold are stored as independent subcolumns. These subcolumns are called frequent columns. A lower `freq_threshold` value increases the number of frequent columns, thereby improving the compression ratio, but also increases the query performance overhead.</li></ul></br>For more information about how to use semi-structured encoding, see <a href="../100.basic-elements-of-mysql-mode/100.data-type-of-mysql-mode/800.json-formatted-data-type-of-mysql-mode/200.create-a-json-value-of-mysql-mode.md">Use semi-structured encoding</a>.<main id="notice" type='notice'><h4>Notice</h4><p>This parameter is supported starting from V4.4.1. </p></main>|
+-- |MICRO_BLOCK_FORMAT_VERSION| Optional. Specifies the microblock storage format version of the table. Valid values: [1, +∞). <ul>Valid values: <ul><li> `1`: indicates that the microblock storage format is the same as the existing one.</li><li>`2`: indicates that the new flat row storage format is enabled.</li><li>Other values: return an illegal error.</li></ul><main id="notice" type='explain'><h4>Note</h4><p>This parameter is introduced starting from V4.4.1. </p></main>|
+-- |STORAGE_CACHE_POLICY | Currently, you do not need to pay attention to this parameter.|
+--
+-- ### table_mode_value
+--
+-- <main id="notice" type='explain'>
+--   <h4>Note</h4>
+--   <p>The following <code>TABLE_MODE</code> modes, except for the <code>NORMAL</code> mode, represent <code>QUEUING</code> tables. The <code>QUEUING</code> table is the most basic table type. The following modes, except for the <code>NORMAL</code> mode, represent more aggressive compaction strategies. </p>
+-- </main>
+--
+-- * `NORMAL`: The default value. This mode indicates normal. In this mode, the probability of triggering a major compaction after a data dump is very low.
+-- * `QUEUING`: In this mode, the probability of triggering a major compaction after a data dump is low.
+-- * `MODERATE`: This mode indicates moderate. In this mode, the probability of triggering a major compaction after a data dump is moderate.
+-- * `SUPER`: This mode indicates super. In this mode, the probability of triggering a major compaction after a data dump is high.
+-- * `EXTREME`: This mode indicates extreme. In this mode, the probability of triggering a major compaction after a data dump is high.
+--
+-- For more information about compaction, see [Adaptive compaction](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/200.system-management/500.manage-data-storage/200.merge-management/320.adaptive-compaction.md).
+--
+-- ### tokenizer_option
+--
+-- * `SPACE`: The default value. This option indicates that the tokenizer splits data by space. You can specify the following parameters:
+--
+--   |        Parameter      | Value range |
+--   |------------------|---------|
+--   | min_token_size   | [1, 16] |
+--   | max_token_size   | [10, 84]|
+--
+-- * `NGRAM`: This option indicates that the tokenizer splits data by N-Grams (Chinese). You can specify the following parameters:
+--
+--   |        Parameter      | Value range |
+--   |------------------|---------|
+--   | ngram_token_size | [1, 10] |
+--
+-- * `NGRAM2`: This option indicates that the tokenizer splits data into consecutive characters in the range of `min_ngram_size` to `max_ngram_size`. You can specify the following parameters:
+--
+--   |        Parameter      | Value range |
+--   |------------------|---------|
+--   | min_ngram_size   | [1, 16] |
+--   | max_ngram_size   | [1, 16] |
+--
+-- * `BENG`: This option indicates that the tokenizer splits data by Beng (basic English). You can specify the following parameters:
+--
+--   |        Parameter      | Value range |
+--   |------------------|---------|
+--   | min_token_size   | [1, 16] |
+--   | max_token_size   | [10, 84]|
+--
+-- * `IK`: This option indicates that the tokenizer splits data by IK (Chinese). Currently, only the `utf-8` character set is supported. You can specify the following parameter:
+--
+--   |        Parameter      | Value range |
+--   |------------------|---------|
+--   | ik_mode          | <ul><li>`smart`</li><li>`max_word`</li></ul>|
+--
+-- ### parser_properties
+--
+-- * `min_token_size`: The minimum token length. The default value is 3. Value range: 1 to 16.
+--
+-- * `max_token_size`: The maximum token length. The default value is 84. Value range: 10 to 84.
+--
+-- * `ngram_token_size`: The token length for the `NGRAM` tokenizer. This parameter is valid only for the `NGRAM` tokenizer. The default value is 2. Value range: 1 to 10.
+--
+-- * `ik_mode`: The tokenization mode for the `IK` tokenizer. Valid values:
+--
+--   * `smart`: The default value. This mode uses the dictionary to improve the accuracy of tokenization. The boundaries of the dictionary words are prioritized, which may reduce unnecessary expansions.
+--   * `max_word`: This mode recognizes the words defined in the dictionary but does not affect the maximum expansion of tokenization. Even if the dictionary defines the words, the `max_word` mode still tries to split the text into more words.
+--
+-- * `min_ngram_size`: The minimum token length. Value range: [1,16].
+--
+-- * `max_ngram_size`: The maximum token length. Value range: [1,16].
+--
+-- **Here is an example:**
+--
+-- ```sql
+-- CREATE TABLE tbl1 (col1 VARCHAR(200), col2 TEXT,
+--     FULLTEXT INDEX fidx(col2) WITH PARSER ik PARSER_PROPERTIES=(ik_mode='max_word'));
+-- ```
+--
+-- ### dynamic_partition_policy_option
+--
+-- * `ENABLE = {true | false}`: Optional. Specifies whether to enable dynamic partition management. This parameter can be modified. Valid values:
+--
+--   * `true`: Default value. Indicates that dynamic partition management is enabled.
+--   * `false`: Indicates that dynamic partition management is disabled.
+--
+-- * `TIME_UNIT = {'hour' | 'day' | 'week' | 'month' | 'year'}`: Required. Specifies the time unit for partitioning, that is, the interval for automatically creating partition boundaries. This parameter cannot be modified. Valid values:
+--
+--   * `hour`: Partitions are created by hour.
+--   * `day`: Partitions are created by day.
+--   * `week`: Partitions are created by week.
+--   * `month`: Partitions are created by month.
+--   * `year`: Partitions are created by year.
+--
+-- * `PRECREATE_TIME = {'-1' | '0' | 'n {hour | day | week | month | year}'}`: Optional. Specifies the time for pre-creating partitions. When dynamic partition management is scheduled, partitions are pre-created so that **the upper bound of the maximum partition > now() + precreate_time**. This parameter can be modified. Valid values:
+--
+--   * `-1`: Default value. Indicates that no partitions are pre-created.
+--   * `0`: Indicates that only the current partition is pre-created.
+--   * `n {hour | day | week | month | year}`: Indicates the time span for pre-creating partitions. For example, `3 hour` indicates that partitions are pre-created for 3 hours.
+--
+--   <main id="notice" type='explain'>
+--     <h4>Note</h4>
+--     <p><ul><li>When multiple partitions are to be pre-created, the partition boundaries are spaced by <code>TIME_UNIT</code>. </li><li>The boundary of the first pre-created partition is the ceiling of the existing maximum partition boundary based on <code>TIME_UNIT</code>. </li></ul></p>
+--   </main>
+--
+-- * `EXPIRE_TIME = {'-1' | '0' | 'n {hour | day | week | month | year}'}`: Optional. Specifies the expiration time of partitions. When dynamic partition management is scheduled, all **partitions with upper bounds < now() - expire_time** are deleted. This parameter can be modified. Valid values:
+--
+--   * `-1`: Default value. Indicates that partitions never expire.
+--   * `0`: Indicates that all partitions except the current one have expired.
+--   * `n {hour | day | week | month | year}`: Indicates the expiration time of partitions. For example, `1 day` indicates that partitions expire after 1 day.
+--
+-- * `TIME_ZONE = {'default' | 'time_zone'}`: Optional. Specifies the time zone information for determining the current time and the partition key values of the `date`, `datetime`, and `year` types. This parameter cannot be modified. Valid values:
+--
+--   * `default`: Default value. Indicates that no time zone is specified and the tenant time zone is used. For other types, the `time_zone` field must be `default`.
+--   * `time_zone`: Indicates a custom time zone offset. For example, `+8:00`.
+--
+-- * `BIGINT_PRECISION = {'none'| 'ms' | 's'}`: Optional. Specifies the timestamp precision of the `bigint` type partition key. This parameter cannot be modified. Valid values:
+--
+--   * `none`: Default value. Indicates no precision (the partition key is not of the `bigint` type).
+--   * `ms`: Indicates millisecond precision.
+--   * `s`: Indicates second precision.
+--
+-- For more information about how to create a dynamic partition table, see [Create a dynamic partition table](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/100.manage-object-of-mysql-mode/300.manage-partitions-of-mysql-mode/260.dynamic-partition-of-mysql-mode/200.create-a-dynamic-partition-table-of-mysql-mode.md).
+--
+-- **Here is an example:**
+--
+-- ```sql
+-- CREATE TABLE tbl2 (col1 INT, col2 DATETIME)
+--     DYNAMIC_PARTITION_POLICY(
+--         ENABLE = true,
+--         TIME_UNIT = 'hour',
+--         PRECREATE_TIME = '3 hour',
+--         EXPIRE_TIME = '1 day',
+--         TIME_ZONE = '+8:00',
+--         BIGINT_PRECISION = 'none')
+--     PARTITION BY RANGE COLUMNS (col2)(
+--         PARTITION P0 VALUES LESS THAN ('2024-11-11 13:30:00')
+--         );
+-- ```
+--
+-- ### storage_cache_policy
+--
+-- No action is required.
+--
+-- ## Examples
+--
+-- * Create a database table.
+--
+--   ```sql
+--   Query OK, 0 rows affected
+--   ```
+--
+-- * Create a table with an index.
+--
+--   ```sql
+--   Query OK, 0 rows affected
+--   ```
+--
+-- * Create a table `tbl3` with a function index.
+--
+--   ```shell
+--   Query OK, 0 rows affected
+--
+--   +-------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+--   | Table | Create Table                                                                                                                                                                                                                                                                                                                                                                     |
+--   +-------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+--   | tbl3    | CREATE TABLE `tbl3` (
+--   `c1` int(11) DEFAULT NULL,
+--   `c2` int(11) DEFAULT NULL,
+--   UNIQUE KEY `functional_index` ((`c1` + `c2`)) BLOCK_SIZE 16384 LOCAL,
+--   KEY `i1` ((`c1` + 1)) BLOCK_SIZE 16384 LOCAL
+--   ) DEFAULT CHARSET = utf8mb4 ROW_FORMAT = DYNAMIC COMPRESSION = 'zstd_1.3.8' REPLICA_NUM = 2 BLOCK_SIZE = 16384 USE_BLOOM_FILTER = FALSE TABLET_SIZE = 134217728 PCTFREE = 0 |
+--   +-------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+--   ```
+--
+-- * Create a table with 8 hash partitions.
+--
+--   ```sql
+--   Query OK, 0 rows affected
+--   ```
+--
+-- * Create a table with range partitions as the primary partitions and key partitions as the subpartitions.
+--
+--   ```sql
+--        SUBPARTITION BY KEY(c2, c3) SUBPARTITIONS 5
+--        (PARTITION p0 VALUES LESS THAN(0), PARTITION p1 VALUES LESS THAN(100));
+--   Query OK, 0 rows affected
+--   ```
+--
+-- * Create a table with one column of type `gbk` and one column of type `utf8`.
+--
+--   ```sql
+--                    c2 VARCHAR(10) CHARSET GBK COLLATE gbk_bin)
+--                DEFAULT CHARSET utf8 COLLATE utf8mb4_general_ci;
+--   Query OK, 0 rows affected
+--   ```
+--
+-- * Enable encoding and use `zstd` compression. Set the reserved space for macroblocks to `5%`.
+--
+--   ```sql
+--         COMPRESSION 'zstd_1.0'
+--         ROW_FORMAT DYNAMIC
+--         PCTFREE 5;
+--   Query OK, 0 rows affected
+--   ```
+--
+-- * Create a table `tbl8` and set the parallelism to `3`.
+--
+--   ```sql
+--   Query OK, 0 rows affected
+--   ```
+--
+-- * Use an auto-increment column as the partitioning key.
+--
+--   ```sql
+--   PRIMARY KEY (inv_id) ) PARTITION BY HASH(inv_id) PARTITIONS 8;
+--   Query OK, 0 rows affected
+--   ```
+--
+-- * Specify a foreign key for the `ref_t2` table. When an `UPDATE` operation affects the key values in the parent table that match the rows in the child table, execute the `SET NULL` operation.
+--
+--   ```shell
+--   Query OK, 0 rows affected
+--
+--   Query OK, 0 rows affected
+--   ```
+--
+-- * Create a table `tbl10` with a `CHECK` constraint and view the constraint information.
+--
+--   ```sql
+--   Query OK, 0 rows affected
+--
+--   +-------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+--   | Table | Create Table                                                                                                                                                                                                                                                                                                                                               |
+--   +-------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+--   | tbl10  | CREATE TABLE `tbl10` (
+--     `col1` int(11) DEFAULT NULL,
+--     `col2` int(11) DEFAULT NULL,
+--     `col3` int(11) DEFAULT NULL,
+--     CONSTRAINT `equal_check1` CHECK ((`col1` = (`col3` * 2)))
+--   ) DEFAULT CHARSET = utf8mb4 ROW_FORMAT = DYNAMIC COMPRESSION = 'zstd_1.3.8' REPLICA_NUM = 1 BLOCK_SIZE = 16384 USE_BLOOM_FILTER = FALSE TABLET_SIZE = 134217728 PCTFREE = 0 |
+--   +-------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+--   1 row in set
+--   ```
+--
+-- * Create a table `tbl11` based on the `tbl10` table and view the table information.
+--
+--   ```sql
+--   Query OK, 0 rows affected
+--
+--   +-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+--   | Table | Create Table                                                                                                                                                                                                                                                                                                                                                                |
+--   +-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+--   | tbl11  | CREATE TABLE `tbl11` (
+--     `col1` int(11) DEFAULT NULL,
+--     `col2` int(11) DEFAULT NULL,
+--     `col3` int(11) DEFAULT NULL,
+--     CONSTRAINT `tbl11_OBCHECK_1650793233327894` CHECK ((`col1` = (`col3` * 2)))
+--   ) DEFAULT CHARSET = utf8mb4 ROW_FORMAT = DYNAMIC COMPRESSION = 'zstd_1.3.8' REPLICA_NUM = 1 BLOCK_SIZE = 16384 USE_BLOOM_FILTER = FALSE TABLET_SIZE = 134217728 PCTFREE = 0 |
+--   +-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+--   1 row in set
+--   ```
+--
+-- * Create a `cluster`-level replicated table `dup_t1`.
+--
+--   1. Log in to the `sys` tenant and create a unit.
+--
+--      ```shell
+--      Query OK, 0 rows affected
+--      ```
+--
+--   2. Create a resource pool with a unit number of 2.
+--
+--      ```shell
+--      Query OK, 0 rows affected
+--      ```
+--
+--   3. Create a user tenant `obmysql` and specify the locality distribution.
+--
+--      ```shell
+--      Query OK, 0 rows affected
+--      ```
+--
+--   4. Log in to the `obmysql` user tenant created in step 3 and create a replicated table.
+--
+--      ```shell
+--      Database changed
+--      Query OK, 0 rows affected
+--      ```
+--
+--   5. (Optional) View the broadcast log stream information. The replicated table will be created on this log stream.
+--
+--      ```shell
+--      +-------+--------+--------------+---------------+-------------+---------------------+----------+---------------------+---------------------+-----------+-----------+
+--      | LS_ID | STATUS | PRIMARY_ZONE | UNIT_GROUP_ID | LS_GROUP_ID | CREATE_SCN          | DROP_SCN | SYNC_SCN            | READABLE_SCN        | FLAG      | UNIT_LIST |
+--      +-------+--------+--------------+---------------+-------------+---------------------+----------+---------------------+---------------------+-----------+-----------+
+--      |  1003 | NORMAL | z1;z2        |             0 |           0 | 1683267390195713284 |     NULL | 1683337744205408139 | 1683337744205408139 | DUPLICATE |           |
+--      +-------+--------+--------------+---------------+-------------+---------------------+----------+---------------------+---------------------+-----------+-----------+
+--      1 row in set
+--      ```
+--
+--   6. (Optional) View the replica distribution of the replicated table under the `sys` tenant. The `REPLICA_TYPE` field indicates the replica type.
+--
+--      ```shell
+--      +-----------+---------------+------------+----------+------------+----------------+-------------------+------------+---------------+-----------+-------+------+----------------+----------+----------+--------------+-----------------+
+--      | TENANT_ID | DATABASE_NAME | TABLE_NAME | TABLE_ID | TABLE_TYPE | PARTITION_NAME | SUBPARTITION_NAME | INDEX_NAME | DATA_TABLE_ID | TABLET_ID | LS_ID | ZONE | SVR_IP         | SVR_PORT | ROLE     | REPLICA_TYPE | DUPLICATE_SCOPE |
+--      +-----------+---------------+------------+----------+------------+----------------+-------------------+------------+---------------+-----------+-------+------+----------------+----------+----------+--------------+-----------------+
+--      |      1002 | test          | dup_t1     |   500002 | USER TABLE | NULL           | NULL              | NULL       |          NULL |    200001 |  1003 | z1   | 11.xxx.xxx.xxx |    36125 | LEADER   | FULL         | CLUSTER         |
+--      |      1002 | test          | dup_t1     |   500002 | USER TABLE | NULL           | NULL              | NULL       |          NULL |    200001 |  1003 | z1   | 11.xxx.xxx.xxx  |    36124 | FOLLOWER | READONLY     | CLUSTER         |
+--      |      1002 | test          | dup_t1     |   500002 | USER TABLE | NULL           | NULL              | NULL       |          NULL |    200001 |  1003 | z2   | 11.xxx.xxx.xxx |    36127 | FOLLOWER | FULL         | CLUSTER         |
+--      |      1002 | test          | dup_t1     |   500002 | USER TABLE | NULL           | NULL              | NULL       |          NULL |    200001 |  1003 | z2   | 11.xxx.xxx.xxx |    36126 | FOLLOWER | READONLY     | CLUSTER         |
+--      |      1002 | test          | dup_t1     |   500002 | USER TABLE | NULL           | NULL              | NULL       |          NULL |    200001 |  1003 | z3   | 11.xxx.xxx.xxx |    36128 | FOLLOWER | READONLY     | CLUSTER         |
+--      |      1002 | test          | dup_t1     |   500002 | USER TABLE | NULL           | NULL              | NULL       |          NULL |    200001 |  1003 | z3   | 11.xxx.xxx.xxx  |    36129 | FOLLOWER | READONLY     | CLUSTER         |
+--      +-----------+---------------+------------+----------+------------+----------------+-------------------+------------+---------------+-----------+-------+------+----------------+----------+----------+--------------+-----------------+
+--      6 rows in set
+--      ```
+--
+--   7. Insert and read/write data in the replicated table like a regular table. For a read request, if you use a proxy, the read request may be routed to any OBServer node. If you connect directly to an OBServer node, the read request will be executed on the connected OBServer node as long as the local replica is readable.
+--
+--      ```shell
+--      Query OK, 1 row affected
+--
+--      +------+
+--      | c1   |
+--      +------+
+--      |    1 |
+--      +------+
+--      1 row in set
+--      ```
+--
+-- * Create a columnstore table `tbl1_cg`.
+--
+--   ```sql
+--   ```
+--
+-- * Create a table with a columnstore index.
+--
+--   ```sql
+--   ```
+--
+-- * Create a columnstore table with a columnstore index.
+--
+--   ```sql
+--   ```
+--
+-- * Specify the Skip Index attribute for a column when creating a table.
+--
+--   ```sql
+--     col1 INT SKIP_INDEX(MIN_MAX, SUM),
+--     col2 FLOAT SKIP_INDEX(MIN_MAX),
+--     col3 VARCHAR(1024) SKIP_INDEX(MIN_MAX),
+--     col4 CHAR(10)
+--   );
+--   ```
+--
+-- * Create a table `tbl1` with an integer column `col1` and specify that the operation uses a parallelism of 5. Also, specify that the data content of the new table `tbl1` will be sourced from the query results of table `tbl2`.
+--
+--   ```sql
+--   ```
+--
+-- * Create a table `tb` with a persistent bloom filter at the macroblock level.
+--
+--   ```sql
+--   ```
+--
+-- * Create a table `tbl1` and specify the semi-structured encoding type as `encoding` and the frequency threshold as `90`.
+--
+--   ```sql
+--   ```
+--
+-- * Create a table `tb` and enable the new flat row storage format (version 2).
+--
+--   ```sql
+--   ```
+--
+-- ## References
+--
+-- * [Create a table](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/100.manage-object-of-mysql-mode/200.manage-tables-of-mysql-mode/200.create-a-table-for-mysql-tenant-of-mysql-mode.md)
+-- * [Change a table](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/100.manage-object-of-mysql-mode/200.manage-tables-of-mysql-mode/600.change-table-of-mysql-mode.md)--
+--
+-- ==============================================================================
+-- [DDL-036] MySQL mode | CREATE TABLEGROUP
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/2700.create-tablegroup-of-mysql-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # CREATE TABLEGROUP
+--
+-- ## Purpose
+--
+-- You can use this statement to create a table group.
+--
+-- A table group is used to create a group of tables with the same distribution characteristics. These tables can be joined locally to avoid cross-node data requests.
+--
+-- To create a table group, you must have the global `CREATE` (`*.*`) privilege.
+--
+-- ## Syntax
+--
+-- ```sql
+-- CREATE TABLEGROUP tablegroup_name [tablegroup_option];
+--
+-- tablegroup_option:
+--    SHARDING = 'NONE' | 'PARTITION' | 'ADAPTIVE'
+-- ```
+--
+-- ## Parameters
+--
+-- | **Parameter** | **Description** |
+-- |----------------------------|---------------------------------|
+-- | tablegroup_name            | The table group name. It can contain up to 64 characters in length and contain uppercase and lowercase letters, digits, and underscores (`_`). It must start with a letter or an underscore (`_`), and cannot contain keywords of OceanBase Database. If the name of the created table group already exists and `IF NOT EXISTS` is not specified, an error is returned.    |
+-- | SHARDING   | The `SHARDING` attribute of the table group. If you do not specify the `SHARDING` attribute, an `ADAPTIVE` table group is created by default. Valid values: <ul><li>`NONE`: No restrictions are imposed on the tables added to the table group. </li><li>`PARTITION`: The partitioning method of tables to be added to a table group must be the same as that of all tables in the table group in terms of the partitioning type, number of partitions, and partition values. </li><li>`ADAPTIVE`: The partitioning and subpartitioning methods of tables to be added to a table group must be the same as those of all tables in the table group in terms of the partitioning type, number of partitions, and partition values. All tables in the table group must be of the same partitioning level, that is, either partitioning or subpartitioning. </li></ul>Two tables are considered using the same partitioning method when they meet the following conditions: <ul><li>Have the same partitioning type such as HASH-RANGE partitioning. </li><li>Have the same number of referenced columns and the same number of partitions if the tables are HASH-partitioned tables. </li><li>Have the same number of referenced columns, the same number of partitions, and the same range definitions if the tables are RANGE-partitioned tables. </li></ul>Subpartitions in the table group must also meet the preceding requirements.    |
+--
+-- ## Examples
+--
+-- * Create a table group named `myTableGroup1` and add non-partitioned tables `myt1` and `myt2` to the table group.
+--
+--   ```shell
+--   Query OK, 0 rows affected
+--
+--   Query OK, 0 rows affected
+--
+--   Query OK, 0 rows affected
+--   ```
+--
+-- * Create a table group named `tblgroup1` with the `SHARDING` attribute set to `NONE`, and add the non-partitioned table `tbl1`, partitioned table `tbl2`, and subpartitioned table `tbl3` to the table group.
+--
+--   ```shell
+--   Query OK, 0 rows affected
+--
+--   Query OK, 0 rows affected
+--
+--       PARTITION BY LIST(col1)
+--         (PARTITION p0 VALUES IN (1, 2, 3),
+--          PARTITION p1 VALUES IN (5, 6),
+--          PARTITION p2 VALUES IN (DEFAULT)
+--          );
+--   Query OK, 0 rows affected
+--
+--       PARTITION BY LIST(col1) SUBPARTITION BY LIST COLUMNS(col2)
+--      (PARTITION p0 VALUES in (01)
+--         (SUBPARTITION mp0 VALUES in ('01'),
+--          SUBPARTITION mp1 VALUES in ('02'),
+--          SUBPARTITION mp2 VALUES in ('03')),
+--       PARTITION p1 VALUES in (02)
+--         (SUBPARTITION mp3 VALUES in ('01'),
+--          SUBPARTITION mp4 VALUES in ('02'),
+--          SUBPARTITION mp5 VALUES in ('03'))
+--        );
+--   Query OK, 0 rows affected
+--   ```
+--
+-- * Create a table group named `tblgroup2` with the `SHARDING` attribute set to `PARTITION`, and add the partitioned tables `tbl1` and `tbl2` that use the same partitioning method to the table group.
+--
+--   ```shell
+--   Query OK, 0 rows affected
+--
+--       PARTITION BY LIST(col1)
+--         (PARTITION p0 VALUES IN (1, 2, 3),
+--          PARTITION p1 VALUES IN (5, 6),
+--          PARTITION p2 VALUES IN (DEFAULT)
+--         );
+--   Query OK, 0 rows affected
+--
+--     PARTITION BY LIST(col1)
+--       (PARTITION p0 VALUES IN (1, 2, 3),
+--        PARTITION p1 VALUES IN (5, 6),
+--        PARTITION p2 VALUES IN (DEFAULT)
+--        );
+--   Query OK, 0 rows affected
+--   ```
+--
+-- * Create a table group named `tblgroup3` with the `SHARDING` attribute set to `PARTITION`. The non-partitioned table `tbl1` and the partitioned table `tbl2` cannot be both added to the table group.
+--
+--   ```shell
+--   Query OK, 0 rows affected
+--
+--   Query OK, 0 rows affected
+--
+--       PARTITION BY LIST(col1)
+--         (PARTITION p0 VALUES IN (1, 2, 3),
+--          PARTITION p1 VALUES IN (5, 6),
+--          PARTITION p2 VALUES IN (DEFAULT)
+--          );
+--   ERROR 4179 (HY000): not all tables are non-partitioned or partitioned, add table to tablegroup not allowed
+--   ```
+--
+-- * Create a table group named `tblgroup4` with the `SHARDING` attribute set to `PARTITION`. The partitioned tables `tbl1` and `tbl2` have different partitioning key values and therefore cannot be both added to the table group.
+--
+--   ```shell
+--   Query OK, 0 rows affected
+--
+--       PARTITION BY LIST(col1)
+--         (PARTITION p0 VALUES IN (1, 2, 3),
+--          PARTITION p1 VALUES IN (5, 6),
+--          PARTITION p2 VALUES IN (DEFAULT)
+--          );
+--   Query OK, 0 rows affected
+--
+--       PARTITION BY LIST(col1)
+--         (PARTITION p0 VALUES IN (1, 2, 3),
+--          PARTITION p1 VALUES IN (5, 7),
+--          PARTITION p2 VALUES IN (DEFAULT)
+--          );
+--   ERROR 4179 (HY000): list_part partition value not equal, add table to tablegroup not allowed
+--   ```
+--
+-- * Create a table group named `tblgroup5` with the `SHARDING` attribute set to `ADAPTIVE`, and add the partitioned tables `tbl1` and `tbl2` that use the same partitioning method to the table group.
+--
+--   ```shell
+--   Query OK, 0 rows affected
+--
+--       PARTITION BY LIST(col1) SUBPARTITION BY LIST COLUMNS(col2)
+--         (PARTITION p0 VALUES in (01)
+--            (SUBPARTITION mp0 VALUES in ('01'),
+--             SUBPARTITION mp1 VALUES in ('02'),
+--             SUBPARTITION mp2 VALUES in ('03')),
+--          PARTITION p1 VALUES in (02)
+--            (SUBPARTITION mp3 VALUES in ('01'),
+--             SUBPARTITION mp4 VALUES in ('02'),
+--             SUBPARTITION mp5 VALUES in ('03'))
+--         );
+--   Query OK, 0 rows affected
+--
+--       PARTITION BY LIST(col1) SUBPARTITION BY LIST COLUMNS(col2)
+--         (PARTITION p0 VALUES in (01)
+--            (SUBPARTITION mp0 VALUES in ('01'),
+--             SUBPARTITION mp1 VALUES in ('02'),
+--             SUBPARTITION mp2 VALUES in ('03')),
+--          PARTITION p1 VALUES in (02)
+--            (SUBPARTITION mp3 VALUES in ('01'),
+--             SUBPARTITION mp4 VALUES in ('02'),
+--             SUBPARTITION mp5 VALUES in ('03'))
+--          );
+--   Query OK, 0 rows affected
+--   ```
+--
+-- * Create a table group named `tblgroup6` with the `SHARDING` attribute set to `ADAPTIVE`. The non-partitioned table `tbl1` and the partitioned table `tbl2` cannot be both added to the table group.
+--
+--   ```shell
+--   Query OK, 0 rows affected
+--
+--   Query OK, 0 rows affected
+--
+--       PARTITION BY LIST(col1) SUBPARTITION BY LIST COLUMNS(col2)
+--         (PARTITION p0 VALUES in (01)
+--            (SUBPARTITION mp0 VALUES in ('01'),
+--             SUBPARTITION mp1 VALUES in ('02'),
+--             SUBPARTITION mp2 VALUES in ('03')
+--          ),
+--         PARTITION p1 VALUES in (02)
+--            (SUBPARTITION mp3 VALUES in ('01'),
+--             SUBPARTITION mp4 VALUES in ('02'),
+--             SUBPARTITION mp5 VALUES in ('03'))
+--          );
+--   ERROR 4179 (HY000): not all tables are non-partitioned or partitioned, add table to tablegroup not allowed
+--   ```
+--
+-- * Create a table group named `tblgroup7` with the `SHARDING` attribute set to `ADAPTIVE`. The partitioned tables `tbl1` and `tbl2` have the same partitioning type but different subpartitioning types, namely, different numbers of subpartitions, and therefore cannot be both added to the table group.
+--
+--   ```shell
+--   Query OK, 0 rows affected
+--
+--       PARTITION BY LIST(col1) SUBPARTITION BY LIST COLUMNS(col2)
+--         (PARTITION p0 VALUES in (01)
+--           (SUBPARTITION mp0 VALUES in ('01'),
+--             SUBPARTITION mp1 VALUES in ('02'),
+--             SUBPARTITION mp2 VALUES in ('03')
+--             ),
+--          PARTITION p1 VALUES in (02)
+--             (SUBPARTITION mp3 VALUES in ('01'),
+--              SUBPARTITION mp4 VALUES in ('02'),
+--              SUBPARTITION mp5 VALUES in ('03'))
+--         );
+--   Query OK, 0 rows affected
+--
+--       PARTITION BY LIST(col1) SUBPARTITION BY LIST COLUMNS(col2)
+--         (PARTITION p0 VALUES in (01)
+--            (SUBPARTITION mp0 VALUES in ('01'),
+--             SUBPARTITION mp1 VALUES in ('02')),
+--          PARTITION p1 VALUES in (02)
+--            (SUBPARTITION mp3 VALUES in ('01'),
+--             SUBPARTITION mp4 VALUES in ('02'))
+--          );
+--   ERROR 4179 (HY000): subpartition num not matched, add table to tablegroup not allowed
+--   ```
+--
+-- ## References
+--
+-- * [ALTER TABLEGROUP](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/1700.alter-tablegroup-of-mysql-mode.md)
+--
+-- * [DROP TABLEGROUP](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/3800.drop-tablegroup-of-mysql-mode.md)
+--
+-- * [Manage tables in a table group](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/100.manage-object-of-mysql-mode/400.manage-table-groups-of-mysql-mode/600.manage-tables-within-a-table-group-of-mysql-mode.md)
+--
+-- * [Query information about a table group](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/100.manage-object-of-mysql-mode/400.manage-table-groups-of-mysql-mode/300.view-the-information-of-a-table-group-of-mysql-mode.md)--
+--
+-- ==============================================================================
+-- [DDL-037] MySQL mode | CREATE TABLESPACE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/2750.create-tablespace-of-mysql-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # CREATE TABLESPACE
+--
+-- ## Purpose
+--
+-- You can use this statement to create a tablespace logical object. The tablespace attributes can be encrypted.
+--
+-- ## Syntax
+--
+-- * Create an encrypted tablespace.
+--
+--   ```sql
+--   CREATE TABLESPACE tablespace_name [ENCRYPTION [=] 'tablespace_encryption_option'];
+--
+--   tablespace_encryption_option:
+--       N
+--       | Y
+--       | AES-256
+--       | AES-256-GCM
+--       | AES-128
+--       | AES-128-GCM
+--       | AES-192
+--       | AES-192-GCM
+--       | SM4-CBC
+--       | SM4-GCM
+--   ```
+--
+-- * Create a tablespace.
+--
+--   ```sql
+--     CREATE TABLESPACE tablespace_name
+--     [ADD DATAFILE 'file_name']
+--     [FILE_BLOCK_SIZE = value]
+--     USE LOGFILE GROUP logfile_group
+--     [EXTENT_SIZE [=] extent_size]
+--     [INITIAL_SIZE [=] initial_size]
+--     [AUTOEXTEND_SIZE [=] autoextend_size]
+--     [MAX_SIZE [=] max_size]
+--     [NODEGROUP [=] nodegroup_id]
+--     [WAIT]
+--     [COMMENT [=] 'string']
+--     [ENGINE [=] engine_name]
+--   ```
+--
+--   <main id="notice" type='notice'>
+--   <h4>Notice</h4>
+--   <p>Only the keyword syntax is supported. The functionality does not actually take effect. You cannot use this keyword in combination with <code>ENCRYPTION</code>. Otherwise, a syntax error will be returned. </p>
+--   </main>
+--
+-- ## Parameters
+--
+-- |   Parameter   |     Description    |
+-- |-------------------|-------------------------|
+-- | tablespace_name   | The name of the tablespace to be created. |
+-- | ENCRYPTION        | Optional. The keyword used for specifying the encryption algorithm employed by the tablespace. If the encryption algorithm is not specified through the `ENCRYPTION` keyword, a non-encrypted tablespace is created by default. For a detailed introduction to the encryption algorithms, see [tablespace_encryption_option](#tablespace_encryption_option). |
+--
+-- ### tablespace_encryption_option
+--
+-- * `N`: specifies not to enable encryption for the tablespace.
+-- * `Y`: If `Y` is specified, the AES-256 encryption algorithm is used by default.
+-- * `AES-256`: uses a 256-bit key for encryption and decryption.
+-- * `AES-256-GCM`: uses Galois/Counter Mode (GCM) with a 256-bit key.
+-- * `AES-128`: uses a 128-bit key for encryption and decryption.
+-- * `AES-128-GCM`: uses GCM with a 128-bit key.
+-- * `AES-192`: uses a 192-bit key for encryption and decryption.
+-- * `AES-192-GCM`: uses GCM with a 192-bit key.
+-- * `SM4-CBC`: uses the SM4 algorithm in Cipher Block Chaining (CBC) mode, where before each block of data is encrypted, it undergoes an XOR operation with the encrypted output of the previous block.
+-- * `SM4-GCM`: uses the SM4 algorithm in GCM mode, which provides both encryption and authentication functionalities.
+--
+-- <main id="notice" type='explain'>
+--   <h4>Note</h4>
+--   <p><ul><li>Advanced Encryption Standard (AES) is a symmetric encryption algorithm, meaning the same key is used for both data encryption and decryption. The AES algorithm is block-based, typically encrypting data in 128-bit blocks. </li><li>AES-GCM is an operational mode employed for block encryption algorithms, such as AES, providing both encryption and data authentication (also known as message authentication code). </li><li>The block size of the SM4 algorithm is 128 bits, and the key length is also 128 bits. </li></ul></p>
+-- </main>
+--
+-- ## Examples
+--
+-- * Create an unencrypted tablespace object.
+--
+--   ```shell
+--   CREATE TABLESPACE tablespace001;
+--   ```
+--
+-- * Create a tablespace object with transparent data encryption (TDE).
+--
+--   1. Set the encryption method to built-in transparent encryption.
+--
+--      ```shell
+--       ALTER SYSTEM SET tde_method = 'internal';
+--       ```
+--
+--   2. Display the current configuration of the encryption method.
+--
+--      ```shell
+--       SHOW PARAMETERS LIKE 'tde_method';
+--       ```
+--
+--   3. Generate a new master encryption key.
+--
+--      ```shell
+--       ALTER INSTANCE ROTATE INNODB MASTER KEY;
+--       ```
+--
+--       <main id="notice" type='notice'>
+--         <h4>Notice</h4>
+--         <p>Although this command can be executed, if the disk space is full, a new master encryption key will not be generated. </p>
+--       </main>
+--
+--   4. Create an encrypted tablespace named `tablespace2` that uses the `SM4-GCM` encryption algorithm.
+--
+--      ```shell
+--       CREATE TABLESPACE tablespace002 ENCRYPTION = 'SM4-GCM';
+--       ```
+--
+-- ## References
+--
+-- * [tde_method](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/800.configuration-items-and-system-variables/100.system-configuration-items/400.tenant-level-configuration-items/7800.tde_method.md)
+-- * [Enable TDE for new tables](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/500.data-encryption/400.data-storage-encryption/200.data-storage-encryption-of-mysql-mode/100.configure-internal-storage-encryption-of-mysql-mode.md)--
+--
+-- ==============================================================================
+-- [DDL-038] MySQL mode | CREATE USER
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/2800.create-user-of-mysql-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # CREATE USER
+--
+-- ## Purpose
+--
+-- The `CREATE USER` statement is used to create a new OceanBase Database user. After a new user is created, you can use the new user to connect to OceanBase Database.
+--
+-- ## Limitations and considerations
+--
+-- * Authentication string format validation: `IDENTIFIED AS`/`BY PASSWORD` validates the `$S$` format and rejects incorrect formats such as `$A$` (`sha2`).
+-- * Standard MySQL Connector can connect to users using the `caching_sha2_password` authentication plugin.
+-- * `ob_sm3_password` is an OceanBase-specific authentication plugin. Standard MySQL Connector or unsupported ODP may not be able to complete connections for users using this authentication plugin.
+--
+-- ## Privilege requirements
+--
+-- To execute the `CREATE USER` statement, the current user must have the global CREATE USER privilege. For more information about OceanBase Database privileges, see [Privilege types in MySQL-compatible mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/200.permission-of-mysql-mode/100.permission-classification-of-mysql.md).
+--
+-- ## Syntax
+--
+-- ```sql
+-- CREATE USER [IF NOT EXISTS] {user [, user...]}
+--     [REQUIRE {NONE | SSL | X509 | tls_option}]
+--     [WITH resource_option [resource_option...]];
+--
+-- user:
+--       user_name
+--     | user_name IDENTIFIED [WITH auth_plugin] BY password
+--     | user_name IDENTIFIED [WITH auth_plugin] BY PASSWORD password
+--     | user_name IDENTIFIED [WITH auth_plugin] AS PASSWORD 'auth_string'
+--
+-- auth_plugin:
+--     mysql_native_password
+--     | caching_sha2_password
+--     | ob_sm3_password
+--
+-- tls_option:
+--       CIPHER cipher_name
+--     | ISSUER issuer_name
+--     | SUBJECT subject_name
+--
+-- resource_option:
+--       MAX_CONNECTIONS_PER_HOUR integer
+--     | MAX_USER_CONNECTIONS integer
+-- ```
+--
+-- ## Parameters
+--
+-- | Parameter | Description |
+-- |-------|-----------|
+-- | IF NOT EXISTS | If specified, the user will not be created if the username already exists. If the username already exists and `IF NOT EXISTS` is not specified, an error will be returned. |
+-- | user_name | The username. After the user is created, a new row will be added to the `mysql.user` table. Multiple users can be created at the same time, separated by commas (`,`). |
+-- | auth_plugin | The authentication plugin to use. For more information, see [auth_plugin](#auth_plugin).|
+-- | IDENTIFIED BY password | Specifies the plaintext password for the new user. After the password is stored in the `mysql.user` table, it will be encrypted. If the password contains special characters <code>~!@#%^&*_-+=`\|(){}[]:;',.?/</code>, it must be enclosed in English quotes (<code>'</code> or <code>"</code>). |
+-- | IDENTIFIED BY PASSWORD password | Specifies the encrypted password for the new user. The password will be directly stored in the `mysql.user` table. |
+-- | IDENTIFIED AS PASSWORD | Sets the authentication plugin to `auth_plugin` and stores the `auth_string` value in the `mysql.user` table. If the plugin requires a hashed string, it is assumed to be already in the required hashed format. |
+-- | REQUIRE | Specifies the password verification requirements for the user. Valid values:<ul><li>NONE: Indicates that the user has no password verification requirements, meaning they can use any password or omit a password.</li><li>SSL: Indicates that the user must use an SSL connection for authentication.</li><li>X509: Indicates that the user must use an X.509 certificate for authentication.</li><li>tls_option: Indicates that the user must meet the specified TLS (Transport Layer Security) requirements.</li></ul> |
+-- | tls_option | Specifies the specific TLS requirements. Valid values:<ul><li>CIPHER: Specifies the encryption algorithm or cipher suite to use for TLS connections.</li><li>ISSUER: Specifies the issuer of the TLS certificate.</li><li>SUBJECT: Specifies the subject of the TLS certificate.</li></ul> |
+-- | resource_option | Specifies the resource options for the user. Multiple resource options can be specified, separated by spaces. Valid values:<ul><li>MAX_CONNECTIONS_PER_HOUR: Specifies the maximum number of connections allowed per hour. integer is an integer indicating the maximum allowed connections.</li><li>MAX_USER_CONNECTIONS: Specifies the maximum number of connections allowed per user. integer is an integer indicating the maximum allowed connections.</li></ul> |
+--
+-- ### auth_plugin
+--
+-- * `mysql_native_password`: The traditional password authentication plugin, using the SHA-1 hash algorithm.
+-- * `caching_sha2_password`: A password authentication plugin based on SHA-256, providing higher security.
+--
+--   <main id="notice" type='explain'>
+--     <h4>Note</h4>
+--     <p>For V4.4.2, authentication plugin <code>caching_sha2_password</code> is supported starting with V4.4.2 BP2.</p>
+--   </main>
+--
+-- * `ob_sm3_password`: This plugin fully reuses the protocol and state machine of `caching_sha2_password` (AuthSwitch, fast/authenticating/full-authenticating, TLS/RSA key-passing), but maintains independent algorithms and metadata. It uses the SM3 hash algorithm instead of SHA-256 for password storage and authentication verification.
+--
+--   <main id="notice" type='explain'>
+--     <h4>Note</h4>
+--     <p>For V4.4.2, authentication plugin <code>ob_sm3_password</code> is supported starting with V4.4.2 BP3.</p>
+--   </main>
+--
+-- ## Examples
+--
+-- * Create users test1 and test2, specifying plaintext passwords and the maximum number of connections allowed for each user.
+--
+--   ```sql
+--   ```
+--
+-- * Create user test3, specifying an encrypted password and requiring SSL connections for authentication.
+--
+--   ```sql
+--   ```
+--
+-- * Create user test4, specifying the mysql_native_password authentication plugin.
+--
+--   ```sql
+--   ```
+--
+-- ## References
+--
+-- * For information about granting privileges to a user, see [Grant privileges](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/200.permission-of-mysql-mode/200.authority-of-mysql-mode.md).
+--
+-- * You can view the created user information in the `mysql.user` table. For more information about the `mysql.user` table, see [mysql.user](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/700.system-views/400.system-view-of-mysql-mode/200.dictionary-view-of-mysql-mode/4200.mysql-user-of-mysql-mode.md).
+--
+-- * For information about connecting to OceanBase Database using the created user, see [Connect to OceanBase Database](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/300.develop/100.application-development-of-mysql-mode/100.connect-to-oceanbase-database-of-mysql-mode/100.connection-methods-overview-of-mysql-mode.md).
+-- * For information about using the default authentication plugin when creating a new user, see [default_authentication_plugin](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/800.configuration-items-and-system-variables/200.system-variable/300.global-system-variable/2100.default_authentication_plugin-global.md).
+-- * For information about authentication plugins, see [Authentication](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/200.identification-and-authentication/100.identification-and-authentication-of-mysql-mode/100.identification-of-mysql-mode.md).--
+--
+-- ==============================================================================
+-- [DDL-039] MySQL mode | CREATE VIEW
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/2900.create-view-of-mysql-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # CREATE VIEW
+--
+-- ## Purpose
+--
+-- This statement is used to create a view.
+--
+-- ## Limitations and considerations
+--
+-- * A view is not stored as a table in the database. Instead, it is derived from the `SELECT` statement specified in the `CREATE VIEW` statement. Each time the view is used, it is derived anew.
+--
+-- * If the `FROM` clause references two or more tables or views, the view is called a join view. An updatable join view, also known as a modifiable join view, involves two or more base tables or views and allows DML operations. Updatable views are not restricted by the `WITH READ ONLY` clause.
+--
+-- * To ensure the updatable nature of a view, a series of specific conditions must be met. One universally applicable rule is that when performing `INSERT`, `UPDATE`, or `DELETE` operations on a join view, the operation must target only a single base table.
+--
+-- ## Privilege requirements
+--
+-- To execute the `CREATE VIEW` statement, the current user must have the `CREATE VIEW` privilege. For more information about OceanBase Database privileges, see [Privilege classification in MySQL-compatible mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/200.permission-of-mysql-mode/100.permission-classification-of-mysql.md).
+--
+-- ## Syntax
+--
+-- ```sql
+-- CREATE [OR REPLACE] VIEW view_name[(column_name_list)]
+--     AS select_stmt
+--     [check_option];
+--
+-- column_name_list:
+--     column_name [, column_name ...]
+--
+-- check_option:
+--     WITH CHECK OPTION
+--     | WITH CASCADED CHECK OPTION
+--     | WITH LOCAL CHECK OPTION
+-- ```
+--
+-- ## Parameters
+--
+-- |      **Parameter**    |                     **Description**                           |
+-- |------------------|--------------------------------------------------------|
+-- | OR REPLACE       | Optional. If specified, the view will be recreated with the new definition if it already exists, effectively replacing the existing view.|
+-- | view_name        | Specifies the name of the view.|
+-- | column_name_list | Optional. Specifies the list of column names for the view. If not specified, the column names retrieved by the `SELECT` statement will be used as the view's column names. The `SELECT` statement can retrieve columns as simple references to table columns or as expressions involving functions, constants, operators, etc. View column names have the following restrictions:<ul><li>Each column name must be unique and cannot be repeated.</li><li>The number of names in `column_name_list` must equal the number of columns retrieved by the `SELECT` statement.</li></ul>|
+-- | select_stmt      | The `SELECT` statement used to define the view. It specifies the view's definition, allowing selection from base tables or other views. For more information about the structure and options of the `SELECT` statement, see [SELECT statement](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/8100.select-of-mysql-mode/100.select-of-mysql-mode.md).|
+-- | check_option | Optional. Specifies the check scope for the view, used to restrict insert and update operations on the view. For more information about the check scope, see [check_option](#check_option).|
+--
+-- ### check_option
+--
+-- `WITH CHECK OPTION`: A syntax for creating a view that ensures the data inserted or updated meets the view's definition conditions. In MySQL-compatible mode, the `WITH CHECK OPTION` clause can also be used with the `LOCAL` or `CASCADED` keywords to further specify the scope of data checks.
+--
+-- * `WITH CASCADED CHECK OPTION`: Checks the current view and recursively checks all referenced views.
+-- * `WITH LOCAL CHECK OPTION`: Checks the current view. Whether to check the referenced views depends on the definitions of those views.
+--
+-- OceanBase Database also supports specifying the `WITH CHECK OPTION` clause when a subquery is included in the view's filter condition (`where_clause`).
+--
+-- <main id="notice" type='notice'>
+--   <h4>Notice</h4>
+--   <p>When using the <code>WITH CHECK OPTION</code> clause in filter conditions: <ul><li>In MySQL-compatible mode, ensure that the creation statement does not result in an "updatable view".</li><li>The <code>JOIN</code> operation is not supported in view definitions.</li></ul></p>
+-- </main>
+--
+-- ## Examples
+--
+-- Create the test tables `test_tbl1` and `test_tbl2`.
+--
+-- ```shell
+-- ```
+--
+-- ```shell
+-- ```
+--
+-- * Create a view `v1_t1` by selecting the `col1` and `col2` columns from table `test_tbl1`.
+--
+--     ```shell
+--         AS SELECT col1, col2
+--            FROM test_tbl1;
+--     ```
+--
+-- * Create a view `v2_t1` using the `WITH LOCAL CHECK OPTION` clause.
+--
+--     ```shell
+--         AS SELECT *
+--            FROM test_tbl1
+--            WHERE col1 > 0 WITH LOCAL CHECK OPTION;
+--     ```
+--
+-- * Create a view `v3_t1` using the `WITH CASCADED CHECK OPTION` clause.
+--
+--     ```shell
+--         AS SELECT *
+--            FROM test_tbl1
+--            WHERE col1 > 1 WITH CASCADED CHECK OPTION;
+--     ```
+--
+-- * Create a view `v4_t1` using the `WITH CHECK OPTION` clause.
+--
+--     ```shell
+--         AS SELECT *
+--            FROM test_tbl1
+--            WHERE col1 > 10 WITH CHECK OPTION;
+--     ```
+--
+-- * Specify the `WITH CHECK OPTION` clause after the filter condition subquery.
+--
+--     ```shell
+--         AS SELECT *
+--         FROM test_tbl1 t1
+--         WHERE EXISTS (SELECT 1 FROM test_tbl2 t2 WHERE t2.col1 = t1.col1) WITH CHECK OPTION;
+--     ```
+--
+-- ## References
+--
+-- * [Manage normal views](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/100.manage-object-of-mysql-mode/600.manage-views-of-mysql-mode/100.manage-normal-views-of-mysql-mode.md)
+-- * [ALTER VIEW](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/1900.alter-view-of-mysql-mode.md)
+-- * [DROP VIEW](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/4100.drop-view-of-mysql-mode.md)--
+--
+-- ==============================================================================
+-- [DDL-040] MySQL mode | CREATE EVENT
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/2960.create-event-of-mysql-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # CREATE EVENT
+--
+-- ## Purpose
+--
+-- This statement is used to create and schedule a new event.
+--
+-- <main id="notice" type='explain'>
+--   <h4>Note</h4>
+--   <p>Starting from OceanBase Database V4.2.5 BP2, the EVENT feature supports executing <CODE>call</CODE> statements to invoke stored procedures, and allows specifying start or end times using time expressions and functions. </p>
+-- </main>
+--
+-- <main id="notice" type='notice'>
+--   <h4>Notice</h4>
+--   <p>By default, EVENT is disabled. To enable it, execute the <code>SET GLOBAL event_scheduler = 1;</code> command. For more information about this configuration item, see <a href="../../../../../700.reference/800.configuration-items-and-system-variables/200.system-variable/300.global-system-variable/2600.event_scheduler-global.md"> event_scheduler</a>. </p></p>
+-- </main>
+--
+-- ## Privilege requirements
+--
+-- The user executing this statement must have the `CREATE` privilege. For more information about privileges in OceanBase Database, see [Privilege types in MySQL-compatible mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/200.permission-of-mysql-mode/100.permission-classification-of-mysql.md).
+--
+-- ## Syntax
+--
+-- ```sql
+-- CREATE
+--     [DEFINER = user]
+--     EVENT
+--     [IF NOT EXISTS]
+--     event_name
+--     ON SCHEDULE schedule
+--     [ON COMPLETION [NOT] PRESERVE]
+--     [ENABLE | DISABLE | DISABLE ON SLAVE] //Default is ENABLE
+--     [COMMENT 'string']
+--     DO event_body;
+--
+-- schedule: {
+--     AT timestamp [+ INTERVAL interval] ...
+--   | EVERY interval
+--     [STARTS timestamp [+ INTERVAL interval] ...]
+--     [ENDS timestamp [+ INTERVAL interval] ...]
+-- }
+--
+-- interval:
+--     quantity {YEAR | QUARTER | MONTH | DAY | HOUR | MINUTE |
+--               WEEK | SECOND | YEAR_MONTH | DAY_HOUR | DAY_MINUTE |
+--               DAY_SECOND | HOUR_MINUTE | HOUR_SECOND | MINUTE_SECOND}
+-- ```
+--
+-- ## Considerations
+--
+-- * If you specify `EVERY interval` without `START TIME`, the event will run indefinitely.
+-- * For recurring events, if the execution time exceeds the scheduling interval, multiple events may run at the same time. Ensure the execution time is less than the scheduling interval.
+-- * The maximum execution time (24 hours) for one-time events cannot be set.
+-- * Creating another event from an existing event is not recommended.
+-- * Once an event has started, its schedule cannot be modified.
+-- * Once an event has started, its name (`event_name`) should not be changed, as this may prevent it from ending correctly.
+-- * If an event fails to execute for 16 consecutive times, it will stop running.
+--
+-- ## Parameters
+--
+-- | Parameter   | Description     |
+-- |-------|-----------|
+-- |IF NOT EXISTS| Indicates whether to create the event if it already exists. If the event exists and `IF NOT EXISTS` is not specified, an error will be returned. |
+-- |event_name| Specifies the name of the event to be created. |
+-- |DEFINER| Optional. Specifies the user who will execute the event. Currently, custom users are not supported, and the default is the current user. |
+-- |ON SCHEDULE schedule| Defines the time and frequency at which the event will execute. Supports timestamp + INTERVAL, such as "2020-12-01 00:00:00" + INTERVAL 1 DAY. The time must be an integer, and supported units include YEAR, MONTH, DAY, HOUR, MINUTE, and SECOND. |
+-- |ON COMPLETION [NOT] PRESERVE| Defines whether to retain the event after it completes execution. By default, events are not retained (NOT PRESERVE), meaning they are automatically deleted after execution. |
+-- |ENABLE, DISABLE, DISABLE ON SLAVE| Defines the state of the event. By default, events are created in the ENABLE state, meaning they are immediately enabled upon creation. `DISABLE` creates the event in a disabled state, and it will not execute automatically until manually enabled. `DISABLE ON SLAVE` is only applicable in replication environments, and the event will not execute on the server. |
+-- |COMMENT 'string'| Optional. Adds a comment to the event. |
+-- |DO event_body| Defines the SQL statement to be executed. Currently supports single SQL statements and `BEGIN END` for multiple SQL statements. |
+--
+-- ## Examples
+--
+-- ```shell
+--     ON SCHEDULE AT '2024-07-01 00:00:00' + INTERVAL 1 HOUR
+--     DO
+--       UPDATE myschema.mytable SET mycol = mycol + 1;
+-- ```--
+--
+-- ==============================================================================
+-- [DDL-041] MySQL mode | DROP CATALOG
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/3350.drop-catalog-of-mysql-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # DROP CATALOG
+--
+-- ## Purpose
+--
+-- This statement is used to delete an external data catalog.
+--
+-- ## Privilege requirements
+--
+-- To execute the `DROP CATALOG` statement, the current user must have the `CREATE CATALOG` privilege. For more information about OceanBase Database privileges, see [Privilege classification in MySQL-compatible mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/200.permission-of-mysql-mode/100.permission-classification-of-mysql.md).
+--
+-- ## Syntax
+--
+-- ```sql
+-- DROP CATALOG [IF EXISTS] external_catalog_name;
+-- ```
+--
+-- ## Parameters
+--
+-- |   **Parameter**   | **Description** |
+-- |--------------|----------|
+-- | IF EXISTS    | Optional. If you specify `IF EXISTS`, the statement will not return an error if the external data catalog does not exist. If you do not specify this option, an error will be returned. |
+-- | external_catalog_name | The name of the external data catalog to be deleted. |
+--
+-- ## Examples
+--
+-- ```sql
+-- DROP CATALOG test_odps_catalog;
+-- ```--
+--
+-- ==============================================================================
+-- [DDL-042] MySQL mode | DROP CONCURRENT_LIMITING_RULE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/3360.drop-concurrent_limiting_rule-of-mysql-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # DROP CONCURRENT_LIMITING_RULE
+--
+-- <main id="notice" type='explain'>
+--   <h4>Note</h4>
+--   <p>For V4.3.X versions, this statement was introduced in OceanBase Database V4.3.5 BP3. <br>For V4.4.X versions, this statement was introduced in OceanBase Database V4.4.1.</p>
+--   </main>
+--
+-- ## Purpose
+--
+-- This statement is used to delete a throttling rule.
+--
+-- ## Privilege requirements
+--
+-- To execute the `DROP CONCURRENT_LIMITING_RULE` statement, the current user must have the DROP privilege. For more information about OceanBase Database privileges, see [Privilege types in MySQL-compatible mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/200.permission-of-mysql-mode/100.permission-classification-of-mysql.md).
+--
+-- ## Syntax
+--
+-- ```sql
+-- DROP CONCURRENT_LIMITING_RULE [ IF EXISTS ] `ccl_rule_name1` [, `ccl_rule_name2`, ...]
+-- ```
+--
+-- Here, `ccl_rule_name` specifies the name of the throttling rule.
+--
+-- ## Examples
+--
+-- <main id="notice" type='explain'>
+--   <h4>Note</h4>
+--   <p>When a throttling rule is deleted, it becomes invalid immediately. All SQL statements in the waiting queue of the throttling rule are then executed normally.</p>
+-- </main>
+--
+-- Execute the following command to delete the throttling rules `sql1_keywords_ccl_rule` and `sql2_keywords_ccl_rule`.
+--
+-- ```shell
+-- ```--
+--
+-- ==============================================================================
+-- [DDL-043] MySQL mode | DROP DATABASE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/3400.drop-database-of-mysql-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # DROP DATABASE
+--
+-- ## Purpose
+--
+-- You can use this statement to drop a database.
+--
+-- ## Syntax
+--
+-- ```sql
+-- drop_database_stmt:
+-- DROP DATABASE [IF EXISTS] database_name;
+-- ```
+--
+-- ## Parameters
+--
+-- | **Parameter** | **Description** |
+-- |---------------|-------------------|
+-- | IF EXISTS | If this parameter is present, no error will be returned when the database does not exist.  |
+-- | database_name | The name of the database to be dropped.  |
+--
+-- ## Examples
+--
+-- * Drop the `test2` database.
+--
+--   ```sql
+--    Query OK, 0 rows affected
+--    ```
+--
+-- * Drop the `notest` database that does not exist.
+--
+--   ```sql
+--    ERROR 1008 (HY000): Can't drop database 'notest'; database doesn't exist
+--
+--    Query OK, 0 rows affected, 1 warning
+--
+--    +-------+------+------------------------------------------------------+
+--    | Level | Code | Message                                              |
+--    +-------+------+------------------------------------------------------+
+--    | Note  | 1008 | Can't drop database 'notest'; database doesn't exist |
+--    +-------+------+------------------------------------------------------+
+--    1 row in set
+--    ```--
+--
+-- ==============================================================================
+-- [DDL-044] MySQL mode | DROP INDEX
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/3500.drop-index-of-mysql-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # DROP INDEX
+--
+-- ## Purpose
+--
+-- You can use this statement to drop an index. Maintenance costs increase with the number of indexes. We recommend that you drop unnecessary indexes.
+--
+-- ## Syntax
+--
+-- ```sql
+-- DROP INDEX index_name
+--    ON table_name;
+-- ```
+--
+-- ## Parameters
+--
+-- | **Parameter** | **Description** |
+-- |------------|---------|
+-- | index_name | The name of the index.  |
+-- | table_name | The table name.  |
+--
+-- ## Examples
+--
+-- Drop the `idx_test` index for table `tbl_test`.
+--
+-- ```sql
+-- ```--
+--
+-- ==============================================================================
+-- [DDL-045] MySQL mode | DROP LOCATION
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/3530.drop-location-of-mysql-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # DROP LOCATION
+--
+-- ## Purpose
+--
+-- This statement is used to delete a location object.
+--
+-- <main id="notice" type='explain'>
+--   <h4>Note</h4>
+--   <p>For OceanBase Database V4.4.x, the <code>DROP LOCATION</code> statement is supported starting from V4.4.1. </p>
+-- </main>
+--
+-- ## Privilege requirements
+--
+-- To execute the `DROP LOCATION` statement, the current user must have the `CREATE LOCATION` privilege. For more information about privileges in OceanBase Database, see [Privilege classification in MySQL-compatible mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/200.permission-of-mysql-mode/100.permission-classification-of-mysql.md).
+--
+-- ## Syntax
+--
+-- ```sql
+-- DROP LOCATION location_name;
+-- ```
+--
+-- ## Parameters
+--
+-- |   **Parameter**    | **Description** |
+-- |---------------|----------|
+-- | location_name | The name of the location object to be deleted.|
+--
+-- ## Examples
+--
+-- Drop the location object `test_location_local`.
+--
+-- ```shell
+-- ```
+--
+-- ## References
+--
+-- For information about how to view the information of a location object in the current tenant, see [SHOW](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/8700.show-of-mysql-mode.md).--
+--
+-- ==============================================================================
+-- [DDL-046] MySQL mode | DROP MATERIALIZED VIEW
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/3550.drop-materialized-views-of-mysql-mode-in-sql.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # DROP MATERIALIZED VIEW
+--
+-- ## Description
+--
+-- You can use this statement to drop a materialized view.
+--
+-- ## Required privileges
+--
+-- You need the `DROP TABLE` privilege to drop a materialized view. For more information about privileges in OceanBase Database, see [Privilege types in MySQL-compatible mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/200.permission-of-mysql-mode/100.permission-classification-of-mysql.md).
+--
+-- ## Syntax
+--
+-- ```sql
+-- DROP MATERIALIZED VIEW [IF EXISTS] materialized_view_list [opt_drop_behavior];
+--
+-- materialized_view_list:
+--     [ database. ]materialized_view [,[ database. ]materialized_view]...
+--
+-- opt_drop_behavior:
+--     RESTRICT | CASCADE
+-- ```
+--
+-- ## Parameters
+--
+-- | **Parameter** | **Description** |
+-- |-------------------|--------------------------|
+-- | IF EXISTS | Specifies whether to check the existence of the materialized view to be dropped. If you specify `IF EXISTS` and the materialized view to be dropped does not exist, the system does not report an error during execution. If you do not specify this parameter and the materialized view to be dropped does not exist, the system reports an error during execution. This parameter is optional.  |
+-- | database. | The name of the database in which the materialized view is located. This parameter is optional. If you do not specify the `database.` parameter, the database in which you execute the statement is used by default.  |
+-- | materialized_view | The name of the materialized view.  |
+-- | RESTRICT \| CASCADE | The drop behavior. This parameter is optional. <ul><li>The default value `CASCADE` specifies to drop other objects that depend on the materialized view along with it. </li><li>The value `RESTRICT` specifies not to drop the materialized view if other objects depend on it. </li></ul> |
+--
+-- ## Example
+--
+-- Drop the `mv_test_tbl1` materialized view in the `test_db` database.
+--
+-- ```sql
+-- ```
+--
+-- The return result is as follows:
+--
+-- ```shell
+-- Query OK, 0 rows affected
+-- ```
+--
+-- ## References
+--
+-- * [Overview of materialized views](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/100.manage-object-of-mysql-mode/600.manage-views-of-mysql-mode/200.manage-materialized-views-of-mysql-mode/100.materialized-views-overview-of-mysql-mode.md)
+--
+-- * [Create a materialized view](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/100.manage-object-of-mysql-mode/600.manage-views-of-mysql-mode/200.manage-materialized-views-of-mysql-mode/300.create-materialized-views-of-mysql-mode.md)
+--
+-- * [Drop a materialized view](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/100.manage-object-of-mysql-mode/600.manage-views-of-mysql-mode/200.manage-materialized-views-of-mysql-mode/700.delete-materialized-views-of-mysql-mode.md)--
+--
+-- ==============================================================================
+-- [DDL-047] MySQL mode | DROP MATERIALIZED VIEW LOG
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/3551.drop-materialized-views-log-of-mysql-mode-in-sql.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # DROP MATERIALIZED VIEW LOG
+--
+-- ## Purpose
+--
+-- This statement is used to drop a materialized view log.
+--
+-- <main id="notice" type='explain'>
+--   <h4>Note</h4>
+--   <p>When dropping a materialized view log, if the base table is involved in an ongoing transaction, the drop operation will be blocked until the transaction completes.</p>
+-- </main>
+--
+-- ## Privilege requirements
+--
+-- To drop a materialized view log, you must have the `DROP TABLE` privilege. For more information about privileges in OceanBase Database, see [Privilege types in MySQL-compatible mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/200.permission-of-mysql-mode/100.permission-classification-of-mysql.md).
+--
+-- ## Syntax
+--
+-- ```sql
+-- DROP MATERIALIZED VIEW LOG ON [database.] table;
+-- ```
+--
+-- ## Parameters
+--
+-- | **Parameter**  |       **Description**           |
+-- |-----------|--------------------------|
+-- | database.   | Optional. Specifies the database where the base table of the materialized view log is located. If you omit `database.`, the base table is assumed to be in your own database.|
+-- | table     | Specifies the name of the base table corresponding to the materialized view log.|
+--
+-- ## Examples
+--
+-- Drop the materialized view log on the `test_tbl1` table.
+--
+-- ```shell
+-- ```
+--
+-- The return result is as follows:
+--
+-- ```shell
+-- Query OK, 0 rows affected
+-- ```
+--
+-- ## References
+--
+-- [Materialized view logs](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/100.manage-object-of-mysql-mode/600.manage-views-of-mysql-mode/200.manage-materialized-views-of-mysql-mode/200.materialized-views-log-of-mysql-mode.md)--
+--
+-- ==============================================================================
+-- [DDL-048] MySQL mode | DROP OUTLINE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/3600.drop-outline-of-mysql-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # DROP OUTLINE
+--
+-- ## Purpose
+--
+-- You can use this statement to drop an outline from OceanBase Database.
+--
+-- ## Syntax
+--
+-- ```sql
+-- DROP OUTLINE outline_name;
+-- ```
+--
+-- ## Parameters
+--
+-- | **Parameter** | **Description** |
+-- |--------------|--------------------|
+-- | outline_name | The name of the outline to be dropped.  |
+--
+-- ## Examples
+--
+-- Drop the `ol_1` outline.
+--
+-- ```sql
+-- DROP OUTLINE ol_1;
+-- ```--
+--
+-- ==============================================================================
+-- [DDL-049] MySQL mode | DROP ROLE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/3660.drop-role-of-mysql-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # DROP ROLE
+--
+-- ## Purpose
+--
+-- You can use this statement to drop a role.
+--
+-- ## Limitations and considerations
+--
+-- * When you drop a role, it will be revoked from all users and roles to which this role is granted, and be dropped from the database.
+-- * Roles defined in the system variable `mandatory_roles` cannot be dropped.
+-- * When you use this statement to drop multiple roles, if one of the roles fails to be dropped, the entire drop operation will be rolled back and none of the roles will be dropped.
+--
+-- ## Required privileges
+--
+-- You must have the `CREATE USER` or `DROP ROLE` privilege. For more information about privileges in OceanBase Database, see [Privilege types in MySQL-compatible mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/200.permission-of-mysql-mode/100.permission-classification-of-mysql.md).
+--
+-- ## Syntax
+--
+-- ```sql
+-- DROP ROLE role_name [, role_name ...];
+-- ```
+--
+-- ## Parameters
+--
+-- | **Parameter** | **Description** |
+-- |----------|----------|
+-- | role_name | The name of the role to be dropped. Separate multiple roles with commas (`,`).  |
+--
+-- ## Examples
+--
+-- Drop the role `role001`.
+--
+-- ```sql
+-- DROP ROLE role001;
+-- ```
+--
+-- ## References
+--
+-- * [Create a role](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/200.permission-of-mysql-mode/340.role-management-of-mysql-mode/200.create-a-role-for-mysql-tenant-of-mysql-mode.md)
+-- * [View roles](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/200.permission-of-mysql-mode/340.role-management-of-mysql-mode/600.view-roles-of-mysql-mode.md)
+-- * [Drop a role](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/200.permission-of-mysql-mode/340.role-management-of-mysql-mode/900.delete-a-role-of-mysql-mode.md)--
+--
+-- ==============================================================================
+-- [DDL-050] MySQL mode | DROP SENSITIVE RULE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/3680.drop-sensitive-rule-of-mysql-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # DROP SENSITIVE RULE
+--
+-- ## Purpose
+--
+-- This statement is used to delete a sensitive data protection rule.
+--
+-- ## Privilege requirements
+--
+-- To execute the `DROP SENSITIVE RULE` statement, the current user must have the `CREATE SENSITIVE RULE` privilege. For more information about OceanBase Database privileges, see [Privilege classification in MySQL-compatible mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/200.permission-of-mysql-mode/100.permission-classification-of-mysql.md).
+--
+-- ## Syntax
+--
+-- ```sql
+-- DROP SENSITIVE RULE <rule_name>;
+-- ```
+--
+-- ## Parameters
+--
+-- The following table describes the parameters.
+--
+-- | Parameter | Data type | Default value | Description |
+-- |--|--|--|--|
+-- | rule_name | VARCHAR |  | The name of the sensitive data protection rule. This value must be unique within the tenant. |
+--
+-- The following table describes the parameters.
+--
+-- * The rule takes effect immediately after it is deleted.
+--
+-- Limitations:
+--
+-- * Only one rule can be deleted at a time.
+--
+-- ## Examples
+--
+-- Here is an example:
+--
+-- ```sql
+-- -- Delete the sensitive data protection rule named r1.
+-- DROP SENSITIVE RULE r1;
+-- ```
+--
+-- # References
+--
+-- * [CREATE SENSITIVE RULE](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/2550.create-sensitive-rule-of-mysql-mode.md)
+-- * [ALTER SENSITIVE RULE](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/1350.alter-sensitive-rule-of-mysql-mode.md)--
+--
+-- ==============================================================================
+-- [DDL-051] MySQL mode | DROP TABLE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/3700.drop-table-of-mysql-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # DROP TABLE
+--
+-- ## Purpose
+--
+-- You can use this statement to drop tables from OceanBase Database.
+--
+-- ## Syntax
+--
+-- ```sql
+-- DROP {TABLE | TABLES} [TEMPORARY] [IF EXISTS]
+-- table_name [,table_name]...
+-- [RESTRICT | CASCADE]
+-- ```
+--
+-- ## Parameters
+--
+-- | **Parameter** | **Description** |
+-- |---------------------|------------------------------------------------------------------------------------------------|
+-- | table_name | The name of the table to be dropped. Multiple table names must be separated with commas (,).  |
+-- | TEMPORARY | Indicates to drop a temporary table.<main id="notice" type='explain'><h4>Note</h4><p><ul><li>Since OceanBase Database V4.1.0 BP4, the temporary table feature is disabled in MySQL-compatible mode. </li><li>Since OceanBase Database V4.4.2, the temporary table feature is supported in OceanBase Database V4.4.x. </li></p></main> |
+-- | IF EXISTS | If `IF EXISTS` is specified, no error is returned even if the table to be dropped does not exist. Otherwise, an error is returned.  |
+-- | RESTRICT \| CASCADE | This parameter is applicable when you migrate data from other databases to OceanBase Database.  <br>**Note**: The current version does not support this parameter. If this parameter is specified, it will be parsed and ignored.</br>  |
+--
+-- ## Examples
+--
+-- * Specify `IF EXISTS` and drop the table named `test1`.
+--
+--   ```sql
+--    Query OK, 0 rows affected
+--    ```
+--
+-- * Specify `IF EXISTS` and drop tables `test1` and `test2`.
+--
+--   ```sql
+--    Query OK, 0 rows affected
+--    ```
+--
+-- * Drop multiple tables without specifying `IF EXISTS`. If a table does not exist, an error is returned.
+--
+--   ```sql
+--    ERROR 1051 (42S02): Unknown table 'test.test2'
+--    ```
+--
+-- * Drop the temporary table `tset3`.
+--
+--   ```sql
+--   ```--
+--
+-- ==============================================================================
+-- [DDL-052] MySQL mode | DROP TABLEGROUP
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/3800.drop-tablegroup-of-mysql-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # DROP TABLEGROUP
+--
+-- ## Purpose
+--
+-- You can use this statement to drop a table group. You cannot drop a table group that is referenced by the `TABLEGROUP` attribute of a table.
+--
+-- ## Syntax
+--
+-- ```sql
+-- DROP TABLEGROUP [IF EXISTS] tablegroup_name;
+-- ```
+--
+-- ## Parameters
+--
+-- | **Parameter** | **Description** |
+-- |-----------------|-----------------------------------------------|
+-- | tablegroup_name | The name of the table group. If the table group name does not exist and `IF EXISTS` is not specified, an error is returned.  |
+--
+-- ## Examples
+--
+-- * Drop a table group named `Table_Group1`.
+--
+--   ```sql
+--    Query OK, 0 rows affected
+--    ```
+--
+-- * Drop a nonexistent table group named `Table_Group1`.
+--
+--   ```sql
+--    ERROR 5151 (42P01): tablegroup not exist
+--    ```
+--
+-- * Drop a nonexistent table group named `Table_Group1` with `IF EXISTS` specified.
+--
+--   ```sql
+--    Query OK, 0 rows affected, 1 warning
+--    ```--
+--
+-- ==============================================================================
+-- [DDL-053] MySQL mode | DROP TABLESPACE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/3850.drop-tablespace-of-mysql-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # DROP TABLESPACE
+--
+-- ## Purpose
+--
+-- You can use this statement to drop a tablespace that contains no tables.
+--
+-- ## Syntax
+--
+-- ```sql
+-- DROP TABLESPACE tablespace_name
+-- [ENGINE [=] engine_name];
+-- ```
+--
+-- ## Parameters
+--
+-- | Parameter | Description |
+-- |-----------------|-----------------------|
+-- | tablespace_name | The name of the tablespace to be dropped. |
+-- | ENGINE | The type of the storage engine that uses the tablespace. In the current version, only the keyword syntax is supported. The functionality does not actually take effect. |
+--
+-- ## Examples
+--
+-- Drop the tablespace `tablespace001`.
+--
+-- ```shell
+-- DROP TABLESPACE tablespace001;
+-- ```--
+--
+-- ==============================================================================
+-- [DDL-054] MySQL mode | DROP SEQUENCE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/3900.drop-sequence-of-mysql-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # DROP SEQUENCE
+--
+-- ## Purpose
+--
+-- You can use this statement to drop a sequence.
+--
+-- ## Syntax
+--
+-- ```sql
+-- DROP SEQUENCE  [IF EXISTS] [schema. ] sequence_name;
+-- ```
+--
+-- ## Parameters
+--
+-- | Parameter | Description |
+-- |---------------|-----------------------------------------------------------|
+-- | schema. | The schema where the sequence is located. If `schema.` is not specified, the sequence is located in the schema of the currently logged-on user.  |
+-- | IF EXISTS | Specifies to display prompt information if the sequence does not exist, without returning an error.  |
+-- | sequence_name | The name of the sequence to be dropped.  |
+--
+-- ## Examples
+--
+-- Drop the sequence named `seq1`.
+--
+-- ```sql
+-- Query OK, 0 rows affected
+-- ```--
+--
+-- ==============================================================================
+-- [DDL-055] MySQL mode | DROP USER
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/4000.drop-user-of-mysql-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # DROP USER
+--
+-- ## Purpose
+--
+-- You can use this statement to drop one or more database users.
+--
+--   <main id="notice" type='notice'>
+--     <h4>Notice</h4>
+--     <ul>
+--     <li>To execute this statement, you must have the global <code>CREATE USER</code> privilege. </li>
+--     <li>To drop a user in the <code>mysql.user</code> table, you must execute the <code>DROP</code> statement instead of the <code>DELETE</code> statement. </li>
+--     <li>After you drop a user, all its privileges are dropped along with it. </li>
+--     </ul>
+--   </main>
+--
+-- ## Syntax
+--
+-- ```sql
+-- DROP USER [IF EXISTS] user_name [, user_name...];
+-- ```
+--
+-- ## Parameters
+--
+-- | Parameter | Description |
+-- |-----------|-----------------------|
+-- | IF EXISTS | Optional. When you attempt to drop a user that does not exist, a warning is generated if this clause is used, and an error is returned if this clause is not used. |
+-- | user_name | The username. Multiple usernames must be separated with commas (,). |
+--
+-- ## Examples
+--
+-- Drop a user named `sqluser01`.
+--
+-- ```sql
+-- Query OK, 0 rows affected
+-- ```--
+--
+-- ==============================================================================
+-- [DDL-056] MySQL mode | DROP VIEW
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/4100.drop-view-of-mysql-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # DROP VIEW
+--
+-- ## Purpose
+--
+-- This statement is used to delete one or more views.
+--
+-- ## Limitations and considerations
+--
+-- When dropping multiple views, the current user must have the `DROP` privilege on each view.
+--
+-- ## Privilege requirements
+--
+-- To execute the `DROP VIEW` statement, the current user must have the `DROP` privilege. For more information about OceanBase Database privileges, see [Privilege classification in MySQL-compatible mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/200.permission-of-mysql-mode/100.permission-classification-of-mysql.md).
+--
+-- ## Syntax
+--
+-- ```sql
+-- DROP VIEW [IF EXISTS] view_name_list [CASCADE | RESTRICT];
+--
+-- view_name_list:
+--     view_name [, view_name ...]
+-- ```
+--
+-- ## Parameters
+--
+-- |       **Parameter**      |                    **Description**                           |
+-- |---------------------|-------------------------------------------------------|
+-- | IF EXISTS           | Optional. If this parameter is specified, it indicates that the drop operation will be performed if the view exists, and ignored if the view does not exist.|
+-- | view_name_list      | A list of column names of the view. You can delete one or more views. If `view_name_list` contains both existing and non-existing views, an error may occur, but the existing views will still be deleted.|
+-- | view_name           | The name of the view.|
+-- | CASCADE \| RESTRICT | Optional. Specifies the drop option. Valid values: <ul><li>`CASCADE`: Drops the view and automatically drops objects that depend on the view.</li><li>`RESTRICT`: Drops the view only if no objects depend on it. If objects depend on the view, the drop operation is denied. </li></ul> <main id="notice" type='notice'><h4>Notice</h4><p>In the current version, only the syntax of the drop option is supported, and the functionality is not effective. </p></main>|
+--
+-- ## Examples
+--
+-- * Drop the `v1` view.
+--
+--   ```sql
+--   DROP VIEW v1;
+--   ```
+--
+-- * Drop the `v2` and `v3` views.
+--
+--   ```sql
+--   DROP VIEW IF EXISTS v2, v3;
+--   ```
+--
+-- * Drop multiple views without using `IF EXISTS`. If any of the views do not exist, an error will be returned.
+--
+--   ```sql
+--   DROP VIEW v1, v4;
+--   ```
+--
+--   The return result is as follows:
+--
+--   ```shell
+--   ERROR 1051 (42S02): Unknown table 'test.v1'
+--   ```
+--
+-- ## References
+--
+-- * [Manage normal views](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/100.manage-object-of-mysql-mode/600.manage-views-of-mysql-mode/100.manage-normal-views-of-mysql-mode.md)
+-- * [CREATE VIEW](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/2900.create-view-of-mysql-mode.md)--
+--
+-- ==============================================================================
+-- [DDL-057] MySQL mode | DROP RESTORE POINT
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/4200.drop-restore-point-of-mysql-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # DROP RESTORE POINT
+--
+-- ## Purpose
+--
+-- This statement is used to delete a restore point.
+--
+--   <main id="notice" type='notice'>
+--     <h4>Notice</h4>
+--     <p><ul><li>The DROP RESTORE POINT statement is not supported in V4.x. </li><li>System tenants do not support creating or deleting restore points. </li></ul></p>
+--   </main>
+--
+-- ## Syntax
+--
+-- ```sql
+-- DROP RESTORE POINT restore_point;
+-- ```
+--
+-- ## Parameters
+--
+-- |      Parameter       |    Description    |
+-- |---------------|----------|
+-- | restore_point | The name of the restore point. |
+--
+-- ## Examples
+--
+-- 1. View existing restore points of the current tenant.
+--
+--    ```sql
+--    +-----------+------------------+----------------------------+------+
+--    | TENANT_ID | SNAPSHOT         | TIME                       | NAME |
+--    +-----------+------------------+----------------------------+------+
+--    |      1001 | 1630407064663511 | 2021-08-31 18:51:04.665692 | rp1  |
+--    +-----------+------------------+----------------------------+------+
+--    1 row in set
+--    ```
+--
+-- 2. Delete the restore point `rp1`.
+--
+--    ```sql
+--    Query OK, 0 rows affected
+--    ```
+--
+-- # CREATE RESTORE POINT
+--
+-- ## Purpose
+--
+-- This statement is used to create a restore point. You can use this feature to retain a snapshot of the current data and query the data from this snapshot later. Currently, you cannot roll back data to this restore point.
+--
+-- After a restore point is created, you can query the `SNAPSHOT` value of the restore point from the `V$RESTORE_POINT` view. Then, you can query the value from the data snapshot by using the `SELECT * FROM table_name AS OF SNAPSHOT snapshot;` statement.
+--
+-- >**Notice**
+-- >
+-- >Restore points cannot be created in the sys tenant.
+--
+-- ## Syntax
+--
+-- ```sql
+-- CREATE RESTORE POINT restore_point;
+-- ```
+--
+-- ## Parameters
+--
+-- |      Parameter       |    Description    |
+-- |---------------|----------|
+-- | restore_point | The name of the restore point. |
+--
+-- ## Considerations
+--
+-- The following limitations apply to the restore point feature:
+--
+-- * Physical backup is not supported.
+--
+-- * Primary-standby database deployment is not supported.
+--
+-- * Each tenant can create up to `10` restore points.
+--
+-- * If you execute a DDL statement on a table that exists before a restore point is created, an error is returned.
+--
+-- * The restore point feature relies on GTS to maintain a globally consistent snapshot. Therefore, GTS must be enabled when you use the restore point feature.
+--
+--   The following SQL statement is used to enable GTS.
+--
+--   ```sql
+--   ```
+--
+-- ## Examples
+--
+-- 1. Create a table named `test1` and insert a row of data.
+--
+--    ```sql
+--    Query OK, 0 rows affected
+--
+--    Query OK, 1 row affected
+--    ```
+--
+-- 2. Create a restore point named `rp1`.
+--
+--    ```sql
+--    Query OK, 0 rows affected
+--    ```
+--
+-- 3. Insert some data into the `test1` table and commit the transaction.
+--
+--    ```sql
+--    Query OK, 2 rows affected
+--    Records: 2  Duplicates: 0  Warnings: 0
+--
+--    Query OK, 0 rows affected
+--    ```
+--
+-- 4. Query the current version of the `test1` table.
+--
+--    ```sql
+--    +------+------+
+--    | c1   | c2   |
+--    +------+------+
+--    |    1 |    1 |
+--    |    2 |    2 |
+--    |    3 |    3 |
+--    +------+------+
+--    3 rows in set
+--    ```
+--
+-- 5. View the information of the created restore point `rp1` and query the historical data based on the version number.
+--
+--    ```sql
+--    +-----------+------------------+----------------------------+------+
+--    | TENANT_ID | SNAPSHOT         | TIME                       | NAME |
+--    +-----------+------------------+----------------------------+------+
+--    |      1001 | 1630407064663511 | 2021-08-31 18:51:04.665692 | rp1  |
+--    +-----------+------------------+----------------------------+------+
+--    1 row in set
+--
+--    +------+------+
+--    | c1   | c2   |
+--    +------+------+
+--    |    1 |    1 |
+--    +------+------+
+--    1 row in set
+--    ```--
+--
+-- ==============================================================================
+-- [DDL-058] MySQL mode | RENAME USER
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/7400.rename-user-of-mysql-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # RENAME USER
+--
+-- ## Purpose
+--
+-- You can use this statement to change the username of a user that has logged on to OceanBase Database.
+--
+--   <main id="notice" type='explain'>
+--     <h4>Note</h4>
+--     <p>To execute this statement, you must have the <code>CREATE USER</code> privilege. </p>
+--   </main>
+--
+-- ## Syntax
+--
+-- ```sql
+-- RENAME USER
+--     'old_user_name' TO 'new_user_name'
+--   [,'old_user_name' TO 'new_user_name'...];
+-- ```
+--
+-- ## Parameters
+--
+-- | **Parameter** | **Description** |
+-- |------------------------------------|-------------------------------------------------------------|
+-- | old_user_name | The old username.  |
+-- | new_user_name | The new username. The username can contain up to 16 bytes in length.  |
+-- | 'old_user_name' TO 'new_user_name' | The operation to change the username. Multiple usernames must be separated with commas (,). User privileges remain unchanged after the username is changed.  |
+--
+-- ## Examples
+--
+-- 1. Before you change the username, execute the following statement to query the user.
+--
+--    The result is as follows:
+--
+--    ```sql
+--    +-----------+
+--    | user      |
+--    +-----------+
+--    | root      |
+--    | admin     |
+--    | sqluser01 |
+--    | sqluser02 |
+--    +-----------+
+--    4 rows in set
+--    ```
+--
+-- 2. Execute the following statement to change the username of `sqluser01` to `obsqluser01`.
+--
+--    ```sql
+--    ```
+--
+-- 3. After you change the username, execute the following statement to query the user.
+--
+--    The username of `sqluser01` has been changed to `obsqluser01`.
+--
+--    ```sql
+--    Query OK, 0 rows affected
+--
+--    +-------------+
+--    | user        |
+--    +-------------+
+--    | root        |
+--    | admin       |
+--    | obsqluser01 |
+--    | sqluser02   |
+--    +-------------+
+--    4 rows in set
+--    ```--
+--
+-- ==============================================================================
+-- [DDL-059] MySQL mode | RENAME TABLE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/7500.rename-table-of-mysql-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # RENAME TABLE
+--
+-- ## Purpose
+--
+-- This statement is used to rename tables and materialized views.
+--
+-- ## Limitations and considerations
+--
+-- * During the renaming of a table, the system automatically locks the process and prevents any other threads from reading these tables until the renaming is complete.
+--
+-- * If there are ongoing active transactions on the target table, the renaming operation will wait. The renaming process cannot proceed until all active transactions are either committed or rolled back.
+--
+-- * If this statement is used to rename multiple tables, the renaming operations are performed from left to right.
+--
+-- * When executing `RENAME TABLE`, there should be no locked tables and no active transactions.
+--
+--    <main id="notice" type='explain'>
+--      <h4>Note</h4>
+--      <p>After enabling the tenant-level parameter <a href="../../../../800.configuration-items-and-system-variables/100.system-configuration-items/400.tenant-level-configuration-items/2650.enable_lock_priority.md">enable_lock_priority</a>, the <code>RENAME TABLE</code> statement has the highest lock priority.</p>
+--    </main>
+--
+-- * `RENAME TABLE` can be used for views, but it does not support moving them to other databases.
+--
+-- * During the `RENAME TABLE` operation, due to the addition of table locking and read/write protection measures, the operation time will be increased. To avoid affecting other users' DDL operations, it is recommended not to perform batch `RENAME TABLE` operations.
+--
+-- ## Privilege requirements
+--
+-- This operation requires the `ALTER` and `DROP` privileges on the original table, as well as the `CREATE` and `INSERT` privileges on the new table.
+--
+-- ## Syntax
+--
+-- ```sql
+-- RENAME TABLE table_name TO [new_database_name.]new_table_name
+--     [, table_name2 TO [new_database_name.]new_table_name2 ...];
+-- ```
+--
+-- ## Parameters
+--
+-- |                               **Parameter**                                |                                  **Description**                                   |
+-- |---------------------------------------------------------------------|---------------------------------------------------------------------------|
+-- | table_name                                                          | The original table name.                                                                      |
+-- | new_table_name                                                      | The new table name.                                                                      |
+-- | table_name  TO \[new_database_name.\]new_table_name | When renaming multiple tables, separate them with commas (,). You can specify `new_database_name` to move the table to another database. |
+--
+-- ## Examples
+--
+-- 1. Create tables `t1` and `t2`.
+--
+--    ```sql
+--    ```
+--
+-- 2. Rename table `t1` to `t11`.
+--
+--    ```sql
+--    ```
+--
+-- 3. Rename table `t11` to `t111` and table `t2` to `t22`.
+--
+--    ```sql
+--    ```
+--
+-- 4. Move table `t22` to the `mysql` database.
+--
+--    ```sql
+--    ```--
+--
+-- ==============================================================================
+-- [DDL-060] MySQL mode | TRUNCATE TABLE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/200.common-tenant-of-mysql-mode/600.sql-statement-of-mysql-mode/8900.truncate-table-of-mysql-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # TRUNCATE TABLE
+--
+-- ## Purpose
+--
+-- This statement is used to completely empty a specified table while retaining its structure, including partition information defined in the table. Logically, this statement is equivalent to the `DELETE FROM` statement that deletes all rows.
+--
+-- ## Limitations and considerations
+--
+-- * The `TRUNCATE TABLE` operation efficiently empties a table by deleting all its data and resetting its metadata. This method offers significant performance advantages over row-by-row deletion (using the `DELETE FROM` statement), especially for large-scale tables, as it avoids row-level locking and logging.
+--
+-- * The execution result of the `TRUNCATE TABLE` statement will always show `0` rows affected.
+--
+-- * When using the `TRUNCATE TABLE` statement, the table management program does not remember the last used `AUTO_INCREMENT` value and will start counting from the beginning.
+--
+-- * The `TRUNCATE` statement cannot be executed during transaction processing or table locking. If it is used, an error will occur.
+--
+-- * As long as the table definition file is valid, the `TRUNCATE TABLE` statement can recreate the table as an empty table, even if the data or index files are damaged.
+--
+-- ## Privilege requirements
+--
+-- To execute the `TRUNCATE TABLE` statement, the current user must have the `DROP` privilege on the table. For more information about OceanBase Database privileges, see [Privilege types in MySQL-compatible mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/200.permission-of-mysql-mode/100.permission-classification-of-mysql.md).
+--
+-- ## Syntax
+--
+-- ```sql
+-- TRUNCATE [TABLE] table_name;
+-- ```
+--
+-- ## Parameters
+--
+-- |  **Parameter**  | **Description** |
+-- |------------|----------|
+-- | table_name | The name of the table.|
+--
+-- ## Examples
+--
+-- 1. Create a table named `test_tbl1`.
+--
+--    ```sql
+--    CREATE TABLE test_tbl1(col1 INT AUTO_INCREMENT PRIMARY KEY, col2 VARCHAR(20))
+--        PARTITION BY HASH(col1) PARTITIONS 5;
+--    ```
+--
+-- 2. Insert test data into the `test_tbl1` table.
+--
+--    ```sql
+--    INSERT INTO test_tbl1(col2) VALUES('A1'),('A2'),('A3');
+--    ```
+--
+--    The return result is as follows:
+--
+--    ```shell
+--    Query OK, 3 rows affected
+--    Records: 3  Duplicates: 0  Warnings: 0
+--    ```
+--
+-- 3. Completely empty the `test_tbl1` table.
+--
+--    ```sql
+--    TRUNCATE TABLE test_tbl1;
+--    ```
+--
+-- 4. View the data in the `test_tbl1` table.
+--
+--    ```sql
+--    SELECT * FROM test_tbl1;
+--    ```
+--
+--    The return result is as follows:
+--
+--    ```shell
+--    Empty set
+--    ```
+--
+-- 5. View the definition of the `test_tbl1` table.
+--
+--    ```sql
+--    SHOW CREATE TABLE test_tbl1;
+--    ```
+--
+--    The return result is as follows:
+--
+--    ```shell
+--    +-----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+--    | Table     | Create Table                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+--    +-----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+--    | test_tbl1 | CREATE TABLE `test_tbl1` (
+--    `col1` int(11) NOT NULL AUTO_INCREMENT,
+--    `col2` varchar(20) DEFAULT NULL,
+--    PRIMARY KEY (`col1`)
+--    ) AUTO_INCREMENT = 1 AUTO_INCREMENT_MODE = 'ORDER' DEFAULT CHARSET = utf8mb4 ROW_FORMAT = DYNAMIC COMPRESSION = 'zstd_1.3.8' REPLICA_NUM = 1 BLOCK_SIZE = 16384 USE_BLOOM_FILTER = FALSE TABLET_SIZE = 134217728 PCTFREE = 0
+--    partition by hash(col1)
+--    (partition `p0`,
+--    partition `p1`,
+--    partition `p2`,
+--    partition `p3`,
+--    partition `p4`) |
+--    +-----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+--    1 row in set
+--    ```
+--
+-- ## References
+--
+-- [Clear a table](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/100.manage-object-of-mysql-mode/200.manage-tables-of-mysql-mode/700.clear-table-of-mysql-mode.md)--
+--
+-- ==============================================================================
+-- [DDL-061] Oracle mode | ALTER EXTERNAL TABLE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/100.alter-external-table-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # ALTER EXTERNAL TABLE
+--
+-- ## Purpose
+--
+-- This statement is used to manually update the files of an external table. Data of a single file can be automatically updated, but if the data of an external table comes from a list of files, it cannot be automatically updated and must be manually refreshed.
+--
+-- ## Syntax
+--
+-- ```sql
+-- ALTER EXTERNAL TABLE table_name
+--     ( REFRESH
+--     | alter_table_action_list
+--     | ADD PARTITION ('partition_spec') LOCATION 'path'
+--     | DROP PARTITION LOCATION 'path'
+--     | exclude_alter_table_action)
+--
+-- alter_table_action_list:
+--     alter_table_action [, alter_table_action ...]
+--
+-- exclude_alter_table_action:
+-- alter_partition_option
+-- modify_partition_info
+-- auto_split_range_partition_option
+-- ```
+--
+-- For more information about `alter_table_action_list` and `exclude_alter_table_action`, see [ALTER TABLE](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/1000.alter-table-of-oracle-mode.md).
+--
+-- ## Parameters
+--
+-- `table_name` specifies the name of the external table to refresh.
+--
+-- ## Examples
+--
+-- ```shell
+-- ```
+--
+-- ## References
+--
+-- - [CREATE EXTERNAL TABLE](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/1600.create-external-table-of-oracle-mode.md)
+-- - [ALTER TABLE](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/1000.alter-table-of-oracle-mode.md)--
+--
+-- ==============================================================================
+-- [DDL-062] Oracle mode | ALTER INDEX
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/100.alter-index-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # ALTER INDEX
+--
+-- ## Purpose
+--
+-- You can use the `AlTER INDEX` statement to rename an existing index, modify the degree of parallelism (DOP) of queries on the index, or modify the index storage tablespace.
+--
+-- ## Required privileges
+--
+-- To execute the `AlTER INDEX` statement, you must have the `ALTER ANY INDEX` system privilege. For more information about privileges in OceanBase Database, see [Privilege types in Oracle-compatible mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/300.permission-of-oracle-mode/000.permission-classification-of-oracle-mode.md).
+--
+-- ## Syntax
+--
+-- ```sql
+-- ALTER INDEX [ schema.]index_name
+--     {  RENAME TO new_name
+--     | parallel_option
+--     | TABLESPACE tablespace_name
+--     };
+--
+-- parallel_option:
+--       PARALLEL [COMP_EQ] integer
+--     | NOPARALLEL
+-- ```
+--
+-- ## Parameters
+--
+-- | Parameter | Description |
+-- |-------|--------|
+-- | schema. | The schema where the index is located. If `schema.` is omitted, the index is in your own schema by default.  |
+-- | index_name | The name of the index to be modified.  |
+-- | new_name | The new name of the index.  |
+-- | parallel_option | The DOP of queries on the index.  <ul><li>`NOPARALLEL`: enables serial execution, with a DOP of 1. This is the default value. </li><li>`PARALLEL [COMP_EQ] integer`: the DOP, which specifies the number of parallel threads used in parallel operations. The `PARALLEL` keyword specifies parallel processing of the index. `COMP_EQ` is an optional keyword that specifies the DOP constraint. `integer` specifies the DOP and is an integer greater than or equal to 1. </li></ul> |
+-- | tablespace_name | The index storage tablespace.  |
+--
+-- ## Examples
+--
+-- * Assume that there is an index named `index1` in the database. The following example shows how to rename it to `index2`:
+--
+--   ```shell
+--    ```
+--
+-- * Assume that there is an index named `index3` in the database with a DOP of 3 for queries. The following example shows how to modify the DOP to 1:
+--
+--   ```shell
+--    ```
+--
+-- ## References
+--
+-- * [About indexes](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/100.oceanbase-database-concepts/400.database-objects/100.database-objects-of-oracle-mode/300.index-of-oracle-mode/100.the-index-overview-of-oracle-mode.md)
+--
+-- * [Query indexes](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/200.manage-object-of-oracle-mode/400.manage-indexes-of-oracle-mode/300.view-indexes-of-oracle-mode.md)
+--
+-- * [Drop an index](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/200.manage-object-of-oracle-mode/400.manage-indexes-of-oracle-mode/400.delete-an-index-of-oracle-mode.md)--
+--
+-- ==============================================================================
+-- [DDL-063] Oracle mode | ALTER TABLE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/1000.alter-table-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # ALTER TABLE
+--
+-- ## Purpose
+--
+-- This statement is used to modify the structure of an existing table, including modifying the table and its attributes, adding columns, modifying columns and their attributes, and deleting columns.
+--
+-- ## Syntax
+--
+-- ```sql
+-- ALTER TABLE table_name alter_table_actions;
+-- | ALTER TABLE EXTERNAL table_name alter_table_actions;
+-- | ALTER TABLE table_name alter_column_group_option;
+-- | ALTER TABLE EXTERNAL table_name ADD PARTITION '(' add_external_table_partition_actions ')' LOCATION STRING_VALUE;
+-- | ALTER TABLE EXTERNAL table_name DROP PARTITION LOCATION STRING_VALUE;
+--
+-- alter_table_actions:
+--     alter_table_action
+--     | alter_table_actions ',' alter_table_action
+--     | exclude_alter_table_action
+--
+-- exclude_alter_table_action:
+--     alter_partition_option
+--     | modify_partition_info
+--     | auto_split_range_partition_option
+--
+-- alter_table_action:
+--     table_option_list_space_seperated
+--     | SET table_option_list_space_seperated
+--     | opt_alter_compress_option
+--     | alter_column_option
+--     | alter_tablegroup_option
+--     | RENAME relation_factor
+--     | RENAME TO relation_factor
+--     | alter_index_option
+--     | DROP CONSTRAINT constraint_name
+--     | enable_option ALL TRIGGERS
+--     | REFRESH
+--     | enable_macro_block_bloom_filter
+--     | DYNAMIC_PARTITION_POLICY [=] (dynamic_partition_policy_list)
+--     | SET INTERVAL(expr)
+--
+-- dynamic_partition_policy_list:
+--     dynamic_partition_policy_option [, dynamic_partition_policy_option ...]
+--
+-- dynamic_partition_policy_option:
+--     ENABLE = {true | false}
+--     | PRECREATE_TIME = {'-1' | '0' | 'n {hour | day | week | month | year}'}
+--     | EXPIRE_TIME = {'-1' | '0' | 'n {hour | day | week | month | year}'}
+--
+-- alter_partition_option:
+--     DROP PARTITION drop_partition_name_list
+--     | DROP PARTITION drop_partition_name_list UPDATE GLOBAL INDEXES
+--     | RENAME PARTITION relation_name TO relation_name
+--     | add_range_or_list_partition
+--     | SPLIT PARTITION relation_factor split_actions
+--     | TRUNCATE PARTITION name_list
+--     | TRUNCATE PARTITION name_list UPDATE GLOBAL INDEXES
+--     | MODIFY PARTITION relation_factor add_range_or_list_subpartition
+--     | RENAME SUBPARTITION relation_name TO relation_name
+--     | DROP SUBPARTITION drop_partition_name_list
+--     | DROP SUBPARTITION drop_partition_name_list UPDATE GLOBAL INDEXES
+--     | TRUNCATE SUBPARTITION name_list
+--     | TRUNCATE SUBPARTITION name_list UPDATE GLOBAL INDEXES
+--     | EXCHANGE {PARTITION partition_name
+--                | SUBPARTITION subpartition_name} WITH TABLE origin_table_name INCLUDING INDEXES WITHOUT VALIDATION
+--
+-- alter_column_group_option:
+--     ADD COLUMN GROUP '(' column_group_list ')' alter_column_group_delayed_desc
+--     | DROP COLUMN GROUP '(' column_group_list ')' alter_column_group_delayed_desc
+--
+-- modify_partition_info:
+--     MODIFY hash_partition_option
+--     | MODIFY list_partition_option
+--     | MODIFY range_partition_option
+--
+-- auto_split_range_partition_option:
+--     PARTITION BY RANGE '(' ')'  opt_auto_split_tablet_size_option
+--     | PARTITION BY RANGE '(' column_name_list ')' subpartition_option opt_auto_split_range_partition_info
+--     | MODIFY PARTITION BY RANGE '(' ')'  opt_auto_split_tablet_size_option
+--     | MODIFY PARTITION BY RANGE '(' column_name_list ')' subpartition_option auto_split_tablet_size_option
+--     | MODIFY PARTITION BY RANGE '(' column_name_list ')' subpartition_option auto_split_tablet_size_option opt_range_partition_list
+--
+-- add_external_table_partition_actions:
+--     add_external_table_partition_action
+--     | add_external_table_partition_actions ',' add_external_table_partition_action
+--     | /* empty */
+--
+-- opt_auto_split_tablet_size_option:
+--     | AUTO_SPLIT_TABLET_SIZE '(' integer_value ')'
+--     | /* empty */
+-- ```
+--
+-- ## Syntax
+--
+-- | Parameter | Description |
+-- |----------|------|
+-- | `ALTER TABLE table_name alter_table_actions` | Modifies a regular table. |
+-- | `ALTER TABLE EXTERNAL table_name alter_table_actions` | Modifies an external table. |
+-- | `ALTER TABLE table_name alter_column_group_option` | Modifies a column group. |
+-- | `ALTER TABLE EXTERNAL table_name ADD PARTITION (...) LOCATION STRING_VALUE` | Adds a partition to an external table. |
+-- | `ALTER TABLE EXTERNAL table_name DROP PARTITION LOCATION STRING_VALUE` | Drops a partition of an external table. |
+-- | `table_option_list_space_seperated` | Sets various options for a table. |
+-- | `SET table_option_list_space_seperated` | Sets table options by using the SET statement. |
+-- | `opt_alter_compress_option` | Modifies the compression options of a table. |
+-- | `alter_column_option` | Modifies the column definition. |
+-- | `alter_tablegroup_option` | Modifies the table group options. |
+-- | `RENAME relation_factor` | Renames a table. |
+-- | `DROP CONSTRAINT constraint_name` | Drops a constraint. |
+-- | `REFRESH` | Refreshes a table. |
+-- | `enable_macro_block_bloom_filter`| Specifies whether to persist the bloom filter at the macroblock level. Valid values:<ul><li><code>True</code>: Enables persistence of the bloom filter at the macroblock level.</li></ul><ul></li></li><li><code>False</code>: Disables persistence of the bloom filter at the macroblock level.</li></ul>|
+-- | `DROP PARTITION partition_name` | Drops a specified partition. |
+-- | `RENAME PARTITION old_name TO new_name` | Renames a partition. You can rename a partition or a subpartition. `new_name` specifies the new name of the partition or subpartition (case-insensitive). When you rename a partition, the related partitions in the parent table are modified, but the names of the partitions in the local indexes are not. You can query the `USER_TAB_PARTITIONS` and `USER_TAB_SUBPARTITIONS` views to confirm the renamed partitions. For more information, see [Rename a partition](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/200.manage-object-of-oracle-mode/200.manage-partitions-of-oracle-mode/310.rename-a-partition-of-oracle-mode.md). If a DML operation that holds a lock on the partition resource is in conflict with the partition name modification operation, the partition name modification operation is blocked until the DML operation releases the lock. |
+-- | `SPLIT PARTITION partition_name split_actions` | Splits a partition. You can manually split a partition. The `split_at_format` and `split_into_format` formats are supported. For more information, see [split_partition_option](#split_partition_option). |
+-- | `TRUNCATE PARTITION partition_name` | Truncates the data in a partition. |
+-- | `MODIFY PARTITION partition_name ...` | Modifies the partition attributes. This option is used to add a subpartition.<main id="notice" type='notice'><h4>Notice</h4><p>You cannot add a subpartition to a partition of the HASH type. </p></main> |
+-- | `ADD COLUMN GROUP (column_list) [DELAYED]` | Adds a column group. The table is converted to a columnar table. The following table describes the options. <ul><li><code>ADD COLUMN GROUP(all columns, each column)</code>: The table is converted to a hybrid table that stores data in both row and columnar formats. </li><li><code>ADD COLUMN GROUP(each column)</code>: The table is converted to a columnar table. </li><li>`DELAYED`: An optional parameter. If you specify this parameter, the conversion from a rowstore table to a columnar table is performed asynchronously. After the conversion is performed, the storage format in the table definition is modified. The conversion is performed when a major compaction task is executed. This operation does not block current DML operations. This is an online DDL operation. If you do not specify `DELAYED`, the conversion is performed synchronously. This is an offline DDL operation. </li></ul> |
+-- | `DROP COLUMN GROUP (column_list) [DELAYED]` | Drops a column group. The storage format of the table is removed. The following table describes the options. <ul><li><code>DROP COLUMN GROUP(all columns, each column)</code>: The hybrid storage format is removed. </li><li><code>DROP COLUMN GROUP(all columns)</code>: The rowstore format is removed. </li><li><code>DROP COLUMN GROUP(each column)</code>: The columnar format is removed. </li></ul> |
+-- | `MODIFY hash_partition_option` | Modifies the hash partition. |
+-- | `MODIFY list_partition_option` | Modifies the list partition. |
+-- | `MODIFY range_partition_option` | Modifies the range partition. |
+-- | `PARTITION BY RANGE (...) opt_auto_split_tablet_size_option` | Sets the automatic splitting of a range partition. |
+-- | `AUTO_SPLIT_TABLET_SIZE (size)` | Sets the size threshold for automatic partition splitting. |
+-- | `add_external_table_partition_action` | Defines the specific attributes of an external table partition. |
+-- | `add_external_table_partition_actions ',' action` | Defines multiple external table partitions. |
+-- | `ADD` | Adds a column. You cannot add a primary key column. |
+-- | `MODIFY COLUMN` | Modifies the column attributes. |
+-- | `MODIFY CONSTRAINT` | Modifies the status of a constraint to enabled or disabled. This option is supported only for foreign key constraints and `CHECK` constraints. |
+-- | `DROP PRIMARY KEY` | Drops the primary key.<main id="notice" type='explain'><h4>Note</h4><p>In Oracle-compatible mode, you cannot drop the primary key of a table that is the parent table of a foreign key. </p></main> |
+-- | `EXCHANGE {PARTITION partition_name \| SUBPARTITION subpartition_name} WITH TABLE origin_table_name INCLUDING INDEXES WITHOUT VALIDATION` | Specifies the partition exchange. The parameters are described as follows: <ul><li>`PARTITION partition_name`: specifies the name of the partition in the target partitioned table for the partition exchange. </li><li>`SUBPARTITION subpartition_name`: specifies the name of the subpartition in the target partitioned table for the partition exchange. </li><li>`origin_table_name`: specifies the name of the source table for the partition exchange. This table is not partitioned or is partitioned. </li><li>The current schema must be the schema that owns the tables involved in the partition exchange.</li></ul> For more information about partition exchange, see [Partition exchange](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/200.manage-object-of-oracle-mode/200.manage-partitions-of-oracle-mode/1000.exchange-partition-of-oracle-mode.md). |
+-- | DYNAMIC_PARTITION_POLICY \[=\] \(dynamic_partition_policy_list\) | Modifies the dynamic partition management attribute of a table. `dynamic_partition_policy_list` specifies the list of configurable parameters for the dynamic partition strategy. The parameters are separated by commas. For more information, see [dynamic_partition_policy_option](#dynamic_partition_policy_option). |
+-- | SET INTERVAL(expr) | Converts a range-partitioned table to an interval-partitioned table or vice versa. For more information, see [Modify the partitioning type](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/200.manage-object-of-oracle-mode/200.manage-partitions-of-oracle-mode/300.modify-partition-rules-of-oracle-mode.md). |
+--
+-- ### split_partition_option
+--
+-- * `SPLIT PARTITION partition_name AT (value) [INTO (PARTITION split_partition_name1, PARTITION [split_partition_name2])]`: Use this syntax to split a partition into two partitions at the specified `value`. You can use the `INTO` clause to specify the names of the new partitions.
+--
+-- * `SPLIT PARTITION partition_name INTO (PARTITION split_partition_name VALUES LESS THAN (value) [, PARTITION split_partition_name VALUES LESS THAN (value) ...], PARTITION split_partition_name)`: Use this syntax to split a partition into multiple partitions. The `value` ranges of the new partitions must be the same as those of the source partition, and the `value` ranges must be defined in ascending order. You cannot specify the `value` of the last split partition as the same as that of the source partition.
+--
+-- For more information about manual partition splitting, see [Manual partition splitting](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/200.manage-object-of-oracle-mode/200.manage-partitions-of-oracle-mode/250.partition-splitting-of-oracle-mode/200.manual-partition-splitting-of-oracle-mode.md).
+--
+-- ### dynamic_partition_policy_option
+--
+-- * `ENABLE = {true | false}`: specifies whether to enable dynamic partition management. Valid values:
+--
+--   * `true`: the default value. Dynamic partition management is enabled.
+--   * `false`: dynamic partition management is disabled.
+--
+-- * `TIME_UNIT = {'hour' | 'day' | 'week' | 'month' | 'year'}`: specifies the time unit for partition creation, which is the interval at which the partition boundary is automatically created. This parameter must be specified when creating a dynamic partitioned table and cannot be modified afterward. It cannot be specified when modifying a table for which dynamic partition management is already enabled (an error will be returned if specified). It must be specified when adding a dynamic partitioning strategy to a table for which dynamic partition management is not yet enabled.
+--
+-- * `PRECREATE_TIME = {'-1' | '0' | 'n {hour | day | week | month | year}'}`: specifies the precreation time. When dynamic partition management is scheduled, partitions are precreated so that the upper bound of the maximum partition is greater than the current time plus the precreation time. Valid values:
+--
+--   * `-1`: the default value. No partitions are precreated.
+--   * `0`: only the current partition is precreated.
+--   * `n {hour | day | week | month | year}`: partitions are precreated for the specified time span. For example, `3 hour` indicates that partitions are precreated for the next 3 hours.
+--
+--   <main id="notice" type='explain'>
+--     <h4>Note</h4>
+--     <p><ul><li>When multiple partitions are precreated, the intervals between the partition boundaries are <code>TIME_UNIT</code>. </li><li>The boundary of the first precreated partition is the ceiling of the maximum existing partition boundary based on <code>TIME_UNIT</code>. </li></ul></p>
+--   </main>
+--
+-- * `EXPIRE_TIME = {'-1' | '0' | 'n {hour | day | week | month | year}'}`: optional. Specifies the expiration time of a partition. When dynamic partition management is scheduled, all partitions whose upper bounds are earlier than the current time minus the expiration time are deleted. Valid values:
+--
+--   * `-1`: the default value. Partitions never expire.
+--   * `0`: only the current partition is retained. All previous partitions expire.
+--   * `n {hour | day | week | month | year}`: specifies the expiration time of a partition. For example, `1 day` indicates that a partition expires after 1 day.
+--
+-- For more information about modifying a dynamic partition table, see [Modify a dynamic partition table](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/200.manage-object-of-oracle-mode/200.manage-partitions-of-oracle-mode/260.dynamic-partition-of-oracle-mode/400.modify-dynamic-partition-table-of-oracle-mode.md).
+--
+-- **Here is an example:**
+--
+-- ```sql
+-- ALTER TABLE tbl2 SET DYNAMIC_PARTITION_POLICY(
+--     ENABLE = true,
+--     PRECREATE_TIME = '1 day',
+--     EXPIRE_TIME = '-1'
+-- );
+-- ```
+--
+-- ## Examples
+--
+-- * Change the data type of the `col1` column in the `tbl1` table.
+--
+--   ```shell
+--
+--
+--   ```
+--
+-- * Change the name of the `col1` column in the `tbl1` table to `col2`.
+--
+--   ```shell
+--
+--   ```
+--
+-- * Add and drop columns.
+--
+--   * Create the `tbl2` table.
+--
+--     ```shell
+--     ```
+--
+--   * Add the `col3` column to the `tbl2` table.
+--
+--     ```shell
+--
+--     ```
+--
+--   * Drop the `col3` column from the `tbl2` table.
+--
+--     ```shell
+--
+--     ```
+--
+--   * Create a unique index on the `tbl2` table.
+--
+--     ```shell
+--
+--
+--
+--
+--
+--     ```
+--
+-- * Add a foreign key to the `ref_t2` table. When a `DELETE` operation affects rows in the parent table that match the key values, execute the `SET NULL` operation.
+--
+--   ```shell
+--
+--
+--   ```
+--
+-- * Add a subpartition `p1_r4` to the primary partition `p1` of the non-templated subpartitioned table `tbl3`.
+--
+--   ```shell
+--   ```
+--
+-- * Drop the subpartition `p3_r3` from the non-templated subpartitioned table `tbl3`.
+--
+--   ```shell
+--   ```
+--
+-- * Add a primary partition `p4` to the non-templated subpartitioned table `tbl3`. You must specify the definitions of the primary partition and the subpartitions under it.
+--
+--   ```shell
+--   (
+--     SUBPARTITION p4_r1 VALUES LESS THAN (2019),
+--     SUBPARTITION p4_r2 VALUES LESS THAN (2020),
+--     SUBPARTITION p4_r3 VALUES LESS THAN (2021)
+--   );
+--   ```
+--
+-- * Add a primary partition `p3` to the templated subpartitioned table `tbl4`. You only need to specify the definition of the primary partition. The definitions of the subpartitions will be automatically filled in based on the template.
+--
+--   ```shell
+--        PARTITION BY RANGE(col1)
+--        SUBPARTITION BY RANGE(col2)
+--        SUBPARTITION TEMPLATE
+--        (
+--        SUBPARTITION p0 VALUES LESS THAN (50),
+--        SUBPARTITION p1 VALUES LESS THAN (100)
+--        )
+--        (
+--        PARTITION p0 VALUES LESS THAN (100),
+--        PARTITION p1 VALUES LESS THAN (200),
+--        PARTITION p2 VALUES LESS THAN (300)
+--        );
+--
+--   ```
+--
+-- * Change the parallelism of the `tbl5` table to `3`.
+--
+--   ```shell
+--
+--   ```
+--
+--   or:
+--
+--   ```shell
+--
+--   ```
+--
+-- * Change the status of the foreign key constraint.
+--
+--   ```shell
+--     "ID" VARCHAR2(254 BYTE) NOT NULL,
+--     "GROUPID" VARCHAR2(254 BYTE),
+--     "USERID" VARCHAR2(254 BYTE),
+--     CONSTRAINT "PK_MMS_GROUPUSER" PRIMARY KEY ("ID"),
+--     CONSTRAINT "FK_MMS_GROUPUSER_02" FOREIGN KEY ("GROUPID") REFERENCES MMS_GROUPUSER ("ID") ON DELETE CASCADE DISABLE
+--   );
+--
+--
+--
+--   ```
+--
+-- * Clear all data in the `M202001` and `M202002` partitions of the partitioned table `tbl6`.
+--
+--   ```shell
+--   PARTITION BY RANGE(log_date)
+--   (
+--       PARTITION M202001 VALUES LESS THAN(TO_DATE('2020/02/01','YYYY/MM/DD'))
+--       , PARTITION M202002 VALUES LESS THAN(TO_DATE('2020/03/01','YYYY/MM/DD'))
+--       , PARTITION M202003 VALUES LESS THAN(TO_DATE('2020/04/01','YYYY/MM/DD'))
+--       , PARTITION M202004 VALUES LESS THAN(TO_DATE('2020/05/01','YYYY/MM/DD'))
+--       , PARTITION M202005 VALUES LESS THAN(TO_DATE('2020/06/01','YYYY/MM/DD'))
+--       , PARTITION MMAX VALUES LESS THAN (MAXVALUE)
+--   );
+--
+--   ```
+--
+-- * Drop the `CHECK` constraint `tbl7_equal_check1` from the `tbl7` table.
+--
+--   ```shell
+--
+--
+--
+--   ```
+--
+-- * Move the `tbl8` table from the `tblgroup1` table group to the `tblgroup2` table group.
+--
+--   ```shell
+--
+--
+--   ```
+--
+-- * Add the `cons_fk1` foreign key constraint to the `primary_table` table.
+--
+--   ```shell
+--
+--
+--   ```
+--
+-- * Add the `tbl1_pk` primary key constraint to the `tbl9` table.
+--
+--   ```shell
+--
+--   ```
+--
+-- * Change the primary key of the `tbl9` table to the `col2` column.
+--
+--   ```shell
+--   ```
+--
+-- * Drop the primary key from the `tbl9` table.
+--
+--   ```shell
+--   ```
+--
+-- * Rename the primary and subpartitions.
+--
+--   ```shell
+--   /* Create a subpartitioned table named range_range_table and create a local index based on the col1 column. */
+--   CREATE TABLE range_range_table(col1 INT, col2 INT, col3 INT)
+--       PARTITION BY RANGE(col1)
+--       SUBPARTITION BY RANGE(col2)
+--          (PARTITION p0 VALUES LESS THAN(100)
+--              (SUBPARTITION sp0 VALUES LESS THAN(100),
+--               SUBPARTITION sp1 VALUES LESS THAN(200)
+--              ),
+--           PARTITION p1 VALUES LESS THAN(200)
+--              (SUBPARTITION sp2 VALUES LESS THAN(100),
+--               SUBPARTITION sp3 VALUES LESS THAN(200),
+--               SUBPARTITION sp4 VALUES LESS THAN(300)
+--              )
+--           );
+--
+--   CREATE INDEX local_idx_for_range_range_tb ON range_range_table (col1) LOCAL;
+--
+--   /* Rename the primary partition, but the modification does not affect the names of the partitions in the local index. */
+--   ```
+--
+--   ```sql
+--
+--
+--
+--
+--   /*Rename a subpartition, but the modification does not affect the partition name of local indexes.*/
+--
+--
+--
+--   ```
+--
+-- * Change the columnar storage attribute of the table.
+--
+--   1. Run the following SQL statement to create the `tbl1` table.
+--
+--      ```shell
+--      CREATE TABLE tbl1 (col1 INT PRIMARY KEY, col2 VARCHAR(50));
+--      ```
+--
+--   2. Change the storage type of the `tbl1` table to a hybrid row-columnstore table, and then delete the row-columnstore storage attribute.
+--
+--      ```shell
+--      ALTER TABLE tbl1 ADD COLUMN GROUP(all columns, each column);
+--      ```
+--
+--      ```shell
+--      ALTER TABLE tbl1 DROP COLUMN GROUP(all columns, each column);
+--      ```
+--
+--   3. Change the storage type of the `tbl1` table to a columnstore table, and then delete the columnstore storage attribute.
+--
+--      ```shell
+--      ALTER TABLE tbl1 ADD COLUMN GROUP(each column);
+--      ```
+--
+--      ```shell
+--      ALTER TABLE tbl1 DROP COLUMN GROUP(each column);
+--      ```
+--
+-- * Modify the Skip Index attribute of a column in a table.
+--
+--   1. Run the following SQL statement to create the `test_skidx` table.
+--
+--      ```shell
+--      CREATE TABLE test_skidx(
+--          col1 NUMBER SKIP_INDEX(MIN_MAX, SUM),
+--          col2 FLOAT SKIP_INDEX(MIN_MAX),
+--          col3 VARCHAR2(1024) SKIP_INDEX(MIN_MAX),
+--          col4 CHAR(10)
+--        );
+--      ```
+--
+--   2. Run the following SQL statement to change the Skip Index attribute of the `col2` column in the `test_skidx` table to the `SUM` Skip Index type.
+--
+--      ```shell
+--      ALTER TABLE test_skidx MODIFY col2 FLOAT SKIP_INDEX(SUM);
+--      ```
+--
+--   3. Add the `MIN_MAX` Skip Index type to the `col4` column in the `test_skidx` table.
+--
+--      ```shell
+--      ALTER TABLE test_skidx MODIFY col4 CHAR(10) SKIP_INDEX(MIN_MAX);
+--      ```
+--
+--   4. Delete the Skip Index attribute of the `col1` column in the `test_skidx` table.
+--
+--      ```shell
+--      ALTER TABLE test_skidx MODIFY col1 NUMBER SKIP_INDEX();
+--      ```
+--
+-- * Modify the table attributes to disable the bloom filter for macroblocks in the `tb` table.
+--
+--   ```sql
+--   ALTER TABLE tb SET enable_macro_block_bloom_filter = False;
+--   ```
+--
+-- * Adding a user-defined type (UDT) as a table column is supported.
+--
+--   Before adding a UDT as a table column, you must create the object type first. The commands are as follows:
+--
+--   ```sql
+--   CREATE TYPE type_obj1 AS OBJECT (a int,b int);
+--   ```
+--
+--   ```sql
+--   ALTER TABLE t_udt add c2 type_obj1;
+--   ```
+--
+-- * Dropping a UDT column from a table is supported.
+--
+--   ```sql
+--   ALTER TABLE t_udt DROP c2;
+--   ```
+--
+-- * Renaming a UDT column in a table is supported.
+--
+--   ```sql
+--   ALTER TABLE t_udt RENAME COLUMN c2 TO b2;
+--   ```
+--
+-- ## Read-only and read/write tables in an Oracle-compatible tenant
+--
+-- In an Oracle-compatible tenant, you can use the `CREATE TABLE` statement to create `READ ONLY` and `READ WRITE` tables. You can also use the `ALTER TABLE` statement to change the read/write attribute of a table.
+--
+-- <main id="notice" type='notice'>
+-- <h4>Notice</h4>
+-- <p>Users with the <code>SUPER</code> privilege cannot successfully execute the relevant operations. We recommend that you use a regular user. </p>
+-- </main>
+--
+-- **Procedure:**
+--
+-- 1. Create a regular user:
+--
+--    ```sql
+--    CREATE USER test1 IDENTIFIED BY "12345";
+--    ```
+--
+-- 2. Grant the user the CONNECT and CREATE TABLE privileges:
+--
+--    ```sql
+--    GRANT CREATE SESSION TO test1;
+--    GRANT CREATE TABLE TO test1;
+--    ```
+--
+-- 3. Connect to OceanBase Database as the regular user:
+--
+--    ```bash
+--    ```
+--
+-- 4. Create a read-only table:
+--
+--    ```sql
+--    CREATE TABLE tb_readonly1(id INT) READ ONLY;
+--    ```
+--
+-- 5. Attempt to insert data into the read-only table (expected to fail):
+--
+--    ```sql
+--    INSERT INTO tb_readonly1 VALUES (1);
+--    -- Expected error: ORA-00600: internal error code, arguments: -5235, The table 'TEST1.TB_READONLY1' is read only so it cannot execute this statement
+--    ```
+--
+-- 6. Create a read/write table:
+--
+--    ```sql
+--    CREATE TABLE tb_readwrite1(id INT) READ WRITE;
+--    ```
+--
+-- 7. Insert data into the read/write table (expected to succeed):
+--
+--    ```sql
+--    INSERT INTO tb_readwrite1 VALUES (99),(98);
+--    -- Expected result: Query OK, 2 rows affected (0.002 sec)
+--    --             Records: 2  Duplicates: 0  Warnings: 0
+--    ```
+--
+-- 8. Convert the read/write table to a read-only table:
+--
+--    ```sql
+--    ALTER TABLE tb_readwrite1 READ ONLY;
+--    ```
+--
+-- 9. Attempt to insert data into the converted read-only table (expected to fail):
+--
+--    ```sql
+--    INSERT INTO tb_readwrite1 VALUES (96),(97);
+--    -- Expected error: ORA-00600: internal error code, arguments: -5235, The table 'TEST1.TB_READWRITE1' is read only so it cannot execute this statement
+--    ```
+--
+-- ## References
+--
+-- * [Change a table](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/200.manage-object-of-oracle-mode/100.manage-tables-of-oracle-mode/600.change-table-of-oracle-mode.md)
+-- * [Create a table](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/200.manage-object-of-oracle-mode/100.manage-tables-of-oracle-mode/200.create-a-table-for-oracle-tenant-of-oracle-mode.md)
+-- * [Truncate a table](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/200.manage-object-of-oracle-mode/100.manage-tables-of-oracle-mode/700.clear-table-of-oracle-mode.md)
+-- * [Drop a table](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/200.manage-object-of-oracle-mode/100.manage-tables-of-oracle-mode/800.delete-a-table-of-oracle-mode.md)--
+--
+-- ==============================================================================
+-- [DDL-064] Oracle mode | ALTER TABLEGROUP
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/1100.alter-tablegroup-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # ALTER TABLEGROUP
+--
+-- ## Purpose
+--
+-- This statement is used to add multiple tables to a table group and modify the properties of the table group.
+--
+-- ## Privilege requirements
+--
+-- To execute the `ALTER TABLEGROUP` statement, the current user must have the `ALTER` privilege. For more information about OceanBase Database privileges, see [Privilege classification in Oracle-compatible mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/300.permission-of-oracle-mode/000.permission-classification-of-oracle-mode.md).
+--
+-- ## Syntax
+--
+-- * Add multiple tables to a table group.
+--
+--   ```sql
+--   ALTER TABLEGROUP tablegroup_name ADD [TABLE] table_name [, table_name...];
+--   ```
+--
+-- * Modify the partitioning rules of the table group.
+--
+--   ```sql
+--   ALTER TABLEGROUP tablegroup_name tablegroup_option;
+--
+--   tablegroup_option:
+--       SHARDING = 'NONE' | 'PARTITION' | 'ADAPTIVE'
+--   ```
+--
+-- ## Parameters
+--
+-- |      **Parameter**       |                                                       **Description**                                                        |
+-- |-------------------|---------------------------------------------------------------------------------------------------------------------|
+-- | tablegroup_name            | The name of the table group. When adding multiple tables to a table group, separate the tables with commas (','). If multiple tables are added, duplicate table names are allowed. If the tables to be added already belong to the target table group, OceanBase Database does not return an error.  |
+-- | SHARDING   | The property of the table group. If the `SHARDING` property is not specified, the default value is `ADAPTIVE`. Valid values of `SHARDING` are as follows:<ul><li>`NONE`: No restrictions are imposed on the tables added to the table group.</li><li>`PARTITION`: The primary partitions of the tables added to the table group must be consistent with the primary partitions of all tables in the table group. This includes the partitioning type, number of partitions, and partition values.</li><li>`ADAPTIVE`: The primary and subpartitions of the tables added to the table group must be consistent with the primary and subpartitions of all tables in the table group. This includes the partitioning type, number of partitions, and partition values.</li></ul>Consistent partitioning includes:<ul><li>Same partitioning type (for example, both are Hash+Range partitioned).</li><li>If the partitioning type is Hash, the number of referenced columns and the number of partitions must be the same.</li><li>If the partitioning type is Range, the number of referenced columns, the number of partitions, and the range split points must be the same.</li></ul>For subpartitions, the requirements are the same as those for primary partitions.    |
+--
+-- ## Examples
+--
+-- * Create a table group named `tblgroup1` with the `SHARDING` attribute set to `NONE`, and add the partitioned tables `tbl1` and `tbl2` to the table group.
+--
+--   ```shell
+--   Query OK, 0 rows affected
+--
+--       PARTITION BY LIST(col1) SUBPARTITION BY LIST (col2)
+--         SUBPARTITION TEMPLATE
+--         (SUBPARTITION mp0 VALUES ('01'),
+--          SUBPARTITION mp1 VALUES ('02'),
+--          SUBPARTITION mp2 VALUES ('03')
+--          )
+--         (PARTITION p0 VALUES('01'),
+--          PARTITION p1 VALUES('02')
+--         );
+--   Query OK, 0 rows affected
+--
+--       PARTITION BY LIST(col1) SUBPARTITION BY LIST(col2)
+--         SUBPARTITION TEMPLATE
+--         (SUBPARTITION mp0 VALUES('01'),
+--          SUBPARTITION mp1 VALUES('02'),
+--          SUBPARTITION mp2 VALUES('03')
+--         )
+--         (PARTITION p0 VALUES('01'),
+--          PARTITION p1 VALUES('02')
+--         );
+--   Query OK, 0 rows affected
+--
+--   Query OK, 0 rows affected
+--   ```
+--
+--   Since the partitioning methods of `tbl1` and `tbl2` are consistent, the `SHARDING` attribute can be changed to `PARTITION` or `ADAPTIVE`.
+--
+--   ```shell
+--   Query OK, 0 rows affected
+--
+--   Query OK, 0 rows affected
+--   ```
+--
+-- * Create a table group named `tblgroup2` with the `SHARDING` attribute set to `NONE`, and add the non-partitioned table `tbl1` and the partitioned table `tbl2` to the table group.
+--
+--   ```shell
+--   Query OK, 0 rows affected
+--
+--   Query OK, 0 rows affected
+--
+--       PARTITION BY LIST(col1) SUBPARTITION BY LIST(col2)
+--         SUBPARTITION TEMPLATE
+--         (SUBPARTITION mp0 VALUES('01'),
+--          SUBPARTITION mp1 VALUES('02'),
+--          SUBPARTITION mp2 VALUES('03')
+--         )
+--         (PARTITION p0 VALUES('01'),
+--          PARTITION p1 VALUES('02')
+--         );
+--   Query OK, 0 rows affected
+--
+--   Query OK, 0 rows affected
+--   ```
+--
+--   Since the table group `tblgroup2` contains both non-partitioned and partitioned tables, the `SHARDING` attribute cannot be changed to `PARTITION` or `ADAPTIVE`.
+--
+--   ```shell
+--   OBE-00600: internal error code, arguments: -4179, not all tables are non-partitioned or partitioned, modify tablegroup sharding attribute not allowed
+--
+--   OBE-00600: internal error code, arguments: -4179, not all tables are non-partitioned or partitioned, modify tablegroup sharding attribute not allowed
+--   ```
+--
+-- * Create a table group named `tblgroup3` with the `SHARDING` attribute set to `NONE`, and add the partitioned tables `tbl1` and `tbl2` to the table group.
+--
+--   ```shell
+--   Query OK, 0 rows affected
+--
+--      PARTITION BY LIST(col1) SUBPARTITION BY LIST (col2)
+--        SUBPARTITION TEMPLATE
+--        (SUBPARTITION mp0 VALUES ('01'),
+--         SUBPARTITION mp1 VALUES ('02')
+--         )
+--        (PARTITION p0 VALUES('01'),
+--         PARTITION p1 VALUES('02')
+--        );
+--   Query OK, 0 rows affected
+--
+--      PARTITION BY LIST(col1) SUBPARTITION BY LIST(col2)
+--        SUBPARTITION TEMPLATE
+--        (SUBPARTITION mp0 VALUES('01'),
+--         SUBPARTITION mp1 VALUES('02'),
+--         SUBPARTITION mp2 VALUES('03')
+--        )
+--        (PARTITION p0 VALUES('01'),
+--         PARTITION p1 VALUES('02')
+--        );
+--   Query OK, 0 rows affected
+--
+--   Query OK, 0 rows affected
+--   ```
+--
+--   Since the primary partitions of `tbl1` and `tbl2` in the table group `tblgroup3` have the same partitioning type but different subpartitioning types (with different numbers of subpartitions), the `SHARDING` attribute can be changed to `PARTITION` but not to `ADAPTIVE`.
+--
+--   ```shell
+--   Query OK, 0 rows affected
+--
+--   OBE-00600: internal error code, arguments: -4179, subpartition num not matched, modify tablegroup sharding attribute not allowed
+--   ```
+--
+-- * Create a table group named `tblgroup4` with the `SHARDING` attribute set to `ADAPTIVE`, and modify the number of partitions of the tables `tbl1` and `tbl2` in the table group. After the modification, the partitioning methods of all tables in the table group are inconsistent, and new tables such as `tbl3` cannot be added to the table group.
+--
+--   ```shell
+--   Query OK, 0 rows affected
+--
+--       PARTITION BY RANGE(col1) SUBPARTITION BY RANGE(col2)
+--         SUBPARTITION TEMPLATE
+--           (SUBPARTITION mp0 VALUES LESS THAN(2021),
+--            SUBPARTITION mp1 VALUES LESS THAN(2022),
+--            SUBPARTITION mp2 VALUES LESS THAN(2023)
+--           )
+--           (PARTITION p0 VALUES LESS THAN(100),
+--            PARTITION p1 VALUES LESS THAN(200)
+--           );
+--   Query OK, 0 rows affected
+--
+--       PARTITION BY RANGE(col1) SUBPARTITION BY RANGE(col2)
+--         SUBPARTITION TEMPLATE
+--          (SUBPARTITION mp0 VALUES LESS THAN(2021),
+--           SUBPARTITION mp1 VALUES LESS THAN(2022),
+--           SUBPARTITION mp2 VALUES LESS THAN(2023)
+--          )
+--         (PARTITION p0 VALUES LESS THAN(100),
+--          PARTITION p1 VALUES LESS THAN(200)
+--         );
+--   Query OK, 0 rows affected
+--
+--   Query OK, 0 rows affected
+--
+--   Query OK, 0 rows affected
+--
+--   Query OK, 0 rows affected
+--
+--       PARTITION BY RANGE(col1) SUBPARTITION BY RANGE(col2)
+--         SUBPARTITION TEMPLATE
+--        (SUBPARTITION mp0 VALUES LESS THAN(2021),
+--         SUBPARTITION mp1 VALUES LESS THAN(2022),
+--         SUBPARTITION mp2 VALUES LESS THAN(2023)
+--        )
+--        (PARTITION p0 VALUES LESS THAN(100),
+--         PARTITION p1 VALUES LESS THAN(200)
+--         );
+--   Query OK, 0 rows affected
+--
+--   OBE-00600: internal error code, arguments: -4179, partition num not equal, add table to tablegroup not allowed
+--   ```
+--
+-- ## References
+--
+-- * [CREATE TABLEGROUP](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/2500.create-tablegroup-of-oracle-mode.md)
+--
+-- * [DROP TABLEGROUP](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/4000.drop-tablegroup-of-oracle-mode.md)
+--
+-- * [Manage tables in a table group](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/200.manage-object-of-oracle-mode/300.manage-table-groups-of-oracle-mode/600.manage-tables-within-a-table-group-of-oracle-mode.md)
+--
+-- * [View information about a table group](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/200.manage-object-of-oracle-mode/300.manage-table-groups-of-oracle-mode/300.view-the-information-of-a-table-group-of-oracle-mode.md)--
+--
+-- ==============================================================================
+-- [DDL-065] Oracle mode | ALTER TABLESPACE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/1110.alter-tablespace-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # ALTER TABLESPACE
+--
+-- ## Purpose
+--
+-- This statement is used to modify the attributes of a tablespace.
+--
+-- ## Syntax
+--
+-- ```sql
+-- ALTER TABLESPACE tablespace_name
+--   [ ENCRYPTION USING 'algorithm' ]
+--
+-- algorithm:
+--   'AES-256' | 'AES-128' | 'AES-192' | 'SM4-CBC'
+-- ```
+--
+-- ## Parameters
+--
+-- | **Parameter**        | **Description**                                           |
+-- |---------------|--------------------------------------------------|
+-- | tablespace_name | The name of the tablespace to be modified.                                  |
+-- | algorithm     | The name of the encryption algorithm. Valid values: 'AES-256', 'AES-128', 'AES-192', and 'SM4-CBC'. |
+--
+-- ## Examples
+--
+-- ```sql
+-- -- Create a tablespace named users.
+--
+-- -- Modify the encryption algorithm of the users tablespace.
+-- ```
+--
+-- ## References
+--
+-- - [CREATE TABLESPACE](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/2600.create-tablespace-of-oracle-mode.md)
+-- - [DROP TABLESPACE](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/4100.drop-tablespace-of-oracle-mode.md)--
+--
+-- ==============================================================================
+-- [DDL-066] Oracle mode | ALTER USER
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/1200.alter-user-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # ALTER USER
+--
+-- ## Purpose
+--
+-- This statement is mainly used to perform the following operations:
+--
+-- * Change the password of a database user.
+--
+-- * Modify the profile used by a database user.
+--
+-- * To modify the encryption method for database user connections, see [SET PASSWORD](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/300.dcl-of-oracle-mode/3300.set-password-of-oracle-mode.md) for other methods of changing a user's password.
+--
+-- * End the password rotation period early in a password rotation scenario.
+--
+-- * Modify the default role of a database user's roles.
+--
+-- ## Privilege requirements
+--
+-- In addition to the modification commands that the current user can execute, other users must have the `ALTER USER` privilege to execute this command to modify the information of other users. For more information about OceanBase Database privileges, see [Privilege types in Oracle-compatible mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/300.permission-of-oracle-mode/000.permission-classification-of-oracle-mode.md).
+--
+-- ## Limitations and considerations
+--
+-- * When connecting to a database on behalf of a target user using a proxy user, only OBClient is currently supported, and the OBClient version must be V2.2.6 or later. Connecting to the database using Java drivers or C drivers is not currently supported.
+-- * After you use the `SET PASSWORD` or `ALTER USER` statement to change a password, the cached old password becomes invalid immediately, and you cannot log in to the database by using the old password.
+-- * The `IDENTIFIED WITH ... BY VALUES` statement is validated against the specified format. Invalid formats such as `$A$` (e.g., `sha2`) are rejected.
+-- * An unadapted ODP cannot establish a connection for an SM3 user (a user who uses the authentication plugin `ob_sm3_password`).
+--
+-- ## Syntax
+--
+-- ```sql
+-- ALTER USER user_name
+--     { IDENTIFIED BY password
+--     | IDENTIFIED WITH auth_plugin [BY password]
+--     | EXPIRE PASSWORD ROLLOVER PERIOD
+--     | PROFILE {"profile_name" | DEFAULT}
+--     | REQUIRE {NONE | SSL | x509 | tls_option_list}
+--     | DEFAULT ROLE
+--             { role_name[,role_name...]
+--             | ALL [EXCEPT role_name[,role_name...]]
+--             | NONE
+--             }
+--     | GRANT CONNECT THROUGH proxy_user_name [with_clause]
+--     };
+--
+-- auth_plugin:
+--     caching_sha2_password
+--     | ob_sm3_password
+--
+-- tls_option_list:
+--     tls_option
+--     | tls_option_list tls_option
+--
+-- tls_option:
+--     CIPHER str_value
+--     | ISSUER str_value
+--     | SUBJECT str_value
+--
+-- with_clause:
+--     WITH ROLE {role_name[, role_name,...]}
+--     | WITH NO ROLE
+--     | WITH ROLE ALL EXCEPT {role_name[, role_name,...]}
+-- ```
+--
+-- ## Parameters
+--
+-- | Parameter | Description |
+-- | --------------- | -------------------- |
+-- | user_name | Specifies the username or the target username of the proxy. |
+-- | IDENTIFIED BY | Specify the new password for the user. |
+-- | IDENTIFIED WITH auth_plugin [BY password] | Specify the authentication plugin and its corresponding authentication information. <ul><li>`auth_plugin`: The authentication method (plugin) used to authenticate the user. For more information, see [auth_plugin](#auth_plugin).</li><li>`BY password`: The plaintext password.</li></ul> <main id="notice" type='explain'><h4>Note</h4><p>For V4.4.2, the <code>IDENTIFIED WITH</code> syntax is supported starting from V4.4.2 BP2.</p></main> |
+-- | EXPIRE PASSWORD ROLLOVER PERIOD | In a password rotation scenario, you can use this parameter to end the rotation period early, causing old passwords to immediately become invalid and retaining only the current password.<main id="notice" type='explain'><h4>Note</h4><p>This parameter is supported starting with V4.4.2 BP1.</p></main> |
+-- | PROFILE | Specifies the profile used by the user. <ul><li>`profile_name`: The name of the profile file.</li><li>`DEFAULT`: Indicates that the constraint on this parameter is ignored. </li></ul> |
+-- | REQUIRE | Specify the encryption protocol used by the user as`NONE`、`SSL`、`X509`and`tls_option_list`One of the following. |
+-- | DEFAULT ROLE | Specifies the default role for a user when logging in. <ul><li>`ALL`: Sets all roles owned by the user to the default role.`EXCEPT`The clause indicates that the listed roles are excluded and is optional. </li><li>`NONE`: If not specified, the default role is used, which means all roles of the user are disabled.  <main id="notice" type='notice'><h4>Notice</h4><p>The <code>DEFAULT ROLE</code> clause cannot be used in the following situations:<ul><li>When no role has been granted to the user.</li><li>When a role is granted through another role.</li></ul></p></main> |
+-- | GRANT CONNECT THROUGH | Specify to use a proxy user. For more examples of using proxy users, see [Use a proxy user](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/300.permission-of-oracle-mode/710.set-proxy-user-for-a-user-of-oracle-mode.md). |
+-- | proxy_user_name | Proxy username. After authorization, this user can connect to the database on behalf of the target user and perform database operations using the target user's role permissions. |
+-- | with_clause | Specifies the role privileges that take effect when the proxy user connects to the database on behalf of the target user. If this clause is not specified, all role privileges of the target user take effect by default when the proxy user connects to the database on their behalf. For more information, see [with_clause](#with_clause). |
+--
+-- ### auth_plugin
+--
+-- * `caching_sha2_password`: A password authentication plugin based on SHA-256, providing a higher level of security.
+--
+--   <main id="notice" type='explain'>
+--     <h4>Note</h4>
+--     <p>For V4.4.2, authentication plugin <code>caching_sha2_password</code> is supported starting from V4.4.2 BP2.</p>
+--   </main>
+--
+-- * `ob_sm3_password`: This plugin fully reuses `caching_sha2_password` for its authentication protocol and state machine (AuthSwitch, fast authentication/complete authentication, TLS/RSA key passing), but maintains independent algorithms and metadata. It uses the SM3 hash algorithm instead of SHA-256 for password storage and authentication verification.
+--
+--   <main id="notice" type='explain'>
+--     <h4>Note</h4>
+--     <p>For V4.4.2, authentication plugin <code>ob_sm3_password</code> is supported starting from V4.4.2 BP3.</p>
+--   </main>
+--
+-- ### with_clause
+--
+-- <main id="notice" type='notice'>
+--   <h4>Notice</h4>
+--   <p>When specifying the role privileges of a proxy user, for role privileges that require a password, you must manually activate the role by executing the <code>SET ROLE role_name IDENTIFIED BY role_password;</code> command after connecting to the database.</p>
+-- </main>
+--
+-- * `WITH ROLE {role_name[, role_name,...]}`: Specifies that when the proxy user connects to the database on behalf of the target user, it automatically acquires and activates the specified role privileges. That is, only the role privileges specified for the target user take effect.
+-- * `WITH NO ROLE`: When the proxy user connects to the database on behalf of the target user, it will not automatically acquire any role privileges of the target user. In other words, all role privileges of the target user will be ineffective.
+-- * `WITH ROLE ALL EXCEPT {role_name[ ,role_name,...]}`: Specifies that when the proxy user connects to the database on behalf of the target user, it automatically acquires and activates all roles of the target user except for the specified role.
+--
+-- ## Examples
+--
+-- * Change the password of user `user1`.
+--
+--   ```sql
+--   Query OK, 0 rows affected
+--   ```
+--
+-- * Change the authentication plugin for user `user1` to `caching_sha2_password`.
+--
+--   ```sql
+--   Query OK, 0 rows affected
+--   ```
+--
+-- * Change the connection encryption protocol for user `user1` to `SSL`.
+--
+--   ```sql
+--   Query OK, 0 rows affected
+--   ```
+--
+-- * Change the profile used by user `user1` to `profile1`.
+--
+--   ```sql
+--   Query OK, 0 rows affected
+--   ```
+--
+-- * End the password rotation cycle for user `user1` early in a password rotation scenario.
+--
+--   ```sql
+--   Query OK, 0 rows affected
+--   ```
+--
+-- * Set the default role for user `user1`.
+--
+--   ```sql
+--   Query OK, 0 rows affected
+--
+--   Query OK, 0 rows affected
+--
+--   Query OK, 0 rows affected
+--
+--   Query OK, 0 rows affected
+--
+--   Query OK, 0 rows affected
+--   ```
+--
+--   <main id="notice" type='explain'>
+--     <h4>Note</h4>
+--     <p>User <code>user1</code> can directly use the privileges of <code>role1</code>. To use the privileges of <code>role2</code> and <code>role3</code>, user <code>user1</code> must enable these roles in the session.</p>
+--   </main>
+--
+--   For more information about the SET ROLE command, see [SET ROLE](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/300.dcl-of-oracle-mode/3400.set-role-of-oracle-mode.md).
+--
+-- * Write the serialized authentication string (`$S$...`) directly.
+--
+--     ```shell
+--     ```--
+--
+-- ==============================================================================
+-- [DDL-067] Oracle mode | ALTER VIEW COMPILE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/1220.alter-view-compile-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # ALTER VIEW COMPILE
+--
+-- <main id="notice" type='explain'>
+--   <h4>Note</h4>
+--   <p>This statement is available since V4.4.2 BP1. </p>
+-- </main>
+--
+-- ## Purpose
+--
+-- This statement is used to explicitly recompile an invalid view or modify view constraints.
+--
+-- ## Privilege requirements
+--
+-- To execute this statement, you must have the `ALTER ANY TABLE` system privilege. For more information about the privileges of OceanBase Database, see [Privilege types in Oracle mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/300.permission-of-oracle-mode/000.permission-classification-of-oracle-mode.md).
+--
+-- ## Syntax
+--
+-- ```sql
+-- ALTER VIEW [schema_name.]view_name COMPILE;
+-- ```
+--
+-- ## Parameters
+--
+-- |      Parameter      |         Description       |
+-- |---------------|--------------------|
+-- |schema_name|The name of the schema to which the view belongs. This parameter is optional. |
+-- |view_name|The name of the view to be recompiled.|
+-- |COMPILE|A keyword indicating that the database should execute the recompile operation.|
+--
+-- ## Examples
+--
+-- Execute the following command to recompile the view named `customer_ro`.
+--
+-- ```shell
+-- ```--
+--
+-- ==============================================================================
+-- [DDL-068] Oracle mode | COMMENT
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/1250.comment-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # COMMENT
+--
+-- ## Purpose
+--
+-- This statement adds comments about tables or table columns, views, or view columns to the data dictionary.
+--
+-- ## Privilege requirements
+--
+-- To execute the `COMMENT` statement, the current user must have the `COMMENT ANY TABLE` privilege. For more information about OceanBase Database privileges, see [Privilege classification in Oracle-compatible mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/300.permission-of-oracle-mode/000.permission-classification-of-oracle-mode.md).
+--
+-- ## Syntax
+--
+-- ```sql
+-- -- Add comments to a table or view.
+-- COMMENT ON TABLE
+--     [schema.]{table_name | view_name} IS 'string';
+--
+-- -- Add comments to a column of a table or view.
+-- COMMENT ON COLUMN
+--     [schema.]{table_name. | view_name.}column_name IS 'string';
+-- ```
+--
+-- <main id="notice" type='explain'>
+--   <h4>Note</h4>
+--   <ul>
+--     <li>You can query the comments of tables and views by using the <code>ALL_TAB_COMMENTS</code>, <code>DBA_TAB_COMMENTS</code>, or <code>USER_TAB_COMMENTS</code> view. </li>
+--     <li>You can query the comments of all columns of tables and views by using the <code>ALL_COL_COMMENTS</code>, <code>DBA_COL_COMMENTS</code>, or <code>USER_COL_COMMENTS</code> view. </li>
+--     <li>The maximum length of a comment string is 4,000 characters. If the length exceeds 4,000 characters, an error is returned. </li>
+--     <li>Comments support Chinese and English characters and special characters, such as <code>@#$%^&*()_+-=[]{}|;:'",.<>/?</code>. </li>
+--     <li>You can use an empty string <code>''</code> to delete a comment. </li>
+--   </ul>
+-- </main>
+--
+-- ## Parameters
+--
+-- |     Parameter    |   Description  |
+-- |-------------|--------|
+-- | schema      | The schema. If you omit `schema.`, OceanBase Database adds comments to the object in the current schema by default. |
+-- | table_name  | The name of the table. |
+-- | view_name   | The name of the view. |
+-- | column_name | The name of the column. |
+-- | string      | The comment text. If you set `string` to an empty string (`''`), the comment is deleted from the database. |
+--
+-- ## Examples
+--
+-- * Add a comment to the `employees` table.
+--
+--   ```shell
+--   -- Assume that the employees table exists.
+--   ```
+--
+-- * Add a comment to the `emp_name` column of the `employees` table.
+--
+--   ```shell
+--   -- Assume that the employees table exists and the emp_name column exists.
+--   ```
+--
+-- * Delete the comment on the `emp_name` column of the `employees` table.
+--
+--   ```shell
+--   -- Assume that the employees table exists and the emp_name column exists.
+--   ```
+--
+-- * Add a comment to the `view1` view.
+--
+--   ```shell
+--   -- Assume that the view1 view exists.
+--   ```
+--
+-- * Add a comment to the `name` column of the `view1` view.
+--
+--   ```shell
+--   -- Assume that the view1 view exists and the name column exists.
+--   ```
+--
+-- * Delete the comment on the `name` column of the `view1` view.
+--
+--   ```shell
+--   -- Assume that the view1 view exists and the name column exists.
+--   ```
+--
+-- ## References
+--
+-- * [ALL_COL_COMMENTS](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/700.system-views/500.system-view-of-oracle-mode/200.dictionary-view-of-oracle-mode/400.all_col_comments-of-oracle-mode.md)
+--
+-- * [ALL_TAB_COMMENTS](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/700.system-views/500.system-view-of-oracle-mode/200.dictionary-view-of-oracle-mode/4900.all_tab_comments-of-oracle-mode.md)--
+--
+-- ==============================================================================
+-- [DDL-069] Oracle mode | CREATE CONTEXT
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/1300.create-context-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # CREATE CONTEXT
+--
+-- ## Purpose
+--
+-- You can use the `CREATE CONTEXT` statement to create a namespace for a context (a group of application-defined attributes that are used to validate and protect the application) and associate the namespace with the package that is externally created to set this context.
+--
+-- You can use the `DBMS_SESSION.SET_CONTEXT` procedure in the specified package to set or reset the context attributes.
+--
+--   <main id="notice" type='notice'>
+--     <h4>Notice</h4>
+--     <p>To create a context namespace, you must have the <code>CREATE ANY CONTEXT</code> system privilege. </p>
+--   </main>
+--
+-- ## Syntax
+--
+-- ```sql
+-- CREATE [ OR REPLACE ] CONTEXT namespace
+-- USING [ schema. ] package_name
+-- [ INITIALIZED { EXTERNALLY | GLOBALLY }
+-- | ACCESSED GLOBALLY
+-- ] ;
+-- ```
+--
+-- ## Parameters
+--
+-- | Parameter | Description |
+-- |-------------------|-------------------------------------------------------------------|
+-- | OR REPLACE | Uses a different package to redefine the existing context namespace.  |
+-- | namespace | The name of the context namespace to be created or modified. Context namespaces are always stored in the schema `SYS`.  |
+-- | schema | The schema to which the package belongs. If you do not specify this parameter, the current schema is used.  |
+-- | package_name | The name of the PL package that is used to set or reset the context attributes in the namespace of the current session.  |
+-- | ACCESSED GLOBALLY | Specifies that any application context set in the namespace can be accessed in the entire instance. This setting allows multiple sessions to share application attributes.  |
+--
+-- ## Examples
+--
+-- * Create a context namespace named `dev_context`.
+--
+--   ```sql
+--    Query OK, 0 rows affected
+--    ```
+--
+-- * Use the `SYS_CONTEXT()` function to control data access based on this context. In the following example, the `emp_mgmt` package defines the `deptno` attribute as the identifier of the specified department. You can create a view based on the `deptno` value to restrict access to employee data in the base table.
+--
+--   ```sql
+--         SELECT * FROM emp
+--         WHERE deptno = SYS_CONTEXT('dev_context', 'deptno');
+--    Query OK, 0 rows affected
+--    ```--
+--
+-- ==============================================================================
+-- [DDL-070] Oracle mode | CREATE CONCURRENT_LIMITING_RULE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/1350.create-concurrent_limiting_rule-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # CREATE CONCURRENT_LIMITING_RULE
+--
+-- <main id="notice" type='explain'>
+--   <h4>Note</h4>
+--   <p>This statement is available starting from OceanBase Database V4.3.5 BP3 for V4.3.X versions. <br>For V4.4.X versions, this statement is available starting from OceanBase Database V4.4.1.</p>
+--   </main>
+--
+-- ## Purpose
+--
+-- This statement is used to create a throttling rule and specify the throttling scope to limit the concurrency of specific SQL statements.
+--
+-- ## Limitations and considerations
+--
+-- To execute the `CREATE CONCURRENT_LIMITING_RULE` statement in Oracle-compatible mode of OceanBase Database, you must have the `create any concurrent_limiting_rule` privilege.
+--
+-- ## Syntax
+--
+-- ```sql
+-- CREATE CONCURRENT_LIMITING_RULE ccl_rule_name
+-- ON `database`.`table`
+-- TO '<usename>'@'ip'
+-- FOR { ALL | UPDATE | SELECT | INSERT | DELETE }
+-- filter_options:
+--     [ FILTER BY KEYWORD('KEYWORD1', 'KEYWORD2',…) ]
+--  with_options:
+--     WITH MAX_CONCURRENCY = value1 [per sql]
+-- ```
+--
+-- ## Parameters
+--
+-- | Parameter | Description |
+-- |----------------------------|----------|
+-- |`ccl_rule_name`|Required. The name of the throttling rule. |
+-- |`database`.`table`|Required. The name of the database and data table. You can use an asterisk (*) to match any name. <main id="notice" type='explain'><h4>Note</h4><p>To avoid conflicts with SQL keywords, we recommend that you add backticks (`) before and after the rule name. </p></main>|
+-- |`<usename>@<host>`|Required. The name of the account. The host part supports the use of a percent sign (%) to match any name. |
+-- |`ALL`\|`UPDATE \| SELECT \| INSERT\| DELETE`|Required. The type of the SQL statement. Currently, `ALL`, `UPDATE`, `SELECT`, `INSERT`, and `DELETE` are supported.<main id="notice" type='explain'><h4>Note</h4><p>Each throttling rule supports only one type of SQL statement. </p></main>|
+-- |`[ filter_options ]`|Optional. The throttling keywords. <main id="notice" type='explain'><h4>Note</h4><p><ul><li>The keywords are connected by wildcards <code>%</code>. For example, if you specify three keywords <code>"asdasd", "c2 = 123", and "xxyyzz"</code>, they will be concatenated into <code>"%asdasd%c2 = 123%xxyyzz%"</code>. Subsequent SQL text matching will be performed based on this string. </li><li>If a keyword contains <code>'_'</code>, it will be escaped. For example, <code>"table_t1"</code> will be recorded as <code>"%table\_t1%"</code>. </li><li> There is no limit on the number of throttling keywords, but the length of the concatenated string must not exceed <code>OB_MAX_VARCHAR_LENGTH=1048576</code>. </li></ul></p></main>|
+-- |`with_options`|Required. Used to control the concurrency limit and specify whether the throttling statistics are at the rule level or the statement level. Currently, only the `MAX_CONCURRENCY` parameter is supported, which specifies the maximum concurrency for SQL statements matching the throttling rule. |
+--
+-- ## Examples
+--
+-- Execute the following command to throttle based on keywords:
+--
+-- ```shell
+-- ON *.* TO '%'@'%' FOR SELECT
+-- FILTER BY KEYWORD('table1', 'table2', 'c1') WITH MAX_CONCURRENCY 100;
+-- ```--
+--
+-- ==============================================================================
+-- [DDL-071] Oracle mode | CREATE DIRECTORY
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/1400.create-directory-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # CREATE DIRECTORY
+--
+-- ## Purpose
+--
+-- You can use this statement to create a directory.
+--
+-- ## Required privileges
+--
+-- * To create a directory, you must have the `CREATE ANY DIRECTORY` system privilege. For more information about privileges in OceanBase Database, see [Privilege types in Oracle-compatible mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/300.permission-of-oracle-mode/000.permission-classification-of-oracle-mode.md).
+--
+-- * To ensure the security of file operations, you must set the system variable `secure_file_priv` to the specified security directory when you create a directory. For more information, see [secure_file_priv](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/800.configuration-items-and-system-variables/200.system-variable/300.global-system-variable/12000.secure_file_priv-global.md).
+--
+-- ## Syntax
+--
+-- ```sql
+-- CREATE [ OR REPLACE ] DIRECTORY directory AS 'path_name';
+-- ```
+--
+-- ## Parameters
+--
+-- |     Parameter   |                                        Description                                         |
+-- |------------|------------------------------------------------------------------------------------|
+-- | OR REPLACE | After `OR REPLACE` is specified, if the specified directory name already exists, a new file system path replaces the original directory definition. |
+-- | directory  | The name of the directory to be created, which cannot exceed 30 bytes in length. |
+-- | path_name  | The absolute path where the shared file system is located. The path name is case-sensitive. <main id="notice" type='notice'><h4>Notice</h4><p>OceanBase Database does not create paths for users in the file system. Therefore, ensure that the path is real when you specify <code>path_name</code>. </p></main>|
+--
+-- ## Examples
+--
+-- Perform the following steps to create a directory:
+--
+-- 1. Set a global security path.
+--
+--    <main id="notice" type='notice'>
+--       <h4>Notice</h4>
+--       <p>For security reasons, you can connect to the database only through a local socket to execute the SQL statement for setting <code>secure_file_priv</code>. For more information, see <a href="../../../../../800.configuration-items-and-system-variables/200.system-variable/300.global-system-variable/12000.secure_file_priv-global.md">secure_file_priv</a>. </p>
+--    </main>
+--
+--    1. Connect to OceanBase Database by using a local Unix socket. Here is an example:
+--
+--       ```shell
+--       ```
+--
+--    2. Set a global security path.
+--
+--       ```shell
+--       ```
+--
+-- 2. Log out of the database.
+--
+--    <main id="notice" type='explain'>
+--      <h4>Note</h4>
+--      <p><code>secure_file_priv</code> is a <code>GLOBAL</code> variable. Therefore, you need to run <code>\q</code> to exit for the settings to take effect. </p>
+--    </main>
+--
+--    ```shell
+--    ```
+--
+-- 3. Reconnect to the database.
+--
+--    ```shell
+--     ```
+--
+-- 4. Create a directory named `sql_file_dir`.
+--
+--    ```sql
+--     ```
+--
+-- ## References
+--
+-- * [secure_file_priv](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/800.configuration-items-and-system-variables/200.system-variable/300.global-system-variable/12000.secure_file_priv-global.md)
+-- * [DROP DIRECTORY](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/3100.drop-directory-of-oracle-mode.md)--
+--
+-- ==============================================================================
+-- [DDL-072] Oracle mode | CREATE DATABASE LINK
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/1500.create-database-link-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # CREATE DATABASE LINK
+--
+-- ## Purpose
+--
+-- This statement is used to create a `dblink` that accesses a specified remote database. The statement requires specifying the name of the `dblink` and providing the username, tenant name, password, IP address, port number, and access type of the remote database. For a reverse link, the username, tenant name, password, IP address, and port number of the local database are also required. If the access type is not specified, the `dblink` will default to accessing a remote OceanBase Database.
+--
+-- If the remote database is an OceanBase Database, the IP address and port number can be those of an OBServer node in the specified OceanBase cluster or the IP address and port number of the Proxy of the OceanBase cluster. When the port number of the `dblink` is the port number of the Proxy and the Proxy is deployed via ConfigUrl, the cluster name must be specified. For reverse link functionality, the IP address and port number of an OBServer node in the local OceanBase cluster, along with the username, tenant name, and password, must also be provided.
+--
+-- If the remote database is an Oracle database, the access type must be explicitly specified as `OCI`, and the `oracle_sid` must be provided. The tenant name must be `oracle`.
+--
+-- ## Syntax
+--
+-- ```sql
+-- CREATE DATABASE LINK dblink_name CONNECT TO user_name@tenant_name
+--     IDENTIFIED BY password_str [OB|OCI] HOST 'ip:port[/oracle_sid]' [CLUSTER cluster_name] [MY_NAME local_user_name@local_tenant_name
+--             IDENTIFIED BY local_password_str HOST 'local_ip:local_port'];
+--
+-- ```
+--
+-- ## Considerations
+--
+-- | Field | Description |
+-- | --- | --- |
+-- | dblink_name | Specifies the name of the database link to be accessed. |
+-- | user_name | Specifies the username of the remote database. |
+-- | tenant_name | Specifies the tenant name of the remote database. If the remote database is an Oracle database, the tenant name is always `oracle`. |
+-- | password | Specifies the login password for the username of the remote database. If the password contains special characters other than digits and letters (~!@#%^&*_-+=&#124;(){}[]:;,.?/), double quotes must be used to enclose the password to avoid syntax errors. |
+-- | OB &#124; OCI | `OB` specifies the remote database type as OceanBase Database, and `OCI` specifies the access type as Oracle. If neither parameter is provided, the default remote database type is OceanBase Database. |
+-- | ip | Specifies the IP address of the remote database. If the remote database is an OceanBase Database, the IP address can be that of the Proxy or an OBServer node in the cluster. If the IP address is specified as that of an OBServer node, the network between the local database and the specified OBServer node must be accessible. <main id="notice" type='explain'><h4>Note</h4><p> OceanBase Database also supports domain names as addresses. For example, <code>example.com:port</code>. You can use the appropriate domain name address to connect to the remote database based on your environment.</p></main>|
+-- | port | Specifies the port number of the remote database. If the remote database is an OceanBase Database, the port number can be that of the Proxy or an OBServer node in the cluster. If the port number is specified as that of an OBServer node, the network between the local database and the specified OBServer node must be accessible. If the remote database is an Oracle database, the IP address is that of the Oracle instance. |
+-- | oracle_sid | The `sid` of the remote Oracle database. This parameter is required only when the remote database is an Oracle database. |
+-- | cluster_name | The name of the remote OceanBase cluster. This parameter is required only when the IP address and port number are those of the Proxy, and the Proxy is deployed via ConfigUrl. The cluster name must be enclosed in double quotes. |
+-- | local_cluster_name   | The name of the local OceanBase cluster. This parameter is required only when the IP address and port number are those of the Proxy, and the Proxy is deployed via ConfigUrl. The cluster name must be enclosed in double quotes. |
+-- | local_user | The username of the local database. |
+-- | local_tenant | The tenant name of the local database. |
+-- | local_password | The login password for the username of the local database. If the password contains special characters other than digits and letters (~!@#%^&*_-+=&#124;(){}[]:;,.?/), double quotes must be used to enclose the password to avoid syntax errors. |
+-- | local_ip | The IP address of an OBServer node in the local database cluster. |
+-- | local_port | The port number of an OBServer node in the local database cluster. |
+--
+-- ## Examples
+--
+-- Example 1: Create a `dblink` named `ob_dblink_proxy` to connect to a remote OceanBase Database. The tenant name is the default `oracle`. The Proxy is deployed via ConfigUrl. The cluster name must be enclosed in double quotes to prevent the cluster name from being capitalized.
+--
+-- ```sql
+-- Query OK, 1 row affected
+-- ```
+--
+-- Example 2: Create a `dblink` named `ob_dblink_reverse_link` to connect to a remote OceanBase Database with a reverse link. The tenant name is `oracle`.
+--
+-- ```sql
+-- Query OK, 1 row affected
+-- ```
+--
+-- Example 3: Create a `dblink` named `orcl_dblink` to connect to a remote Oracle database. The tenant name is `oracle`.
+--
+-- ```sql
+-- Query OK, 1 row affected
+-- ```
+--
+-- ## References
+--
+-- - [View a DBLink](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/200.manage-object-of-oracle-mode/1000.manage-dblink-of-oracle-mode/200.view-a-dblink-of-oracle-mode.md)
+-- - [Manage DBLinks](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/200.manage-object-of-oracle-mode/1000.manage-dblink-of-oracle-mode/250.manage-dblinks-of-oracle-mode.md)--
+--
+-- ==============================================================================
+-- [DDL-073] Oracle mode | CREATE EXTERNAL TABLE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/1600.create-external-table-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # CREATE EXTERNAL TABLE
+--
+-- ## Purpose
+--
+-- This statement is used to create a new external table in the database.
+--
+-- External tables are a key feature in a database management system. Typically, data in a database is stored in the database's storage space, while data in an external table is stored in an external storage service.
+--
+-- When creating an external table, you need to define the file path and file format for the data. Once created, users can read data from the external storage service through the external table. External tables are read-only and can be used in query statements, but they do not support DML operations. External tables also do not support defining constraints or creating indexes.
+--
+-- ## Syntax
+--
+-- ```sql
+-- CREATE EXTERNAL TABLE table_name (column_definition_list)
+--     LOCATION = {'file_path' | @location_name['/path']}
+--     FORMAT = (format_type_options)
+--     [PARTITION BY (column_name [, column_name ...])]
+--     [PARTITION_TYPE = USER_SPECIFIED]
+--     [PATTERN = '<regex_pattern>']
+--     [AUTO_REFRESH = 'xxx'];
+--
+-- column_definition_list:
+--     column_definition [, column_definition ...]
+--
+-- column_definition:
+--     column_name column_type [AS expr]
+--
+-- format_type_options:
+--     type_csv_option
+--     | type_parquet_option
+--     | type_orc_option
+--
+-- type_csv_option:
+--     TYPE = 'CSV'
+--     LINE_DELIMITER = '<string>' | <expr>
+--     FIELD_DELIMITER = '<string>' | <expr>
+--     ESCAPE = '<character>' | <expr>
+--     FIELD_OPTIONALLY_ENCLOSED_BY = '<character>' | <expr>
+--     ENCODING = 'charset'
+--     NULL_IF = ('<string>' | <expr>, '<string>' | <expr> ...)
+--     SKIP_HEADER = <int>
+--     SKIP_BLANK_LINES = {TRUE | FALSE}
+--     TRIM_SPACE = {TRUE | FALSE}
+--     EMPTY_FIELD_AS_NULL = {TRUE | FALSE}
+--     IGNORE_LAST_EMPTY_COLUMN = {TRUE | FALSE}
+--     COMPRESSION = {GZIP | ZSTD | DEFLATE | NONE | SNAPPY_BLOCK}
+--     PARALLEL_PARSE_ON_SINGLE_FILE = {TRUE | FALSE}
+--     PARALLEL_PARSE_FILE_SIZE_THRESHOLD = <int>
+--     MAX_ROW_LENGTH = <int>
+--
+-- type_parquet_option:
+--     TYPE = 'PARQUET'
+--
+-- type_orc_option:
+--     TYPE = 'ORC'
+-- ```
+--
+-- ## Parameters
+--
+-- |             **Parameter**            |            **Description**              |
+-- |-----------------------------------|-----------------------------------|
+-- | table_name  | The name of the external table to be created.|
+-- | column_name | The name of the column in the external table. By default, the data columns in the file are automatically mapped to the columns defined in the external table in sequence.|
+-- | column_type | The data type of the column in the external table. Constraints such as `DEFAULT`, `NOT NULL`, `UNIQUE`, `CHECK`, `PRIMARY KEY`, and `FOREIGN KEY` cannot be defined.|
+-- | AS expr     | Used to manually specify column mapping. When the order of columns in the file does not match the order of columns defined in the external table, you can use the pseudo column `metadata$filecol{N}` to specify the mapping between the external table column and the Nth column in the file. For example, `c2 INT AS (metadata$filecol4)` indicates that the `c2` column in the external table corresponds to the 4th column in the file. Note that if manual column mapping is specified, automatic mapping will be disabled, and all columns must be manually defined.|
+-- | LOCATION    | Specifies the path where the external table files are stored. Typically, the data files of the external table are stored in a separate directory, which may contain subdirectories. When creating the table, the external table automatically collects all files in this directory. Valid values:<ul><li>`file_path`: the specific path of the external table file. For more information, see [file_path](#file_path) below.</li><li>`@location_name['/path']`: references a Location object to create the external table. `['/path']` is an optional parameter indicating a subdirectory. For more information about creating a Location object, see [CREATE LOCATION](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/1730.create-location-of-oracle-mode.md).<main id="notice" type='explain'><h4>Note</h4><p>For OceanBase Database V4.4.x, the <code>@location_name[/'path']</code> parameter is supported starting from V4.4.1. </p></main></li></ul>|
+-- | FORMAT = (format_type_options) | Specifies the properties of the external file format. Use `TYPE` to specify the export format as `CSV` or `PARQUET`. `TYPE` cannot be empty. For more information, see [format_type_options](#format_type_options) below.|
+-- | PATTERN | Specifies a regular expression pattern to filter files in the `LOCATION` directory. For each file path in the `LOCATION` directory, if it matches the pattern, the external table will access the file; otherwise, it will skip the file. If this parameter is not specified, all files in the `LOCATION` directory are accessible by default. The external table will save the list of files that match the `PATTERN` in the database system table. When scanning the external table, it will access the external files based on this list.|
+-- | PARTITION_TYPE = USER_SPECIFIED | Specifies `PARTITION_TYPE = USER_SPECIFIED` if you want to manually add and remove partitions instead of letting the external table automatically manage partitions.|
+-- | AUTO_REFRESH = 'xxx' | Specifies whether to enable automatic refresh for the external table. Valid values:<ul><li>`OFF`: the default value, indicating that automatic refresh is disabled.</li><li>`INTERVAL`: allows the external table to be managed for automatic refresh rules using `dbms_external_table`.</li><li>`IMMEDIATE`: indicates that the external table metadata must be refreshed every time an SQL query accesses the external table.</li></ul>|
+--
+-- ### file_path
+--
+-- The file path for external tables can be in the following formats:
+--
+-- * If the file is stored locally, the `LOCATION` format is: `LOCATION = '[file:// | sfile://] local_file_path'`.
+--
+--   * `file://`: This protocol header indicates that when encountering files with the same logical path across multiple OBServer nodes, they are treated as different files and processed separately. Each node independently reads the file from its local path.
+--   * `sfile://`: This protocol header indicates that when encountering files with the same logical path across multiple OBServer nodes, the system deduplicates them based on the logical path to ensure only one copy of the data is read (supporting multi-server load balancing).
+--
+--     <main id="notice" type='notice'>
+--       <h4>Note</h4>
+--       <p><ul><li>When using <code>sfile://</code>, the system performs consistency verification of file sizes. If files under the same logical path have inconsistent sizes across different OBServer nodes, the system reports the <code>OB_INVALID_EXTERNAL_FILE</code> error to avoid result errors caused by data inconsistency.</li> <li>For version V4.4.2, support for the <code>sfile://</code> protocol header was added to the local Location format in the <code>CREATE EXTERNAL TABLE</code> syntax starting from V4.4.2 BP2.</li></ul></p>
+--     </main>
+--
+--   * `local_file_path`: Can be a relative or absolute path. If you specify a relative path, the current directory must be the installation directory of OceanBase Database. The `secure_file_priv` parameter specifies the file paths that OBServer nodes can access. `local_file_path` must be a subpath of the `secure_file_priv` path.
+--
+-- * If the file is stored remotely, the `LOCATION` format is:
+--
+--   <main id="notice" type='notice'>
+--     <h4>Notice</h4>
+--     <p>When using an object storage path, the parameters are separated by the <code>&</code> symbol. Ensure that your input parameters contain only uppercase and lowercase letters, numbers, <code>/-_$+=</code>, and wildcards. If you input any other characters, the settings may fail.</p>
+--   </main>
+--
+--   * If the file is stored on Alibaba Cloud OSS or AWS S3, the format is: `LOCATION = '{oss\|s3}://$ACCESS_ID:$ACCESS_KEY@$HOST:s3_region/remote_file_path'`, where `$ACCESS_ID`, `$ACCESS_KEY`, and `$HOST` are the access credentials required to access Alibaba Cloud OSS, AWS S3, or an object storage service compatible with the S3 protocol. `s3_region` specifies the region selected for S3. These sensitive access credentials are stored in the system tables of the database in an encrypted format.
+--
+--   * If the file is stored on HDFS, the format is as follows:
+--
+--     * To access the cluster using the IP address of a single NameNode (NN), the format is: `LOCATION = hdfs://localhost:port/PATH`, where `localhost` is the IP address of HDFS, `port` is the port number of HDFS, and `PATH` is the file path in HDFS.
+--
+--       * For Kerberos authentication, the format is: `LOCATION = 'hdfs://localhost:port/user?principal=xxx&keytab=xxx&krb5conf=xxx&configs=xxx'`, where:
+--
+--         * `principal`: the user for login and authentication.
+--         * `keytab`: the path to the user's authentication key file.
+--         * `krb5conf`: the path to the Kerberos environment description file.
+--         * `configs`: additional HDFS configuration items. By default, this parameter is empty. However, in a Kerberos environment, this parameter typically has a value and needs to be configured, for example: `dfs.data.transfer.protection=authentication,privacy`, which specifies the data transfer protection level as `authentication` and `privacy`.
+--
+--     * To access the cluster using Hadoop High Availability (HA) logical naming services, the format is: `LOCATION = hdfs://nameserviceID/PATH`, where `nameserviceID` is the ID of the Hadoop HA logical naming service, and `PATH` is the file path.
+--
+--       <main id="notice" type='explain'>
+--         <h4>Note</h4>
+--         <p>Ensure that the client-side configuration of the OBServer node includes the <code>nameservice</code> definition and failover strategy for the HA cluster.</p>
+--       </main>
+--
+--       * For Kerberos authentication, the format is: `LOCATION = 'hdfs://nameserviceID/PATH?principal=xxx&keytab=xxx&krb5conf=xxx&configs=dfs.data.transfer.protection=${string}#dfs.nameservices=${nameservice id}#dfs.ha.namenodes.${nameservice id}=${namenode1}, ${namenode2}#dfs.namenode.rpc-address.${nameservice id}.${namenode1}=${namenode 1 address}#dfs.namenode.rpc-address.${nameservice id}.${namenode2}=${namenode 2 address}#dfs.ha.automatic-failover.enabled.${nameservice id}=true#dfs.client.failover.proxy.provider.${nameservice id}=org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider'`, where:
+--
+--         * `principal`: the user for login and authentication, set to the `pricipal` of a non-primary NameNode.
+--         * `keytab` and `krb5conf`: same as for a single NameNode.
+--         * `configs`: additional HDFS configuration items. If multiple configuration items are needed, they are related to HA and security configurations:
+--
+--           * `dfs.data.transfer.protection=${string}`: aligns with the cluster's `dfs.data.transfer.protection` configuration.
+--           * `dfs.nameservices=${nameservice id}`: specifies the `namesevice` (alias) of the current HA cluster.
+--           * `dfs.ha.namenodes.${nameservice id}=${namenode1}, ${namenode2}`: lists the standby IDs of the HA cluster's namenodes.
+--           * `dfs.namenode.rpc-address.${nameservice id}.${namenode1}=${namenode 1 address}`: specifies the specific namenode for `namenode1` to facilitate client routing.
+--           * `dfs.namenode.rpc-address.${nameservice id}.${namenode2}=${namenode 2 address}`: specifies the specific namenode for `namenode2` to facilitate client routing.
+--           * `dfs.ha.automatic-failover.enabled.${nameservice id}=true`: enables the HA cluster to automatically obtain a available namenode to respond to requests.
+--           * `dfs.client.failover.proxy.provider.${nameservice id}=org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider`: specifies the logical tool class for primary/standby switching in the HA cluster. You can also customize and upload the required logic for the HA cluster.
+--
+--       <main id="notice" type='notice'>
+--         <h4>Notice</h4>
+--         <p>HA-related configuration items are bound to the <code>namespace</code>. For example, in the following sample three, the <code>mycluster</code> is used. Ensure that the related configuration items are set correctly.</p>
+--       </main>
+--
+-- ### format_type_options
+--
+-- * `TYPE = 'CSV'`: specifies the external file format as CSV. It also includes the following fields:
+--
+--   * `LINE_DELIMITER`: specifies the line delimiter for the CSV file.
+--
+--   * `FIELD_DELIMITER`: specifies the column delimiter for the CSV file.
+--
+--   * `ESCAPE`: specifies the escape character for the CSV file. It must be a single byte.
+--
+--   * `FIELD_OPTIONALLY_ENCLOSED_BY`: specifies the symbol used to enclose field values in the CSV file. The default value is empty.
+--
+--     <main id="notice" type='notice'>
+--       <h4>Notice</h4>
+--       <p>If the external table data file contains <code>NULL</code> values (non-string <b>NULL</b>, i.e., not <b>"NULL"</b>), you must explicitly configure the <code>FIELD_OPTIONALLY_ENCLOSED_BY</code> parameter, and its value cannot be empty.</p>
+--     </main>
+--
+--   * `ENCODING`: specifies the character set encoding format of the file. For information about all character sets supported in Oracle-compatible mode, see [Character set](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/300.basic-elements-of-oracle-mode/1000.character-set-and-collation-of-oracle-mode.md). If not specified, the default value is UTF8MB4.
+--
+--   * `NULL_IF`: specifies the string to be treated as `NULL`. The default value is empty.
+--
+--   * `SKIP_HEADER`: skips the file header and specifies the number of lines to skip.
+--
+--   * `SKIP_BLANK_LINES`: specifies whether to skip blank lines. The default value is `FALSE`, indicating that blank lines are not skipped.
+--
+--   * `TRIM_SPACE`: specifies whether to remove leading and trailing spaces from fields in the file. The default value is `FALSE`, indicating that leading and trailing spaces are not removed.
+--
+--   * `EMPTY_FIELD_AS_NULL`: specifies whether to treat empty strings as `NULL`. The default value is `FALSE`, indicating that empty strings are not treated as `NULL`.
+--
+--   * `IGNORE_LAST_EMPTY_COLUMN`: specifies whether to ignore the last empty field at the end of a file line (i.e., when a column delimiter precedes the line delimiter). The default value is `TRUE`, indicating that the last empty field is ignored.
+--   * `COMPRESSION`: optional. Specifies the file compression format. Valid values:
+--
+--     * `GZIP`/`DEFLATE`: GZIP-compressed files.
+--     * `ZSTD`: ZSTD-compressed files.
+--     * `NONE`: indicates that the file is not compressed (default value).
+--     * `SNAPPY_BLOCK`: HADOOP-SNAPPY-compressed files.
+--
+--       <main id="notice" type='explain'>
+--         <h4>Note</h4>
+--         <p>For V4.4.2, the <code>SNAPPY_BLOCK</code> compression format is supported starting from V4.4.2 BP1. </p>
+--       </main>
+--
+--   * `PARALLEL_PARSE_ON_SINGLE_FILE`: specifies whether to enable parallel parsing of a single CSV file. If not specified, the default value is `TRUE`.
+--   * `PARALLEL_PARSE_FILE_SIZE_THRESHOLD`: specifies the file size threshold for parallel parsing, in bytes. The default value is 256 MB.
+--   * `MAX_ROW_LENGTH`: specifies the maximum length of a single row of data, in bytes. The default value is 2 MB. It is used for the boundary determination phase of parallel parsing of a single CSV file and does not affect the accuracy of data reading.
+--
+--   <main id="notice" type='explain'>
+--     <h4>Note</h4>
+--     <p>For V4.4.2, the <code>FORMAT</code> option supports the following parameters starting from V4.4.2 BP1: <code>PARALLEL_PARSE_ON_SINGLE_FILE</code>, <code>PARALLEL_PARSE_FILE_SIZE_THRESHOLD</code>, and <code>MAX_ROW_LENGTH</code>. </p>
+--   </main>
+--
+-- * `TYPE = 'PARQUET'`: specifies the external file format as `PARQUET`.
+--
+-- * `TYPE = 'ORC'`: specifies the external file format as `ORC`.
+--
+-- ## Considerations
+--
+-- * When an external file is deleted, the external table ignores the missing file in the file list.
+-- * When an external file is modified, the external table accesses the latest data of the external file. If the modification of the external file and the query of the external table are performed concurrently, unexpected results may occur. Therefore, avoid modifying the external file while querying the external table.
+-- * When a new file is added to the external directory, the external table only accesses the files listed in the file list. If you want to add the new file to the file list of the external table, you need to execute the update external table file operation.
+--
+-- ## Examples
+--
+-- ### Example 1
+--
+-- 1. Prepare the data. First, set the `secure_file_priv` parameter to `/home/admin/` and place the CSV file `extdata.csv` corresponding to the external table data in the `/home/admin/test` directory of the current OBServer node.
+--
+--    Here is an example of setting the global secure file path:
+--
+--    ```shell
+--    Query OK, 0 rows affected
+--    obclinet> \q
+--    Bye
+--    ```
+--
+--    <main id="notice" type='explain'>
+--      <h4>Note</h4>
+--      <p>Since <code>secure_file_priv</code> is a <code>GLOBAL</code> variable, you need to execute <code>\q</code> to make it effective.</p>
+--    </main>
+--
+--    The content of the CSV file is as follows:
+--
+--    ```shell
+--    1,'Dave','Smith','dsmith@outlook.com','friend',32
+--    2,'Xena','Johnson','xjonson@outlook.com','contact',45
+--    3,'Fred','Jackon','fjackson@outlook.com','co-worker',19
+--    4,'Alma','Tyler','atyler@outlook.com','friend',53
+--    ```
+--
+-- 2. After logging in to the database as a user in the user tenant, create the external table `contacts`.
+--
+--    ```shell
+--        id    INT,
+--        firstname  VARCHAR(100),
+--        lastname   VARCHAR(100),
+--        email      VARCHAR(255),
+--        category   CHAR(30),
+--        age        NUMBER )
+--       LOCATION = '/home/admin/test/'
+--       FORMAT = (
+--         TYPE = 'CSV'
+--         FIELD_DELIMITER = ','
+--         FIELD_OPTIONALLY_ENCLOSED_BY =''''
+--        )PATTERN ='extdata.csv';
+--    ```
+--
+-- 3. Query the data in the external table `contacts`.
+--
+--    ```shell
+--    +------+-----------+----------+----------------------+--------------------------------+------+
+--    | ID   | FIRSTNAME | LASTNAME | EMAIL                | CATEGORY                       | AGE  |
+--    +------+-----------+----------+----------------------+--------------------------------+------+
+--    |    1 | Dave      | Smith    | dsmith@outlook.com   | friend                         |   32 |
+--    |    2 | Xena      | Johnson  | xjonson@outlook.com  | contact                        |   45 |
+--    |    3 | Fred      | Jackon   | fjackson@outlook.com | co-worker                      |   19 |
+--    |    4 | Alma      | Tyler    | atyler@outlook.com   | friend                         |   53 |
+--    +------+-----------+----------+----------------------+--------------------------------+------+
+--    4 rows in set
+--    ```
+--
+-- 4. Create an external table `test_tbl1_csv` with the `FORMAT` option and the `COMPRESSION`, `PARALLEL_PARSE_ON_SINGLE_FILE`, `PARALLEL_PARSE_FILE_SIZE_THRESHOLD`, and `MAX_ROW_LENGTH` parameters.
+--
+--     ```shell
+--         col1 INT,
+--         col2 VARCHAR(100),
+--         col3 VARCHAR(100),
+--         col4 VARCHAR(255),
+--         col5 CHAR(30),
+--         col6 NUMBER)
+--         LOCATION = '/home/admin/test/'
+--         FORMAT = (
+--             TYPE = 'CSV'
+--             FIELD_DELIMITER = ','
+--             FIELD_OPTIONALLY_ENCLOSED_BY = ''''
+--             COMPRESSION = SNAPPY_BLOCK
+--             PARALLEL_PARSE_ON_SINGLE_FILE = TRUE
+--             PARALLEL_PARSE_FILE_SIZE_THRESHOLD = 1024
+--             MAX_ROW_LENGTH = 1024)
+--         PATTERN = 'extdata.csv';
+--     ```
+--
+-- ### Example 2
+--
+-- 1. Assume that there is a CSV file in a certain file path on HDFS. The content of the file is as follows:
+--
+--    ```sql
+--    $hdfs dfs -cat /user/test_tbl1.csv
+--    1,'Emma','2021-09-01'
+--    2,'William','2021-09-02'
+--    3,'Olivia','2021-09-03'
+--    ```
+--
+-- 2. Create an external table on HDFS.
+--
+--    **If Kerberos authentication is not enabled in the target HDFS environment**
+--
+--    ```shell
+--    CREATE EXTERNAL TABLE test_tbl1_csv_oracle (
+--    id INT,
+--    name VARCHAR(50),
+--    c_date DATE
+--    )
+--    LOCATION = 'hdfs://${hadoop_namenode_hostname}:${hadoop_namenode_port}/user'
+--    FORMAT = (
+--        TYPE = 'CSV',
+--        FIELD_DELIMITER = ',',
+--        FIELD_OPTIONALLY_ENCLOSED_BY = '"'
+--    )
+--    PATTERN = 'test_tbl1.csv';
+--    ```
+--
+--     <main id="notice" type='notice'>
+--     <h4>Notice</h4>
+--     <p>Here, <code>hadoop_namenode_hostname</code> and <code>hadoop_namenode_port</code> refer to the host name and port of the HDFS node, which need to be replaced with actual values.</p>
+--     </main>
+--
+--    **If Kerberos authentication is enabled in the target HDFS environment**
+--
+--     <main id="notice" type='notice'>
+--     <h4>Notice</h4>
+--     <p>If Kerberos authentication is enabled, you need to deploy the keytab file (user authentication key file) and krb5conf file on the corresponding OBServer node.</p>
+--     </main>
+--
+--    ```shell
+--    CREATE EXTERNAL TABLE partsupp  ( PS_PARTKEY     INTEGER ,
+--    PS_SUPPKEY     INTEGER ,
+--    PS_AVAILQTY    INTEGER ,
+--    PS_SUPPLYCOST  DECIMAL(15,2)  ,
+--    PS_COMMENT     VARCHAR(199)
+--    ) LOCATION = 'hdfs://localhost:8020/tpch_csv?principal=principal_str&keytab=/path/to/keytab&krb5conf=/path/to/krb5conf_file&configs=xxx=xxx#xxx=xxx'
+--    FORMAT = (
+--      TYPE = 'CSV'
+--      FIELD_DELIMITER = '|'
+--      FIELD_OPTIONALLY_ENCLOSED_BY ='"'
+--      )
+--    PATTERN = 'partsupp.tbl';
+--    ```
+--
+-- 3. Query the data in the external table.
+--
+--    ```shell
+--    select * from test_tbl1_csv_oracle;
+--    ```
+--
+--    The query result is as follows:
+--
+--    ```sql
+--    +----+----------+------------+
+--    | id | name     | c_date     |
+--    +----+----------+------------+
+--    |  1 | Emma     | 2021-09-01 |
+--    |  2 | William  | 2021-09-02 |
+--    |  3 | Olivia   | 2021-09-03 |
+--    +----+----------+------------+
+--    3 rows in set
+--    ```
+--
+-- ### Example 3
+--
+-- 1. Assume that an ORC file named `data.orc` is stored in the `/home/admin/orc_test/` directory.
+--
+-- 2. Create an external table in ORC format.
+--
+--    ```shell
+--        id   NUMBER,
+--        name VARCHAR2(50)
+--    )
+--    LOCATION = '/home/admin/orc_test/'
+--    FORMAT = (
+--      TYPE = 'ORC'
+--    )
+--    PATTERN = 'data.orc';
+--    ```
+--
+--    <main id="notice" type="explain">
+--    <h4>Note</h4>
+--    <p>You can specify <code>FORMAT = ( TYPE = 'ORC' )</code> to let the external table directly read the ORC file. Make sure that the actual format of the external data file is consistent with the declared format, otherwise, the parsing will fail.</p>
+--    </main>
+--
+-- ### Example 4
+--
+-- 1. Assume that there is a CSV file in a certain file path on HDFS. The content of the file is as follows:
+--
+--     ```shell
+--     $hdfs dfs -cat /hadoop_ha_test/test_simple.csv
+--     1,lili,19
+--     2,alic,20
+--     3,solvi,21
+--     ```
+--
+-- 2. Start the JNI configuration items related to the observer.
+--
+--     For more information about the JNI configuration, see [Deploy the OceanBase Database Java SDK environment](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/400.deploy/300.deploy-oceanbase-enterprise-edition/500.deploy-the-ob-java-sdk-environment.md).
+--
+-- 3. Create an external table on HDFS
+--
+--     ```shell
+--         id INT,
+--         r_name VARCHAR(100),
+--         age INT
+--         )
+--         LOCATION = 'hdfs://mycluster/hadoop_ha_test?principal=ha/xxx@xxx.com&keytab=/path/to/ha.keytab&krb5conf=/path/to/krb5conf_file&configs=dfs.data.transfer.protection=integrity#dfs.nameservices=mycluster#dfs.ha.namenodes.mycluster=nn1,nn2#dfs.namenode.rpc-address.mycluster.nn1=localhost1:port#dfs.namenode.rpc-address.mycluster.nn2=localhost2:port#dfs.ha.automatic-failover.enabled.mycluster=true#dfs.client.failover.proxy.provider.mycluster=org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider'
+--         FORMAT = (
+--             TYPE = 'CSV'
+--             FIELD_DELIMITER = ','
+--             FIELD_OPTIONALLY_ENCLOSED_BY = '\''
+--             )
+--         PATTERN = 'test_simple.csv';
+--     ```
+--
+-- 4. Query the data in the external table.
+--
+--     ```shell
+--     ```
+--
+--     The query result is as follows:
+--
+--     ```sql
+--     +----+--------+-------+
+--     | ID | R_NAME | AGE   |
+--     +----+--------+-------+
+--     |  1 | lili   |    19 |
+--     |  2 | alic   |    20 |
+--     |  3 | solvi  |    21 |
+--     +----+--------+-------+
+--     3 rows in set
+--     ```
+--
+-- ## References
+--
+-- [Create an external table](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/200.manage-object-of-oracle-mode/100.manage-tables-of-oracle-mode/1000.manage-external-tables-of-oracle-mode/200.create-a-external-table-of-oracle-mode.md)
+--
+-- [Manage external files](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/200.manage-object-of-oracle-mode/100.manage-tables-of-oracle-mode/1000.manage-external-tables-of-oracle-mode/300.manage-external-files-of-oracle-mode.md)
+--
+-- [Update the external table file list](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/100.alter-external-table-of-oracle-mode.md)--
+--
+-- ==============================================================================
+-- [DDL-074] Oracle mode | CREATE INDEX
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/1600.create-index-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # CREATE INDEX
+--
+-- ## Purpose
+--
+-- This statement is used to create an index. An index is a structure created on a table that sorts the values of one or more columns in the database table. Its main purpose is to improve query speed and reduce the performance overhead of the database system.
+--
+-- OceanBase Database currently supports the following index types: unique index, non-unique index, function index, columnstore index, and spatial index. When creating an index, you can use `STORING(column_name,...)` to specify redundant columns in the index table. In addition to the columns specified by the user, the index table will automatically include the primary key columns of the primary key table (or the hidden primary key columns if there is no primary key table). Storing additional columns in the index can provide the database optimizer with more options.
+--
+-- <main id="notice" type='explain'>
+--   <h4>Note</h4>
+--   <p>In Oracle-compatible mode of OceanBase Database, if a column referenced by an index is deleted from the table, the index becomes invalid.</p>
+-- </main>
+--
+-- ## Privilege requirements
+--
+-- To create an index by executing the `CREATE INDEX` statement, the current user must have at least the INDEX privilege on the corresponding object. For more information about OceanBase Database privileges, see [Privilege classification in Oracle-compatible mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/300.permission-of-oracle-mode/000.permission-classification-of-oracle-mode.md).
+--
+-- ## Syntax
+--
+-- ```sql
+-- create_index_stmt:
+--     CREATE [hint_options] [UNIQUE] INDEX [schema.]index_name
+--         [USING BTREE] ON [schema.]table_name (sort_column_key [, sort_column_key...])
+--         [INDEXTYPE IS MDSYS.SPATIAL_INDEX] [index_option...] [partition_option] [index_column_group_option];
+--
+-- create_fulltext_index_stmt:
+--     CREATE INDEX [schema.]index_name ON [schema.]table_name(column_name)
+--         INDEXTYPE IS CTXSYS.CONTEXT
+--         [PARAMETERS('LEXER parser_name')]
+--         LOCAL;
+--
+-- sort_column_key:
+--     index_expr [ASC] opt_null_pos [ID id]
+--
+-- opt_null_pos:
+--       empty
+--     | NULLS LAST
+--     | NULLS FIRST
+--
+-- index_option:
+--       GLOBAL
+--     | LOCAL
+--     | BLOCK_SIZE [=] integer
+--     | COMMENT STRING_VALUE
+--     | STORING (column_name_list)
+--     | WITH ROWID
+--     | WITH PARSER STRING_VALUE
+--     | index_using_algorithm
+--     | visibility_option
+--     | DATA_TABLE_ID [=] data_table_id
+--     | INDEX_TABLE_ID [=] index_table_id
+--     | MAX_USED_PART_ID [=] used_part_id
+--     | physical_attributes_option
+--     | parallel_option
+--
+-- parallel_option:
+--       PARALLEL [=] integer
+--     | NOPARALLEL
+--
+-- index_column_group_option:
+--     WITH COLUMN GROUP([all columns, ]each column)
+--
+-- parser_name:
+--     SPACE
+--     | NGRAM
+--     | NGRAM2
+--     | IK
+--     | BENG
+-- ```
+--
+-- ## Parameters
+--
+-- | Parameter | Description |
+-- |--------|---------|
+-- | create_index_stmt | Indicates an index creation statement.|
+-- | hint_options | Optional. Specifies the hint options. Currently, only the `parallel` option is supported, such as `/*+ parallel(10) */`. |
+-- | UNIQUE | Optional. Specifies to create a unique index. |
+-- | schema. | Optional. When you need to create an index on a table in another schema, you must add the name of that schema. If you omit `schema.` by default, the index/table is in the current schema.|
+-- | index_name  | Specifies the name of the index to be created. |
+-- | USING BTREE | Optional. Specifies to use the B-tree index structure when creating the index.<main id="notice" type='explain'><h4>Note</h4><p>Currently, only <code>USING BTREE</code> is supported.</p></main> |
+-- | table_name | Specifies the table on which to create the index. You can directly specify the table name or use the `schema_name.table_name` format to specify both the table name and the name of the database to which the table belongs. |
+-- | sort_column_key | Specifies the key of a sorting column. You can specify multiple sorting columns when creating an index, separated by commas (`,`). For more information, see [sort_column_key](#sort_column_key) below. |
+-- | INDEXTYPE IS MDSYS.SPATIAL_INDEX | Optional. Specifies to create a spatial index.<main id="notice" type='notice'><h4>Notice</h4><p>The columns for creating a spatial index must specify the SRID information when the table is created. For more information about creating a spatial index, see <a href="../../300.basic-elements-of-oracle-mode/100.built-in-data-types-of-oracle-mode/1200.spatial-data-type-of-oracle-mode/400.create-spatial-indexes-of-oracle-mode.md">Create a spatial index</a>.</p></main>|
+-- | index_option | Optional. Specifies the index options. You can specify multiple index options, separated by spaces. For more information, see [index_option](#index_option) below. |
+-- | partition_option | Optional. Specifies the options for creating index partitions. You can specify hash partitions, range partitions, list partitions, or external table partitions. |
+-- | index_column_group_option | Optional. Specifies the index options. For more information, see [index_column_group_option](#index_column_group_option) below.|
+-- | create_fulltext_index_stmt | Indicates a statement for creating a full-text index. <main id="notice" type='explain'><h4>Note</h4><p>For OceanBase Database V4.4.2, Oracle-compatible mode supports creating full-text indexes starting from V4.4.2 BP2.</p></main>|
+-- | PARAMETERS('LEXER parser_name') | Optional. Specifies the tokenizer for the full-text index. If `PARAMETERS('LEXER parser_name')` is not explicitly specified, the tokenizer defaults to `SPACE`, which is suitable for languages like English that use spaces to separate semantics. `parser_name` is the name of the tokenizer. For more information, see [parser_name](#parser_name) below.|
+--
+-- ### sort_column_key
+--
+-- * `index_expr`: Specifies the column or expression on which to sort. Boolean expressions are not allowed, such as `c1=c1`. OceanBase Database currently does not support creating function indexes on generated columns. For more information about the expressions supported by function indexes, see [Supported system functions for function indexes](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/200.manage-object-of-oracle-mode/400.manage-indexes-of-oracle-mode/500.function-index-list-of-supported-functions-of-oracle-mode.md).
+--
+-- * `ASC`: Optional. Specifies to sort in ascending order. Descending (DESC) order is not supported.
+--
+-- * `opt_null_pos`: Specifies the position of null values in the sort result. Valid values:
+--
+--   * `empty`: Specifies not to specify the position of null values. By default, the database management system will handle it.
+--
+--   * `NULLS LAST`: Specifies that null values appear after non-null values in the sort result.
+--
+--   * `NULLS FIRST`: Specifies that null values appear before non-null values in the sort result.
+--
+-- * `ID id`: Optional. Specifies the ID of the sort key.
+--
+-- For example, create an index named `IDX_TBL1_C1` on the `TEST_TBL1` table, specify that the index sorts the values in the `c1` column in ascending order, and specify that null values appear after non-null values in the sort result.
+--
+-- ```sql
+--     id NUMBER PRIMARY KEY,
+--     c1 VARCHAR2(100),
+--     c2 NUMBER,
+--     c3 DATE
+-- );
+-- ```
+--
+-- ```sql
+-- ```
+--
+-- ### index_option
+--
+-- * `GLOBAL`: Specifies to create a global index.
+--
+-- * `LOCAL`: Specifies to create a local index.
+--
+-- * `BLOCK_SIZE [=] integer`: Specifies the size of the index block, that is, the number of bytes in each index block.
+--
+-- * `COMMENT STRING_VALUE`: Adds a comment to the index.
+--
+-- * `STORING (column_name_list)`: Specifies the columns to be stored in the index.
+--
+-- * `WITH ROWID`: Creates an index that contains row identifiers.
+--
+-- * `WITH PARSER STRING_VALUE`: Specifies the parser required for the index.
+--
+-- * `index_using_algorithm`: Specifies the algorithm to be used for the index.
+--
+-- * `visibility_option`: Specifies the visibility of the index.
+--
+-- * `DATA_TABLE_ID [=] data_table_id`: Specifies the ID of the data table to which the index belongs.
+--
+-- * `INDEX_TABLE_ID [=] index_table_id`: Specifies the ID of the index table.
+--
+-- * `MAX_USED_PART_ID [=] used_part_id`: Specifies the maximum ID of the partition used by the index.
+--
+-- * `physical_attributes_option`: Defines the physical attributes of the index.
+--
+-- * `parallel_option`: Specifies the parallel execution settings for the index.
+--
+--   * `PARALLEL [=] integer`: Specifies the parallel execution level. `integer` is an integer that indicates the degree of parallelism.
+--
+--   * `NOPARALLEL`: Specifies to disable parallel execution.
+--
+-- ### index_column_group_option
+--
+-- * `WITH COLUMN GROUP(all columns, each column)`: Specifies to create a rowstore and columnstore redundant index.
+-- * `WITH COLUMN GROUP(all columns)`: Specifies to create a rowstore index.
+-- * `WITH COLUMN GROUP(each column)`: Specifies to create a columnstore index.
+--
+-- ### parser_name
+--
+-- * `SPACE`: The default value, which specifies to tokenize by spaces.
+-- * `NGRAM`: Specifies to tokenize based on N-gram (Chinese).
+-- * `NGRAM2`: Specifies to split text into consecutive characters within the specified range.
+-- * `IK`: Specifies to tokenize based on IK (Chinese).
+-- * `BENG`: Specifies to tokenize based on Beng (Basic English).
+--
+-- ## Examples
+--
+-- Use the following SQL statement to create a columnstore index on a table.
+--
+-- 1. Execute the following SQL statement to create a table named `TEST_TBL2`.
+--
+--    ```sql
+--    CREATE TABLE TEST_TBL2 (col1 NUMBER, col2 VARCHAR2(50));
+--    ```
+--
+-- 2. Create a columnstore index named `IDX_TEST_TBL2_COL1` on the `TEST_TBL2` table, which references the `col1` column.
+--
+--    ```sql
+--    CREATE INDEX IDX_TEST_TBL2_COL1 ON TEST_TBL2 (col1) WITH COLUMN GROUP(each column);
+--    ```
+--
+-- ## References
+--
+-- * [Overview of indexes](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/100.oceanbase-database-concepts/400.database-objects/100.database-objects-of-oracle-mode/300.index-of-oracle-mode/100.the-index-overview-of-oracle-mode.md)
+--
+-- * [Create an index](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/200.manage-object-of-oracle-mode/400.manage-indexes-of-oracle-mode/200.create-an-index-of-oracle-mode.md)
+--
+-- * [View indexes](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/200.manage-object-of-oracle-mode/400.manage-indexes-of-oracle-mode/300.view-indexes-of-oracle-mode.md)
+--
+-- * [Delete an index](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/200.manage-object-of-oracle-mode/400.manage-indexes-of-oracle-mode/400.delete-an-index-of-oracle-mode.md)--
+--
+-- ==============================================================================
+-- [DDL-075] Oracle mode | CREATE KEYSTORE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/1700.create-keystore-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # CREATE KEYSTORE
+--
+-- ## Purpose
+--
+-- This statement is used to create a Keystore object, which is used to store keys. In transparent encryption scenarios, a Keystore object must be created for each tenant, and only one Keystore object can be created per tenant.
+--
+-- ## Syntax
+--
+-- ```sql
+-- ADMINISTER KEY MANAGEMENT CREATE KEYSTORE [keystore_name] IDENTIFIED BY [password] ;
+-- ```
+--
+-- ## Parameters
+--
+-- |      Parameter       |          Description          |
+-- |---------------|----------------------|
+-- | keystore_name | Specifies the name of the Keystore.      |
+-- | password      | Specifies the password for accessing the Keystore. |
+--
+-- ## Examples
+--
+-- Create a Keystore object named `keystore1`.
+--
+-- ```sql
+-- ```--
+--
+-- ==============================================================================
+-- [DDL-076] Oracle mode | CREATE LOCATION
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/1730.create-location-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # CREATE LOCATION
+--
+-- ## Purpose
+--
+-- This statement is used to create a Location object. A Location object stores the path and authorization information for accessing external tables and temporary external tables, which are used by the database to read or write external data.
+--
+-- <main id="notice" type='explain'>
+--   <h4>Note</h4>
+--   <p>For OceanBase Database V4.4.x, the <code>CREATE LOCATION</code> statement is supported starting from V4.4.1. </p>
+-- </main>
+--
+-- ## Privilege requirements
+--
+-- * Execution privilege:
+--
+--     To execute the `CREATE LOCATION` statement, the current user must have the `CREATE LOCATION` privilege. For more information about OceanBase Database privileges, see [Privilege classification in Oracle-compatible mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/300.permission-of-oracle-mode/000.permission-classification-of-oracle-mode.md).
+--
+-- * Credential privilege:
+--
+--     The provided `ACCESSID` and `ACCESSKEY` must have valid access permissions to the target storage service.
+--
+-- ## Syntax
+--
+-- ```sql
+-- CREATE [OR REPLACE] LOCATION location_name
+--     URL = 'file_path'
+--     [CREDENTIAL = (
+--         ACCESSID = 'string'
+--         ACCESSKEY = 'string'
+--         HOST = 'string'
+--         [S3_REGION = 'string',]
+--         [PRINCIPAL = 'string',]
+--         [KEYTAB = 'string',]
+--         [KRB5CONF = 'string',]
+--         [CONFIGS = 'string',]
+--         [USERNAME = 'string']
+--         )
+--     ];
+-- ```
+--
+-- ## Parameters
+--
+-- |    **Parameter**   | **Description** |
+-- |---------------|----------|
+-- | OR REPLACE    | Optional. Specifies that if the corresponding Location object already exists, the new Location object definition will replace the existing one.|
+-- | location_name | The name of the Location object to be created.|
+-- | URL = 'file_path' | Specifies the path of the external storage. Supported storage types include: local file, HDFS, OSS, and S3. For more information, see [file_path](#file_path).|
+-- | CREDENTIAL    | Optional. Specifies the information required to access the path. This parameter is not required for local paths.|
+-- | ACCESSID      | Specifies the AccessKey ID for accessing the object storage.|
+-- | ACCESSKEY     | Specifies the AccessKey secret for accessing the object storage.|
+-- | HOST          | Specifies the host address of the object storage service.|
+-- | S3_REGION     | Optional. Specifies the service region for S3 object storage.|
+-- | PRINCIPAL     | Optional. When the target HDFS cluster is configured with Kerberos, you must specify the login authentication user.|
+-- | KEYTAB        | Optional. When the target HDFS cluster is configured with Kerberos, you must specify the authentication key file.|
+-- | KRB5CONF      | Optional. When the target HDFS cluster is configured with Kerberos, you must specify the Kerberos environment for the user.|
+-- | CONFIGS       | Optional. When the target HDFS cluster is configured with Kerberos, you must specify additional Hadoop client configuration parameters in the `key=value` format, separated by `#`. For more information, see [configs_option](#configs_option).|
+-- | USERNAME      | Optional. When the target HDFS cluster is configured with Kerberos, you must specify a unique identifier for the user.|
+--
+-- ### file_path
+--
+-- The path for storing external table files has the following formats:
+--
+-- * Local path: `URL = '[file:// | sfile://] local_file_path'`
+--
+--   * `file://`: This protocol header indicates that when encountering files with the same logical path across multiple OBServer nodes, they are treated as different files and processed separately. Each node independently reads the file from its local path.
+--   * `sfile://`: This protocol header indicates that when encountering files with the same logical path across multiple OBServer nodes, the system performs deduplication based on the logical path to ensure only one copy of the data is read (supporting multi-server load balancing).
+--
+--     <main id="notice" type='notice'>
+--       <h4>Notice</h4>
+--       <p><ul><li>When using <code>sfile://</code>, the system performs consistency verification of file sizes. If files under the same logical path have inconsistent sizes across different OBServer nodes, the system reports the <code>OB_INVALID_EXTERNAL_FILE</code> error to avoid result errors caused by data inconsistency.</li> <li>For version V4.4.2, support for the <code>sfile://</code> protocol header was added to the local URL path format in the <code>CREATE LOCATION</code> syntax starting from V4.4.2 BP2.</li></ul></p>
+--     </main>
+--
+--   * `local_file_path`: Can be a relative or absolute path.
+--
+-- * HDFS path: `URL = 'hdfs://localhost:port/PATH'`, where `localhost` is the HDFS address, `port` is the HDFS port number, and `PATH` is the directory path in HDFS.
+--
+-- * Object storage (OSS/S3) path: `URL = '{oss | s3}://bucket/remote_file_path'`.
+--
+-- <main id="notice" type='notice'>
+--   <h4>Notice</h4>
+--   <p>The path for creating a Location object should not contain parameters. </p>
+-- </main>
+--
+-- ### configs_option
+--
+-- | Parameter | Description |
+-- |------|------|
+-- | dfs.data.transfer.protection=${string} | Specifies the SASL protection level for secure connections during data block read and write operations. Valid values are as follows:<ul><li>`integrity` : provides authentication and integrity protection.</li><li>`authentication` : provides only authentication, without integrity or privacy protection.</li><li>`privacy` : provides authentication, integrity, and privacy protection.</li></ul>|
+-- | dfs.nameservices=${nameservice id} | Specifies the `namesevice` (alias) for the current HA cluster. For example, `dfs.nameservices=mycluster` defines the logical cluster name as `mycluster`.|
+-- | dfs.ha.namenodes.${nameservice id}=${namenode1}, ${namenode2} | Specifies the list of namenode backup IDs for the HA cluster. For example, `dfs.ha.namenodes.mycluster=nn1,nn2` indicates that the cluster has two NameNodes: `nn1` and `nn2`.|
+-- | dfs.namenode.rpc-address.${nameservice id}.${namenode1}=${namenode 1 address} | Specifies the specific namenode for `namenode1` to facilitate client routing. For example, `dfs.namenode.rpc-address.mycluster.nn1=test1:18020` specifies the RPC address for `nn1`.|
+-- | dfs.namenode.rpc-address.${nameservice id}.${namenode2}=${namenode 2 address} | Specifies the specific namenode for `namenode2` to facilitate client routing. For example, `dfs.namenode.rpc-address.mycluster.nn2=test2:18020` specifies the RPC address for `nn2`.|
+-- | dfs.ha.automatic-failover.enabled.${nameservice id}=true | Enables automatic failover, allowing the HA cluster to automatically obtain an available namenode to respond to requests.|
+-- | dfs.client.failover.proxy.provider.${nameservice id}=org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider | Specifies the logic class for switching between primary and standby nodes in the HA cluster. You can also customize and upload the logic required by the HA cluster. |
+--
+-- ## Examples
+--
+-- * Create a Location object with the storage location set to local.
+--
+--     ```shell
+--         URL = 'file://home/admin/test_csv';
+--     ```
+--
+-- * Create a Location object with the storage location set to OSS.
+--
+--     ```shell
+--         URL = 'oss://dir'
+--         CREDENTIAL = (
+--             ACCESSID = '******',
+--             ACCESSKEY = '******',
+--             HOST = '****'
+--         );
+--     ```
+--
+-- * Create a Location object with user authentication mode.
+--
+--     Kerberos is not required, but you must access it with a specific HDFS user.
+--
+--     <main id="notice" type='explain'>
+--       <h4>Note</h4>
+--       <p>This applies to clusters without Kerberos authentication enabled, but where specific HDFS paths need to be accessed by specific users. </p>
+--     </main>
+--
+--     ```shell
+--     CREATE LOCATION hdfs_user
+--         URL = 'hdfs://namenode:8020/'
+--         CREDENTIAL (
+--             USERNAME = 'hdfs_user_name'
+--         );
+--     ```
+--
+-- * Create a Location object with Kerberos enabled and HDFS in single NameNode mode (non-HA mode).
+--
+--     <main id="notice" type='explain'>
+--       <h4>Note</h4>
+--       <p>The value of <code>dfs.data.transfer.protection</code> in <code>CONFIGS</code> must be consistent with the configuration of the HDFS cluster. </p>
+--     </main>
+--
+--     ```shell
+--     CREATE LOCATION hdfs_kerberos_single
+--         URL = 'hdfs://namenode.example.com:8020/'
+--         CREDENTIAL (
+--             PRINCIPAL = "hdfs/xxx@xxx.COM",
+--             KEYTAB = "/data/hdfs.keytab",
+--             KRB5CONF = "/data/krb5.conf",
+--             CONFIGS = 'dfs.data.transfer.protection=integrity'
+--         );
+--     ```
+--
+-- * Create a Location object with Kerberos enabled and HDFS in high availability (HA) mode.
+--
+--     ```shell
+--     CREATE LOCATION hdfs_kerberos_ha
+--         URL = 'hdfs://${nameservice id}'
+--         CREDENTIAL (
+--             PRINCIPAL = "hdfs/xxx@xxx.COM",
+--             KEYTAB = "/etc/ob/hdfs.keytab",
+--             KRB5CONF = "/etc/krb5.conf",
+--             CONFIGS = 'dfs.data.transfer.protection=${string}#dfs.nameservices=${nameservice id}#dfs.ha.namenodes.${nameservice id}=${namenode1}, ${namenode2}#dfs.namenode.rpc-address.${nameservice id}.${namenode1}=${namenode 1 address}#dfs.namenode.rpc-address.${nameservice id}.${namenode2}=${namenode 2 address}#dfs.ha.automatic-failover.enabled.${nameservice id}=true#dfs.client.failover.proxy.provider.${nameservice id}=org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider'
+--             );
+--     ```
+--
+-- * Kerberos is not enabled, but HDFS is in high availability (HA) mode.
+--
+--     <main id="notice" type='explain'>
+--       <h4>Note</h4>
+--       <p>If Kerberos is not enabled, but HDFS is in high availability (HA) mode, you do not need to set the <code>PRINCIPAL</code>, <code>KEYTAB</code>, and <code>KRB5CONF</code> parameters. </p>
+--     </main>
+--
+--     ```shell
+--     CREATE LOCATION hdfs_location_ha
+--         URL = 'hdfs://${nameservice id}'
+--         CREDENTIAL (
+--             CONFIGS = 'dfs.nameservices=${nameservice id}#dfs.ha.namenodes.${nameservice id}=${namenode1}, ${namenode2}#dfs.namenode.rpc-address.${nameservice id}.${namenode1}=${namenode 1 address}#dfs.namenode.rpc-address.${nameservice id}.${namenode2}=${namenode 2 address}#dfs.ha.automatic-failover.enabled.${nameservice id}=true#dfs.client.failover.proxy.provider.${nameservice id}=org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider'
+--             );
+--     ```
+--
+-- ## References
+--
+-- * For more information about viewing files under a Location object, see [SHOW](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/300.dcl-of-oracle-mode/3600.show-of-oracle-mode.md).
+-- * For more information about modifying a Location object, see [ALTER LOCATION](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/230.alter-location-of-oracle-mode.md).
+-- * For more information about deleting files under a Location object, see [REMOVE](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/300.dcl-of-oracle-mode/2850.remove-of-oracle-mode.md).
+-- * For more information about deleting a Location object, see [DROP LOCATION](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/3230.drop-location-of-oracle-mode.md).--
+--
+-- ==============================================================================
+-- [DDL-077] Oracle mode | CREATE MATERIALIZED VIEW
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/1750.create-materialized-views-of-oracle-mode-in-sql.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # CREATE MATERIALIZED VIEW
+--
+-- ## Purpose
+--
+-- This statement is used to create a materialized view.
+--
+-- A materialized view is a special type of database object that stores a copy of the query results and is periodically refreshed (manually or automatically) to keep the data up to date. Materialized views can contain operations such as aggregations, joins, and subqueries and can be indexed and partitioned to further improve performance.
+--
+-- ## Privilege requirements
+--
+-- You must have the `CREATE TABLE` privilege to create a materialized view. For more information about the privileges of OceanBase Database, see [Privilege types in Oracle-compatible mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/300.permission-of-oracle-mode/000.permission-classification-of-oracle-mode.md).
+--
+-- ## Syntax
+--
+-- ```sql
+-- CREATE MATERIALIZED VIEW view_name [([column_list] [PRIMARY KEY(column_list)])]
+--     [table_option_list]
+--     [partition_option]
+--     [mv_column_group_option]
+--     [refresh_clause [query_rewrite_clause] [on_query_computation_clause]]
+--     AS view_select_stmt;
+--
+-- column_list:
+--     column_name [, column_name ...]
+--
+-- refresh_clause:
+--     REFRESH [refresh_option [PARALLEL n] [nested_refresh_option]] [mv_refresh_on_clause]
+--     | NEVER REFRESH
+--
+-- refresh_option:
+--     COMPLETE
+--     | FAST
+--     | FORCE
+--
+-- nested_refresh_option:
+--     INDIVIDUAL
+--     | INCONSISTENT
+--     | CONSISTENT
+--
+-- mv_refresh_on_clause:
+--     [ON DEMAND] [[START WITH expr] [NEXT expr]]
+--
+-- query_rewrite_clause:
+--     DISABLE QUERY REWRITE
+--     | ENABLE QUERY REWRITE
+--
+-- on_query_computation_clause:
+--     DISABLE ON QUERY COMPUTATION
+--     | ENABLE ON QUERY COMPUTATION
+--
+-- mv_column_group_option:
+--     WITH COLUMN GROUP(all columns)
+--     | WITH COLUMN GROUP(each column)
+--     | WITH COLUMN GROUP(all columns, each column)
+-- ```
+--
+-- ## Parameters
+--
+-- <main id="notice" type='explain'>
+--   <h4>Note</h4>
+--   <p>You cannot directly create an index in the statement for creating a materialized view. To create an index for a materialized view, you must use the <a href="1600.create-index-of-oracle-mode.md">CREATE INDEX</a> statement separately. </p>
+-- </main>
+--
+-- |       **Parameter**        |       **Description**           |
+-- |-----------------------|--------------------------|
+-- | view_name             | The name of the materialized view to be created.|
+-- | column_list       | Optional. The list of columns of the materialized view. If you want to specify explicit names for the view columns, you can use the column_list clause and separate the column names with commas. <main id="notice" type='explain'><h4>Note</h4><p><ul><li>The view must have unique column names, just like the base table. By default, the column names of the view are the same as those retrieved by the <code>SELECT</code> statement. </li><li>The number of column names specified in the <code>column_list</code> clause must be the same as the number of columns retrieved by the <code>SELECT</code> statement. </li></ul></p></main>|
+-- | column_name           | The name of the materialized view column. By default, the column names retrieved by the <code>SELECT</code> statement are used as the view column names.|
+-- | PRIMARY KEY           | The primary key of the materialized view. <main id="notice" type='notice'><h4>Notice</h4><p><ul><li>If you do not specify the column names of the materialized view, the column names used in the primary key of the materialized view must be the same as those retrieved by the <code>SELECT</code> statement. </li><li>If you specify column names for the materialized view, you must separate the column names from the <code>PRIMARY KEY</code> definition with a comma. </li></ul></p></main>|
+-- | table_option_list | Optional. The table options of the materialized view. Like a regular table, a materialized view can have table options. For more information, see [CREATE TABLE](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/2400.create-table-of-oracle-mode.md).|
+-- | partition_option  | Optional. The partitioning options of the materialized view. Like a regular table, a materialized view can be partitioned. For more information, see [CREATE TABLE](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/2400.create-table-of-oracle-mode.md).|
+-- | mv_column_group_option      | Optional. The storage format of the materialized view. If you do not specify this option, a rowstore materialized view is created by default. For more information, see [mv_column_group_option](#mv_column_group_option).|
+-- | refresh_clause        | Optional. The refresh mode of the materialized view. For more information, see [refresh_clause](#refresh_clause).|
+-- | mv_refresh_on_clause  | Optional. The refresh timing of the materialized view. For more information, see [mv_refresh_on_clause](#mv_refresh_on_clause).|
+-- | query_rewrite_clause  | Optional. Whether to enable automatic query rewriting for the materialized view. For more information, see [query_rewrite_clause](#query_rewrite_clause).|
+-- | on_query_computation_clause | Optional. Whether the materialized view is a real-time materialized view. For more information, see [on_query_computation_clause](#on_query_computation_clause).|
+-- | view_select_stmt      | The query (SELECT statement) used to define the data of the materialized view. This statement is used to retrieve data from the base table and store the results in the materialized view. The syntax of the `view_select_stmt` clause is the same as that of a regular `SELECT` statement. For more information, see [SIMPLE SELECT](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/200.dml-of-oracle-mode/500.select-of-oracle-mode/100.simple-select-of-oracle-mode.md). <main id="notice" type='explain'><h4>Note</h4><p><ul><li>OceanBase Database allows you to create a full-refresh materialized view with an external table as the base table. </li><li>OceanBase Database allows you to add the <code>AS OF PROCTIME()</code> clause to the base table when you create a materialized view. If you use the <code>AS OF PROCTIME()</code> clause outside the base table of the materialized view, an error is returned. The <code>AS OF PROCTIME()</code> clause specifies to skip the refresh of this table during incremental refreshes. In addition, the <code>AS OF PROCTIME()</code> table does not need to have an mlog. </li><li>OceanBase Database allows you to declare a regular view as a dimension table (<code>AS OF PROCTIME()</code>) and use it as the base table for an incremental-refresh materialized view. </li></ul></p></main>|
+--
+-- ### mv_column_group_option
+--
+-- * `WITH COLUMN GROUP(all columns)`: specifies that the materialized view is stored in row format.
+-- * `WITH COLUMN GROUP(each column)`: specifies that the materialized view is stored in column format.
+-- * `WITH COLUMN GROUP(all columns, each column)`: specifies that the materialized view is stored in row-column redundant format.
+--
+-- <main id="notice" type='explain'>
+--   <h4>Note</h4>
+--   <p><ul><li>You can run the <code>SHOW CREATE TABLE view_name;</code> or <code>SHOW CREATE VIEW view_name;</code> statement to view the definition of the materialized view and determine its storage format. </li><li>In Oracle-compatible mode of OceanBase Database, you can also run the <code>SELECT DBMS_METADATA.GET_DDL('MATERIALIZED_VIEW','view_name') FROM DUAL;</code> statement to view the definition of the materialized view. </li></ul></p>
+-- </main>
+--
+-- ### refresh_clause
+--
+-- * `REFRESH [refresh_option [PARALLEL n] [nested_refresh_option]] [mv_refresh_on_clause]`: specifies the refresh method and refresh parallelism of the materialized view.
+--
+--   * `refresh_option`: specifies the refresh method of the materialized view. This parameter is optional. If you do not specify a refresh method, the default value is `FORCE`.
+--
+--     * `COMPLETE`: specifies a complete refresh. A complete refresh recalculates all data in the materialized view to ensure that the data in the materialized view is consistent with that in the source table.
+--     * `FAST`: specifies an incremental refresh. An incremental refresh refreshes only the data that has changed in the source table to avoid a complete recalculation of the entire view.
+--
+--       <main id="notice" type='notice'>
+--         <h4>Notice</h4>
+--         <p><ul><li>The <code>REFRESH FAST</code> method uses the records in the materialized view log to determine the data to be incrementally refreshed. Therefore, when you perform an incremental refresh on a materialized view, you must create a materialized view log (mlog) for the base table before you create the materialized view. </li><li>The columns used for incremental refresh in the materialized view must be included in the mlog. </li></ul>For more information about how to create a materialized view log, see <a href="../../900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/1751.create-materialized-views-log-of-oracle-mode-in-sql.md">CREATE MATERIALIZED VIEWS LOG</a>. </p>
+--
+--     * `FORCE`: the default value. Specifies a hybrid refresh. First, an incremental refresh is attempted. If the incremental refresh fails, a complete refresh is performed.
+--     * `nested_refresh_option`: specifies the refresh strategy for nested materialized views. This parameter is optional. If you do not specify a refresh strategy, the default value is `INDIVIDUAL`. Valid values:
+--
+--       * `INDIVIDUAL`: the default value. Specifies an independent refresh.
+--       * `INCONSISTENT`: specifies a cascading inconsistent refresh.
+--       * `CONSISTENT`: specifies a cascading consistent refresh.
+--
+--       <main id="notice" type='explain'>
+--         <h4>Note</h4>
+--         <p>For non-nested materialized views, no cascading refresh is performed regardless of the refresh strategy specified. The specified refresh strategies only take effect in background tasks. When you manually use the PL package (<a href="../../../../../600.pl-reference/300.pl-oracle/1400.pl-system-package-oracle/9950.dbms-mview-oracle/300.refresh-oracle.md">DBMS_MVIEW.REFRESH</a>) to schedule a refresh, the refresh is performed according to the specified PL parameters. </p>
+--       </main>
+--
+--   * `PARALLEL n`: specifies the refresh parallelism, which is the degree of parallelism used during the refresh of the materialized view. `n` must be an integer greater than or equal to 0. When `n` is 0, the system variable `mview_refresh_dop` is used for the refresh parallelism.
+--
+--     <main id="notice" type='explain'>
+--       <h4>Note</h4>
+--       <p>For version V4.4.2, specifying the refresh parallelism by using the <code>REFRESH ... PARALLEL n</code> clause in the <code>REFRESH</code> clause is supported starting with V4.4.2 BP2. </p>
+--     </main>
+--
+-- * `NEVER REFRESH`: specifies that the materialized view does not need to be refreshed. In other words, the materialized view is only refreshed when it is created and cannot be refreshed again after it is created.
+--
+-- ### mv_refresh_on_clause
+--
+-- <main id="notice" type='explain'>
+--   <h4>Note</h4>
+--   <p>Except for using the <code>mv_refresh_on_clause</code> clause to define a refresh plan, you can also manually refresh a materialized view by calling the <code>dbms_mviews.refresh</code> stored procedure. </p>
+-- </main>
+--
+-- * `ON DEMAND`: optional. Specifies that the materialized view is refreshed on demand.
+--
+-- * `[[START WITH expr] [NEXT expr]]`: optional. Specifies the refresh interval.
+--
+--   * `[START WITH expr]`: optional. Specifies the start time of the refresh plan.
+--
+--   * `[NEXT expr]`: optional. Specifies the next refresh time.
+--
+--     <main id="notice" type='notice'>
+--       <h4>Notice</h4>
+--       <p><ul><li>If you use the <code>NEXT</code> clause, the time expression of the refresh plan must be set to a future time. Otherwise, an error will be returned. </li><li>If you want to periodically schedule automatic refresh tasks for the materialized view, define the <code>NEXT</code> clause to set the scheduling cycle. </li></ul></p>
+--     </main>
+--
+-- We recommend that you use `current_date` to represent the current time in the current time zone. Here are some examples of time expressions:
+--
+-- * Refresh the materialized view every 10 seconds starting from the current time (`current_date`).
+--
+--   ```sql
+--   START WITH current_date NEXT current_date + INTERVAL '10' SECOND
+--   ```
+--
+-- * Refresh the materialized view every 10 hours starting from the current time (`current_date`).
+--
+--   ```sql
+--   START WITH current_date NEXT current_date + INTERVAL '10' HOUR
+--   ```
+--
+-- * Refresh the materialized view every day starting from the current time (`current_date`).
+--
+--   ```sql
+--   START WITH current_date NEXT current_date + 1
+--   ```
+--
+-- ### query_rewrite_clause
+--
+-- <main id="notice" type='notice'>
+--   <h4>Notice</h4>
+--   <p><ul><li>This feature applies only to materialized views that contain only the <code>SELECT JOIN</code> and <code>WHERE</code> clauses, that is, SPJ queries. Materialized views that do not meet the conditions will not be reported as errors but will not be used for rewriting. </li><li>In Oracle-compatible mode of OceanBase Database, you must specify the refresh method (<code>refresh_clause</code>) when you create a materialized view that supports rewriting. </li></ul></p>
+-- </main>
+--
+-- * `DISABLE QUERY REWRITE`: the default value. Specifies that automatic rewriting is not enabled for the materialized view.
+-- * `ENABLE QUERY REWRITE`: specifies that automatic rewriting is enabled for the materialized view.
+--
+-- For more information about materialized view rewriting, see [Materialized view query rewriting](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/200.manage-object-of-oracle-mode/500.manage-views-of-oracle-mode/200.manage-materialized-views-of-oracle-mode/500.materialized-views-rewrite-of-oracle-mode.md).
+--
+-- ### on_query_computation_clause
+--
+-- <main id="notice" type='notice'>
+--   <h4>Notice</h4>
+--   <p>In OceanBase Database in Oracle-compatible mode, you must specify the <code>refresh_clause</code> when you create a materialized view. </p>
+-- </main>
+--
+-- * `DISABLE ON QUERY COMPUTATION`: the default value. This option specifies to create a regular materialized view.
+-- * `ENABLE ON QUERY COMPUTATION`: specifies to create a materialized view that is computed on query.
+--
+--   <main id="notice" type='notice'>
+--     <h4>Notice</h4>
+--     <p><ul><li>Materialized views that use the <code>MIN</code> or <code>MAX</code> function do not support the <code>ENABLE ON QUERY COMPUTATION</code> option. </li><li>Aggregated materialized views that use outer joins do not support the <code>ENABLE ON QUERY COMPUTATION</code> option. </li><li>Materialized views that use set queries do not support the <code>ENABLE ON QUERY COMPUTATION</code> option. </li><li>Nested materialized views do not support the <code>ENABLE ON QUERY COMPUTATION</code> option. </li></ul></p>
+--   </main>
+--
+-- For more information about materialized views, see the **Create a materialized view** section in [Create a materialized view](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/200.manage-object-of-oracle-mode/500.manage-views-of-oracle-mode/200.manage-materialized-views-of-oracle-mode/300.create-materialized-views-of-oracle-mode.md).
+--
+-- ## Examples
+--
+-- 1. Create a table named `test_tbl1`.
+--
+--    ```sql
+--    CREATE TABLE test_tbl1 (col1 NUMBER PRIMARY KEY, col2 VARCHAR2(20), col3 NUMBER, col4 NUMBER);
+--    ```
+--
+-- 2. Create a materialized view named `mv_test_tbl1`. Hash partition the materialized view by the `col1` column into 8 partitions. Use a complete refresh method to refresh the materialized view, starting from the current date, and refresh it every 1 day. Query the records in the `test_tbl1` table that meet the condition `col3 &gt;= 30` as the base table, and use the query results as the data for the materialized view.
+--
+--    ```sql
+--    CREATE MATERIALIZED VIEW mv_test_tbl1
+--      PARTITION BY HASH(col1) PARTITIONS 8
+--      REFRESH COMPLETE START WITH current_date NEXT current_date + 1
+--      AS SELECT col1, col2, col3
+--        FROM test_tbl1
+--        WHERE col3 >= 30;
+--    ```
+--
+-- 3. Create a materialized view named `mv2_test_tbl1` and specify the primary key.
+--
+--    ```sql
+--    CREATE MATERIALIZED VIEW mv2_test_tbl1(c1, c2, c3, PRIMARY KEY(c1))
+--          AS SELECT col1, col2, col3
+--            FROM test_tbl1;
+--    ```
+--
+-- 4. Create a columnar-formatted materialized view named `mv3_test_tbl1`.
+--
+--    ```sql
+--    CREATE MATERIALIZED VIEW mv3_test_tbl1
+--      WITH COLUMN GROUP(each column)
+--      AS SELECT col1, col2, col3
+--        FROM test_tbl1;
+--    ```
+--
+-- 5. View the definition of the materialized view `mv3_test_tbl1`.
+--
+--    ```sql
+--    SELECT DBMS_METADATA.GET_DDL('MATERIALIZED_VIEW','MV3_TEST_TBL1') FROM DUAL;
+--    ```
+--
+-- ## References
+--
+-- * [Overview of materialized views](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/200.manage-object-of-oracle-mode/500.manage-views-of-oracle-mode/200.manage-materialized-views-of-oracle-mode/100.materialized-views-overview-of-oracle-mode.md)
+--
+-- * [Create a materialized view](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/200.manage-object-of-oracle-mode/500.manage-views-of-oracle-mode/200.manage-materialized-views-of-oracle-mode/300.create-materialized-views-of-oracle-mode.md)
+--
+-- * [Refresh a materialized view](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/200.manage-object-of-oracle-mode/500.manage-views-of-oracle-mode/200.manage-materialized-views-of-oracle-mode/400.refresh-materialized-views-of-oracle-mode.md)
+--
+-- * [Query a materialized view](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/200.manage-object-of-oracle-mode/500.manage-views-of-oracle-mode/200.manage-materialized-views-of-oracle-mode/600.view-materialized-views-of-oracle-mode.md)
+--
+-- * [Delete a materialized view](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/200.manage-object-of-oracle-mode/500.manage-views-of-oracle-mode/200.manage-materialized-views-of-oracle-mode/700.delete-materialized-views-of-oracle-mode.md)--
+--
+-- ==============================================================================
+-- [DDL-078] Oracle mode | CREATE MATERIALIZED VIEW LOG
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/1751.create-materialized-views-log-of-oracle-mode-in-sql.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # CREATE MATERIALIZED VIEW LOG
+--
+-- ## Purpose
+--
+-- This statement is used to create a materialized view log.
+--
+-- A materialized view log (mlog) records incremental updates to the base table to support fast refreshes of materialized views. The `mlog` is a record table that tracks changes in the base table and applies these changes to the corresponding materialized view to enable fast refreshes.
+--
+-- <main id="notice" type='explain'>
+--   <h4>Note</h4>
+--   <p>Currently, OceanBase Database does not support specifying partitions for <code>mlog</code>. The partitions of <code>mlog</code> are bound to the partitions of the base table. </p>
+-- </main>
+--
+-- ## Privilege requirements
+--
+-- To create a materialized view log, you must have the `CREATE TABLE` privilege and the `SELECT` privilege on the base table. For more information about privileges in OceanBase Database, see [Privilege types in Oracle-compatible mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/300.permission-of-oracle-mode/000.permission-classification-of-oracle-mode.md).
+--
+-- ## Syntax
+--
+-- ```sql
+-- CREATE MATERIALIZED VIEW LOG ON [schema.] table
+--     [parallel_clause]
+--     [with_clause]
+--     [mv_log_purge_clause];
+--
+-- parallel_clause:
+--     NOPARALLEL
+--     | PARALLEL integer
+--
+-- with_clause:
+--     WITH [ {PRIMARY KEY | ROWID | SEQUENCE}
+--             [ { , PRIMARY KEY | , ROWID | , SEQUENCE }]... ]
+--         (column_name [, column_name]...)
+--         [new_values_clause]
+--
+-- new_values_clause:
+--     {INCLUDING | EXCLUDING} NEW VALUES
+--
+-- mv_log_purge_clause:
+--     PURGE {IMMEDIATE [ SYNCHRONOUS ]
+--         | START WITH datetime_expr [NEXT datetime_expr]
+--         | [START WITH datetime_expr] NEXT datetime_expr
+--         }
+-- ```
+--
+-- ## Parameters
+--
+-- |       **Parameter**      |       **Description**           |
+-- |---------------------|--------------------------|
+-- | schema.             | Optional. Specifies the schema where the base table of the materialized view log is located. If you omit `schema.`, the base table will be created in your own schema by default.|
+-- | table               | Specifies the name of the base table corresponding to the materialized view log.|
+-- | parallel_clause     | Optional. Specifies the degree of parallelism (dop) for creating the materialized view log. For more information, see [parallel_clause](#parallel_clause) below.|
+-- | with_clause         | Optional. Specifies the auxiliary columns included in the materialized view log. It indicates whether to record the primary key (`PRIMARY KEY`) and row identifier (`ROWID`) when the base table changes. You can also use this clause to add a sequence (`SEQUENCE`) to provide additional sorting information for the materialized view log. For more information, see [with_clause](#with_clause) below.|
+-- | column_name         | Optional. Specifies the name of the column whose value will be recorded in the materialized view log for all modified rows.|
+-- | new_values_clause   | Optional. Specifies whether to record both the old and new values in the materialized view log. For more information, see [new_values_clause](#new_values_clause) below.|
+-- | mv_log_purge_clause | Optional. Specifies the time when data in the materialized view log will be purged. For more information, see [mv_log_purge_clause](#mv_log_purge_clause) below.|
+--
+-- ### parallel_clause
+--
+-- * `NOPARALLEL`: The default configuration. The degree of parallelism is `1`.
+--
+-- * `PARALLEL integer`: Specifies the degree of parallelism. `integer` must be greater than or equal to `1`.
+--
+-- ### with_clause
+--
+-- * `PRIMARY KEY`: Indicates that the materialized view log records the primary key columns of the base table. This option only takes effect for tables with a primary key. If you do not specify this option, the system automatically adds this attribute to the materialized view log, meaning it will include the primary key columns by default.
+--
+-- * `ROWID`: Indicates that the materialized view log records the row identifiers (`ROWID`) of the base table. If you do not specify this option, the system automatically adds this attribute to the materialized view log, meaning it will include the `M_ROW$$` column by default.
+--
+-- * `SEQUENCE`: Indicates that the materialized view log records the sequence numbers (`seq_no`) of multiple-row updates within a transaction. The system automatically adds this attribute to the materialized view log, meaning it will include the `SEQUENCE$$` column by default.
+--
+-- ### new_values_clause
+--
+-- * `INCLUDING`: The default setting. Indicates that both the old and new values can be recorded in the materialized view log. If you want the materialized view to support fast refreshes, you must specify `INCLUDING NEW VALUES`.
+--
+-- * `EXCLUDING`: Indicates that new values will not be recorded in the materialized view log. Do not use `EXCLUDING NEW VALUES`, or an error will occur.
+--
+-- ### mv_log_purge_clause
+--
+-- <main id="notice" type='notice'>
+--   <h4>Notice</h4>
+--   <p>Materialized view logs will only be purged after the corresponding materialized view has been successfully refreshed. </p>
+-- </main>
+--
+-- * `IMMEDIATE`: Indicates that the materialized view log will be purged immediately after each refresh. The default value is `SYNCHRONOUS`.
+--
+--   * `SYNCHRONOUS`: Optional. Indicates that the purge will be executed synchronously.
+--
+-- * `START WITH datetime_expr [NEXT datetime_expr]`:
+--
+--   * `START WITH datetime_expr`: Specifies the initial purge time for the materialized view log.
+--   * `[NEXT datetime_expr]`: Optional. Specifies the next purge time for the materialized view log. Used to set the next purge time.
+--
+-- * `[START WITH datetime_expr] NEXT datetime_expr`: If you specify only the `NEXT datetime_expr` parameter without the `START WITH datetime_expr` parameter, the initial purge time for the materialized view log will be set to the value of the `NEXT datetime_expr` parameter.
+--
+-- <main id="notice" type='notice'>
+--   <h4>Notice</h4>
+--   <p>Make sure that the time expressions <code>START WITH datetime_expr</code> and <code>NEXT datetime_expr</code> are set to future dates and times. Otherwise, an error will occur. </p>
+-- </main>
+--
+-- We recommend that you use `current_date` to represent the current time in the current time zone. Here are some examples of time expressions:
+--
+-- * Purge expired materialized view log records every 10 seconds starting from the current time (`current_date`).
+--
+--   ```sql
+--   START WITH current_date NEXT current_date + INTERVAL '10' SECOND
+--   ```
+--
+-- * Purge expired materialized view log records every 10 hours starting from the current time (`current_date`).
+--
+--   ```sql
+--   START WITH current_date NEXT current_date + INTERVAL '10' HOUR
+--   ```
+--
+-- * Purge expired materialized view log records every day starting from the current time (`current_date`).
+--
+--   ```sql
+--   START WITH current_date NEXT current_date + 1
+--   ```
+--
+-- ## Examples
+--
+-- 1. Create a table named `test_tbl1`.
+--
+--     ```shell
+--     ```
+--
+-- 2. Create a materialized view log on the `test_tbl1` table. Specify the parallelism for processing the materialized view log as `5`, and record changes to the `col2` column, including both the old and new values. Configure the materialized view log to start from the current date and to clean up expired records every `1` day.
+--
+--     ```shell
+--         PARALLEL 5
+--         WITH SEQUENCE(col2) INCLUDING NEW VALUES
+--         PURGE START WITH current_date NEXT current_date + 1;
+--     ```
+--
+-- 3. View the information about the materialized view log on the `test_tbl1` table.
+--
+--     ```shell
+--     ```
+--
+--     The returned result is as follows:
+--
+--     ```shell
+--     +------------+--------------+------+------+---------+-------+
+--     | FIELD      | TYPE         | NULL | KEY  | DEFAULT | EXTRA |
+--     +------------+--------------+------+------+---------+-------+
+--     | COL1       | NUMBER       | NO   | PRI  | NULL    | NULL  |
+--     | COL2       | VARCHAR2(20) | YES  | NULL | NULL    | NULL  |
+--     | SEQUENCE$$ | BIGINT(20)   | NO   | PRI  | NULL    | NULL  |
+--     | DMLTYPE$$  | VARCHAR2(1 ) | YES  | NULL | NULL    | NULL  |
+--     | OLD_NEW$$  | VARCHAR2(1 ) | YES  | NULL | NULL    | NULL  |
+--     +------------+--------------+------+------+---------+-------+
+--     5 rows in set
+--     ```
+--
+-- ## References
+--
+-- [Materialized view logs](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/200.manage-object-of-oracle-mode/500.manage-views-of-oracle-mode/200.manage-materialized-views-of-oracle-mode/200.materialized-views-log-of-oracle-mode.md)--
+--
+-- ==============================================================================
+-- [DDL-079] Oracle mode | CREATE OUTLINE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/1800.create-outline-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # CREATE OUTLINE
+--
+-- ## Purpose
+--
+-- This statement is used to create an outline. An outline can be created in two ways: using `SQL_TEXT` (the original statement executed by the user with parameters) or using `SQL_ID`.
+--
+--   <main id="notice" type='notice'>
+--     <h4>Notice</h4>
+--     <p>To create an outline, you must execute the statement in the corresponding user context. </p>
+--   </main>
+--
+-- ## Syntax
+--
+-- ```sql
+-- /* Create an outline using SQL_TEXT */
+-- CREATE [OR REPLACE] OUTLINE outline_name ON stmt [ TO target_stmt ]
+--
+-- /* Create an outline using SQL_ID */
+-- CREATE [OR REPLACE] OUTLINE outline_name ON 'sql_id' USING HINT hint_list
+-- ```
+--
+-- ## Parameters
+--
+-- |       Parameter       |  Description     |
+-- |----------------|--------------------|
+-- | outline_name   | Specifies the name of the outline to be created.  |
+-- | OR REPLACE     | If specified, the existing outline with the same name will be replaced. |
+-- | stmt           | Generally, it is a DML statement with `hint` and original parameters.   |
+-- | TO target_stmt | If not specified, it means that if the SQL statement accepted by the database, after parameterization, is the same as the `stmt` statement with the `hint` parameter removed, the SQL statement will be bound to the `stmt` statement with the `hint` parameter to generate an execution plan. If you want to fix the execution plan for a statement with a `hint`, you need to use `TO target_stmt` to specify the original SQL statement.  <br>**Notice**  When using `target_stmt`, the `stmt` and `target_stmt` statements must be exactly the same after removing the `hint` parameter. |
+-- | sql_id         | If the SQL statement corresponding to `sql_id` already has a `hint`, the `hint` specified in the outline will overwrite all existing `hint` parameters in the original statement.  |
+-- | hint           | The format is /\*+ xxx \*/. For more information about the syntax of hints, see the **Optimizer Hint** section in the "OceanBase Database SQL Tuning Guide".   |
+--
+-- ## Examples
+--
+-- 1. Create a test table and insert data.
+--
+--    ```sql
+--               emp_id INT,
+--               dept_id INT,
+--               salary INT,
+--               emp_name VARCHAR(50)
+--             );
+--               (1001, 10, 10000, 'John'),
+--               (1002, 10, 12000, 'Mike'),
+--               (1003, 20, 15000, 'Sarah');
+--    ```
+--
+-- 2. Create an outline named `outline1` using `SQL_TEXT`.
+--
+--    ```sql
+--    ON SELECT/*+ index(employees idx_dept_id)*/ * FROM employees WHERE dept_id = 10;
+--    ```
+--
+-- 3. Create an outline named `outline2` using `SQL_ID`.
+--
+--    ```sql
+--
+--    ON '549D27D6DD54688A9B25FD82D5650B96'
+--    USING HINT /*+ index(employees idx_dept_id)*/ ;
+--    ```
+--
+-- ## Considerations
+--
+-- When the `SQL_ID` is the same, the outline created using `SQL_TEXT` will overwrite the outline created using `SQL_ID`, and the outline created using `SQL_TEXT` has higher priority.
+--
+-- Additionally, OceanBase Database distinguishes different SQL statements based on `SQL_ID`, which is obtained by taking the MD5 hash of `SQL_TEXT`. Even a minor difference, such as an extra newline or tab, in the SQL text will result in a different `SQL_ID`. In a production system, it is recommended to bind outlines using `SQL_ID`.
+--
+-- ## References
+--
+-- [Plan binding](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/1000.performance-tuning-guide/500.sql-optimization/400.sql-optimization/700.manage-execution-plans/200.plan-binding.md)--
+--
+-- ==============================================================================
+-- [DDL-080] Oracle mode | CREATE PROFILE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/1900.create-profile-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # CREATE PROFILE
+--
+-- ## Purpose
+--
+-- This statement is used to create a profile. A profile is a set of limits on database resources. If a profile is assigned to a user, the user cannot exceed these usage limits.
+--
+-- ## Syntax
+--
+-- ```sql
+-- CREATE [WITH HINT] PROFILE [profile_name | DEFAULT] LIMIT
+--   { FAILED_LOGIN_ATTEMPTS { integer | UNLIMITED | DEFAULT }
+--   | PASSWORD_LOCK_TIME { integer | UNLIMITED | DEFAULT }
+--   | PASSWORD_LIFE_TIME { integer | UNLIMITED | DEFAULT }
+--   | PASSWORD_VERIFY_FUNCTION { function_name | NULL }
+--   | PASSWORD_GRACE_TIME { integer | UNLIMITED | DEFAULT }
+--   | PASSWORD_ROLLOVER_TIME { bigint(20) | UNLIMITED | DEFAULT }
+--   }
+--   [, ...]
+-- ```
+--
+-- ## Parameters
+--
+-- |          Parameter           |               Description                |
+-- |-----------------------|---------------------------------|
+-- | WITH HINT             | Optional. Specifies the hints used by the query optimizer.                  |
+-- | profile_name          | Specifies the name of the profile to be created. It can be a regular identifier, a non-reserved keyword, or `DEFAULT`.                  |
+-- | FAILED_LOGIN_ATTEMPTS | Specifies the number of consecutive failed login attempts allowed before the account is locked.                |
+-- | PASSWORD_LOCK_TIME    | Specifies the number of days the account is locked due to failed login attempts. |
+-- | PASSWORD_LIFE_TIME    | Specifies the password validity period in days.             |
+-- | PASSWORD_VERIFY_FUNCTION | Specifies the function used to verify the password. |
+-- | PASSWORD_GRACE_TIME   | Specifies the grace period in days after the password expires, during which the user can still log in with the old password but will receive a warning.          |
+-- | PASSWORD_ROLLOVER_TIME | Specifies the password rollover validity period in microseconds. During the rollover validity period, both the old and new passwords can be used for authentication.<main id="notice" type="explain"><h4>Note</h4><p>This parameter is supported starting from V4.4.2 BP1. </p></main> |
+-- | integer               | Specifies the specific integer value of the parameter.             |
+-- | UNLIMITED             | Specifies that the parameter has no limit.                   |
+-- | DEFAULT               | Uses the system default value.                   |
+-- | NULL                  | Sets the parameter to NULL.                  |
+-- | function_name         | Specifies the name of the verification function.                  |
+--
+-- ## Examples
+--
+-- Create a password-limited profile named `profile1`, with `FAILED_LOGIN_ATTEMPTS` set to `5`, `PASSWORD_LOCK_TIME` set to `1` day, `PASSWORD_LIFE_TIME` set to `60` days, `PASSWORD_VERIFY_FUNCTION` set to `NULL`, and `PASSWORD_GRACE_TIME` set to the default limit, and `PASSWORD_ROLLOVER_TIME` set to `86400000000` microseconds (example value).
+--
+-- ```sql
+--    FAILED_LOGIN_ATTEMPTS 5
+--    PASSWORD_LOCK_TIME 1
+--    PASSWORD_LIFE_TIME 60
+--    PASSWORD_VERIFY_FUNCTION NULL
+--    PASSWORD_GRACE_TIME DEFAULT
+--    PASSWORD_ROLLOVER_TIME 86400000000;
+-- ```
+--
+-- <main id="notice" type="explain">
+-- <h4>Note</h4>
+-- <p>If you want to use a custom function in <code>PASSWORD_VERIFY_FUNCTION</code>, you need to create the function first. If you do not need password verification, you can set it to <code>NULL</code>.</p>
+-- </main>--
+--
+-- ==============================================================================
+-- [DDL-081] Oracle mode | ALTER KEYSTORE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/200.alter-keystore-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # ALTER KEYSTORE
+--
+-- ## Purpose
+--
+-- This statement is used to modify Keystore properties, including opening/closing the Keystore, changing the Keystore password, and generating a Keystore key.
+--
+-- ## Syntax
+--
+-- ```sql
+-- /* Open or close the Keystore */
+-- ADMINISTER KEY MANAGEMENT SET KEYSTORE [OPEN | CLOSE] IDENTIFIED BY [password];
+--
+-- /* Modify the Keystore */
+-- ADMINISTER KEY MANAGEMENT ALTER KEYSTORE PASSWORD IDENTIFIED BY password SET new_password;
+--
+-- /* Set the master key */
+-- ADMINISTER KEY MANAGEMENT SET KEY IDENTIFIED BY [password]
+-- ```
+--
+-- ## Parameters
+--
+-- |    Parameter    |          Description          |
+-- |----------|----------------------|
+-- | OPEN     | Opens the Keystore.         |
+-- | CLOSE    | Closes the Keystore.         |
+-- | password | Specifies the password for accessing the Keystore. The password length cannot exceed 128 characters and must start with a letter. |
+--
+-- ## Examples
+--
+-- * Open the Keystore. When the Keystore is in the `open` state, you can access encrypted tables and execute the `SET KEY` operation.
+--
+--   ```sql
+--   ```
+--
+-- * Update the master key stored in the Keystore.
+--
+--   ```sql
+--   ```--
+--
+-- ==============================================================================
+-- [DDL-082] Oracle mode | CREATE FORMAT OUTLINE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/2000.create-format-outline-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # CREATE FORMAT OUTLINE
+--
+-- ## Purpose
+--
+-- This statement is used to create a fuzzy outline. You can create a fuzzy outline in two ways: using the `FORMAT_SQL_TEXT` parameter, which specifies the original statement executed by the user with parameters, or using the `FORMAT_SQL_ID` parameter.
+--
+-- ## Limitations and considerations
+--
+-- * To create an outline, you must execute the statement under the corresponding user.
+--
+-- * When the `FORMAT_SQL_ID` is the same, the outline created using the `FORMAT_SQL_TEXT` method will overwrite the one created using the `FORMAT_SQL_ID` method. The `FORMAT_SQL_TEXT` method has higher priority. Additionally, OceanBase Database distinguishes different SQL statements based on the `FORMAT_SQL_ID`, which is generated by taking the `MD5` hash of the `FORMAT_SQL_TEXT`. In a production system, it is recommended to bind outlines using the `FORMAT_SQL_ID` method.
+--
+--   <main id="notice" type='explain'>
+--     <h4>Note</h4>
+--     <p><ul><li>The matching rules for <code>FORMAT_SQL_TEXT</code> ignore changes in parameters, case sensitivity, and non-syntactic symbols such as spaces and line breaks. For an <code>IN</code> expression, normalization is performed, and only the processed text content is compared.</li><li><code>FORMAT_SQL_ID</code> is generated by first formatting <code>FORMAT_SQL_TEXT</code> (removing extra spaces and line breaks, and converting all characters to uppercase or lowercase), and then applying the <code>MD5</code> hash encryption to the formatted result.</li></ul></p>
+--   </main>
+--
+-- * Starting from V4.4.2 BP3, Format Outline supports both text protocol and prepared statement protocol (PS protocol) scenarios.
+--
+-- ## Syntax
+--
+-- ```sql
+-- /* Use FORMAT_SQL_TEXT to create an outline. */
+-- CREATE [OR REPLACE] FORMAT OUTLINE outline_name ON format_stmt [ TO format_target_stmt ]
+--
+-- /* Use FORMAT_SQL_ID to create an outline. */
+-- CREATE [OR REPLACE] FORMAT OUTLINE outline_name ON format_sql_id USING HINT hint;
+-- ```
+--
+-- ## Parameters
+--
+-- |        Parameter           |            Description             |
+-- |-----------------------|----------------------------|
+-- | outline_name          | Specifies the name of the fuzzy outline to be created.|
+-- | OR REPLACE            | If specified, and if the outline already exists, it will replace the existing outline.|
+-- | format_stmt           | Specifies the original SQL statement. <main id="notice" type='explain'><h4>Note</h4><p>OceanBase Database automatically processes the unformatted SQL statement into a formatted one internally.</p></main>|
+-- | TO format_target_stmt | Optional. Specifies the target SQL statement to which the `format_stmt` will be converted or applied. This allows the outline to be applicable to other SQL statements. You can use the TO format_target_stmt option to declare these SQL statements. <main id="notice" type='notice'><h4>Notice</h4><p><ul><li>If you want to fix the plan for a statement containing a hint, you should use <code>format_target_stmt</code> to specify the original SQL.</li><li>When using the <code>TO format_target_stmt</code> clause, the original SQL <code>format_stmt</code> must match <code>format_target_stmt</code> after removing hints and formatting.</li></ul></p></main>|
+-- | format_sql_id         | The `format_stmt` obtained after a series of rule-based transformations of the SQL statement to be bound, then the `MD5` value calculated based on the `format_stmt`.|
+--
+-- ## Examples
+--
+-- * Create an outline using `FORMAT_SQL_TEXT`.
+--
+--   ```sql
+--   CREATE FORMAT OUTLINE my_outline ON 'SELECT * FROM employees WHERE department_id = ?';
+--   ```
+--
+-- * Create an outline using `FORMAT_SQL_ID`.
+--
+--   ```sql
+--   CREATE FORMAT OUTLINE my_sql_id_outline ON 'ED570339F2C856BA96008A29EDF04C74' USING HINT /*+ index(tbl1 idx_col2)*/;
+--   ```
+--
+-- ## References
+--
+-- For more examples on using outlines, see [Plan binding](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/1000.performance-tuning-guide/500.sql-optimization/400.sql-optimization/700.manage-execution-plans/200.plan-binding.md).--
+--
+-- ==============================================================================
+-- [DDL-083] Oracle mode | CREATE ROLE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/2100.create-role-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # CREATE ROLE
+--
+-- ## Purpose
+--
+-- This statement is used to create a role. You can use roles to manage database privileges.
+--
+-- You can add privileges to a role and grant the role to a user. The user can then enable the role and exercise the privileges granted by the role.
+--
+-- ## Syntax
+--
+-- ```sql
+-- CREATE [WITH HINT] ROLE role_name
+-- [ NOT IDENTIFIED
+-- | IDENTIFIED { BY password | BY VALUES password }
+-- ]
+-- ```
+--
+-- ## Parameters
+--
+-- |           Parameter           |  Description   |
+-- |------------------------|---------------------|
+-- | WITH HINT             | Optional. Specifies the hints used by the query optimizer.   |
+-- | role_name             | Specifies the name of the role to be created.   |
+-- | NOT IDENTIFIED        | Specifies that no authentication method is used when the role is enabled. |
+-- | IDENTIFIED BY         | Specifies the password for enabling the role. Users granted this role must specify the password to enable the role using the `SET ROLE` statement.    |
+-- | IDENTIFIED BY VALUES  | Specifies the encrypted password for the role. Similar to `IDENTIFIED BY`, but the password is already encrypted.     |
+--
+-- <main id="notice" type="explain">
+-- <h4>Note</h4>
+-- <p>If the <code>NOT IDENTIFIED</code> and <code>IDENTIFIED</code> clauses are omitted, the role defaults to <code>NOT IDENTIFIED</code>.</p>
+-- </main>
+--
+-- ## Examples
+--
+-- * Create a role named `role1`.
+--
+--   ```sql
+--   ```
+--
+-- * Create a role named `role2` with the password `**1***`.
+--
+--   ```sql
+--   ```--
+--
+-- ==============================================================================
+-- [DDL-084] Oracle mode | CREATE SEQUENCE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/2200.create-sequence-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # CREATE SEQUENCE
+--
+-- ## Purpose
+--
+-- This statement is used to create a sequence. A sequence is a database object that generates unique integers.
+--
+-- If two users increment the same sequence at the same time, each user may receive a sequence number with a gap, and one user will never receive the sequence number generated by the other user. Sequence numbers are generated independently of tables, so the same sequence can be used for one or more tables.
+--
+-- After creating a sequence, you can use the `CURRVAL` pseudocolumn to return the current sequence value or use the `NEXTVAL` pseudocolumn to return the new increment value in the SQL statement. For more information, see [Sequence pseudocolumns](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/200.pseudo-column-of-oracle-mode/300.sequence-pseudo-column-of-oracle-mode.md).
+--
+-- ## Syntax
+--
+-- ```sql
+-- CREATE [WITH HINT] SEQUENCE [ schema. ] sequence_name
+-- [ INCREMENT BY simple_num ]
+-- [ START WITH simple_num ]
+-- [ MAXVALUE simple_num | NOMAXVALUE ]
+-- [ MINVALUE simple_num | NOMINVALUE ]
+-- [ CYCLE | NOCYCLE ]
+-- [ CACHE simple_num | NOCACHE ]
+-- [ ORDER | NOORDER ]
+-- [ RESTART ]
+-- ```
+--
+-- ## Parameters
+--
+-- |           Field           |  Description  |
+-- |------------------------|---------|
+-- | WITH HINT             | Optional. Specifies the hints used by the query optimizer. |
+-- | schema.               | Specifies the schema that contains the sequence. If you omit the schema, the database creates the sequence in the current schema.         |
+-- | sequence_name         | The name of the sequence to create. |
+-- | INCREMENT BY simple_num | Specifies the increment step for the sequence. `simple_num` can be a positive or negative number, but cannot be 0. If you specify a positive number, the sequence is in ascending order; if you specify a negative number, the sequence is in descending order. The default value is 1 if not specified. |
+-- | START WITH simple_num | Specifies the starting value of the sequence. `simple_num` must be less than or equal to `MAXVALUE` and greater than or equal to `MINVALUE`. If not specified, the default value is the minimum value for ascending order and the maximum value for descending order. |
+-- | MAXVALUE simple_num   | Specifies the maximum value of the sequence. The value of `simple_num` ranges from \[-9223372036854775808, 9223372036854775807\].<br> **Notice**  <ul><li> When both `MINVALUE` and `MAXVALUE` are specified, `MINVALUE` must be less than `MAXVALUE`.</li><li>The difference between `MAXVALUE` and `MINVALUE` must be greater than or equal to the value of `simple_num` in `INCREMENT BY`.</li></ul> |
+-- | NOMAXVALUE           | The default value. If you specify `NOMAXVALUE`, the maximum value is 9223372036854775807 for ascending order and -1 for descending order. |
+-- | MINVALUE simple_num   | Specifies the minimum value of the sequence. The value of `simple_num` ranges from \[-9223372036854775808, 9223372036854775807\].   |
+-- | NOMINVALUE           | The default value. If you specify `NOMINVALUE`, the minimum value is 1 for ascending order and -9223372036854775808 for descending order.  |
+-- | CYCLE                | Specifies that the sequence generates values in a cycle. That is, the sequence continues to generate values after reaching its maximum or minimum value. For ascending order, it generates the minimum value after reaching the maximum value. For descending order, it generates the maximum value after reaching the minimum value. <br>**Notice**  <ul><li> If you specify `CYCLE`, you must also specify `MINVALUE` when `INCREMENT BY simple_num` is less than 0.</li><li> If you specify `CYCLE`, the number of `CACHE` values cannot exceed one `CYCLE`.</li></ul> |
+-- | NOCYCLE              | The default value. Specifies that the sequence cannot generate more values after reaching its maximum or minimum value.  |
+-- | CACHE simple_num      | Specifies the number of incremented values to preallocate in memory. The default value is 20. The value of `CACHE simple_num` must be greater than 1. If the value of `CACHE simple_num` is 1, it is equivalent to `NOCACHE`. |
+-- | NOCACHE              | Specifies that the sequence values are not preallocated. If you omit both `CACHE` and `NOCACHE`, the database caches 20 sequence numbers by default. |
+-- | ORDER                | Specifies that the sequence generates values in order. |
+-- | NOORDER              | The default value. Specifies that the sequence does not generate values in order. |
+-- | RESTART              | Specifies that the sequence starts from the minimum value. If you specify `CYCLE`, the sequence automatically restarts after reaching the maximum value. |
+--
+-- ## Examples
+--
+-- Create a sequence named `seq1` in the `test` schema and specify an increment step of 2. In the following example, the first reference to `seq1.nextval` returns 1, and the second reference returns 3. Each subsequent reference returns a value that is 2 greater than the previous one.
+--
+-- ```sql
+-- ```
+--
+-- ```sql
+-- ```
+--
+-- Expected return result:
+--
+-- ```sql
+-- +--------+
+-- | nextval|
+-- +--------+
+-- | 1      |
+-- +--------+
+-- 1 row in set
+-- ```
+--
+-- ```sql
+-- ```
+--
+-- Expected return result:
+--
+-- ```sql
+-- +--------+
+-- | nextval|
+-- +--------+
+-- | 3      |
+-- +--------+
+-- 1 row in set
+-- ```--
+--
+-- ==============================================================================
+-- [DDL-085] Oracle mode | CREATE SENSITIVE RULE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/2250.create-sensitive-rule-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # CREATE SENSITIVE RULE
+--
+-- ## Purpose
+--
+-- This statement is used to create a sensitive data protection rule.
+--
+-- ## Privilege requirements
+--
+-- To execute the `CREATE SENSITIVE RULE` statement, the current user must have the `CREATE SENSITIVE RULE` privilege. For more information about OceanBase Database privileges, see [Privilege classification in Oracle-compatible mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/300.permission-of-oracle-mode/000.permission-classification-of-oracle-mode.md).
+--
+-- ## Syntax
+--
+-- ```sql
+-- CREATE SENSITIVE RULE <rule_name>
+-- ON <sensitive_field_list>
+-- USING ENCRYPTION [ = <encryption_method>];
+-- ```
+--
+-- ## Parameters
+--
+-- The following table describes the parameters.
+--
+-- | Parameter | Data type | Default value | Description |
+-- |---|---|---|---|
+-- | rule_name | String |  | The name of the encryption rule, which must be unique within the tenant. |
+-- | sensitive_field_list | String |  | The columns to be encrypted, in the format of `user.table(col1, col2), user2.table2(col3, col4), ...`. Each sensitive item specifies one or more columns in a table, with columns separated by commas. Sensitive items are separated by commas. This parameter specifies the columns to be protected by the sensitive rule. A single rule can protect multiple columns across multiple users and tables. Parameter description:<ul><li>If `user` is not specified, the current user is used by default.</li><li>`table` cannot be empty or `*`.</li><li>`(col_list)` cannot be empty or `*`.</li></ul> |
+-- | encryption_method | String |  | If `USING ENCRYPTION` is specified without parameters, the default encryption algorithm is used, which is `aes-256` (AES-256-ECB). You can also write `USING ENCRYPTION = DEFAULT` to specify the default encryption algorithm. |
+--
+-- The following table lists the allowed values of `encryption_method`.
+--
+-- | Value (used in SQL syntax) | Actual encryption algorithm | Key length | Mode | Description |
+-- |---|----------|----------|------|------|
+-- | aes-256 | AES-256-ECB | 256 bits | ECB | Default algorithm |
+-- | aes-128 | AES-128-ECB | 128 bits | ECB |  |
+-- | aes-192 | AES-192-ECB | 192 bits | ECB |  |
+-- | aes-128-gcm | AES-128-GCM | 128 bits | GCM | High security level. Provides authenticated encryption (AEAD). |
+-- | aes-192-gcm | AES-192-GCM | 192 bits | GCM | High security level. Provides authenticated encryption (AEAD). |
+-- | aes-256-gcm | AES-256-GCM | 256 bits | GCM | High security level. Provides authenticated encryption (AEAD). |
+-- | sm4-cbc | SM4-CBC |  | CBC | High security level |
+-- | sm4-GCM | SM4-GCM |  | GCM | High security level. Provides authenticated encryption (AEAD) |
+--
+-- When you create a sensitive rule, note the following:
+--
+-- * The rule takes effect immediately after it is created.
+-- * The rule name is globally unique within the tenant, but only for sensitive rules, not for objects. In other words, you can have both a table named `R1` and a sensitive rule named `R1`, but you cannot have two sensitive rules named `R1`.
+-- * In Oracle-compatible mode, the rule name is stored in uppercase by default. If you need to distinguish between uppercase and lowercase names, you can enclose the name in double quotation marks. Rule names enclosed in double quotation marks are case-sensitive. For example, `R1` and `"r1"` are considered two different rules and can both exist.
+-- * Sensitive rules provide data protection at the **column level** only. There is no table-level or database-level protection. In other words, you cannot create data protection rules for an entire table or database. If you want to encrypt all columns in a table, you must explicitly specify all the column names.
+-- * A single rule can protect one or more columns. Cross-database and cross-table protection is allowed.
+--
+-- When you create a sensitive rule, note the following restrictions:
+--
+-- * You can create data protection rules only for columns in user tables (including views). You cannot create data protection rules for columns in system tables.
+-- * A column can be protected by only one rule.
+--
+-- ## Examples
+--
+-- Here are some examples:
+--
+-- ```sql
+-- -- Create a sensitive rule named r1 to protect columns a in tbl1, columns b and c in tbl2, and columns e and f in user2.tbl3.
+-- -- Use the default encryption algorithm, AES-256-ECB.
+-- CREATE SENSITIVE RULE r1 ON tbl1(a), tbl2(b, c), user2.tbl3(e,f)
+-- USING ENCRYPTION;
+--
+-- -- Create a sensitive rule named r2 to protect columns x and y in tbl4 and column z in tbl5.
+-- -- Use the SM4-CBC encryption algorithm.
+-- CREATE SENSITIVE RULE r2 ON tbl4(x, y), tbl5(z)
+-- USING ENCRYPTION = 'sm4-cbc';
+-- ```
+--
+-- # References
+--
+-- * [DROP SENSITIVE RULE](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/3650.drop-sensitive-rule-of-oracle-mode.md)
+-- * [ALTER SENSITIVE RULE](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/550.alter-sensitive-rule-of-oracle-mode.md)--
+--
+-- ==============================================================================
+-- [DDL-086] Oracle mode | ALTER LOCATION
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/230.alter-location-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # ALTER LOCATION
+--
+-- ## Purpose
+--
+-- This statement is used to modify the properties of a Location object.
+--
+-- <main id="notice" type='explain'>
+--   <h4>Note</h4>
+--   <p>For OceanBase Database V4.4.x, the <code>ALTER LOCATION</code> statement is supported starting from V4.4.1. </p>
+-- </main>
+--
+-- ## Privilege requirements
+--
+-- * Privilege:
+--
+--     To execute the `ALTER LOCATION` statement, the current user must have the `CREATE LOCATION` privilege. For more information about the privileges of OceanBase Database, see [Privilege classification in Oracle-compatible mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/300.permission-of-oracle-mode/000.permission-classification-of-oracle-mode.md).
+--
+-- * Credential:
+--
+--     The provided `ACCESSID` and `ACCESSKEY` must have the necessary permissions to access the target storage service.
+--
+-- ## Syntax
+--
+-- ```sql
+-- ALTER LOCATION location_name SET
+--     {URL = 'file_path'
+--     | CREDENTIAL = (credential_list)
+--     };
+--
+-- credential_list:
+--     ACCESSID = 'string'
+--     ACCESSKEY = 'string'
+--     HOST = 'string'
+--     [S3_REGION = 'string']
+--     [PRINCIPAL = 'string']
+--     [KEYTAB = 'string']
+--     [KRB5CONF = 'string']
+--     [CONFIGS = 'string']
+--     [USERNAME = 'string']
+-- ```
+--
+-- ## Parameters
+--
+-- |      **Parameter**     | **Description** |
+-- |-------------------|----------|
+-- | location_name     | The name of the Location object to be modified.|
+-- | URL = 'file_path' | Specifies the external storage path. For more information, see [file_path](#file_path) below.|
+-- | CREDENTIAL        | Specifies the information required to modify the access path for HDFS or object storage. For more information, see [credential_list](#credential_list) below.|
+--
+-- ### file_path
+--
+-- The path for storing external table files can be in the following formats:
+--
+-- * Local path: `URL = '[file:// | sfile://] local_file_path'`
+--
+--   * `file://`: This protocol header indicates that when encountering files with the same logical path across multiple OBServer nodes, they are treated as different files and processed separately. Each node independently reads the file from its local path.
+--   * `sfile://`: This protocol header indicates that when encountering files with the same logical path across multiple OBServer nodes, the system performs deduplication based on the logical path to ensure only one copy of data is read (supporting multi-server load balancing).
+--
+--     <main id="notice" type='notice'>
+--       <h4>Note</h4>
+--       <p><ul><li>When using <code>sfile://</code>, the system performs consistency verification on file sizes. If files under the same logical path have inconsistent sizes across different OBServer nodes, the system reports an error <code>OB_INVALID_EXTERNAL_FILE</code> to avoid result errors caused by data inconsistency.</li> <li>For version V4.4.2, starting from V4.4.2 BP2, support for the <code>sfile://</code> protocol header was added to the local URL path format in the <code>ALTER LOCATION</code> syntax.</li></ul></p>
+--     </main>
+--
+--   * `local_file_path`: Can be a relative or absolute path.
+--
+-- * HDFS path: `URL = 'hdfs://localhost:port/PATH'`, where `localhost` is the HDFS address, `port` is the HDFS port number, and `PATH` is the directory path in HDFS.
+--
+-- * Object storage (OSS/S3) path: `URL = '{oss | s3}://bucket/remote_file_path'`.
+--
+-- <main id="notice" type='notice'>
+--   <h4>Notice</h4>
+--   <p>The path for creating a Location object should not include parameters. </p>
+-- </main>
+--
+-- ### credential_list
+--
+-- * `ACCESSID`: The AccessKey ID for accessing object storage.
+-- * `ACCESSKEY`: The AccessKey secret for accessing object storage.
+-- * `HOST`: The host address for the object storage service.
+-- * `S3_REGION`: Optional. The service region for S3 object storage.
+-- * `PRINCIPAL`: Optional. The login authentication user for the target HDFS cluster with Kerberos environment.
+-- * `KEYTAB`: Optional. The authentication key file path for the target HDFS cluster with Kerberos environment.
+-- * `KRB5CONF`: Optional. The file path for using Kerberos environment for the target HDFS cluster with Kerberos environment.
+-- * `CONFIGS`: Optional. Additional cluster configuration items for the target HDFS cluster with Kerberos environment.
+-- * `USERNAME`: Optional. The unique identifier for the user's identity in the target HDFS cluster with Kerberos environment.
+--
+-- ## Examples
+--
+-- Modify the `CREDENTIAL` information of the `test_location_oss` Location object.
+--
+-- ```shell
+--     CREDENTIAL = (
+--         ACCESSID = '******'
+--         ACCESSKEY = '******'
+--         HOST = '******'
+--         );
+-- ```
+--
+-- ## References
+--
+-- For information about viewing files under a Location object, see [SHOW](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/300.dcl-of-oracle-mode/3600.show-of-oracle-mode.md).--
+--
+-- ==============================================================================
+-- [DDL-087] Oracle mode | CREATE SYNONYM
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/2300.create-synonym-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # CREATE SYNONYM
+--
+-- ## Purpose
+--
+-- This statement is used to create a synonym.
+--
+-- ## Syntax
+--
+-- ```sql
+-- CREATE [ OR REPLACE ] [ PUBLIC ] SYNONYM [ synonym_schema. ]synonym_name
+-- FOR [ object_schema. ]object_name [ @dblink ]
+-- ```
+--
+-- ## Parameters
+--
+-- |       Parameter       |  Description  |
+-- |----------------|--------|
+-- | OR REPLACE     | Indicates whether to recreate the synonym if the synonym name already exists.  |
+-- | PUBLIC         | Specifies `PUBLIC` to create a public synonym, which can be used by all users. Users must have the appropriate privileges on the base object to use the synonym. When resolving object references, a public synonym is used only when the object does not specify a schema. If `PUBLIC` is not specified, the synonym is private and can only be accessed within the current schema, and the synonym name must be unique within the current schema. |
+-- | synonym_schema | Specifies the schema where the synonym is located. If `schema.` is omitted, the default schema is your own schema. If `PUBLIC` is specified, the `schema` is not required.  |
+-- | synonym_name   | Specifies the name of the synonym. |
+-- | object_schema  | Specifies the schema where the object for the synonym is located. If `schema.` is omitted, the default schema is your own schema.  |
+-- | object_name    | Specifies the name of the object for the synonym.  |
+-- | dblink         | Specifies the name of the database link for accessing objects in a remote database. If `dblink` is specified, `object_name` should be the name of an object in the remote database.  |
+--
+-- ## Examples
+--
+-- ### Example 1: Accessing data across schemas
+--
+-- Assume there are two users `hr` and `finance`, and `hr` needs to access the employee salary table in the `finance` schema, but direct table access privileges cannot be granted for security reasons.
+--
+-- ```sql
+-- -- Create the salary table as the finance user
+--   emp_id NUMBER,
+--   emp_name VARCHAR2(50),
+--   base_salary NUMBER,
+--   bonus NUMBER
+-- );
+--
+-- -- Create the synonym as the hr user
+--
+-- -- Now, the hr user can query the salary data using the synonym
+-- ```
+--
+-- ### Example 2: Creating a private synonym
+--
+-- Create a private synonym for a commonly used table to facilitate access by users within the current schema.
+--
+-- ```sql
+-- -- Execute as the system administrator
+--
+-- -- Any user can now directly query the tables
+-- ```
+--
+-- ## Considerations
+--
+-- When creating a synonym, the following privilege requirements must be met:
+--
+-- * To create a private synonym in the current schema, you need the `CREATE SYNONYM` privilege.
+--
+-- * To create a private synonym in a different schema, you need the `CREATE ANY SYNONYM` privilege.
+--
+-- * To create a public synonym, you need the `CREATE PUBLIC SYNONYM` privilege.
+--
+-- * The object for which the synonym is created can either exist or not, and you may or may not have access privileges to it.
+--
+-- ```sql
+-- /*Create a user named synonym_user*/
+--
+--
+--
+-- /*Connect as the synonym_user user*/
+-- ERROR-00600: internal error code, arguments: -5036, Access denied; you need (at least one of) the CREATE SYNONYM privilege(s) for this operation
+--
+-- /*Grant the CREATE SYNONYM privilege to the synonym_user user*/
+--
+-- ```--
+--
+-- ==============================================================================
+-- [DDL-088] Oracle mode | CREATE TABLE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/2400.create-table-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # CREATE TABLE
+--
+-- ## Purpose
+--
+-- This statement is used to create a new table in the database.
+--
+-- ## Syntax
+--
+-- ```sql
+-- CREATE [hint_options] [GLOBAL TEMPORARY] TABLE table_name
+--       (table_definition_list) [table_option_list] [partition_option] [on_commit_option]
+-- CREATE [GLOBAL TEMPORARY] TABLE table_name
+--       (table_definition_list) [table_option_list] [partition_option] [[MERGE_ENGINE = {delete_insert | partial_update}] table_column_group_option] [AS] select;
+--
+-- table_definition_list:
+--     table_definition [, table_definition ...]
+--
+-- table_definition:
+--       column_definition
+--      | [,
+--         | [CONSTRAINT [constraint_name]] { PRIMARY KEY|UNIQUE } (column_name) //Specify the constraint after creating all columns.
+--         | [CONSTRAINT [constraint_name]] FOREIGN KEY (column_name, column_name ...) references_clause constraint_state
+--         | [CONSTRAINT [constraint_name]] CHECK(expression) constraint_state
+--        ]
+--
+-- column_definition_list:
+--     column_definition [, column_definition ...]
+--
+-- column_definition:
+--     column_name data_type
+--     [VISIBLE | INVISIBLE] [GENERATED BY DEFAULT AS IDENTITY | GENERATED ALWAYS AS IDENTITY]
+--     {
+--     [DEFAULT expression]
+--     [NULL | NOT NULL]
+--     [CONSTRAINT [constraint_name]] [ PRIMARY KEY|UNIQUE ]       //Adds a constraint when creating a column
+--     [CONSTRAINT [constraint_name] CHECK(expression) constraint_state]
+--     [CONSTRAINT [constraint_name] references_clause]
+--     |
+--     [GENERATED ALWAYS] AS (expression) [VIRTUAL]
+--     [NULL | NOT NULL] [UNIQUE KEY] [[PRIMARY] KEY] [UNIQUE LOWER_KEY] [COMMENT string_value] [SKIP_INDEX(skip_index_option_list)]
+--     }
+--
+-- skip_index_option_list:
+--     skip_index_option [,skip_index_option ...]
+--
+-- skip_index_option:
+--     MIN_MAX
+--     | SUM
+--
+-- references_clause:
+--      REFERENCES table_name [ (column_name, column_name ...) ] [ON DELETE {SET NULL | CASCADE}]
+--
+-- constraint_state:
+--     [RELY | NORELY] [USING INDEX index_option_list] [ENABLE | DISABLE] [VALIDATE | NOVALIDATE]
+--
+-- index_option_list:
+--     index_option [ index_option ...]
+--
+-- index_option:
+--       [GLOBAL | LOCAL]
+--     | block_size
+--     | compression
+--     | STORING(column_name_list)
+--
+-- table_option_list:
+--     table_option [ table_option ...]
+--
+-- table_option:
+--       TABLEGROUP = tablegroup_name
+--     | block_size
+--     | compression
+--     | ENABLE ROW MOVEMENT
+--     | DISABLE ROW MOVEMENT
+--     | physical_attribute
+--     | parallel_clause
+--     | DUPLICATE_SCOPE [=] 'none|cluster'
+--     | TABLE_MODE [=] 'table_mode_value'
+--     | enable_macro_block_bloom_filter [=] {True | False}
+--     | DYNAMIC_PARTITION_POLICY [=] (dynamic_partition_policy_list)
+--     | MICRO_BLOCK_FORMAT_VERSION [=] {1|2}
+--
+-- physical_attribute_list:
+--     physical_attribute [physical_attribute]
+--
+-- physical_attribute:
+--     PCTFREE [=] num
+--     | PCTUSED num
+--     | INITRANS num
+--     | MAXTRANS num
+--     | STORAGE(storage_option [storage_option] ...)
+--     | TABLESPACE tablespace
+--
+-- parallel_clause:
+--     {NOPARALLEL | PARALLEL integer}
+--
+-- table_mode_value:
+--     NORMAL
+--     | QUEUING
+--     | MODERATE
+--     | SUPER
+--     | EXTREME
+--
+-- dynamic_partition_policy_list:
+--     dynamic_partition_policy_option [, dynamic_partition_policy_option ...]
+--
+-- dynamic_partition_policy_option:
+--     ENABLE = {true | false}
+--     | TIME_UNIT = {'hour' | 'day' | 'week' | 'month' | 'year'}
+--     | PRECREATE_TIME = {'-1' | '0' | 'n {hour | day | week | month | year}'}
+--     | EXPIRE_TIME = {'-1' | '0' | 'n {hour | day | week | month | year}'}
+--     | TIME_ZONE = {'default' | 'time_zone'}
+--     | BIGINT_PRECISION = {'none' | 'us' | 'ms' | 's'}
+--
+-- compression:
+--     NOCOMPRESS
+--     | COMPRESS { BASIC | FOR OLTP | FOR QUERY [LOW | HIGH]  | FOR ARCHIVE [LOW | HIGH]}
+--
+-- storage_option:
+--     INITIAL num [K|M|G|T|P|E]
+--     | NEXT num [K|M|G|T|P|E]
+--     | MINEXTENTS num [K|M|G|T|P|E]
+--     | MAXEXTENTS num [K|M|G|T|P|E]
+--
+-- partition_option:
+--       PARTITION BY HASH(column_name_list)
+--       [subpartition_option] hash_partition_define
+--     | PARTITION BY RANGE (column_name_list)
+--       [subpartition_option] (range_partition_list)
+--     | PARTITION BY LIST (column_name_list)
+--       [subpartition_option] (list_partition_list)
+--     | PARTITION BY RANGE([column_name_list]) [SIZE('size_value')] [range_partition_list]
+--     | PARTITION BY RANGE (column_name) INTERVAL (expr)
+--         [subpartition_option]
+--         (range_partition)
+--
+-- /*Template-based Subpartitioning*/
+-- subpartition_option:
+--       SUBPARTITION BY HASH (column_name_list) hash_subpartition_define
+--     | SUBPARTITION BY RANGE (column_name_list) SUBPARTITION TEMPLATE
+--       (range_subpartition_list)
+--     | SUBPARTITION BY LIST (column_name_list) SUBPARTITION TEMPLATE
+--       (list_subpartition_list)
+--
+-- /*Non-template secondary partition*/
+-- subpartition_option:
+--       SUBPARTITION BY HASH (column_name_list)
+--     | SUBPARTITION BY RANGE (column_name_list)
+--     | SUBPARTITION BY LIST (column_name_list)
+--
+-- subpartition_list:
+--       (hash_subpartition_list)
+--     | (range_subpartition_list)
+--     | (list_subpartition_list)
+--
+-- hash_partition_define:
+--       PARTITIONS partition_count [TABLESPACE tablespace] [compression]
+--     | (hash_partition_list)
+--
+-- hash_partition_list:
+--     hash_partition [, hash_partition ...]
+--
+-- hash_partition:
+--     partition [partition_name] [subpartition_list/*Only non-template secondary partitions can be defined.*/]
+--
+-- hash_subpartition_define:
+--       SUBPARTITIONS subpartition_count
+--     | SUBPARTITION TEMPLATE (hash_subpartition_list)
+--
+-- hash_subpartition_list:
+--     hash_subpartition [, hash_subpartition ...]
+--
+-- hash_subpartition:
+--     subpartition [subpartition_name]
+--
+-- range_partition_list:
+--     range_partition [, range_partition ...]
+--
+-- range_partition:
+--     PARTITION [partition_name]
+--     VALUES LESS THAN {(expression_list) | (MAXVALUE)}
+--     [subpartition_list/*Only non-template secondary partitions can be defined.*/]
+--     [ID = num] [physical_attribute_list] [compression]
+--
+-- range_subpartition_list:
+--     range_subpartition [, range_subpartition ...]
+--
+-- range_subpartition:
+--     SUBPARTITION subpartition_name
+--     VALUES LESS THAN {(expression_list) | MAXVALUE} [physical_attribute_list]
+--
+-- list_partition_list:
+--     list_partition [, list_partition] ...
+--
+-- list_partition:
+--     PARTITION [partition_name]
+--     VALUES (DEFAULT | expression_list)
+--     [subpartition_list /*Only non-template secondary partitions can be defined.*/]
+--     [ID num] [physical_attribute_list] [compression]
+--
+-- list_subpartition_list:
+--     list_subpartition [, list_subpartition] ...
+--
+-- list_subpartition:
+--     SUBPARTITION [partition_name] VALUES (DEFAULT | expression_list) [physical_attribute_list]
+--
+-- expression_list:
+--     expression [, expression ...]
+--
+-- column_name_list:
+--     column_name [, column_name ...]
+--
+-- partition_name_list:
+--     partition_name [, partition_name ...]
+--
+-- partition_count | subpartition_count:
+--     INT_VALUE
+--
+-- on_commit_option:
+--     ON COMMIT DELETE ROWS
+--   | ON COMMIT PRESERVE ROWS
+--
+-- table_column_group_option:
+--     WITH COLUMN GROUP(all columns)
+--   | WITH COLUMN GROUP(each column)
+--   | WITH COLUMN GROUP(all columns, each column)
+-- ```
+--
+-- ## Parameters
+--
+-- | Parameter | Description |
+-- | ----------------------------- | --------------------------------------------------------------- |
+-- | hint_options | Optional. Specifies hint options. You can manually specify direct load hints, including APPEND, DIRECT, and NO_DIRECT. The corresponding hint format is `APPEND`, `DIRECT(need_sort,max_error,load_type)] parallel(N)` `NO_DIRECT`. For more information about direct load using the CREATE TABLE AS SELECT statement, see the **Use the CREATE TABLE AS SELECT statement for direct data load** section in [Full direct load](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/620.obap/300.obap-data-collection/300.obap-import-data/20.bypass-import/200.full-bypass-import.md). |
+-- | GLOBAL TEMPORARY | Create the table as a temporary table. |
+-- | DEFAULT expression | Specifies the default value of a column.`expression`Function expressions that contain sequences are supported. <main id="notice" type='notice'><h4>Notice</h4><p>A default value cannot be set for an auto-increment column.</p></main> |
+-- | BLOCK_SIZE | Specifies the microblock size of a table. |
+-- | COMPRESSION | Specifies the storage format (Flat or Encoding) and compression method. The corresponding values are as follows: <ul><li>`nocompress`: Uses the Flat format without compression. </li>   <li>`compress [basic]`: Use the Flat format and the lz4_1.0 compression method.</li>   <li>`compress for oltp`: Uses the Flat format and the zstd_1.3.8 compression method.</li>   <li>`query low`or`query high`: Uses the Encoding format and the lz4_1.0 compression method.</li>   <li>`archive low`or`archive high`: Use the Encoding format and the zstd_1.3.8 compression method.</li> </ul> |
+-- | tablegroup_name | Specifies the table group to which the table belongs. |
+-- | FOREIGN KEY        | Specifies a foreign key for the created table. If not specified, the table name will be concatenated with `OBFK` and the creation time to form the name. (For example, the foreign key name for creating table `t1` on August 1, 2021, at 00:00:00 would be `t1_OBFK_1627747200000000`). Foreign keys allow cross-referencing of related data across tables. When a `DELETE` operation affects a key value in the parent table that matches a row in the child table, the outcome depends on the reference operation in the `ON DELETE` clause:<ul><li>`CASCADE`: Deletes or updates a row in the parent table and automatically deletes or updates the matching row in the child table.</li><li>`SET NULL`: Deletes or updates a row in the parent table and sets the foreign key column in the child table to `NULL`.</li></ul>
+-- | VISIBLE | Indicates that the column is visible, which is the default column state. |
+-- | INVISIBLE | Indicates that the column is invisible. When a column is set to`INVISIBLE`After that, this column will not be displayed by default during queries. |
+-- | GENERATED BY DEFAULT AS IDENTITY \ | GENERATED ALWAYS AS IDENTITY | Optional. Specifies a column as the auto-increment column. The syntax is as follows:<ul><li>`GENERATED BY DEFAULT AS IDENTITY`: Indicates that when inserting data, if the value for an auto-increment column is not explicitly specified, the system will use the default auto-increment value.</li><li>`GENERATED ALWAYS AS IDENTITY`: Indicates that when inserting data, you must use the automatically generated auto-increment value and cannot explicitly specify a value for the auto-increment column. </li></ul> <main id="notice" type='notice'><h4>Note</h4><p>The data type of this column must be a numeric type.</p></main> |
+-- | physical_attribute | `PCTFREE`: Specifies the percentage of reserved space for macroblocks. Other attributes`STORAGE`、`TABLESPACE`and others are provided only for syntax compatibility and ease of migration and do not take effect. |
+-- | ENABLE/DISABLE ROW MOVEMENT | Whether to allow moving between different partitions for partitioning key updates. |
+-- | ON COMMIT DELETE ROWS | Transaction-level temporary tables, with data deleted upon commit. |
+-- | ON COMMIT PRESERVE ROWS | Session-level temporary tables, with data deleted when the session ends. |
+-- | parallel_clause | Specify the table-level parallelism: <ul><li>`NOPARALLEL`: The degree of parallelism is 1, which is the default configuration. </li>   <li>`PARALLEL integer`: Specifies the degree of parallelism.`integer`Value greater than or equal to`1`</li> </ul> <main id="notice" type='notice'><h4>Notice</h4><p> When specifying the degree of parallelism, the priority relationship is as follows: the degree of parallelism specified by a hint \> the degree of parallelism specified by <code>ALTER SESSION</code> \> the table-level degree of parallelism. </p></main> |
+-- | DUPLICATE_SCOPE | Specifies the attributes of the replicated table. Valid values: <ul><li>`none`: Indicates that the table is a regular table, which is the default value. <li></li>`cluster`: Indicates that the table is a replicated table. The leader must replicate the transaction to all full-featured (F) and read-only (R) replicas of the current tenant.</li></ul> OceanBase Database currently only supports`cluster`Replication tables at the  level. |
+-- | MERGE_ENGINE = {delete_insert \ | partial_update} | Optional. Specifies the update model for the table. Valid values: <ul><li>`partial_update`: The default value, indicating that the existing update mode remains unchanged. </li><li>`delete_insert`: Indicates the use of`merge on write`in the following manner:`update`convert to`delete`and`insert`, and write the full column.</li></ul> <main id="notice" type='explain'><h4>Note</h4><p>The value of the <code>MERGE_ENGINE</code> parameter cannot be modified after it is specified during table creation. </p></main> |
+-- | table_column_group_option | Specify the table columnar storage options. The specific descriptions are as follows:<ul><li><code>WITH COLUMN GROUP(all columns, each column)</code>: Specifies to create a row-columnar storage redundant table.</li><li><code>WITH COLUMN GROUP(all columns)</code>: Specifies to add a row-store table.</li><li><code>WITH COLUMN GROUP(each column)</code>: Specifies to create a columnar storage table.</li></ul> |
+-- | COMMENT string_value | Optional. Specifies the column comment.<main id="notice" type='explain'><h4>Note</h4><p>This parameter is supported starting with V4.4.2 BP2.</p></main> |
+-- | SKIP_INDEX | Identifies the skip index attribute of a column. Valid values: <ul><li><code>MIN_MAX</code>: The most general aggregate data type in skip index. It stores the maximum value, minimum value, and null count of the indexed column at the granularity of index nodes. This type of data can accelerate pushed-down filters and`MIN/MAX`<li><code>SUM</code>: used to accelerate calculations on numeric types.</li><li>`SUM`<li>Pushdown of aggregation operations.</li></ul>  <main id="notice" type='notice'><h4>Notice</h4><p><ul><li>Creating skip indexes on columns of JSON or spatial data types is prohibited.</li><li>Creating skip indexes on generated columns is prohibited.</li></ul></p></main> |
+-- | TABLE_MODE | Optional. Specifies the major compaction trigger threshold and strategy, which controls the major compaction behavior after data minor compaction. For detailed information about the valid values, see [table_mode_value](#table_mode_value). |
+-- | enable_macro_block_bloom_filter [=] {True \ | False} | Specifies whether to persist the macroblock-level Bloom filter. Valid values: <ul><li><code>True</code>: Enable persistent macroblock-level Bloom filter.</li></ul><ul></li></li><li><code>False</code>: Disable persistent macroblock-level Bloom filter.</li></ul> |
+-- | DYNAMIC_PARTITION_POLICY \[=\] \(dynamic_partition_policy_list\) | Specify the dynamic partition management attributes of a table to enable automatic partition creation and deletion.`dynamic_partition_policy_list`List of configurable parameters for the dynamic partitioning strategy. Separate parameters with commas. For more information, see [dynamic_partition_policy_option](#dynamic_partition_policy_option). |
+-- | MICRO_BLOCK_FORMAT_VERSION | Optional. Specifies the version number of the table's microblock storage format. Valid values: [1, +∞). <ul><li>`1`: Indicates consistency with the existing microblock storage format. </li><li>`2`: Enables the new flat row storage format.</li><li>Other values: An invalid value error is returned.</li></ul><main id="notice" type='explain'><h4>Note</h4><p>This parameter is available starting with V4.4.1.</p></main> |
+-- | PARTITION BY RANGE([column_name_list]) [SIZE('size_value')] [range_partition_list] | This clause is used to specify the creation of an auto-partitioned table. For more information, see the syntax for creating a table with automatic partitioning in [Automatic partition splitting](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/200.manage-object-of-oracle-mode/200.manage-partitions-of-oracle-mode/250.partition-splitting-of-oracle-mode/300.automatic-partition-splitting-of-oracle-mode.md). <main id="notice" type='explain'><h4>Note</h4><p>For V4.4.2, starting from V4.4.2 BP1, the minimum threshold for automatic partition splitting has been adjusted from 128 MB to 1 MB.</p></main> |
+-- | PARTITION BY RANGE (column_name) INTERVAL (expr) [subpartition_option] (range_partition) | This clause is used to specify the creation of an INTERVAL partitioned table. For more information, see [Create a partitioned table](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/200.manage-object-of-oracle-mode/200.manage-partitions-of-oracle-mode/200.create-a-partition-table-of-oracle-mode.md) on how to create an INTERVAL partitioned table. |
+--
+-- ### table_mode_value
+--
+-- <main id="notice" type='explain'>
+--   <h4>Note</h4>
+--   <p>In the <code>TABLE_MODE</code> modes listed below, all modes except for <code>NORMAL</code> represent <code>QUEUING</code> tables. This <code>QUEUING</code> table is the most basic table type, and the several modes listed subsequently (except for NORMAL mode) represent more aggressive major compaction strategies.</p>
+-- </main>
+--
+-- * `NORMAL`: The default value, indicating normal. In this mode, the probability of triggering a major compaction after a minor compaction is extremely low.
+-- * `QUEUING`: In this mode, the probability of triggering a major compaction after a minor compaction is low.
+-- * `MODERATE`: Indicates moderate. In this mode, the probability of triggering a major compaction after a minor compaction is medium.
+-- * `SUPER`: Indicates super. In this mode, the probability of triggering a major compaction after a minor compaction is high.
+-- * `EXTREME`: Indicates extreme. In this mode, the probability of triggering a major compaction after a minor compaction is relatively high.
+--
+-- For more information about major compaction, see [Adaptive major compaction](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/200.system-management/500.manage-data-storage/200.merge-management/320.adaptive-compaction.md).
+--
+-- ### dynamic_partition_policy_option
+--
+-- * `ENABLE = {true | false}`: Optional. Specifies whether to enable dynamic partition management. Modifiable. Valid values:
+--
+--   * `true`: The default value, indicating to enable dynamic partition management.
+--   * `false`: Indicates to disable dynamic partition management.
+--
+-- * `TIME_UNIT = {'hour' | 'day' | 'week' | 'month' | 'year'}`: Required. Specifies the time unit for partitioning, i.e., the interval at which partition boundaries are automatically created. Not modifiable. Valid values:
+--
+--   * `hour`: Partitions are created hourly.
+--   * `day`: Partitions are created daily.
+--   * `week`: Partitions are created weekly (by week).
+--   * `month`: Partitions are created monthly.
+--   * `year`: Partitions are created annually.
+--
+-- * `PRECREATE_TIME = {'-1' | '0' | 'n {hour | day | week | month | year}'}`: Optional. Specifies the precreation time. When scheduling dynamic partition management, partitions are precreated such that **maximum partition upper bound > now() + precreate_time**. Modifiable. Valid values:
+--
+--   * `-1`: The default value, indicating not to precreate partitions.
+--   * `0`: Indicates to precreate only the current partition.
+--   * `n {hour | day | week | month | year}`: Indicates to precreate partitions for the corresponding time span. For example, `3 hour` indicates to precreate partitions for the next 3 hours.
+--
+--   <main id="notice" type='explain'>
+--     <h4>Note</h4>
+--     <p><ul><li>If multiple partitions need to be pre-created, the interval between partition boundaries is <code>TIME_UNIT</code>.</li><li>The boundary of the first pre-created partition is the existing maximum partition boundary rounded up by <code>TIME_UNIT</code>.</li></ul></p>
+--   </main>
+--
+-- * `EXPIRE_TIME = {'-1' | '0' | 'n {hour | day | week | month | year}'}`: Optional. Specifies the partition expiration time. When dynamic partition management is scheduled, all partitions that meet the condition **partition upper_bound < now() - expire_time** are deleted. This parameter can be modified. Valid values:
+--
+--   * `-1`: the default value, indicating that the partition never expires.
+--   * `0`: Indicates that all partitions except the current one have expired.
+--   * `n {hour | day | week | month | year}`: The partition expiration time. For example, `1 day` indicates the partition expires in 1 day.
+--
+-- * `TIME_ZONE = {'default' | 'time_zone'}`: Optional. Specifies the time zone to use when comparing the current time with the partitioning key of a time or timestamp type. The value cannot be modified. Valid values:
+--
+--   * `default`: The default value, which indicates that no additional time zone is configured and the tenant's time zone is used. For all types other than the above, the `time_zone` field must be set to `default`.
+--   * `time_zone`: The custom time zone offset. For example, a time zone offset such as `+8:00`.
+--
+-- * `BIGINT_PRECISION = {'none' | 'us' | 'ms' | 's'}`: Optional. Specifies the timestamp precision for the partitioning key of the `number` type. This parameter cannot be modified. Valid values:
+--
+--   * `none`: The default value, indicating no precision (the partitioning key is not of the `number` type).
+--   * `us`: microseconds.
+--   * `ms`: millisecond precision.
+--   * `s`: seconds.
+--
+-- For more information about creating a dynamic partitioned table, see [Create a dynamic partitioned table](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/200.manage-object-of-oracle-mode/200.manage-partitions-of-oracle-mode/260.dynamic-partition-of-oracle-mode/200.create-a-dynamic-partition-table-of-oracle-mode.md).
+--
+-- **Example:**
+--
+-- ```sql
+-- CREATE TABLE tbl2 (col1 INT, col2 TIMESTAMP)
+--     DYNAMIC_PARTITION_POLICY(
+--         ENABLE = true,
+--         TIME_UNIT = 'hour',
+--         PRECREATE_TIME = '3 hour',
+--         EXPIRE_TIME = '1 day',
+--         TIME_ZONE = '+8:00',
+--         BIGINT_PRECISION = 'none')
+--     PARTITION BY RANGE (col2)(
+--         PARTITION P0 VALUES LESS THAN (TIMESTAMP '2024-11-11 13:30:00')
+--         );
+-- ```
+--
+-- ## Examples
+--
+-- * Create the table `TEST_TBL1`.
+--
+--   ```sql
+--   ```
+--
+-- * Create a table named `TEST_TBL2` with eight hash partitions.
+--
+--   ```sql
+--   ```
+--
+-- * Create a table named `TEST_TBL3` with a range partition as the primary partition and a hash partition as the subpartition.
+--
+--   ```sql
+--                    PARTITION BY RANGE(col1)
+--                    SUBPARTITION BY HASH(col2)  SUBPARTITIONS  5
+--                    (PARTITION p0 VALUES LESS THAN(0),
+--                     PARTITION p1 VALUES LESS THAN(100));
+--   ```
+--
+-- * Create the table `TEST_TBL4`, enable encoding, use `zstd` for compression, and set the macroblock reserved space to `5%`.
+--
+--   ```sql
+--                    COMPRESS FOR ARCHIVE
+--                    PCTFREE 5;
+--   ```
+--
+-- * Create a transactional temporary table named `TEST_TBL5`.
+--
+--   ```sql
+--   ```
+--
+-- * Create a table named `TEST_TBL6` with constraints.
+--
+--   ```sql
+--   ```
+--
+-- * Specify a foreign key for table `REF_T2` and execute a `SET NULL` operation when a `DELETE` operation affects the key value in the parent table that matches a row in the subtable.
+--
+--   ```sql
+--   ```
+--
+--   ```sql
+--   ```
+--
+-- * Create a non-templated RANGE+RANGE subpartitioned table named `TEST_TBL7`.
+--
+--   ```sql
+--                    PARTITION BY RANGE(col1)
+--                    SUBPARTITION BY RANGE(col2)
+--   (
+--     PARTITION p0 VALUES LESS THAN(100)
+--     (
+--       SUBPARTITION p0_r1 VALUES LESS THAN(2019),
+--       SUBPARTITION p0_r2 VALUES LESS THAN(2020),
+--       SUBPARTITION p0_r3 VALUES LESS THAN(2021)
+--     ),
+--     PARTITION p1 VALUES LESS THAN(200)
+--     (
+--       SUBPARTITION p1_r1 VALUES LESS THAN(2019),
+--       SUBPARTITION p1_r2 VALUES LESS THAN(2020),
+--       SUBPARTITION p1_r3 VALUES LESS THAN(2021)
+--     ),
+--     PARTITION p2 VALUES LESS THAN(300)
+--     (
+--       SUBPARTITION p2_r1 VALUES LESS THAN(2019),
+--       SUBPARTITION p2_r2 VALUES LESS THAN(2020),
+--       SUBPARTITION p2_r3 VALUES LESS THAN(2021)
+--     )
+--   );
+--   ```
+--
+-- * Create table `TEST_TBL8` with a degree of parallelism of `3`.
+--
+--   ```sql
+--   ```
+--
+-- * Use a function to define the default value of a column.
+--
+--   ```sql
+--   ```
+--
+--   ```sql
+--   ```
+--
+--   The return result is as follows:
+--
+--   ```sql
+--   +----------------------------------------------------------------------------+
+--   | LPAD(SEQ_PERSONIPTVSEQ.NEXTVAL,18,TO_CHAR(SYSDATE,'YYYY-MM-DDHH24:MI:SS')) |
+--   +----------------------------------------------------------------------------+
+--   | 2025-04-08 19:35:1                                                         |
+--   +----------------------------------------------------------------------------+
+--   ```
+--
+--   ```sql
+--   ```
+--
+-- * Create a `cluster`-level replicated table named `DUP_T1`. Insert data into and read from this replicated table as you would with a regular table. For a read request, if a proxy is used, the request may be routed to any OBServer node. If connecting directly to an OBServer node, the read request will be executed on that node if the local replica is readable.
+--
+--   ```sql
+--   ```
+--
+--   ```sql
+--   ```
+--
+--   ```sql
+--   ```
+--
+--   The return result is as follows:
+--
+--   ```sql
+--   +------+
+--   | C1   |
+--   +------+
+--   |    1 |
+--   +------+
+--   ```
+--
+-- * Create a columnar storage table named `TBL_CG`.
+--
+--   ```sql
+--   ```
+--
+-- * Set the skip index attribute for columns during table creation.
+--
+--   ```sql
+--     col1 NUMBER SKIP_INDEX(MIN_MAX, SUM),
+--     col2 FLOAT SKIP_INDEX(MIN_MAX),
+--     col3 VARCHAR2(1024) SKIP_INDEX(MIN_MAX),
+--     col4 CHAR(10)
+--   );
+--   ```
+--
+-- * Create the table `TEST_TBL9`, which has an integer column named `col1`. Specify that this operation should be executed with a degree of parallelism of 5, and specify that the data for the new table `TEST_TBL8` will come from the query results of table `TEST_TBL8`.
+--
+--   ```sql
+--   ```
+--
+-- * Create a table named `TEST_TBL10`, set column `col1` as an auto-increment column, and specify it as the primary key.
+--
+--   ```sql
+--     col1 INT GENERATED BY DEFAULT AS IDENTITY,
+--     col2 VARCHAR2(50),
+--     PRIMARY KEY (col1)
+--   );
+--   ```
+--
+-- * Create a table named `tb` with the macroblock-level Bloom filter persistence feature enabled.
+--
+--   ```sql
+--   ```
+--
+-- * Create table `tb` and enable the new Flat row storage format (version 2).
+--
+--   ```sql
+--   ```
+--
+-- * Create a table `t_udt` with a UDT column.
+--
+--   <main id="notice" type='explain'>
+--     <h4>Note</h4>
+--     <p>The UDT COLUMN values written by the current version of OceanBase Database must be processed by CDC in online schema mode.</p>
+--   </main>
+--
+--   ```sql
+--   ```
+--
+--   You can use the following command to view UDT columns:
+--
+--   ```sql
+--   ```
+--
+--   View UDT column attributes:
+--
+--   <main id="notice" type='explain'>
+--   <h4>Note</h4>
+--   <p>You must specify a table alias to query the attributes of a UDT column.</p>
+--   </main>
+--
+--   ```sql
+--   ```
+--
+-- * Specify column comments when creating the `table_create_comment` table.
+--
+--   ```sql
+--   ```
+--
+-- ## Limitations on using global temporary tables in Oracle compatible mode
+--
+-- * Temporary tables in Oracle compatible mode have practical applications in various business scenarios and are guaranteed to be basically correct and functional.
+-- * Generally, the purpose of using temporary tables is mostly for compatibility and to reduce business transformation. They can be used when the business scenario is limited and the performance requirements for temporary tables are not high. If the business scenario can be changed to use regular tables, it is better to do so.
+--
+-- ### Performance and stability
+--
+-- * The SQL execution efficiency of temporary tables is basically the same as that of regular tables, with no particular advantages.
+-- * Temporary tables require additional cleanup work when a transaction ends or a session is disconnected, which incurs extra overhead.
+-- * The check and cleanup operations performed on temporary tables during login may put pressure on the login thread, causing login times to increase or, in severe cases, preventing login.
+--
+-- ### Create a temporary table
+--
+-- When creating a temporary table, the table creation statement is rewritten by default:
+--
+-- * Added the `SYS_SESSION_ID` column as the primary key.
+-- * Added `SYS_SESS_CREATE_TIME` as a normal column.
+-- * Create a HASH partitioned table with `SYS_SESSION_ID` as the partitioning key, and set the number of partitions to 16.
+--
+-- For example:
+--
+-- ```sql
+--   c1 INT,
+--   c2 INT,
+--   PRIMARY KEY(c1)
+-- );
+-- ```
+--
+-- It will be rewritten in the following form.
+--
+-- ```sql
+--   SYS_SESSION_ID INT,
+--   SYS_SESS_CREATE_TIME INT,
+--   c1 INT,
+--   c2 INT,
+--   PRIMARY KEY(SYS_SESSION_ID, c1)
+-- )
+-- PARTITION BY HASH(SYS_SESSION_ID) PARTITIONS 16;
+-- ```
+--
+-- ### DML and query statements on temporary tables
+--
+-- When executing an `INSERT` statement, the current session ID and session creation time are inserted into the `SYS_SESSION_ID` column and `SYS_SESS_CREATE_TIME` column by default.
+--
+-- When executing `UPDATE`, `DELETE`, or `SELECT` statements, SQL rewrite adds a default filter condition `"`SYS_SESSION_ID` = current session `session_id`"` to statements containing temporary tables. This condition enables the SQL optimizer to perform partition pruning and narrow down the query scope.
+--
+-- ### Temporary table data cleanup
+--
+-- * For temporary tables created with the `ON COMMIT DELETE ROWS` option (transactional temporary tables, which is also the default option), when a transaction ends, a new transaction is started to execute the `DELETE` statement for deleting the temporary table data.
+-- * For temporary tables created with the `ON COMMIT PRESERVE ROWS` option (session-level temporary tables), the data in these tables is deleted by executing a `DELETE` statement when the session is disconnected.
+-- * Due to the possibility of session ID reuse, OceanBase Database V3.2.4 BP4 and earlier versions perform a check on the data of the current session ID during login. If any exist, an additional cleanup is required.
+-- * Log-in checks and clean-ups performed due to non-unique session IDs may cause failures (the cluster cannot be logged in to).
+--
+-- ### Routing of temporary tables
+--
+-- * Transaction temporary tables (`ON COMMIT DELETE ROWS`)
+--   Access to temporary tables within a transaction can only be routed to the node where the transaction was initiated.
+--
+-- * Session temporary tables (`ON COMMIT PRESERVE ROWS`)
+--   After a session accesses a temporary table, the OBServer node notifies the proxy that subsequent requests from the proxy can only be sent to the current session.
+--
+-- ### Drop a temporary table
+--
+-- Similar to regular tables, you can successfully execute a `DROP` statement while DML operations are still in progress, causing all data in the temporary table to be deleted. This behavior differs from Oracle, which waits until no sessions hold resources on the temporary table before allowing a `DROP`.
+--
+-- ### Supported cross-feature operations
+--
+-- | Feature | Supported for V3.2.4 BP4 and earlier versions? | Whether V3.2.4 BP5 and subsequent V3.2.x versions are supported | Supported in V4.2.0? |
+-- | --- | --- | --- | --- |
+-- | Plans Shared by Different Sessions | No | No | Yes |
+-- | Login does not require triggering checks or cleanup | No | Yes | Yes |
+-- | `MERGE INTO`statement | No | No | Yes |
+--
+-- ### Mitigation strategies for critical issues
+--
+-- ### Unable to log in
+--
+-- 1. Stop the business related to the temporary tables, delete them, or perform a major compaction. The system should recover on its own in most cases. If recovery is still not possible, proceed to step 2.
+-- 2. Restart the server that cannot be logged in to.
+--
+-- ### PL Cache Expansion Due to Unreusable Plans
+--
+-- For example, statements that contain temporary tables in the PL definition:
+--
+-- ```sql
+-- AS
+--   var1 VARCHAR2(100);
+-- BEGIN
+--   -- Create a temporary table using dynamic SQL
+--   EXECUTE IMMEDIATE 'CREATE GLOBAL TEMPORARY TABLE temp_table (
+--     col1 VARCHAR2(100)
+--   ) ON COMMIT DROP';
+--
+--   -- Dynamically insert data
+--   EXECUTE IMMEDIATE 'INSERT INTO temp_table VALUES (''xxx'')';
+--
+--   -- Dynamic Query
+--   EXECUTE IMMEDIATE 'SELECT col1 FROM temp_table WHERE ROWNUM = 1' INTO var1;
+--
+--   DBMS_OUTPUT.PUT_LINE(var1);
+-- END PRO_1;
+-- /
+-- ```
+--
+-- Because different sessions cannot share execution plans for accessing temporary tables, each session must compile the `PRO_1` procedure to generate its own corresponding cache, which may lead to stability issues. Changing the temporary table SQL to dynamic SQL can circumvent this problem.
+--
+-- ### Data not cleaned up in case of failure
+--
+-- The failure may result in data remnants. Currently, there is no automatic cleanup method, but this generally does not affect usage. If excessive residual data exists, you can resolve the issue by dropping the temporary table with a `DROP` statement and then rebuilding it.
+--
+-- ## Overview
+--
+-- In an Oracle-compatible tenant, you can use the `CREATE TABLE` statement to create tables that are read-only or read/write. You can also use the `ALTER TABLE` statement to change the read/write attribute of a table.
+--
+-- <main id="notice" type='notice'>
+-- <h4>Notice</h4>
+-- <p>Users without the <code>SUPER</code> privilege cannot perform these operations. It is recommended to use a regular user.</p>
+-- </main>
+--
+-- **Procedure:**
+--
+-- 1. Create a regular user:
+--
+--    ```sql
+--    CREATE USER test1 IDENTIFIED BY "12345";
+--    ```
+--
+-- 2. Grant the user connection and table creation privileges:
+--
+--    ```sql
+--    GRANT CREATE SESSION TO test1;
+--    GRANT CREATE TABLE TO test1;
+--    ```
+--
+-- 3. Connect to OceanBase Database as the regular user:
+--
+--    ```bash
+--    ```
+--
+-- 4. Create a read-only table:
+--
+--    ```sql
+--    CREATE TABLE tb_readonly1(id INT) READ ONLY;
+--    ```
+--
+-- 5. Attempt to insert data into the read-only table (expected to fail):
+--
+--    ```sql
+--    INSERT INTO tb_readonly1 VALUES (1);
+--    -- Expected error: ORA-00600: internal error code, arguments: -5235, The table 'TEST1.TB_READONLY1' is read only so it cannot execute this statement
+--    ```
+--
+-- 6. Create a read/write table:
+--
+--    ```sql
+--    CREATE TABLE tb_readwrite1(id INT) READ WRITE;
+--    ```
+--
+-- 7. Insert data into the read/write table (expected to succeed):
+--
+--    ```sql
+--    INSERT INTO tb_readwrite1 VALUES (99),(98);
+--    -- Expected result: Query OK, 2 rows affected (0.002 sec)
+--    --             Records: 2  Duplicates: 0  Warnings: 0
+--    ```
+--
+-- 8. Convert the read/write table to a read-only table:
+--
+--    ```sql
+--    ALTER TABLE tb_readwrite1 READ ONLY;
+--    ```
+--
+-- 9. Attempt to insert data into the converted read-only table (expected to fail):
+--
+--    ```sql
+--    INSERT INTO tb_readwrite1 VALUES (96),(97);
+--    -- Expected error: ORA-00600: internal error code, arguments: -5235, The table 'TEST1.TB_READWRITE1' is read only so it cannot execute this statement
+--    ```
+--
+-- ## References
+--
+-- * [Modify a table](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/200.manage-object-of-oracle-mode/100.manage-tables-of-oracle-mode/600.change-table-of-oracle-mode.md)
+-- * [Create a table](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/200.manage-object-of-oracle-mode/100.manage-tables-of-oracle-mode/200.create-a-table-for-oracle-tenant-of-oracle-mode.md)
+-- * [Truncate a table](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/200.manage-object-of-oracle-mode/100.manage-tables-of-oracle-mode/700.clear-table-of-oracle-mode.md)
+-- * [Delete a table](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/200.manage-object-of-oracle-mode/100.manage-tables-of-oracle-mode/800.delete-a-table-of-oracle-mode.md)--
+--
+-- ==============================================================================
+-- [DDL-089] Oracle mode | ALTER MATERIALIZED VIEW
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/250.alter-materialized-view-of-oracle-mode-in-sql.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # ALTER MATERIALIZED VIEW
+--
+-- ## Purpose
+--
+-- This statement is used to modify the properties of a materialized view.
+--
+-- ## Privilege requirements
+--
+-- To execute the `ALTER MATERIALIZED VIEW` statement, the current user must have the `ALTER` privilege on the target object. For more information about OceanBase Database privileges, see [Privilege classification in Oracle-compatible mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/300.permission-of-oracle-mode/000.permission-classification-of-oracle-mode.md).
+--
+-- ## Syntax
+--
+-- ```sql
+-- ALTER MATERIALIZED VIEW [schema.]view_name alter_mview_action_list;
+--
+-- alter_mview_action_list:
+--     alter_mview_action [, alter_mview_action ...]
+--
+-- alter_mview_action:
+--     parallel_clause
+--     | REFRESH [nested_refresh_option] [[START WITH expr] [NEXT expr]]
+--
+-- parallel_clause:
+--     NOPARALLEL
+--     | PARALLEL integer
+--     | REFRESH PARALLEL integer
+--
+-- nested_refresh_option:
+--     INDIVIDUAL
+--     | INCONSISTENT
+--     | CONSISTENT
+-- ```
+--
+-- ## Parameters
+--
+-- |        **Parameter**         |       **Description**           |
+-- |-------------------------|--------------------------|
+-- | schema.                 | Optional. Specifies the schema where the materialized view is located. If you omit `schema.`, the materialized view is created in the schema of the current session.|
+-- | view_name               | Specifies the name of the materialized view to be modified.<main id="notice" type='explain'><h4>Note</h4><p>OceanBase Database allows you to rename a materialized view by using the <code>RENAME</code> statement. </p></main>|
+-- | alter_mview_action_list | Specifies the list of operations that can be performed on the materialized view. You can specify multiple operations separated by commas (`,`). For more information, see [alter_mview_action](#alter_mview_action) below.|
+--
+-- ### alter_mview_action
+--
+-- * `parallel_clause`: specifies the parallelism of the materialized view. Valid values:
+--
+--   * `NOPARALLEL`: default value. The parallelism is 1.
+--   * `PARALLEL integer`: specifies the table-level parallelism, that is, the parallelism when querying the materialized view. The value of `integer` must be an integer greater than or equal to 1.
+--   * `REFRESH PARALLEL integer`: specifies the refresh parallelism, that is, the parallelism during the refresh of the materialized view. The value of `integer` must be an integer greater than or equal to 0. When the value is 0, the system variable `mview_refresh_dop` is used for the refresh parallelism.
+--
+--     <main id="notice" type='explain'>
+--       <h4>Note</h4>
+--       <p>For V4.4.2, the <code>ALTER MATERIALIZED VIEW</code> statement supports modifying the refresh parallelism by specifying <code>REFRESH PARALLEL integer</code> starting from V4.4.2 BP2.</p>
+--     </main>
+--
+--   **Here is an example:**
+--
+--   * Set the parallelism when querying the materialized view.
+--
+--     ```sql
+--     ALTER MATERIALIZED VIEW mv1 PARALLEL 5;
+--     ```
+--
+--   * Set the refresh parallelism of the materialized view.
+--
+--     ```sql
+--     ALTER MATERIALIZED VIEW mv1 REFRESH PARALLEL 3;
+--     ```
+--
+-- * `REFRESH [nested_refresh_option] [[START WITH expr] [NEXT expr]]`: specifies the refresh strategy of a nested materialized view or the time interval of the background refresh task of a materialized view.
+--
+--   * `nested_refresh_option`: optional. Specifies the refresh strategy of a nested materialized view.
+--
+--     * `INDIVIDUAL`: default value. Independent refresh.
+--     * `INCONSISTENT`: cascade refresh without consistency.
+--     * `CONSISTENT`: cascade refresh with consistency.
+--
+--     **Here are some examples:**
+--
+--     ```shell
+--     ```
+--
+--     ```shell
+--     ```
+--
+--     ```shell
+--     ```
+--
+--   * `[[START WITH expr] [NEXT expr]]`: specifies the time interval of the background refresh task of a materialized view.
+--
+--     * `[START WITH expr]`: optional. Specifies the start time of the refresh plan.
+--     * `[NEXT expr]`: optional. Specifies the next refresh time.
+--
+--       <main id="notice" type='notice'>
+--         <h4>Notice</h4>
+--         <p><ul><li>If you specify the <code>NEXT</code> clause, the time expression of the refresh plan must be set to a future time. Otherwise, an error will be returned. </li><li>To schedule the refresh task of a materialized view to be automatically executed periodically, define the <code>NEXT</code> clause to specify the scheduling interval. </li></ul></p>
+--       </main>
+--
+--     We recommend that you use `current_date` to specify the current time in the current time zone. Here are some examples of the time expression:
+--
+--     * Refresh the materialized view every 10 seconds starting from the current time (`current_date`).
+--
+--       ```sql
+--       START WITH current_date NEXT current_date + INTERVAL '10' SECOND
+--       ```
+--
+--     * Refresh the materialized view every 10 hours starting from the current time (`current_date`).
+--
+--       ```sql
+--       START WITH current_date NEXT current_date + INTERVAL '10' HOUR
+--       ```
+--
+--     * Refresh the materialized view every 1 day starting from the current time (`current_date`).
+--
+--       ```sql
+--       START WITH current_date NEXT current_date + 1
+--       ```
+--
+--     **Here are some examples:**
+--
+--     ```shell
+--         REFRESH START WITH current_date;
+--     ```
+--
+--     ```shell
+--         REFRESH NEXT current_date + 1;
+--     ```
+--
+--     ```shell
+--         REFRESH START WITH current_date NEXT current_date + 1;
+--     ```
+--
+-- ## Examples
+--
+-- 1. Create a table named `test_tbl1`.
+--
+--     ```shell
+--     ```
+--
+-- 2. Create a materialized view named `mv_test_tbl1`.
+--
+--     ```shell
+--         AS SELECT col1, col2, col3
+--            FROM test_tbl1;
+--     ```
+--
+-- 3. Set the refresh parallelism of the materialized view `mv_test_tbl1` to 5.
+--
+--     ```shell
+--     ```
+--
+-- 4. Set the initial refresh time of the refresh plan of the materialized view `mv_test_tbl1` to the current date, and set the refresh interval to 1 day.
+--
+--     ```shell
+--         REFRESH START WITH current_date NEXT current_date + 1;
+--     ```
+--
+-- ## References
+--
+-- * [Overview of materialized views](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/200.manage-object-of-oracle-mode/500.manage-views-of-oracle-mode/200.manage-materialized-views-of-oracle-mode/100.materialized-views-overview-of-oracle-mode.md)
+-- * [Create materialized views](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/200.manage-object-of-oracle-mode/500.manage-views-of-oracle-mode/200.manage-materialized-views-of-oracle-mode/300.create-materialized-views-of-oracle-mode.md)
+-- * [Refresh materialized views](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/200.manage-object-of-oracle-mode/500.manage-views-of-oracle-mode/200.manage-materialized-views-of-oracle-mode/400.refresh-materialized-views-of-oracle-mode.md)
+-- * [Query materialized views](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/200.manage-object-of-oracle-mode/500.manage-views-of-oracle-mode/200.manage-materialized-views-of-oracle-mode/600.view-materialized-views-of-oracle-mode.md)--
+--
+-- ==============================================================================
+-- [DDL-090] Oracle mode | CREATE TABLEGROUP
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/2500.create-tablegroup-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # CREATE TABLEGROUP
+--
+-- ## Purpose
+--
+-- This statement is used to create a table group.
+--
+-- A table group is mainly used to create a group of tables with the same distribution characteristics. When tables with the same distribution characteristics are joined, the join can be performed locally, avoiding cross-node data requests.
+--
+-- ## Syntax
+--
+-- ```sql
+-- CREATE TABLEGROUP tablegroup_name [ tablegroup_options ]
+--
+-- tablegroup_option:
+--    SHARDING = 'NONE' | 'PARTITION' | 'ADAPTIVE'
+-- ```
+--
+-- ## Parameters
+--
+-- |           **Parameter**           |    **Description**    |
+-- |----------------------------|---------------------------------|
+-- | tablegroup_name            | The name of the table group. It can be up to 64 characters long and can contain only uppercase and lowercase letters, digits, and underscores. It must start with a letter or underscore and cannot be a keyword of OceanBase Database. If the table group with the specified name already exists and the `IF NOT EXISTS` clause is not specified, an error will be returned.  |
+-- | SHARDING   | The attribute of the table group. If the `SHARDING` attribute is not specified, the default value is `ADAPTIVE`. The value of `SHARDING` can be as follows:<ul><li>`NONE`: No restrictions are imposed on the tables added to the table group.</li><li>`PARTITION`: The primary partitions of the tables added to the table group must be consistent with those of all tables in the table group. The partitioning type, number of partitions, and partition values must be the same.</li><li>`ADAPTIVE`: The primary partitions and subpartitions of the tables added to the table group must be consistent with those of all tables in the table group. The partitioning type, number of partitions, and partition values must be the same. The tables added to the table group must be either all primary-partitioned tables or all subpartitioned tables. </li></ul>Consistent partitioning includes the following aspects:<ul><li>Same partitioning type (for example, both are Hash+Range partitioned). </li><li>If the partitioning type is Hash, the number of referenced columns and the number of partitions must be the same. </li><li>If the partitioning type is Range, the number of referenced columns, the number of partitions, and the Range split points must be the same. </li></ul>For subpartitions, the requirements are the same as those for primary partitions.    |
+--
+-- ## Examples
+--
+-- * Create a table group named `myTableGroup1` and add the non-partitioned tables `myt1` and `myt2` to the table group.
+--
+--   ```sql
+--
+--
+--   ```
+--
+-- * Create a table group named `tblgroup1` with the `SHARDING` attribute set to `NONE`, and add the non-partitioned table `tbl1`, the primary-partitioned table `tbl2`, and the subpartitioned table `tbl3` to the table group.
+--
+--   ```sql
+--
+--
+--       PARTITION BY LIST(col1)
+--         (PARTITION p0 VALUES ('01'),
+--          PARTITION p1 VALUES ('02')
+--          );
+--
+--       PARTITION BY LIST(col1) SUBPARTITION BY LIST (col2)
+--         SUBPARTITION TEMPLATE
+--         (SUBPARTITION mp0 VALUES ('01'),
+--          SUBPARTITION mp1 VALUES ('02'),
+--          SUBPARTITION mp2 VALUES ('03')
+--          )
+--         (PARTITION p0 VALUES('01'),
+--          PARTITION p1 VALUES('02')
+--         );
+--   ```
+--
+-- * Create a table group named `tblgroup2` with the `SHARDING` attribute set to `PARTITION`, and add the partitioned tables `tbl4` and `tbl5` to the table group, which have consistent partitioning.
+--
+--   ```sql
+--
+--       PARTITION BY LIST(col1)
+--         (PARTITION p0 VALUES ('01'),
+--          PARTITION p1 VALUES ('02')
+--         );
+--
+--     PARTITION BY LIST(col1)
+--       (PARTITION p0 VALUES ('01'),
+--        PARTITION p1 VALUES ('02')
+--        );
+--   ```
+--
+-- * Create a table group named `tblgroup3` with the `SHARDING` attribute set to `PARTITION`, and add the non-partitioned table `tbl6` and the partitioned table `tbl7` to the table group. The two tables cannot be added to the table group at the same time.
+--
+--   ```sql
+--
+--
+--     PARTITION BY LIST(col1)
+--       (PARTITION p0 VALUES ('01'),
+--        PARTITION p1 VALUES ('02')
+--        );
+--   ```
+--
+--   Expected return result:
+--
+--   ```sql
+--   OBE-00600: internal error code, arguments: -4179, not all tables are non-partitioned or partitioned, add table to tablegroup not allowed
+--   ```
+--
+-- * Create a table group named `tblgroup4` with the `SHARDING` attribute set to `PARTITION`, and add the partitioned tables `tbl8` and `tbl9` to the table group. The two tables cannot be added to the table group at the same time because their partition values are inconsistent.
+--
+--   ```sql
+--
+--       PARTITION BY LIST(col1)
+--         (PARTITION p0 VALUES ('01'),
+--          PARTITION p1 VALUES ('02')
+--         );
+--
+--       PARTITION BY LIST(col1)
+--         (PARTITION p0 VALUES ('01'),
+--          PARTITION p1 VALUES ('02'),
+--          PARTITION p2 VALUES ('03')
+--          );
+--   ```
+--
+--   Expected return result:
+--
+--   ```sql
+--   OBE-00600: internal error code, arguments: -4179, partition num not equal, add table to tablegroup not allowed
+--   ```
+--
+-- * Create a table group named `tblgroup5` with the `SHARDING` attribute set to `ADAPTIVE`, and add the partitioned tables `tbl10` and `tbl11` to the table group, which have consistent partitioning.
+--
+--   ```sql
+--
+--       PARTITION BY LIST(col1) SUBPARTITION BY LIST (col2)
+--         SUBPARTITION TEMPLATE
+--         (SUBPARTITION mp0 VALUES ('01'),
+--          SUBPARTITION mp1 VALUES ('02'),
+--          SUBPARTITION mp2 VALUES ('03')
+--          )
+--         (PARTITION p0 VALUES('01'),
+--          PARTITION p1 VALUES('02')
+--         );
+--
+--       PARTITION BY LIST(col1) SUBPARTITION BY LIST(col2)
+--         SUBPARTITION TEMPLATE
+--         (SUBPARTITION mp0 VALUES('01'),
+--          SUBPARTITION mp1 VALUES('02'),
+--          SUBPARTITION mp2 VALUES('03')
+--         )
+--         (PARTITION p0 VALUES('01'),
+--          PARTITION p1 VALUES('02')
+--         );
+--   ```
+--
+-- * Create a table group named `tblgroup6` with the `SHARDING` attribute set to `ADAPTIVE`, and add the non-partitioned table `tbl12` and the partitioned table `tbl13` to the table group. The two tables cannot be added to the table group at the same time.
+--
+--   ```shell
+--
+--
+--       PARTITION BY LIST(col1) SUBPARTITION BY LIST(col2)
+--         SUBPARTITION TEMPLATE
+--         (SUBPARTITION mp0 VALUES('01'),
+--          SUBPARTITION mp1 VALUES('02'),
+--          SUBPARTITION mp2 VALUES('03')
+--         )
+--         (PARTITION p0 VALUES('01'),
+--          PARTITION p1 VALUES('02')
+--         );
+--
+--   Expected return result:
+--
+--   ```
+--   OBE-00600: internal error code, arguments: -4179, not all tables are non-partitioned or partitioned, add table to tablegroup not allowed
+--   ```
+--
+-- * Create a table group named `tblgroup7` with the `SHARDING` attribute set to `ADAPTIVE`, and add the partitioned tables `tbl14` and `tbl15` to the table group. The two tables cannot be added to the table group at the same time because their primary partitions have the same partitioning type but their subpartitions have different partitioning types (different number of subpartitions).
+--
+--   ```shell
+--
+--       PARTITION BY LIST(col1) SUBPARTITION BY LIST(col2)
+--         SUBPARTITION TEMPLATE
+--         (SUBPARTITION mp0 VALUES ('01'),
+--          SUBPARTITION mp1 VALUES ('02'),
+--          SUBPARTITION mp2 VALUES ('03')
+--          )
+--         (PARTITION p0 VALUES('01'),
+--          PARTITION p1 VALUES('02')
+--         );
+--
+--       PARTITION BY LIST(col1) SUBPARTITION BY LIST(col2)
+--         SUBPARTITION TEMPLATE
+--         (SUBPARTITION mp0 VALUES('01'),
+--          SUBPARTITION mp1 VALUES('02')
+--         )
+--         (PARTITION p0 VALUES('01'),
+--          PARTITION p1 VALUES('02')
+--         );
+--   ```
+--
+--   Expected return result:
+--
+--   ```sql
+--   OBE-00600: internal error code, arguments: -4179, subpartition num not matched, add table to tablegroup not allowed
+--   ```
+--
+-- ## References
+--
+-- * [ALTER TABLEGROUP](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/1100.alter-tablegroup-of-oracle-mode.md)
+--
+-- * [DROP TABLEGROUP](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/4000.drop-tablegroup-of-oracle-mode.md)
+--
+-- * [Manage tables in a table group](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/200.manage-object-of-oracle-mode/300.manage-table-groups-of-oracle-mode/600.manage-tables-within-a-table-group-of-oracle-mode.md)
+--
+-- * [View information about a table group](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/200.manage-object-of-oracle-mode/300.manage-table-groups-of-oracle-mode/300.view-the-information-of-a-table-group-of-oracle-mode.md)--
+--
+-- ==============================================================================
+-- [DDL-091] Oracle mode | ALTER MATERIALIZED VIEW LOG
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/251.alter-materialized-view-log-of-oracle-mode-in-sql.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # ALTER MATERIALIZED VIEW LOG
+--
+-- ## Purpose
+--
+-- This statement is used to modify the properties of a materialized view log (mlog).
+--
+-- ## Privilege requirements
+--
+-- To execute the `ALTER MATERIALIZED VIEW LOG` statement, the current user must have the `ALTER` privilege on the base table. For more information about OceanBase Database privileges, see [Privilege classification in Oracle-compatible mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/300.permission-of-oracle-mode/000.permission-classification-of-oracle-mode.md).
+--
+-- ## Syntax
+--
+-- ```sql
+-- ALTER MATERIALIZED VIEW LOG ON [schema.]table_name alter_mlog_action_list;
+--
+-- alter_mview_action_list:
+--     alter_mlog_action [, alter_mlog_action ...]
+--
+-- alter_mlog_action:
+--     parallel_clause
+--     | PURGE [[START WITH expr] [NEXT expr]]
+--
+-- parallel_clause:
+--     NOPARALLEL
+--     | PARALLEL integer
+-- ```
+--
+-- ## Parameters
+--
+-- |        **Parameter**        |       **Description**           |
+-- |------------------------|--------------------------|
+-- | schema.                | Optional. Specifies the schema where the base table of the materialized view log is located. If you omit `schema.`, the base table is assumed to be in the schema of the current session.|
+-- | table_name             | Specifies the name of the base table corresponding to the materialized view log.|
+-- | alter_mlog_action_list | A list of operations that can be performed to modify the materialized view log. You can specify multiple operations, separated by commas (`,`). For more information, see [alter_mlog_action](#alter_mlog_action) below.|
+--
+-- ### alter_mlog_action
+--
+-- * `parallel_clause`: specifies the parallelism of the materialized view log table. Valid values:
+--
+--   * `NOPARALLEL`: parallelism is 1, which is the default value.
+--   * `PARALLEL integer`: specifies the parallelism. The value of `integer` must be greater than or equal to 1.
+--
+--   **Example:**
+--
+--   ```sql
+--   ALTER MATERIALIZED VIEW LOG ON tbl1 PARALLEL 5;
+--   ```
+--
+-- * `PURGE [[START WITH expr] [NEXT expr]]`: specifies the time interval for the background purge task of the materialized view log.
+--
+--   * `[START WITH expr]`: optional. Specifies the initial purge time of the materialized view log.
+--   * `[NEXT expr]`: optional. Specifies the next purge time of the materialized view log.
+--
+--   <main id="notice" type='notice'>
+--     <h4>Notice</h4>
+--     <p>Make sure that the time expressions <code>START WITH expr</code> and <code>NEXT expr</code> are set to future time points. Otherwise, an error will be returned.</p>
+--   </main>
+--
+--   We recommend that you use `current_date` to specify the current time in the current time zone. Here are some examples of time expressions:
+--
+--   * Purge expired records of the materialized view log every 10 seconds starting from the current time (`current_date`).
+--
+--     ```sql
+--     START WITH current_date NEXT current_date + INTERVAL '10' SECOND
+--     ```
+--
+--   * Purge expired records of the materialized view log every 10 hours starting from the current time (`current_date`).
+--
+--     ```sql
+--     START WITH current_date NEXT current_date + INTERVAL '10' HOUR
+--     ```
+--
+--   * Purge expired records of the materialized view log every 1 day starting from the current time (`current_date`).
+--
+--     ```sql
+--     START WITH current_date NEXT current_date + 1
+--     ```
+--
+--   **Example:**
+--
+--   ```sql
+--   ALTER MATERIALIZED VIEW LOG ON tbl1 PURGE START WITH current_date;
+--   ```
+--
+--   ```sql
+--   ALTER MATERIALIZED VIEW LOG ON tbl1 PURGE NEXT current_date + 1;
+--   ```
+--
+--   ```sql
+--   ALTER MATERIALIZED VIEW LOG ON tbl1 PURGE START WITH current_date NEXT current_date + 1;
+--   ```
+--
+-- ## References
+--
+-- [Materialized view logs](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/200.manage-object-of-oracle-mode/500.manage-views-of-oracle-mode/200.manage-materialized-views-of-oracle-mode/200.materialized-views-log-of-oracle-mode.md)--
+--
+-- ==============================================================================
+-- [DDL-092] Oracle mode | CREATE TABLESPACE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/2600.create-tablespace-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # CREATE TABLESPACE
+--
+-- ## Purpose
+--
+-- This statement is used to create a tablespace object, and the tablespace supports encryption.
+--
+-- ## Syntax
+--
+-- ```sql
+-- CREATE TABLESPACE tablespace_name
+--     [ ENCRYPTION USING 'algorithm' ]
+--
+-- algorithm:
+--     'AES-256' | 'AES-128' | 'AES-192' | 'SM4-CBC'
+-- ```
+--
+-- ## Parameters
+--
+-- |                 Parameter                 |           Description            |
+-- |------------------------------------|-------------------------|
+-- | tablespace_name                    | Specifies the name of the tablespace object to be created. |
+-- | ENCRYPTION USING                   | Specifies the keyword for encryption.              |
+-- | AES-256\|AES-128\|AES-192\|SM4-CBC | Specifies the encryption algorithm to be used.             |
+--
+-- ## Examples
+--
+-- * Create a tablespace object.
+--
+--   ```sql
+--   ```
+--
+-- * Create a tablespace object and enable encryption.
+--
+--   ```sql
+--   -- Step 1: Set the TDE method to internal key management.
+--
+--   -- Step 2: Create a key store.
+--
+--   -- Step 3: Open the key store.
+--
+--   -- Step 4: Create a master key.
+--
+--   -- Step 5: Create an encrypted tablespace.
+--   ```
+--
+--   In the example, `abcCBAK123` is used as the password. Please replace it with a secure password in actual use.
+--
+-- ## References
+--
+-- * [DROP TABLESPACE](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/4100.drop-tablespace-of-oracle-mode.md)
+-- * [ALTER TABLESPACE](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/1110.alter-tablespace-of-oracle-mode.md)--
+--
+-- ==============================================================================
+-- [DDL-093] Oracle mode | CREATE USER
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/2700.create-user-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # CREATE USER
+--
+-- ## Purpose
+--
+-- You can use this statement to create an OceanBase Database user. After you create a user, you can use it to connect to OceanBase Database.
+--
+-- ## Limitations and considerations
+--
+-- * Authentication string format validation: `IDENTIFIED WITH ... BY VALUES` is validated against the `$S$` format. Invalid formats such as `$A$` (e.g., `sha2`) are rejected.
+-- * An incompatible ODP cannot establish connections for SM3 users (users using the authentication plugin `ob_sm3_password`).
+--
+-- ## Required privileges
+--
+-- You must have the `CREATE USER` system privilege to use the `CREATE USER` statement. For more information about OceanBase Database privileges, see [Privilege types in Oracle-compatible mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/300.permission-of-oracle-mode/000.permission-classification-of-oracle-mode.md).
+--
+-- ## Syntax
+--
+-- ```sql
+-- CREATE USER user_name
+--     { IDENTIFIED BY [VALUES] password
+--     | IDENTIFIED WITH auth_plugin [BY password]
+--     }
+--     [REQUIRE {NONE | SSL | X509 | tls_option}]
+--     [PROFILE profile_name]
+--     [DEFAULT TABLESPACE tablespace_name];
+--
+-- auth_plugin:
+--     caching_sha2_password
+--     | ob_sm3_password
+--
+-- tls_option:
+--       CIPHER cipher_name
+--     | ISSUER issuer_name
+--     | SUBJECT subject_name
+-- ```
+--
+-- ## Parameters
+--
+-- | Parameter | Description |
+-- |-------|-----------|
+-- | user_name | The username. For each user created, a new entry is created in the `dba_users` table. If the username already exists, an error is returned.  |
+-- | IDENTIFIED BY | The password in plaintext for the user, which is then saved to the `dba_users` table in ciphertext. If the password contains special characters, it must be enclosed in double quotation marks (<code>"</code>). Special characters are <code>~!@#%^&*_-+=`\|(){}[]:;',.?/</code>.  |
+-- | IDENTIFIED BY VALUES | The password in ciphertext for the user, which is saved to the `dba_users` table directly.  |
+-- | IDENTIFIED WITH auth_plugin [BY password] | Specifies the authentication plugin and corresponding authentication information. <ul><li>`auth_plugin`: the authentication method (plugin). For more information, see [auth_plugin](#auth_plugin) below. </li><li>`BY password`: optional. Specifies the plaintext password. </li></ul> <main id="notice" type='explain'><h4>Note</h4><p>For V4.4.2, the <code>IDENTIFIED WITH</code> syntax is supported starting from V4.4.2 BP2. </p></main> |
+-- | REQUIRE | The authentication requirements for the user. Valid values: <ul><li>`NONE`: There is no authentication requirement. In this case, the user can use any password or no password. </li><li>`SSL`: The user must use an SSL connection for authentication. </li><li>`X509`: The user must use an X509 certificate for authentication. </li><li>`tls_option`: The user must meet the specified Transport Layer Security (TLS) requirements. </li></ul> |
+-- | tls_option | The options for TLS requirements. Valid values: <ul><li>`CIPHER`: the encryption algorithm or cipher suite used for the TLS connection. </li><li>`ISSUER`: the issuer of the TLS certificate. </li><li>`SUBJECT`: the subject of the TLS certificate. </li></ul> |
+-- | PROFILE | The user profile, which is a set of predefined privileges and restrictions applicable to the user to be created.  |
+-- | DEFAULT TABLESPACE | The default tablespace for the user. A tablespace is a logical structure that stores user data.  |
+--
+-- ### auth_plugin
+--
+-- * `caching_sha2_password`: a password-based authentication plugin using SHA-256, providing a higher level of security.
+--
+--   <main id="notice" type='explain'>
+--     <h4>Note</h4>
+--     <p>For V4.4.2, the authentication plugin <code>caching_sha2_password</code> is supported starting from V4.4.2 BP2. </p>
+--   </main>
+--
+-- * `ob_sm3_password`: This plugin fully reuses the `caching_sha2_password` protocol and state machine (AuthSwitch, fast/authenticating/full-authenticating, TLS/RSA key-passing), but keeps its algorithm and metadata independent. It uses the SM3 hash algorithm instead of SHA-256 for password storage and authentication verification.
+--
+--   <main id="notice" type='explain'>
+--     <h4>Note</h4>
+--     <p>For V4.4.2, the authentication plugin <code>ob_sm3_password</code> is supported starting from V4.4.2 BP3. </p>
+--   </main>
+--
+-- ## Examples
+--
+-- * Create a user named `test1` and specify a plaintext password.
+--
+--   ```sql
+--   ```
+--
+-- * Create a user named `test2`, specify a ciphertext password, and specify that the user must use an SSL connection for authentication.
+--
+--   ```sql
+--   ```
+--
+-- * Create the user `test3` and explicitly specify to use the `caching_sha2_password` authentication plugin.
+--
+--   ```sql
+--   ```
+--
+-- ## References
+--
+-- * For more information about how to grant user privileges, see [Grant direct privileges](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/300.permission-of-oracle-mode/200.authority-of-oracle-mode.md).
+--
+-- * You can query the information about the created user in the `dba_users` table. For more information about the `dba_users` table, see [DBA_USERS](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/700.system-views/500.system-view-of-oracle-mode/200.dictionary-view-of-oracle-mode/22500.dba_users-of-oracle-mode.md).
+--
+-- * For more information about how to use the created user to connect to OceanBase Database, see [Connect to OceanBase Database](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/300.develop/200.application-development-of-oracle-mode/100.connect-to-oceanbase-database-of-oracle-mode/100.connection-methods-overview-of-oracle-mode.md).
+-- * For more information about using the default authentication plugin when creating a new user, see [default_authentication_plugin](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/800.configuration-items-and-system-variables/200.system-variable/300.global-system-variable/2100.default_authentication_plugin-global.md).
+-- * For more information about authentication plugins, see [Authentication](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/200.identification-and-authentication/200.identification-and-authentication-of-oracle-mode/100.identification-of-oracle-mode.md).--
+--
+-- ==============================================================================
+-- [DDL-094] Oracle mode | CREATE VIEW
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/2800.create-view-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # CREATE VIEW
+--
+-- ## Purpose
+--
+-- This statement is used to create a view.
+--
+-- ## Limitations and considerations
+--
+-- If the `OR REPLACE` clause is specified, the existing view will be replaced.
+--
+-- A view is not stored as a table in the database. Instead, it is derived from the `SELECT` statement specified in the `CREATE VIEW` statement. Each time the view is used, it is derived.
+--
+-- If the `FROM` clause references two or more tables or views, the view is referred to as a join view. An updatable join view, also known as a modifiable join view, involves two or more base tables or views and allows DML operations. Updatable views are not restricted by the `WITH READ ONLY` clause.
+--
+-- To be updatable, a view must meet several conditions. One common rule is that for a join view, an `INSERT`, `UPDATE`, or `DELETE` operation can only modify one base table at a time.
+--
+-- ## Privilege requirements
+--
+-- To execute the `CREATE VIEW` statement, the current user must have the `CREATE VIEW` privilege. For more information about privileges in OceanBase Database, see [Privilege classification in Oracle-compatible mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/300.permission-of-oracle-mode/000.permission-classification-of-oracle-mode.md).
+--
+-- ## Syntax
+--
+-- ```sql
+-- CREATE [OR REPLACE] [[NO] FORCE] VIEW view_name [(column_name_list)]
+--     AS select_stmt
+--     [view_check_option];
+--
+-- select_stmt:
+--     SELECT column_name, [--string]
+--         [, column_name, [--string] ...]
+--     FROM from_list
+--     [WHERE condition]
+--
+-- column_name_list:
+--     column_name [, column_name ...]
+--
+-- view_check_option:
+--     WITH READ ONLY
+--     | WITH CHECK OPTION
+-- ```
+--
+-- ## Parameters
+--
+-- |        Parameter      |                                             Description                                                |
+-- |------------------|------------------------------------------------------------------------------------------------|
+-- | OR REPLACE       | Indicates whether to recreate the view with the new definition if the view already exists.|
+-- | \[NO\] FORCE     | If you want to create the view without considering whether the view has base tables or referenced objects, or whether the owner of the schema where the view is located has the necessary privileges, specify `FORCE`. If you want to create the view only when the base tables exist and the owner of the schema where the view is located has the necessary privileges, specify `NOFORCE`. `NOFORCE` is the default.|
+-- | view_name        | The name of the view.|
+-- | column_name_list | The view must have unique column names, just like base tables. By default, the column names retrieved by the `SELECT` statement will be used as the view column names. To define specific names for the view columns, you can use the optional `column_name_list` clause, with IDs separated by commas. The number of names in `column_name_list` must be equal to the number of columns retrieved by the `SELECT` statement. The columns retrieved by the `SELECT` statement can be simple references to table columns. They can also be expressions involving functions, constants, operators, etc.|
+-- | select_stmt      | A `SELECT` statement that defines the view. The statement can select data from base tables or other views. For more information about `SELECT` statements, see [SIMPLE SELECT](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/200.dml-of-oracle-mode/500.select-of-oracle-mode/100.simple-select-of-oracle-mode.md).|
+-- | --string         | Optional. Used to add comments to the view. Comments are stored in the view definition.<main id="notice" type='notice'><h4>Note</h4><p><code>--string</code> can be placed anywhere in <code>select_stmt</code>.</p></main>|
+-- | view_check_option | Optional. Used to specify additional properties of the view. For more information, see [view_check_option](#view_check_option) below.|
+--
+-- ### view_check_option
+--
+-- * `WITH READ ONLY`: An option for creating or replacing a view. It specifies that the view can only be used for reading data and not for DML operations (`INSERT`, `UPDATE`, `DELETE`). This means that you cannot insert, update, or delete data through the view.
+-- * `WITH CHECK OPTION`: A syntax for creating a view. It ensures that the data inserted or updated meets the view's definition conditions. This means that you can perform DML operations through the view, but the data must meet the view's definition conditions.
+--
+--     <main id="notice" type='explain'>
+--       <h4>Note</h4>
+--       <p>In Oracle-compatible mode, the <code>WITH CHECK OPTION</code> syntax does not support specifying <code>LOCAL</code> or <code>CASCADED</code>. The default is <code>CASCADED</code>.</p>
+--     </main>
+--
+--     OceanBase Database also supports specifying the `WITH CHECK OPTION` clause when the view filter condition (`where_clause`) contains a subquery.
+--
+--     <main id="notice" type='notice'>
+--       <h4>Notice</h4>
+--       <p>When using the <code>WITH CHECK OPTION</code> clause in the filter condition, the view definition does not support the <code>JOIN</code> operation. </p>
+--     </main>
+--
+-- ## Examples
+--
+-- Create the test tables `tbl1` and `tbl2`.
+--
+-- ```shell
+-- ```
+--
+-- ```shell
+-- ```
+--
+-- * Select the `col1` and `col2` columns from table `tbl1` to create the view `v1_t1`.
+--
+--     ```shell
+--         AS SELECT col1, col2
+--            FROM tbl1;
+--     ```
+--
+-- * Create the view `v2_t2` based on the `col1` and `col2` columns of table `tbl2`, which contains all data that satisfies the condition `tbl2.col2 > 1`.
+--
+--     ```shell
+--         AS SELECT *
+--            FROM tbl2
+--            WHERE tbl2.col2 > 1 WITH CHECK OPTION;
+--     ```
+--
+-- * Create the view `v3_t3` based on the `col1` and `col2` columns of table `tbl2`, and add comments to the view `v3_t3`.
+--
+--   1. Create the view `v3_t3`.
+--
+--       ```shell
+--           AS SELECT
+--               col1,   --test.col1
+--               col2    --test.col2
+--           FROM tbl2;
+--       ```
+--
+--   2. Query the view comments by using `SHOW CREATE VIEW` or `DBMS_METADATA.GET_DDL`.
+--
+--      * Query the view comments by using `SHOW CREATE VIEW`.
+--
+--          ```shell
+--          ```
+--
+--         The query result is as follows:
+--
+--         ```shell
+--         +-------+------------------------------------------------------------------------------------------------------------------------------------------+----------------------+----------------------+
+--         | VIEW  | CREATE VIEW                                                                                                                              | CHARACTER_SET_CLIENT | COLLATION_CONNECTION |
+--         +-------+------------------------------------------------------------------------------------------------------------------------------------------+----------------------+----------------------+
+--         | V3_T3 | CREATE VIEW "V3_T3" ("COL1", "COL2")  AS SELECT
+--                     col1,   --test.col1
+--                     col2    --test.col2
+--                 FROM tbl2 | utf8mb4              | utf8mb4_bin          |
+--         +-------+------------------------------------------------------------------------------------------------------------------------------------------+----------------------+----------------------+
+--         1 row in set
+--         ```
+--
+--      * Query the view comments by using `DBMS_METADATA.GET_DDL`.
+--
+--          ```shell
+--          ```
+--
+--         The query result is as follows:
+--
+--         ```shell
+--         +-------+------------------------------------------------------------------------------------------------------------------------------------------+----------------------+----------------------+
+--         | VIEW  | CREATE VIEW                                                                                                                              | CHARACTER_SET_CLIENT | COLLATION_CONNECTION |
+--         +-------+------------------------------------------------------------------------------------------------------------------------------------------+----------------------+----------------------+
+--         | V3_T3 | CREATE VIEW "V3_T3" ("COL1", "COL2")  AS SELECT
+--                     col1,   --test.col1
+--                     col2    --test.col2
+--                 FROM tbl2 | utf8mb4              | utf8mb4_bin          |
+--         +-------+------------------------------------------------------------------------------------------------------------------------------------------+----------------------+----------------------+
+--         1 row in set (0.028 sec)
+--
+--         +------------------------------------------------------------------------------------------------------------------------------------------+
+--         | DBMS_METADATA.GET_DDL('VIEW','V3_T3','SYS')                                                                                              |
+--         +------------------------------------------------------------------------------------------------------------------------------------------+
+--         | CREATE VIEW "V3_T3" ("COL1", "COL2")  AS SELECT
+--                     col1,   --test.col1
+--                     col2    --test.col2
+--                 FROM tbl2 |
+--         +------------------------------------------------------------------------------------------------------------------------------------------+
+--         1 row in set
+--         ```
+--
+-- * Specify the `WITH CHECK OPTION` clause after the subquery in the filter condition.
+--
+--     ```shell
+--         AS SELECT *
+--         FROM tbl1 t1
+--         WHERE EXISTS (SELECT 1 FROM tbl2 t2 WHERE t2.col1 = t1.col1) WITH CHECK OPTION;
+--     ```
+--
+-- ## References
+--
+-- * [Manage normal views](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/200.manage-object-of-oracle-mode/500.manage-views-of-oracle-mode/100.manage-normal-views-of-oracle-mode.md)
+-- * [CREATE VIEW](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/2800.create-view-of-oracle-mode.md)
+-- * [SIMPLE SELECT](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/200.dml-of-oracle-mode/500.select-of-oracle-mode/100.simple-select-of-oracle-mode.md)
+-- * [SHOW](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/300.dcl-of-oracle-mode/3600.show-of-oracle-mode.md)
+-- * [GET_DDL](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/600.pl-reference/300.pl-oracle/1400.pl-system-package-oracle/9900.dbms-metadata-oracle/200.get-ddl-oracle.md)--
+--
+-- ==============================================================================
+-- [DDL-095] Oracle mode | DROP CONTEXT
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/2900.drop-context-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # DROP CONTEXT
+--
+-- ## Purpose
+--
+-- The `DROP CONTEXT` statement is used to remove a context namespace from the database.
+--
+-- After the context namespace is deleted, any context values that have already been set in the current session will be retained. However, any subsequent attempts to set values for that context will fail, because the namespace no longer exists.
+--
+--   <main id="notice" type='notice'>
+--     <h4>Notice</h4>
+--     <p>You must have the <code>DROP ANY CONTEXT</code> system privilege. </p>
+--   </main>
+--
+-- ## Syntax
+--
+-- ```sql
+-- DROP CONTEXT context_name
+-- ```
+--
+-- ## Parameters
+--
+-- `context_name` specifies the name of the context to be dropped. You cannot drop the built-in namespace `USERENV`.
+--
+-- For more information about the `USERENV` context, see the function [SYS_CONTEXT](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/500.functions-of-oracle-mode/200.single-row-functions-of-oracle-mode/900.environment-and-identifier-functions-of-oracle-mode/100.lnnvl-of-oracle-mode.md).
+--
+-- ## Examples
+--
+-- Drop the `dev_context` context created in `CREATE CONTEXT`.
+--
+-- ```sql
+-- ```--
+--
+-- ==============================================================================
+-- [DDL-096] Oracle mode | DROP CONCURRENT_LIMITING_RULE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/2950.drop-concurrent_limiting_rule-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # DROP CONCURRENT_LIMITING_RULE
+--
+-- <main id="notice" type='explain'>
+--   <h4>Note</h4>
+--   <p>For V4.3.X versions, this statement is available starting from OceanBase Database V4.3.5 BP3. <br>For V4.4.X versions, this statement is available starting from OceanBase Database V4.4.1.</p>
+--   </main>>
+--
+-- ## Purpose
+--
+-- This statement is used to drop a throttling rule.
+--
+-- ## Limitations and considerations
+--
+-- To execute the `DROP CONCURRENT_LIMITING_RULE` statement in OceanBase Database in Oracle-compatible mode, you must have the `drop any concurrent_limiting_rule` privilege.
+--
+-- ## Syntax
+--
+-- ```sql
+-- DROP CONCURRENT_LIMITING_RULE [ IF EXISTS ] "ccl_rule_name1" [, "ccl_rule_name2", ...]
+-- ```
+--
+-- `ccl_rule_name` specifies the name of the throttling rule.
+--
+-- ## Examples
+--
+-- <main id="notice" type='explain'>
+--   <h4>Note</h4>
+--   <p>When a throttling rule is dropped, all SQL statements in the waiting queue of the rule are immediately executed.</p>
+-- </main>
+--
+-- Execute the following statement to drop the throttling rules `sql1_keywords_ccl_rule` and `sql2_keywords_ccl_rule`.
+--
+-- ```shell
+-- ```--
+--
+-- ==============================================================================
+-- [DDL-097] Oracle mode | ALTER OUTLINE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/300.alter-outline-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # ALTER OUTLINE
+--
+-- ## Purpose
+--
+-- This statement applies only to outlines created using `SQL_TEXT`. It is used to add binding outlines and throttling rules.
+--
+-- ## Syntax
+--
+-- ```sql
+-- ALTER OUTLINE outline_name ADD stmt [ TO target_stmt ]
+-- ```
+--
+-- ## Parameters
+--
+-- |       Parameter       | Description  |
+-- |----------------|----------------|
+-- | outline_name   | The name of the outline to be modified.  |
+-- | stmt           | Generally, a DML statement that contains hints and original parameters.   |
+-- | TO target_stmt | If you do not specify `TO target_stmt`, the system will generate an execution plan based on the hints in the `stmt` if the SQL statement without hints in the database is the same as the SQL statement without hints in `stmt`; if you want to specify a fixed execution plan for a hint-containing statement, you must specify `TO target_stmt` to indicate the original SQL statement. <br> **Notice**  When you use `target_stmt`, the `stmt` must exactly match the `target_stmt` after hints are removed. |
+--
+-- ## Examples
+--
+-- * Use the `ALTER OUTLINE` statement to add a throttling rule.
+--
+--   ```sql
+--   ```
+--
+-- * Multiple throttling rules can be created for the same signature.
+--
+--   ```sql
+--   ```
+--
+-- ## Considerations
+--
+-- * You can specify only one execution plan for a single `outline_name`. If an execution plan is specified for `outline_name` using the `CREATE OUTLINE` statement, you cannot add another execution plan for the same `outline_name` using the `ALTER OUTLINE` statement.
+--
+-- * You cannot specify a throttling rule and an execution plan at the same time during an `ALTER OUTLINE` operation, just as you cannot specify a throttling rule and an execution plan at the same time during a `CREATE OUTLINE` operation.
+--
+-- * During an `ALTER OUTLINE` operation, both `outline_name` and `signature` must be matched.--
+--
+-- ==============================================================================
+-- [DDL-098] Oracle mode | DROP DATABASE LINK
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/3000.drop-database-link-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # DROP DATABASE LINK
+--
+-- ## Purpose
+--
+-- You can use this statement to drop a database link (or `DBLink`).
+--
+-- > **Note**
+-- >
+-- > To drop a DBLink, you must have the `DROP DATABASE LINK` system privilege.
+--
+-- ## Syntax
+--
+-- ```sql
+-- DROP DATABASE LINK dblink_name
+-- ```
+--
+-- ## Parameters
+--
+-- `dblink_name` specifies the name of the DBLink to be dropped.
+--
+-- ## Examples
+--
+-- ```sql
+-- ```--
+--
+-- ==============================================================================
+-- [DDL-099] Oracle mode | DROP DIRECTORY
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/3100.drop-directory-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # DROP DIRECTORY
+--
+-- ## Purpose
+--
+-- You can use this statement to drop a directory.
+--
+-- ## Privilege requirements
+--
+-- To execute the `DROP DIRECTORY` statement, the current user must have the `DROP ANY DIRECTORY` privilege. For more information about privileges in OceanBase Database, see [Privilege types in Oracle-compatible mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/300.permission-of-oracle-mode/000.permission-classification-of-oracle-mode.md).
+--
+-- ## Syntax
+--
+-- ```sql
+-- DROP DIRECTORY directory_name
+-- ```
+--
+-- ## Parameters
+--
+-- | Parameter | Description |
+-- |----------------|----------------------------------------------------------|
+-- | directory_name | The name of the directory to be dropped. When you drop a directory, the associated shared file system directories will not be dropped from the database.  |
+--
+-- ## Examples
+--
+-- The following example creates a path object `sql_file_dir` and then drops it:
+--
+-- ```sql
+--
+-- ```
+--
+-- You can query the `DBA_DIRECTORIES` view to check whether the path object has been dropped:
+--
+-- ```sql
+-- ```
+--
+-- ## References
+--
+-- - [CREATE DIRECTORY](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/1400.create-directory-of-oracle-mode.md)--
+--
+-- ==============================================================================
+-- [DDL-100] Oracle mode | DROP INDEX
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/3200.drop-index-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # DROP INDEX
+--
+-- ## Purpose
+--
+-- This statement is used to drop an index. When there are too many indexes, the maintenance overhead increases, so it is necessary to drop unnecessary indexes.
+--
+-- ## Limitations and considerations
+--
+-- You need to wait for some time before the index is completely dropped.
+--
+-- ## Privilege requirements
+--
+-- To execute the `DROP INDEX` statement, the current user must have the `DROP` system privilege. For more information about OceanBase Database privileges, see [Privilege classification in Oracle-compatible mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/300.permission-of-oracle-mode/000.permission-classification-of-oracle-mode.md).
+--
+-- ## Syntax
+--
+-- ```sql
+-- DROP INDEX [schema.] index_name;
+-- ```
+--
+-- ## Parameters
+--
+-- |     Parameter     |      Description       |
+-- |------------|---------------|
+-- | schema     | Specifies the schema name. |
+-- | index_name | Specifies the index name.       |
+--
+-- ## Examples
+--
+-- Drop the index `tbl1_idx1`.
+--
+-- ```sql
+-- Query OK, 0 rows affected
+-- ```
+--
+-- ## References
+--
+-- * [Overview of indexes](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/100.oceanbase-database-concepts/400.database-objects/100.database-objects-of-oracle-mode/300.index-of-oracle-mode/100.the-index-overview-of-oracle-mode.md)
+--
+-- * [View indexes](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/200.manage-object-of-oracle-mode/400.manage-indexes-of-oracle-mode/300.view-indexes-of-oracle-mode.md)
+--
+-- * [Drop an index](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/200.manage-object-of-oracle-mode/400.manage-indexes-of-oracle-mode/400.delete-an-index-of-oracle-mode.md)
+--
+-- * [CREATE INDEX](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/1600.create-index-of-oracle-mode.md)
+--
+-- * [ALTER INDEX](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/100.alter-index-of-oracle-mode.md)--
+--
+-- ==============================================================================
+-- [DDL-101] Oracle mode | DROP LOCATION
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/3230.drop-location-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # DROP LOCATION
+--
+-- ## Purpose
+--
+-- This statement is used to drop a location object.
+--
+-- <main id="notice" type='explain'>
+--   <h4>Note</h4>
+--   <p>For OceanBase Database V4.4.x, the <code>DROP LOCATION</code> statement is supported starting from V4.4.1. </p>
+-- </main>
+--
+-- ## Privilege requirements
+--
+-- To execute the `DROP LOCATION` statement, the current user must have the `CREATE LOCATION` privilege. For more information about privileges in OceanBase Database, see [Privilege classification in Oracle-compatible mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/300.permission-of-oracle-mode/000.permission-classification-of-oracle-mode.md).
+--
+-- ## Syntax
+--
+-- ```sql
+-- DROP LOCATION location_name;
+-- ```
+--
+-- ## Parameters
+--
+-- |   **Parameter**    | **Description** |
+-- |---------------|----------|
+-- | location_name | The name of the location object to be dropped. |
+--
+-- ## Examples
+--
+-- Drop the location object `test_location_local`.
+--
+-- ```shell
+-- ```
+--
+-- ## References
+--
+-- For information about how to view location objects in the current tenant, see [SHOW](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/300.dcl-of-oracle-mode/3600.show-of-oracle-mode.md).--
+--
+-- ==============================================================================
+-- [DDL-102] Oracle mode | DROP MATERIALIZED VIEW
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/3250.drop-materialized-views-of-oracle-mode-in-sql.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # DROP MATERIALIZED VIEW
+--
+-- ## Description
+--
+-- You can use this statement to drop a materialized view.
+--
+-- ## Required privileges
+--
+-- You need the `DROP TABLE` privilege to drop a materialized view. For more information about privileges in OceanBase Database, see [Privilege types in Oracle-compatible mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/300.permission-of-oracle-mode/000.permission-classification-of-oracle-mode.md).
+--
+-- ## Syntax
+--
+-- ```sql
+-- DROP MATERIALIZED VIEW [ schema. ] materialized_view;
+-- ```
+--
+-- ## Parameters
+--
+-- | **Parameter** | **Description** |
+-- |-------------------|--------------------------|
+-- | schema. | The schema where the materialized view is located. This parameter is optional. If you do not specify the `schema.` parameter, the system assumes by default that the materialized view resides in your own schema.  |
+-- | materialized_view | The name of the materialized view.  |
+--
+-- ## Example
+--
+-- Drop the materialized view named `mv_test_tbl1`.
+--
+-- ```sql
+-- DROP MATERIALIZED VIEW mv_test_tbl1;
+-- ```
+--
+-- The return result is as follows:
+--
+-- ```shell
+-- Query OK, 0 rows affected
+-- ```
+--
+-- ## References
+--
+-- * [Overview of materialized views](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/200.manage-object-of-oracle-mode/500.manage-views-of-oracle-mode/200.manage-materialized-views-of-oracle-mode/100.materialized-views-overview-of-oracle-mode.md)
+--
+-- * [Create a materialized view](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/200.manage-object-of-oracle-mode/500.manage-views-of-oracle-mode/200.manage-materialized-views-of-oracle-mode/300.create-materialized-views-of-oracle-mode.md)
+--
+-- * [Drop a materialized view](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/200.manage-object-of-oracle-mode/500.manage-views-of-oracle-mode/200.manage-materialized-views-of-oracle-mode/700.delete-materialized-views-of-oracle-mode.md)--
+--
+-- ==============================================================================
+-- [DDL-103] Oracle mode | DROP MATERIALIZED VIEW LOG
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/3251.drop-materialized-views-log-of-oracle-mode-in-sql.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # DROP MATERIALIZED VIEW LOG
+--
+-- ## Description
+--
+-- You can use this statement to drop a materialized view log.
+--
+-- <main id="notice" type='explain'>
+--   <h4>Note</h4>
+--   <p>When you drop a materialized view log, if a transaction is running on the base table, the drop operation is blocked until the transaction is completed. </p>
+-- </main>
+--
+-- ## Required privileges
+--
+-- You need the `DROP TABLE` privilege to drop a materialized view log. For more information about privileges in OceanBase Database, see [Privilege types in Oracle-compatible mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/300.permission-of-oracle-mode/000.permission-classification-of-oracle-mode.md).
+--
+-- ## Syntax
+--
+-- ```sql
+-- DROP MATERIALIZED VIEW LOG ON [schema.] table;
+-- ```
+--
+-- ## Parameters
+--
+-- | **Parameter** | **Description** |
+-- |-----------|--------------------------|
+-- | schema. | The schema where the base table of the materialized view log is located. If you do not specify the `schema.` parameter, the system assumes by default that the base table resides in your own schema.  |
+-- | table | The name of the base table of the materialized view log.  |
+--
+-- ## Example
+--
+-- Drop the materialized view log in the `test_tbl1` table.
+--
+-- ```sql
+-- ```
+--
+-- The return result is as follows:
+--
+-- ```shell
+-- Query OK, 0 rows affected
+-- ```
+--
+-- ## References
+--
+-- [Materialized view logs](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/200.manage-object-of-oracle-mode/500.manage-views-of-oracle-mode/200.manage-materialized-views-of-oracle-mode/200.materialized-views-log-of-oracle-mode.md)--
+--
+-- ==============================================================================
+-- [DDL-104] Oracle mode | DROP OUTLINE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/3300.drop-outline-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # DROP OUTLINE
+--
+-- ## Purpose
+--
+-- You can use this statement to drop an outline from OceanBase Database.
+--
+-- ## Syntax
+--
+-- ```sql
+-- DROP [FORMAT] OUTLINE outline_name
+-- ```
+--
+-- ## Parameters
+--
+-- | Parameter | Description |
+-- |--------------|--------------------|
+-- | outline_name | The name of the outline to be dropped.  |
+--
+-- ## Example
+--
+-- Create an employee table and a related outline, then delete them.
+--
+-- ```sql
+--
+--
+--
+--
+-- ```
+--
+-- ## References
+--
+-- - [CREATE OUTLINE](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/1800.create-outline-of-oracle-mode.md)
+-- - [ALTER OUTLINE](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/300.alter-outline-of-oracle-mode.md)--
+--
+-- ==============================================================================
+-- [DDL-105] Oracle mode | DROP PROFILE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/3400.drop-profile-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # DROP PROFILE
+--
+-- ## Purpose
+--
+-- You can use this statement to drop a file.
+--
+-- ## Syntax
+--
+-- ```sql
+-- DROP PROFILE profile_name
+-- ```
+--
+-- ## Parameters
+--
+-- | Parameter | Description |
+-- |--------------|----------------|
+-- | profile_name | The name of the file to be dropped.  |
+--
+-- ## Examples
+--
+-- 1. Create a file named `profile1`.
+--
+--    ```sql
+--         FAILED_LOGIN_ATTEMPTS 5
+--         PASSWORD_LOCK_TIME 1
+--         PASSWORD_LIFE_TIME 60;
+--     ```
+--
+-- 2. Drop the file named `profile1`.
+--
+--    ```sql
+--     ```
+--
+-- ## References
+--
+-- - [CREATE PROFILE](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/1900.create-profile-of-oracle-mode.md)
+-- - [ALTER PROFILE](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/400.alter-profile-of-oracle-mode.md)--
+--
+-- ==============================================================================
+-- [DDL-106] Oracle mode | DROP ROLE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/3600.drop-role-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # DROP ROLE
+--
+-- ## Purpose
+--
+-- This statement is used to drop a role.
+--
+--   <main id="notice" type='explain'>
+--     <h4>Note</h4>
+--       <p>After a role is dropped, the following actions are performed: </p>
+--       <ul>
+--       <li>The role is revoked from all users and roles that were granted the role. </li>
+--       <li>The role is removed from the database. </li>
+--       <li>Existing sessions that had the role enabled are not affected. </li>
+--       <li>New sessions cannot enable the role. </li>
+--       </ul>
+--   </main>
+--
+-- ## Syntax
+--
+-- ```sql
+-- DROP ROLE role_name
+-- ```
+--
+-- ## Parameters
+--
+-- |    Parameter     |      Description      |
+-- |-----------|--------------|
+-- | role_name | The name of the role to be dropped. |
+--
+-- ## Examples
+--
+-- First, create a role named `sales_manager`, and then drop the role.
+--
+-- ```sql
+-- ```
+--
+-- ## References
+--
+-- - [CREATE ROLE](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/2100.create-role-of-oracle-mode.md)
+-- - [ALTER ROLE](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/500.alter-role-of-oracle-mode.md)--
+--
+-- ==============================================================================
+-- [DDL-107] Oracle mode | DROP SENSITIVE RULE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/3650.drop-sensitive-rule-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # DROP SENSITIVE RULE
+--
+-- ## Purpose
+--
+-- This statement is used to drop a sensitive data protection rule.
+--
+-- ## Privilege requirements
+--
+-- To execute the `DROP SENSITIVE RULE` statement, the current user must have the `CREATE SENSITIVE RULE` privilege. For more information about the privileges of OceanBase Database, see [Privilege classification in Oracle-compatible mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/300.permission-of-oracle-mode/000.permission-classification-of-oracle-mode.md).
+--
+-- ## Syntax
+--
+-- ```sql
+-- DROP SENSITIVE RULE <rule_name>;
+-- ```
+--
+-- ## Parameters
+--
+-- The following table describes the parameters.
+--
+-- | Parameter | Data type | Default value | Description |
+-- |--|--|--|--|
+-- | rule_name | VARCHAR |  | The name of the sensitive data protection rule, which must be unique within a tenant. |
+--
+-- The following table describes the parameters.
+--
+-- * The rule is immediately dropped after it is deleted.
+--
+-- Limitations:
+--
+-- * You can drop only one rule at a time.
+--
+-- ## Examples
+--
+-- Here is an example:
+--
+-- ```sql
+-- -- Drop the sensitive data protection rule named r1.
+-- DROP SENSITIVE RULE r1;
+-- ```
+--
+-- # References
+--
+-- * [CREATE SENSITIVE RULE](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/2250.create-sensitive-rule-of-oracle-mode.md)
+-- * [ALTER SENSITIVE RULE](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/550.alter-sensitive-rule-of-oracle-mode.md)--
+--
+-- ==============================================================================
+-- [DDL-108] Oracle mode | DROP SEQUENCE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/3700.drop-sequence-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # DROP SEQUENCE
+--
+-- ## Purpose
+--
+-- This statement is used to drop a sequence.
+--
+-- ## Syntax
+--
+-- ```sql
+-- DROP SEQUENCE [schema. ] sequence_name
+-- ```
+--
+-- ## Parameters
+--
+-- |      Parameter       |                            Description                             |
+-- |---------------|-----------------------------------------------------------|
+-- | schema.       | The user who owns the sequence. If you do not specify `Schema`, the sequence of the current user is dropped. |
+-- | sequence_name | The name of the sequence to be dropped.                                               |
+--
+-- ## Examples
+--
+-- Example of creating and dropping a sequence.
+--
+-- ```sql
+--     START WITH 1000
+--     INCREMENT BY 1;
+--
+-- ```
+--
+-- ## References
+--
+-- - [CREATE SEQUENCE](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/2200.create-sequence-of-oracle-mode.md)
+-- - [ALTER SEQUENCE](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/600.alter-sequence-of-oracle-mode.md)--
+--
+-- ==============================================================================
+-- [DDL-109] Oracle mode | DROP SYNONYM
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/3800.drop-synonym-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # DROP SYNONYM
+--
+-- ## Purpose
+--
+-- This statement is used to drop a synonym.
+--
+-- ## Syntax
+--
+-- ```sql
+-- DROP [PUBLIC] SYNONYM [schema_name.]synonym_name [FORCE]
+-- ```
+--
+-- <main id="notice" type='notice'>
+-- <h4>Notice</h4>
+-- <p>When dropping a synonym, the following privileges are required:</p>
+-- <ul>
+-- <li>To drop a private synonym:
+--   <ul>
+--     <li>The <code>SYNONYM</code> to be dropped exists in the corresponding schema.</li>
+--     <li>You have the <code>DROP ANY SYNONYM</code> privilege.</li>
+--   </ul>
+-- </li>
+-- <li>To drop a public synonym:
+--   <ul>
+--     <li>You must specify the <code>PUBLIC</code> keyword and cannot specify <code>schema</code>.</li>
+--     <li>You have the <code>DROP PUBLIC SYNONYM</code> privilege.</li>
+--   </ul>
+-- </li>
+-- </ul></main>
+--
+-- ## Parameters
+--
+-- |      Parameter      |                                        Description                                         |
+-- |--------------|-----------------------------------------------------------------------------------|
+-- | PUBLIC       | Specifies `PUBLIC` to drop a public synonym. If you do not specify `PUBLIC`, a private synonym is dropped.                                     |
+-- | schema       | Specifies the schema where the synonym is located. If you omit `schema.`, the synonym is assumed to be in your own schema. If you specify `PUBLIC`, you do not need to specify `schema` for the synonym. |
+-- | synonym_name | `synonym_name` specifies the name of the synonym.                                                          |
+-- | FORCE        | Specifies `FORCE` to drop a synonym that has dependent tables or user-defined types.                                                   |
+--
+-- ## Examples
+--
+-- * Create and drop a private synonym.
+--
+--   ```sql
+--   -- Create a table.
+--     emp_id NUMBER PRIMARY KEY,
+--     emp_name VARCHAR2(50)
+--   );
+--
+--   -- Create and drop a private synonym.
+--   ```
+--
+-- * Create and drop a `PUBLIC` synonym.
+--
+--   ```sql
+--   -- Create a table.
+--     dept_id NUMBER PRIMARY KEY,
+--     dept_name VARCHAR2(50)
+--   );
+--
+--   -- Create and drop a public synonym.
+--   ```
+--
+-- ## References
+--
+-- * [CREATE SYNONYM](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/2300.create-synonym-of-oracle-mode.md)--
+--
+-- ==============================================================================
+-- [DDL-110] Oracle mode | DROP TABLE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/3900.drop-table-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # DROP TABLE
+--
+-- ## Purpose
+--
+-- This statement is used to delete a table from the database.
+--
+-- ## Privilege requirements
+--
+-- To execute the `DROP TABLE` statement, the current user must have the `DROP` system privilege. For more information about OceanBase Database privileges, see [Privilege classification in Oracle-compatible mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/300.permission-of-oracle-mode/000.permission-classification-of-oracle-mode.md).
+--
+-- ## Syntax
+--
+-- ```sql
+-- DROP TABLE table_name [CASCADE CONSTRAINTS] [PURGE];
+-- ```
+--
+-- ## Parameters
+--
+-- |         Parameter          |            Description             |
+-- |---------------------|---------------------------|
+-- | table_name          | Specifies the name of the table to be deleted.                 |
+-- | CASCADE CONSTRAINTS | Cascades the deletion to constraints associated with `table_name`. |
+-- | PURGE               | Permanently deletes the table (without placing it in the recycle bin).            |
+--
+-- ## Examples
+--
+-- Delete the `tbl1` table.
+--
+-- ```sql
+-- Query OK, 0 rows affected
+-- ```
+--
+-- ## References
+--
+-- [Delete a table](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/200.manage-object-of-oracle-mode/100.manage-tables-of-oracle-mode/800.delete-a-table-of-oracle-mode.md)--
+--
+-- ==============================================================================
+-- [DDL-111] Oracle mode | ALTER PROFILE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/400.alter-profile-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # ALTER PROFILE
+--
+-- ## Purpose
+--
+-- This statement is used to add, modify, or drop password management parameters in a profile.
+--
+--   <main id="notice" type='explain'>
+--     <h4>Note</h4>
+--     <p>The changes made by using the <code>ALTER PROFILE</code> statement in a profile affect only the users in subsequent sessions and do not affect the user in the current session. </p>
+--   </main>
+--
+-- ## Syntax
+--
+-- ```sql
+-- ALTER PROFILE "profile_name"
+--    LIMIT
+--    {
+--      FAILED_LOGIN_ATTEMPTS integer | UNLIMITED | DEFAULT
+--    | PASSWORD_LIFE_TIME integer | UNLIMITED | DEFAULT
+--    | PASSWORD_LOCK_TIME integer | UNLIMITED | DEFAULT
+--    | PASSWORD_VERIFY_FUNCTION function_name | NULL | DEFAULT
+--    | PASSWORD_GRACE_TIME integer | UNLIMITED | DEFAULT
+--    | PASSWORD_ROLLOVER_TIME bigint(20) | UNLIMITED | DEFAULT
+--    };
+-- ```
+--
+-- ## Parameters
+--
+-- |          Parameter           |               Description                |
+-- |-----------------------|---------------------------------|
+-- | profile_name          | The name of the profile to be modified.                  |
+-- | FAILED_LOGIN_ATTEMPTS | The number of consecutive failed login attempts allowed for a user in the profile.                |
+-- | PASSWORD_LOCK_TIME    | The number of days that a locked account specified in the profile remains locked after it has been locked. |
+-- | PASSWORD_LIFE_TIME    | The number of days that a password specified in the profile remains valid.             |
+-- | PASSWORD_GRACE_TIME   | The number of days during which a user in the profile is allowed to log in after a password warning is issued.          |
+-- | PASSWORD_VERIFY_FUNCTION | The name of the function that verifies a password.                |
+-- | PASSWORD_ROLLOVER_TIME | The number of microseconds that a password is valid after it is rolled over. During the rollover period, both the old and new passwords can be used for authentication. <main id="notice" type="explain"><h4>Note</h4><p>This parameter is supported starting from V4.4.2 BP1. </p></main> |
+-- | integer               | The specified parameter is set to an integer value.             |
+-- | UNLIMITED             | No restriction is set on the specified parameter.                   |
+-- | DEFAULT               | The default value is used for the specified parameter.                   |
+-- | function_name         | The name of the function that verifies a password.                   |
+-- | NULL                  | No verification function is used.                     |
+--
+-- ## Examples
+--
+-- * Set the `FAILED_LOGIN_ATTEMPTS` parameter to `5` and the `PASSWORD_LOCK_TIME` parameter to `1` for the `profile1` profile.
+--
+--   ```sql
+--   ```
+--
+-- * Set the `PASSWORD_LIFE_TIME` parameter to `90` and the `PASSWORD_GRACE_TIME` parameter to `5` for the `profile2` profile.
+--
+--   ```sql
+--   ```
+--
+-- * Change the password rollover time: Set the `PASSWORD_ROLLOVER_TIME` parameter in the `profile3` profile to `86400000000` microseconds (example value).
+--
+--   ```sql
+--   ```
+--
+-- ## References
+--
+-- * [CREATE PROFILE](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/1900.create-profile-of-oracle-mode.md)
+-- * [DROP PROFILE](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/3400.drop-profile-of-oracle-mode.md)--
+--
+-- ==============================================================================
+-- [DDL-112] Oracle mode | DROP TABLEGROUP
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/4000.drop-tablegroup-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # DROP TABLEGROUP
+--
+-- ## Purpose
+--
+-- This statement is used to drop a table group.
+--
+--   <main id="notice" type='notice'>
+--     <h4>Notice</h4>
+--     <p>If any table's <code>TABLEGROUP</code> attribute references the target table group, the table group cannot be dropped.</p>
+--   </main>
+--
+-- ## Privilege requirements
+--
+-- To execute `DROP TABLEGROUP`, you need the following privileges:
+--
+-- - You must have the `DROP` privilege to drop a table group.
+-- - If the table group contains tables, you need the `ALTER` privilege on those tables to modify their table group attributes.
+--
+-- ## Considerations
+--
+-- - Dropping a table group does not delete the tables within it, but it removes the association between the tables and the table group.
+-- - Before dropping a table group, ensure that no business processes depend on it.
+--
+-- ## Syntax
+--
+-- ```sql
+-- DROP TABLEGROUP tablegroup_name
+-- ```
+--
+-- ## Parameters
+--
+-- |       Parameter        |     Description      |
+-- |-----------------|-------------|
+-- | tablegroup_name | The name of the table group to be dropped. |
+--
+-- ## Examples
+--
+-- ### Example 1: Drop a referenced table group
+--
+-- When a table group is referenced by tables through the `TABLEGROUP` attribute, you need to remove these references before dropping the table group.
+--
+-- 1. Attempting to drop a non-empty table group will result in an error:
+--
+--    ```sql
+--    ```
+--
+--    Expected return result:
+--
+--    ```sql
+--    OBE-00600: internal error code, arguments: -4615, tablegroup is not empty
+--    ```
+--
+-- 2. View the tables in the `tblgroup1` table group:
+--
+--    ```sql
+--    ```
+--
+-- 3. Remove the `tbl1` table from the `tblgroup1` table group:
+--
+--    ```sql
+--    ```
+--
+-- 4. Drop the `tblgroup1` table group again:
+--
+--    ```sql
+--    ```
+--
+-- ### Example 2: Complete table group usage process
+--
+-- 1. Create a table group:
+--
+--    ```sql
+--    ```
+--
+-- 2. Create a table and specify the table group:
+--
+--    ```sql
+--    ```
+--
+-- 3. View the table group information:
+--
+--    ```sql
+--    ```
+--
+-- 4. Remove the `t1` table from the `tg1` table group:
+--
+--    ```sql
+--    ```
+--
+-- 5. Drop the `tg1` table group:
+--
+--    ```sql
+--    ```--
+--
+-- ==============================================================================
+-- [DDL-113] Oracle mode | DROP TABLESPACE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/4100.drop-tablespace-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # DROP TABLESPACE
+--
+-- ## Purpose
+--
+-- This statement is used to delete a tablespace.
+--
+-- ## Limitations and considerations
+--
+-- The tablespace must be empty to be dropped.
+--
+-- ## Privilege requirements
+--
+-- To execute the `DROP TABLESPACE` statement, the current user must have the `DROP TABLESPACE` privilege. For more information about privileges in OceanBase Database, see [Privilege classification in Oracle-compatible mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/300.permission-of-oracle-mode/000.permission-classification-of-oracle-mode.md).
+--
+-- ## Syntax
+--
+-- ```sql
+-- DROP TABLESPACE tablespace_name;
+-- ```
+--
+-- ## Parameters
+--
+-- |       Parameter        |          Description           |
+-- |-----------------|-----------------------|
+-- | tablespace_name | The name of the tablespace to be dropped. |
+--
+-- ## Examples
+--
+-- Drop the tablespace object `tblspace1`.
+--
+-- ```sql
+-- ```--
+--
+-- ==============================================================================
+-- [DDL-114] Oracle mode | DROP USER
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/4200.drop-user-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # DROP USER
+--
+-- ## Purpose
+--
+-- This statement is used to delete an OceanBase Database user.
+--
+--   <main id="notice" type='explain'>
+--     <h4>Note</h4>
+--     <ul>
+--     <li>You must have the <code>CREATE USER</code> system privilege to use the <code>DROP USER</code> command.</li>
+--     <li><code>CASCADE</code> specifies whether to delete all objects owned by the user, including privileges, databases, tables, etc., before deleting the user.</li>
+--     </ul>
+--   </main>
+--
+-- ## Syntax
+--
+-- ```sql
+-- DROP USER user_name [, user_name ...] [CASCADE]
+-- ```
+--
+-- ## Parameters
+--
+-- | Parameter | Description |
+-- |------|------|
+-- | user_name | The username to be deleted:<ul><li>The format can be `username` or `username@hostname`</li><li>Multiple users can be specified, separated by commas</li></ul> |
+-- | CASCADE | Optional. Specifies whether to cascade delete all objects owned by the user:<ul><li>If specified, all objects owned by the user (tables, views, etc.) will be deleted.</li><li>If not specified, an error will be returned when the user owns objects.</li></ul> |
+--
+-- ## Examples
+--
+-- 1. Drop a single user:
+--
+--    ```sql
+--    ```
+--
+-- 2. Drop a user from a specified host:
+--
+--    ```sql
+--    ```
+--
+-- 3. Drop multiple users:
+--
+--    ```sql
+--    ```
+--
+-- 4. Drop a user and cascade delete its objects:
+--
+--    ```sql
+--    ```--
+--
+-- ==============================================================================
+-- [DDL-115] Oracle mode | DROP VIEW
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/4300.drop-view-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # DROP VIEW
+--
+-- ## Purpose
+--
+-- This statement is used to drop a view.
+--
+-- ## Limitations and considerations
+--
+-- When dropping a view, the current user must have the `DROP` privilege on each view.
+--
+-- ## Privilege requirements
+--
+-- To execute the `DROP VIEW` statement, the current user must have the `DROP` privilege. For more information about privileges in OceanBase Database, see [Privilege classification in Oracle-compatible mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/300.permission-of-oracle-mode/000.permission-classification-of-oracle-mode.md).
+--
+-- ## Syntax
+--
+-- ```sql
+-- DROP VIEW [schema.] view_name [CASCADE | RESTRICT];
+-- ```
+--
+-- ## Parameters
+--
+-- |       **Parameter**      |                    **Description**                           |
+-- |---------------------|-------------------------------------------------------|
+-- | schema.             | Specifies the schema where the view is located. If you omit `schema.`, the view will be dropped from your own schema.                                                                                                        |
+-- | view_name           | The name of the view to be dropped.                                                                                                                                              |
+-- | CASCADE \| RESTRICT | `CASCADE` specifies cascading deletion, which automatically deletes objects that depend on this view. `RESTRICT` specifies constrained deletion, which rejects the deletion if there are dependent objects. <br>**Note** This parameter is not supported in the current version. If specified, it will be parsed and ignored. |
+--
+-- ## Examples
+--
+-- * Drop the view `v1`.
+--
+--   ```sql
+--   Query OK, 0 rows affected
+--   ```
+--
+-- * If you do not have the `DROP ANY VIEW` privilege, you will be prompted that you do not have sufficient privileges when dropping a view.
+--
+--   ```sql
+--   ORA-01031: insufficient privileges
+--   ```
+--
+-- ## References
+--
+-- * [Manage normal views](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/200.manage-object-of-oracle-mode/500.manage-views-of-oracle-mode/100.manage-normal-views-of-oracle-mode.md)
+-- * [CREATE VIEW](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/2800.create-view-of-oracle-mode.md)--
+--
+-- ==============================================================================
+-- [DDL-116] Oracle mode | RENAME
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/4400.rename-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # RENAME
+--
+-- ## Purpose
+--
+-- This statement is used to rename a table, view, materialized view, private synonym, or sequence.
+--
+-- ## Syntax
+--
+-- ```sql
+-- RENAME object_name TO new_object_name;
+-- ```
+--
+-- ## Parameters
+--
+-- | Parameter | Description |
+-- |------|------|
+-- | object_name | The name of the object to be renamed. This can be a table, view, materialized view, private synonym, or sequence. |
+-- | new_object_name | The new name of the object. The new name must not be the same as the name of an existing object. |
+--
+-- ## Examples
+--
+-- 1. Create a table named `tbl1`.
+--
+--     ```shell
+--     ```
+--
+-- 2. Rename the table `tbl1` to `tbl2`.
+--
+--     ```shell
+--     ```--
+--
+-- ==============================================================================
+-- [DDL-117] Oracle mode | TRUNCATE TABLE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/4500.truncate-table-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # TRUNCATE TABLE
+--
+-- ## Purpose
+--
+-- This statement is used to completely empty a specified table while retaining its structure, including partition information. Logically, this statement is equivalent to the `DELETE FROM` statement for removing all rows.
+--
+-- ## Limitations and considerations
+--
+-- The `TRUNCATE TABLE` statement differs from the `DELETE FROM` statement in the following ways:
+--
+-- * The `TRUNCATE` operation deletes and recreates the table, which is significantly faster, especially for large tables.
+--
+-- * The result of executing the `TRUNCATE TABLE` statement always shows `0` rows affected.
+--
+-- * When using the `TRUNCATE TABLE` statement, the table management program does not remember the last used `AUTO_INCREMENT` value and will start counting from the beginning.
+--
+-- * The `TRUNCATE` statement cannot be executed during transaction processing or table locking; if it is, an error will be returned.
+--
+-- * As long as the table definition file is valid, the `TRUNCATE TABLE` statement can recreate the table as an empty table, even if the data or index files are corrupted.
+--
+-- ## Privilege requirements
+--
+-- To execute the `TRUNCATE TABLE` statement, the current user must have the `DROP` privilege on the table. For more information about OceanBase Database privileges, see [Privilege classification in Oracle-compatible mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/300.permission-of-oracle-mode/000.permission-classification-of-oracle-mode.md).
+--
+-- ## Syntax
+--
+-- ```sql
+-- TRUNCATE [TABLE] [schema.]table_name;
+-- ```
+--
+-- ## Parameters
+--
+-- |     Parameter     |                     Description                     |
+-- |------------|--------------------------------------------|
+-- | schema.    | Specifies the schema. If `schema` is omitted, the table is assumed to be in the current schema. |
+-- | table_name | Specifies the table name.                                      |
+--
+-- ## Examples
+--
+-- Empty the `tb1` table completely.
+--
+-- ```sql
+-- Query OK, 0 rows affected
+-- ```
+--
+-- ## References
+--
+-- [Clear a table](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/300.database-object-management/200.manage-object-of-oracle-mode/100.manage-tables-of-oracle-mode/700.clear-table-of-oracle-mode.md)--
+--
+-- ==============================================================================
+-- [DDL-118] Oracle mode | MAJOR and MINOR
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/4600.alter-system-major-freeze-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # MAJOR and MINOR
+--
+-- ## Purpose
+--
+-- You can use this statement to initiate a major or minor compaction in the storage layer for a user tenant from the current tenant. You can initiate a major or minor compaction at the tenant or partition level.
+--
+-- ## Syntax
+--
+-- ```shell
+-- ALTER SYSTEM merge_action;
+--
+-- merge_action:
+--       MAJOR FREEZE [TABLET_ID = tablet_id]
+--     | MINOR FREEZE [TABLET_ID = tablet_id]
+--     | {SUSPEND | RESUME} MERGE
+--     | CLEAR MERGE ERROR
+-- ```
+--
+-- ## Parameters
+--
+-- | **Parameter** | **Description** |
+-- |---------------------------|------------------|
+-- | MAJOR FREEZE | Initiates a major compaction. <main id="notice" type='explain'><h4>Note</h4><p>A user tenant can initiate a major compaction only for the current tenant.</p></main>  |
+-- | MINOR FREEZE | Initiates a minor compaction.  <main id="notice" type='explain'><h4>Note</h4><p>A user tenant can initiate a minor compaction only for the current tenant.</p></main>   |
+-- | {SUSPEND \| RESUME} MERGE | Suspends or resumes a major compaction. <main id="notice" type='explain'><h4>Note</h4><p>A user tenant can suspend or resume a major compaction only for the current tenant.</p></main>  |
+-- | CLEAR MERGE ERROR | Removes major compaction error tags. <main id="notice" type='explain'><h4>Note</h4><p>A user tenant can remove major compaction error tags only in the current tenant.</p></main>  |
+-- | TABLET_ID | The partition on which a major or minor compaction is performed.  |
+--
+-- ## Examples
+--
+-- ### Major compaction in the storage layer
+--
+-- * Initiate a major compaction for a user tenant.
+--
+--   ```shell
+--    Query OK, 0 rows affected
+--    ```
+--
+-- * Initiate a major compaction at the partition level for a user tenant.
+--
+--   ```shell
+--    Query OK, 0 rows affected
+--    ```
+--
+-- * Suspend the major compaction of a user tenant.
+--
+--   ```shell
+--    Query OK, 0 rows affected
+--    ```
+--
+-- * Resume the major compaction of a user tenant.
+--
+--   ```shell
+--    Query OK, 0 rows affected
+--    ```
+--
+-- * Remove the major compaction error tags of a user tenant.
+--
+--   ```shell
+--    Query OK, 0 rows affected
+--    ```
+--
+-- ### Minor compaction in the storage layer
+--
+-- * Initiate a minor compaction for a user tenant.
+--
+--   ```shell
+--    Query OK, 0 rows affected
+--    ```
+--
+-- * Initiate a minor compaction at the partition level for a user tenant.
+--
+--   ```shell
+--    Query OK, 0 rows affected
+--    ```--
+--
+-- ==============================================================================
+-- [DDL-119] Oracle mode | ALTER ROLE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/500.alter-role-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # ALTER ROLE
+--
+-- ## Purpose
+--
+-- This statement is used to modify the authentication method of a role.
+--
+--   <main id="notice" type='explain'>
+--     <h4>Note</h4>
+--     <p> User sessions of the modified role are not affected. </p>
+--   </main>
+--
+-- ## Syntax
+--
+-- ```sql
+-- ALTER ROLE role_name
+-- { NOT IDENTIFIED
+-- | IDENTIFIED BY password
+-- } ;
+-- ```
+--
+-- ## Parameters
+--
+-- | Parameter    | Description     |
+-- |-----------|------------|
+-- | `role_name`            | The name of the role to be modified. It can be a STRING_VALUE, NAME_OB, or a predefined role name (DBA, RESOURCE, CONNECT, and PUBLIC). |
+-- | `NOT IDENTIFIED`       | Specifies that no authentication method is used when the role is enabled.  |
+-- | `IDENTIFIED BY password` | Specifies the password when the role is enabled. **Note** A user who is granted this role must specify a password to enable the role by using the `SET ROLE` statement.       |
+--
+-- ## Examples
+--
+-- * Create a role named `role1` and modify its authentication method to password-based. The password is `password1`.
+--
+--   ```sql
+--
+--   ```
+--
+-- * Change the password of the `role1` role to `password2`.
+--
+--   ```sql
+--   ```
+--
+-- * Enable the `role1` role without any authentication method.
+--
+--   ```sql
+--   ```
+--
+-- ## References
+--
+-- * [CREATE ROLE](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/2100.create-role-of-oracle-mode.md)
+-- * [DROP ROLE](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/3600.drop-role-of-oracle-mode.md)--
+--
+-- ==============================================================================
+-- [DDL-120] Oracle mode | ALTER SENSITIVE RULE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/550.alter-sensitive-rule-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # ALTER SENSITIVE RULE
+--
+-- ## Purpose
+--
+-- This statement is used to modify the sensitive data protection rule.
+--
+-- ## Privilege requirements
+--
+-- To execute the `ALTER SENSITIVE RULE` statement, the current user must have the `CREATE SENSITIVE RULE` privilege. For more information about OceanBase Database privileges, see [Privilege classification in Oracle-compatible mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/300.permission-of-oracle-mode/000.permission-classification-of-oracle-mode.md).
+--
+-- ## Syntax
+--
+-- ```sql
+-- -- Add a sensitive column.
+-- ALTER SENSITIVE RULE <rule_name> ADD COLUMN <sensitive_field_list>;
+-- -- Drop a sensitive column.
+-- ALTER SENSITIVE RULE <rule_name> DROP COLUMN <sensitive_field_list>;
+-- -- Enable a rule.
+-- ALTER SENSITIVE RULE <rule_name> ENABLE;
+-- -- Disable a rule.
+-- ALTER SENSITIVE RULE <rule_name> DISABLE;
+-- -- Modify the encryption algorithm.
+-- ALTER SENSITIVE RULE <rule_name> USING ENCRYPTION [= <encryption_method>];
+-- ```
+--
+-- ## Parameters
+--
+-- The following table describes the parameters.
+--
+-- | Parameter | Data type | Default value | Description |
+-- |---|---|---|---|
+-- | rule_name | VARCHAR | N/A | The name of the sensitive rule, which must be unique within the tenant. |
+-- | sensitive_field_list | VARCHAR | N/A | The columns to be encrypted. The format is `user.table(col1, col2), user2.table2(col3, col4), ...`. Each sensitive item specifies one or more columns in a table. The columns are separated by commas. The sensitive items are separated by commas. A rule can specify multiple columns in multiple tables of multiple users. Parameter description: <ul><li>`user` is optional. If not specified, the current user is used. </li><li>`table` is required and cannot be specified as `*`. </li><li>`(col_list)` is required and cannot be specified as `*`. </li></ul> |
+-- | encryption_method | VARCHAR | N/A | The encryption method. The default value is `aes-256`, which refers to the AES-256-ECB encryption algorithm. Valid values are described in the following table. |
+--
+-- The following table describes the valid values of `encryption_method`.
+--
+-- | Value (in SQL syntax) | Actual encryption algorithm | Key length | Mode | Description |
+-- |---|----------|----------|------|------|
+-- | aes-256 | AES-256-ECB | 256 bits | ECB | Default algorithm |
+-- | aes-128 | AES-128-ECB | 128 bits | ECB |  |
+-- | aes-192 | AES-192-ECB | 192 bits | ECB |  |
+-- | aes-128-gcm | AES-128-GCM | 128 bits | GCM | High security level. Provides authenticated encryption (AEAD). |
+-- | aes-192-gcm | AES-192-GCM | 192 bits | GCM | High security level. Provides authenticated encryption (AEAD). |
+-- | aes-256-gcm | AES-256-GCM | 256 bits | GCM | High security level. Provides authenticated encryption (AEAD). |
+-- | sm4-cbc | SM4-CBC |  | CBC | High security level. |
+-- | sm4-GCM | SM4-GCM |  | GCM | High security level. Provides authenticated encryption (AEAD). |
+--
+-- When you modify a sensitive rule, note the following:
+--
+-- * The modification takes effect immediately.
+-- * The `sensitive_field_list` parameter in the `ADD/DROP COLUMN` clause is the same as that in the `CREATE SENSITIVE RULE` statement.
+-- * The `DISABLE` clause temporarily disables the sensitive rule but does not delete it (the rule is enabled by default after it is created).
+--
+-- When you modify a sensitive rule, note the following limitations:
+--
+-- * The columns added by using the `ADD COLUMN` clause cannot be protected by any existing rule.
+-- * The columns dropped by using the `DROP COLUMN` clause must be protected by the specified rule.
+--
+-- ## Examples
+--
+-- Here are some examples:
+--
+-- ```sql
+-- -- Add the tbl2(c) and db2.tbl3(x) columns to the sensitive rule r1.
+-- ALTER SENSITIVE RULE r1 ADD COLUMN tbl2(c), db2.tbl3(x);
+-- -- Drop the tbl2(c) column from the sensitive rule r1.
+-- ALTER SENSITIVE RULE r1 DROP COLUMN tbl2(c);
+-- -- Enable the sensitive rule r1.
+-- ALTER SENSITIVE RULE r1 ENABLE;
+-- -- Disable the sensitive rule r1.
+-- ALTER SENSITIVE RULE r1 DISABLE;
+-- -- Change the encryption algorithm of the sensitive rule r1 to the default algorithm.
+-- ALTER SENSITIVE RULE r1 USING ENCRYPTION;
+-- -- Change the encryption algorithm of the sensitive rule r1 to sm4-cbc.
+-- ALTER SENSITIVE RULE r1 USING ENCRYPTION = 'sm4-cbc';
+-- ```
+--
+-- # References
+--
+-- * [CREATE SENSITIVE RULE](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/2250.create-sensitive-rule-of-oracle-mode.md)
+-- * [DROP SENSITIVE RULE](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/3650.drop-sensitive-rule-of-oracle-mode.md)--
+--
+-- ==============================================================================
+-- [DDL-121] Oracle mode | ALTER SEQUENCE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/600.alter-sequence-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # ALTER SEQUENCE
+--
+-- ## Purpose
+--
+-- This statement is used to modify the increment, minimum value, and maximum value, cache count, and behavior of an existing sequence. The changes only affect subsequent sequence numbers.
+--
+--   <main id="notice" type='explain'>
+--     <h4>Note</h4>
+--     <p>You can only modify sequences in the current schema or have the <code>ALTER</code> privilege on the sequence. </p>
+--   </main>
+--
+-- ## Syntax
+--
+-- ```sql
+-- ALTER SEQUENCE [schema.]sequence_name
+-- {
+--     RESTART [START WITH integer]
+--     | MINVALUE integer | NOMINVALUE
+--     | MAXVALUE integer | NOMAXVALUE
+--     | INCREMENT BY integer
+--     | CACHE integer | NOCACHE
+--     | ORDER | NOORDER
+--     | CYCLE | NOCYCLE
+-- }
+-- ```
+--
+-- ## Syntax
+--
+-- |  Field   |   Description    |
+-- |-----------|--------------|
+-- | schema.                | Specifies the schema that contains the sequence. If you omit the schema, the database modifies the sequence in the current schema.  |
+-- | sequence_name          | The name of the sequence to modify. |
+-- | RESTART                | Resets the sequence value. When ascending, it starts from `MINVALUE`; when descending, it starts from `MAXVALUE`; or, you can use `START WITH int_value` to start from `int_value`.  |
+-- | MINVALUE int_value     | Changes the minimum value of the sequence. The range of `int_value` is \[-9223372036854775808,9223372036854775807\].  |
+-- | NOMINVALUE             | If you change it to `NOMINVALUE`, the minimum value is 1 when ascending and -9223372036854775808 when descending. |
+-- | MAXVALUE int_value     | Changes the maximum value of the sequence. The range of `int_value` is \[-9223372036854775808,9223372036854775807\]. The new `MAXVALUE` must be greater than the current sequence number. <br>**Note**  <ul><li> When both `MINVALUE` and `MAXVALUE` are specified, `MINVALUE` must be less than `MAXVALUE`.   </li><li> The difference between `MAXVALUE` and `MINVALUE` must be greater than or equal to the `int_value` in INCREMENT BY.    |
+-- | NOMAXVALUE             | If you change it to `NOMAXVALUE`, the maximum value is 9223372036854775807 when ascending and -1 when descending. </li></ul>    |
+-- | INCREMENT BY int_value | Changes the increment step of the sequence. `int_value` cannot be 0. If specified as a positive number, the sequence is ascending; if specified as a negative number, the sequence is descending. The default value is 1 if not specified.  |
+-- | CACHE int_value        | Changes the number of pre-allocated increment values in memory. The default value is 20. `CACHE int_value` must be greater than 1. If `CACHE INT_VALUE` is 1, it is equivalent to `NOCACHE`.            |
+-- | NOCACHE                | Changes the sequence value to not be pre-allocated. If both `CACHE` and `NOCACHE` are omitted, the database defaults to caching 20       |
+-- | ORDER                  | Changes the sequence value to be generated in order.        |
+-- | NOORDER                | If you change it to `NOORDER`, the sequence value is not guaranteed to be generated in order.      |
+-- | CYCLE                  | Changes the sequence value to be generated in a cycle. That is, the sequence continues to generate values after reaching its maximum or minimum value. When ascending, it generates the minimum value after reaching the maximum value. When descending, it generates the maximum value after reaching the minimum value. <br>**Note**  <ul><li> If you specify `CYCLE`, and the `int_value` in `INCREMENT BY` is less than 0, you must specify `MINVALUE`.   </li><li> If you specify `CYCLE`, the number of `CACHE` cannot exceed one `CYCLE`. </li></ul>           |
+-- | NOCYCLE                | `NOCYCLE` is the default value. If you change it to `NOCYCLE`, the sequence cannot generate more values after reaching its maximum or minimum value.   |
+--
+-- ## Examples
+--
+-- * Modify the maximum value of the auto-increment column `seq1` and specify that the increment values are generated in a cycle.
+--
+--   ```sql
+--   START WITH 1
+--   INCREMENT BY 1
+--   MAXVALUE 2048
+--   CYCLE;
+--   ```
+--
+-- * Change the maximum value and increment step of the sequence `seq2`, enable `CYCLE` and `ORDER`, and specify `NOCACHE` to indicate that the sequence values are not pre-allocated.
+--
+--   ```sql
+--           MINVALUE 1
+--           MAXVALUE 1000
+--           START WITH 1
+--           INCREMENT BY 1
+--           CACHE 20;
+--
+--   ```
+--
+-- * Reset the sequence value and start from 3.
+--
+--   ```sql
+--
+--   ```
+--
+-- * The `RESTART` option can be placed anywhere in the clause. The following two SQL statements that reset the sequence value are equivalent.
+--
+--   ```sql
+--
+--   ```
+--
+-- ## References
+--
+-- * [CREATE SEQUENCE](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/2200.create-sequence-of-oracle-mode.md)
+-- * [DROP SEQUENCE](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/3700.drop-sequence-of-oracle-mode.md)--
+--
+-- ==============================================================================
+-- [DDL-122] Oracle mode | ALTER SESSION
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/700.alter-session-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # ALTER SESSION
+--
+-- ## Purpose
+--
+-- The `ALTER SESSION` statement is used to modify the properties of the current session.
+--
+--   <main id="notice" type='explain'>
+--     <h4>Note</h4>
+--     <p>The <code>ALTER SESSION</code> statement corresponds to multiple functionalities. OceanBase Database currently supports the following four functionalities:</p>
+--     <ul>
+--     <li>Switch the current session to a different database.</li>
+--     <li>Modify the isolation level of the current session.</li>
+--     <li>Set session variables, supporting the setting of multiple variables in a single statement.</li>
+--     <li>Enable or disable parallel execution for <code>QUERY</code> or <code>DML</code> operations.</li>
+--     </ul>
+--   </main>
+--
+-- ## Syntax
+--
+-- ```sql
+-- ALTER SESSION
+-- {
+--     SET {
+--         CURRENT_SCHEMA = schema_name
+--         | ISOLATION_LEVEL = { READ COMMITTED | SERIALIZABLE }
+--         | variable_name = variable_value[,variable_name = variable_value...]
+--     }
+--     | { ENABLE | DISABLE } PARALLEL { DML | QUERY | DDL }
+--     | FORCE PARALLEL { DML | QUERY | DDL } integer
+-- }
+-- ```
+--
+-- ## Parameters
+--
+-- |  Parameter       |    Description    |
+-- |-----------|-------------|
+-- | SET clause    | Used to set session-level parameters.     |
+-- | CURRENT_SCHEMA = schema_name    | Sets the default schema for the current session to schema_name. Subsequent queries without a specified schema will default to this schema.      |
+-- | ISOLATION_LEVEL     | Sets the transaction isolation level for the current session  |
+-- | variable_name = variable_value\[,variable_name = variable_value...\];                          | Specifies the session variables to set, along with their values. When setting multiple variables, they are not separated by commas.  |
+-- | * { ENABLE \| DISABLE \| FORCE } PARALLEL    | Enables or disables parallel execution for `QUERY` or `DML` operations: * `ENABLE`: By default, the degree of parallelism (DOP) for the session is determined by the table's DOP value.   <ul><li> `DISABLE`: By default, the degree of parallelism for the session is 1.    </li><li> `FORCE`: Specifies the degree of parallelism for `QUERY` or `DML` operations. In this case, the parameter `PARALLEL integer` must be specified.</li></ul>    **Note**  When specifying the degree of parallelism, the priority order is:  Degree of parallelism specified by a hint \> Degree of parallelism specified by `ALTER SESSION` \> Table-level degree of parallelism. |
+--
+-- ## Examples
+--
+-- * Switch the user to `user1` mode.
+--
+--   ```sql
+--   -- Create a user
+--   ```
+--
+-- * Modify the session variables `recyclebin`, `sql_warnings`, and `tx_isolation`.
+--
+--   ```sql
+--                              sql_warnings = 'on'
+--                              tx_isolation = 'read-committed';
+--   ```
+--
+-- * Enable parallel execution for `QUERY` and `DML` operations in the session.
+--
+--   ```sql
+--   /* Execute in parallel with a concurrency level of 3 */
+--
+--   /* Execute sequentially */
+--
+--   /* Enable PDML path and execute in parallel with a concurrency level of 3 */
+--
+--   /* Execute sequentially */
+--   ```--
+--
+-- ==============================================================================
+-- [DDL-123] Oracle mode | ALTER SYSTEM ENABLE/DISABLE RESTRICTED SESSION
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/790.alter-system-enable-restricted-session-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # ALTER SYSTEM ENABLE/DISABLE RESTRICTED SESSION
+--
+-- ## Purpose
+--
+-- `ALTER SYSTEM ENABLE RESTRICTED SESSION` enables restricted session mode, and `ALTER SYSTEM DISABLE RESTRICTED SESSION` disables restricted session mode.
+--
+-- After restricted session mode is enabled, the database rejects new normal connections. Only users with the `RESTRICTED SESSION` system privilege can log in. This mode is commonly used for access control during application upgrades and maintenance. After the upgrade or maintenance is complete, you can use `ALTER SYSTEM DISABLE RESTRICTED SESSION` to restore the database to normal service mode.
+--
+-- <main id="notice" type='explain'>
+--   <h4>Note</h4>
+--   <p>This statement was introduced in V4.4.2 BP1. </p>
+-- </main>
+--
+-- ## Syntax
+--
+-- ```sql
+-- ALTER SYSTEM { ENABLE | DISABLE } RESTRICTED SESSION;
+-- ```
+--
+-- ## Parameters
+--
+-- | Parameter | Description |
+-- |---------|------|
+-- | ENABLE | Enables restricted session mode. After this mode is enabled, the database rejects new normal connections. Users with the `RESTRICTED SESSION` system privilege can still log in. Restricted session mode remains enabled even after the tenant is restarted. |
+-- | DISABLE | Disables restricted session mode. After this mode is disabled, the database returns to normal service mode. |
+--
+-- ## Examples
+--
+-- * Enable restricted session mode.
+--
+--   ```sql
+--   ```
+--
+-- * Disable restricted session mode.
+--
+--   ```sql
+--   ```
+--
+-- ## References
+--
+-- * [RESTRICTED SESSION privilege](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/300.permission-of-oracle-mode/000.permission-classification-of-oracle-mode.md)
+-- * After you enable or disable restricted session mode, you can query the `LOGINS` column of the [[G]V$INSTANCE](../../../../../700.system-views/500.system-view-of-oracle-mode/300.performance-view-of-oracle-mode/500.gv-instance-of-oracle-mode.md) view to check the instance mode. If the value is `RESTRICTED`, restricted session mode is enabled.--
+--
+-- ==============================================================================
+-- [DDL-124] Oracle mode | ALTER SYSTEM FLUSH CACHE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/800.alter-system-flush-plan-cache-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # ALTER SYSTEM FLUSH CACHE
+--
+-- ## Purpose
+--
+-- Clears the cache.
+--
+--   <main id="notice" type='explain'>
+--     <h4>Note</h4>
+--     <p>For an Oracle-compatible tenant, to clear the plan cache for a specified SQL or schema, use the <a href="../../../../../600.pl-reference/300.pl-oracle/1400.pl-system-package-oracle/12500.dbms-plan-cache-oracle/100.dbms-plan-cache-overview-oracle.md">DBMS_PLAN_CACHE</a> system package. </p>
+--   </main>
+--
+-- ## Syntax
+--
+-- ```sql
+-- ALTER SYSTEM FLUSH {PLAN
+--                   | LIB } CACHE [GLOBAL]
+-- ```
+--
+-- ## Parameters
+--
+-- | Parameter | Description |
+-- |---------|------|
+-- | PLAN | Clears the execution plan cache. |
+-- | LIB | Clears the library cache. |
+--
+-- ## Examples
+--
+-- ```sql
+-- ```--
+--
+-- ==============================================================================
+-- [DDL-125] Oracle mode | ALTER/CHANGE/MODIFY EXTERNAL_STORAGE_DEST
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/830.alter-system-change-external-storage-dest-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # ALTER/CHANGE/MODIFY EXTERNAL_STORAGE_DEST
+--
+-- ## Purpose
+--
+-- This statement is used to modify the source configuration (such as `zone`, `idc`, or `region`) of the backup or archive path, I/O throttling parameters (`max_iops` and `max_bandwidth`), and key information such as `access_id` and `access_key` for the current tenant. After the modification, the new configuration will overwrite the original configuration.
+--
+-- ## Limitations and considerations
+--
+-- * Only user tenants can execute this statement. The sys tenant cannot execute this statement.
+--
+-- * Before you modify the `zone`, `idc`, or `region` configurations of a path, if you need to set the region level or IDC level, you must first use the `ALTER SYSTEM MODIFY ZONE zone_name SET REGION=region_name;` or `ALTER SYSTEM MODIFY ZONE zone_name SET IDC=idc_name;` statement to set the region information or IDC information. It is recommended to set the source configuration at the IDC level. This allows you to use an IDC with more network bandwidth resources for backup tasks, providing a wider range of optional nodes for the tasks. Additionally, you do not need to monitor changes in zones within the IDC of the cluster.
+--
+-- * When modifying the source configuration of a backup path, if a backup task is currently running, the running task may take up to a few minutes to recognize the configuration changes. During this time, nodes outside the configured scope may still access the backup path, potentially generating cross-facility or cross-regional traffic.
+--
+-- * Only object storage paths support changing I/O throttling parameters (`max_iops` and `max_bandwidth`) and `access_id` and `access_key` information. If you attempt to set I/O throttling parameters (`max_iops` and `max_bandwidth`) or `access_id` and `access_key` information for an NFS path, the system returns an unsupported error with the error code `1235`.
+--
+-- * When setting the `ACCESS_INFO` attribute (`access_id` and `access_key` information) for an object storage path, if the parameter format is incorrect (e.g., contains extra `=` signs or lacks `access_id` or `access_key`), the system returns the error `OB_OBJECT_STORAGE_PERMISSION_DENIED` (error code `-9116`).
+--
+-- * When an object storage path uses Assume Role to access an object path:
+--
+--   * If you set `ACCESS_INFO = 'access_id=new_access_id&access_key=new_access_key'`, the system returns an error.
+--
+--   * If you only set the I/O throttling parameters in `ATTRIBUTE` (without setting the `ACCESS_INFO` attribute), the system may indicate that the feature is unsupported or that the settings do not take effect.
+--
+-- * You can set the same `ATTRIBUTE` + `ACCESS_INFO` attributes multiple times for the same path.
+--
+-- ## Privilege requirements
+--
+-- The user who executes this statement must have the `ALTER SYSTEM` privilege. For more information about the privileges of OceanBase Database, see [Privilege classification in Oracle-compatible mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/300.permission-of-oracle-mode/000.permission-classification-of-oracle-mode.md).
+--
+-- ## Syntax
+--
+-- ```sql
+-- ALTER SYSTEM {ALTER|CHANGE|MODIFY} EXTERNAL_STORAGE_DEST
+--   PATH [=] 'path'
+--   SET [ATTRIBUTE = '[{zone=zone_name | idc=idc_name | region=region_name}][&max_iops=iops_num][&max_bandwidth=bandwidth_num]']
+--   [ACCESS_INFO = 'access_id=new_access_id&access_key=new_access_key'];
+-- ```
+--
+-- ## Parameters
+--
+-- |          Parameter               |         Description                                      |
+-- |-----------------------------|--------------------------------------------------|
+-- | path                        | The backup path or archive path to be modified. If the backup or archive medium is of the object storage type, the host address, access key, and other information of the object storage are also required. For example, when the archive medium is OSS, the path is in the `oss://oceanbase-test-bucket/backup/databackup?host=xxxx` format.  |
+-- | zone=zone_name \| idc=idc_name \| region=region_name | The source of the current backup or archive path. You can specify `zone`, `idc`, or `region`. You can specify only one of the three parameters or none. If you do not specify any of them, the default value is not set.<p>When you modify the source of the archive path:<ul><li>Since all log archive traffic is written by the leader replica, there is no access priority difference for log archive paths. The only restriction is on the nodes that can access the archive path. If you need to set multiple zones, IDCs, or regions, separate the values with commas (,) or semicolons (;). For example, `zone=z1,z2;z3` specifies `z1`, `z2`, and `z3` as the sources for archiving.</li> <li>When you modify `zone`, `idc`, or `region`, the leader replica must be in the specified `zone`, `idc`, or `region`. Otherwise, log archiving will fail.</li></ul></p> <p>When you modify the source of the backup path:<ul><li>If you need to set multiple zones, IDCs, or regions, separate the zones, IDCs, and regions with commas (,) and semicolons (;). The following table describes the meanings of the two separators. <ul><li>A comma (,) indicates that the nodes in the zones, IDCs, or regions on both sides have the same priority when selecting the nodes to execute the backup task.</li> <li>A semicolon (;) indicates that the nodes in the zone, IDC, or region on the left have a higher priority than those on the right. That is, the nodes in the zone, IDC, or region on the left are prioritized for executing the backup task.</li></ul>For example, if you set `zone=z1,z2;z3`, it specifies `z1`, `z2`, and `z3` as the sources for backup. `z1` and `z2` have the same priority, and their priority is higher than that of `z3`.</li> <li>When you modify the `zone`, `idc`, or `region` of the backup path, the leader node of the Root Service must be in the specified `zone`, `idc`, or `region`. Otherwise, the backup task will fail to write backup metadata to the target backup path, resulting in the failure of the backup task. We recommend that you set the backup path source to include the primary zone.</li></ul></p> |
+-- | max_iops        | The maximum IOPS allowed for the current backup or archive path. The value is a positive integer, indicating the number of I/O requests per second. If this parameter is not specified, the path does not limit IOPS, which is determined by the underlying object storage and network capabilities.<p>Example: `max_iops=1000`</p> |
+-- | max_bandwidth   | The maximum bandwidth allowed for the current backup or archive path. The value is a positive integer with a unit. Supported units are kb, mb, and gb, which represent KB/s, MB/s, and GB/s, respectively. If this parameter is not specified, the path does not limit bandwidth.<p>Example: `max_bandwidth=1000mb`</p>  |
+-- | access_id=new_access_id&access_key=new_access_key | The new `access_id` and `access_key` after the change. Both `access_id` and `access_key` must be specified. |
+--
+-- ## Examples
+--
+-- ### Change the source endpoint configuration for an archive path
+--
+-- Assume that the original source endpoint configuration for an archive path is `zone=z1,z2,z3`. You need to change the source endpoint configuration to `region=region1`. After the change, only nodes in region1 can access the archive path.
+--
+--   * OSS
+--
+--     ```shell
+--     ```
+--
+--   * NFS
+--
+--     ```shell
+--     ```
+--
+--   * S3
+--
+--     ```shell
+--     ```
+--
+--   * Object storage services compatible with the S3 protocol (OBS, GCS, and COS)
+--
+--     ```shell
+--     ```
+--
+--     ```shell
+--     ```
+--
+--     ```shell
+--     ```
+--
+-- ### Change the source endpoint configuration for a backup path
+--
+-- Assume that the original source endpoint configuration for a backup path is `zone=z1,z2;z3`. You need to change the source endpoint configuration to `idc=idc1;idc2`. After the change, nodes in idc1 and idc2 can access the backup path. The nodes in idc1 have a higher priority than those in idc2.
+--
+--   * OSS
+--
+--     ```shell
+--     ```
+--
+--   * NFS
+--
+--     ```shell
+--     ```
+--
+--   * S3
+--
+--     ```shell
+--     ```
+--
+--   * Object storage services compatible with the S3 protocol (OBS, GCS, and COS)
+--
+--     ```shell
+--     ```
+--
+--     ```shell
+--     ```
+--
+--     ```shell
+--     ```
+--
+-- ### Change the `access_id` and `access_key` information for an archive path
+--
+-- * OSS
+--
+--     ```shell
+--     ```
+--
+--   * S3
+--
+--     ```shell
+--     ```
+--
+--   * Object storage services compatible with the S3 protocol (OBS, GCS, and COS)
+--
+--     ```shell
+--     ```
+--
+--     ```shell
+--     ```
+--
+--     ```shell
+--     ```
+--
+-- ### Change the `access_id` and `access_key` information for a backup path
+--
+-- * OSS
+--
+--     ```shell
+--     ```
+--
+--   * S3
+--
+--     ```shell
+--     ```
+--
+--   * Object storage services compatible with the S3 protocol (OBS, GCS, and COS)
+--
+--     ```shell
+--     ```
+--
+--     ```shell
+--     ```
+--
+--     ```shell
+--     ```
+--
+-- ### Set the I/O throttling parameters (`max_iops` and `max_bandwidth`) for an archive path
+--
+-- You can set the `max_iops` and `max_bandwidth` parameters at the same time or set one of the parameters separately. You can set the I/O throttling parameters only for object storage paths. You cannot set the I/O throttling parameters for NFS paths.
+--
+-- * OSS
+--
+--   Set the `max_iops` and `max_bandwidth` parameters at the same time. Example:
+--
+--   ```shell
+--   ```
+--
+--   Set the `max_iops` parameter separately. Example:
+--
+--   ```shell
+--   ```
+--
+--   Set the `max_bandwidth` parameter separately. Example:
+--
+--   ```shell
+--   ```
+--
+-- * S3
+--
+--   Set the `max_iops` and `max_bandwidth` parameters at the same time. Example:
+--
+--   ```shell
+--   ```
+--
+-- * Object storage services compatible with the S3 protocol (OBS, GCS, and COS)
+--
+--   Set the `max_iops` and `max_bandwidth` parameters at the same time. Example:
+--
+--   ```shell
+--   ```
+--
+--   ```shell
+--   ```
+--
+--   ```shell
+--   ```
+--
+-- ### Set the I/O throttling parameters for the backup path (`max_iops` and `max_bandwidth`)
+--
+-- <main id="notice" type='explain'>
+-- <h4>Note</h4>
+-- <p>Recommendations for setting I/O throttling parameters:</p>
+-- <ul><li>In a highly concurrent, bandwidth-sensitive multi-tenant environment, you can set different <code>max_iops</code> or <code>max_bandwidth</code> parameters for different backup paths to isolate the impact of backups on online business bandwidth and IOPS.</li>
+-- <li>We recommend that you start with lower values and gradually adjust them based on your actual network bandwidth and object storage throttling strategy. For example, you can start by setting <code>max_iops=500&max_bandwidth=100mb</code> and then fine-tune the values based on the backup duration and business peak times.</li></ul>
+-- </main>
+--
+-- You can set both the `max_iops` and `max_bandwidth` parameters, or set only one of them. I/O throttling parameters can be set only for object storage paths, not for NFS paths.
+--
+-- * OSS
+--
+--   The following example shows how to set both the `max_iops` and `max_bandwidth` parameters.
+--
+--   ```shell
+--   ```
+--
+--   The following example shows how to set only the `max_iops` parameter.
+--
+--   ```shell
+--   ```
+--
+--   The following example shows how to set only the `max_bandwidth` parameter.
+--
+--   ```shell
+--   ```
+--
+-- * S3
+--
+--   The following example shows how to set both the `max_iops` and `max_bandwidth` parameters.
+--
+--   ```shell
+--   ```
+--
+-- * Object storage services compatible with the S3 protocol (OBS, GCS, and COS)
+--
+--   The following example shows how to set both the `max_iops` and `max_bandwidth` parameters.
+--
+--   ```shell
+--   ```
+--
+--   ```shell
+--   ```
+--
+--   ```shell
+--   ```
+--
+-- ## References
+--
+-- * [Modify the source backup destination path](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/600.backup-and-recovery/400.data-backup/710.modify-the-configuration-of-backup-destination.md)
+--
+-- * [Backup destination and archive destination source configuration cases](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/600.backup-and-recovery/1500.configuration-case-the-source-of-backup-dest-and-archive-dest.md)
+--
+-- * [Update the key information of the object storage service](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/600.backup-and-recovery/450.change-sk-and-ak-for-the-backup-path-or-logarchive-path.md)--
+--
+-- ==============================================================================
+-- [DDL-126] Oracle mode | ALTER SYSTEM FLUSH SEQUENCE CACHE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/850.alter-system-flush-sequence-cache-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # ALTER SYSTEM FLUSH SEQUENCE CACHE
+--
+-- ## Purpose
+--
+-- This statement is used to clear the sequence cache.
+--
+-- <main id="notice" type='explain'>
+--   <h4>Note</h4>
+--   <p>This statement was introduced in V4.4.1. </p>
+-- </main>
+--
+-- ## Privilege requirements
+--
+-- To execute this statement, the current user must have the `ALTER SYSTEM` privilege. For more information about OceanBase Database privileges, see [Privilege classification in Oracle-compatible mode](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/500.security-and-permissions/300.access-control/200.user-and-permission/300.permission-of-oracle-mode/000.permission-classification-of-oracle-mode.md).
+--
+-- ## Syntax
+--
+-- ```sql
+-- ALTER SYSTEM FLUSH SEQUENCE CACHE
+--     SEQUENCE_NAME = sequence_name
+--     [GLOBAL];
+-- ```
+--
+-- ## Parameters
+--
+-- |               Parameter              |         Description      |
+-- |---------------------------------|------------------|
+-- | SEQUENCE_NAME = 'sequence_name' | The name of the sequence whose local cache needs to be cleared.|
+-- | GLOBAL                          | Optional. Specifies to clear the cache on all nodes. If this parameter is not specified, only the cache on the current node is cleared.|
+--
+-- ## Examples
+--
+-- * Clear the cache of the `test_seq1` sequence on the current node in the current tenant and schema.
+--
+--     ```shell
+--         SEQUENCE_NAME = test_seq1;
+--     ```
+--
+-- * Clear the cache of the `test_seq1` sequence on all nodes in the current tenant and schema.
+--
+--     ```shell
+--         SEQUENCE_NAME = test_seq1
+--         GLOBAL;
+--     ```
+--
+-- ## References
+--
+-- * For more information about the syntax for creating a sequence, see [CREATE SEQUENCE](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/2200.create-sequence-of-oracle-mode.md).--
+--
+-- ==============================================================================
+-- [DDL-127] Oracle mode | ALTER SYSTEM SET PARAMETER
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/900.alter-system-parameter-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # ALTER SYSTEM SET PARAMETER
+--
+-- ## Purpose
+--
+-- You can use this statement to modify the parameters of the current tenant.
+--
+-- ## Syntax
+--
+-- ```sql
+-- ALTER SYSTEM SET parameter_name = expression;
+-- ```
+--
+-- ## Parameters
+--
+-- | **Parameter** | **Description** |
+-- |----------------|--------------|
+-- | parameter_name | The name of the parameter to be modified.  |
+-- | expression | The value of the parameter after modification.  |
+--
+-- ## Examples
+--
+-- Modify the `log_disk_utilization_threshold` parameter.
+--
+-- ```sql
+-- ```
+--
+-- Expected return result:
+--
+-- ```sql
+-- +-------+----------+----------------+----------+--------------------------------+-----------+-------+--------------------------------------------------------------------------------------------------------------------------------------+------------+--------+---------+-------------------+
+-- | zone  | svr_type | svr_ip        | svr_port | name                          | data_type | value | info                                                                                                                                     | section    | scope  | source  | edit_level        |
+-- +-------+----------+----------------+----------+--------------------------------+-----------+-------+--------------------------------------------------------------------------------------------------------------------------------------+------------+--------+---------+-------------------+
+-- | zone1 | observer | xx.xx.xx.xx   | 2882     | log_disk_utilization_threshold| NULL      | 80    | log disk utilization threshold before reuse log files, should be smaller than log_disk_utilization_limit_threshold. Range: [10, 100)    | LOGSERVICE | TENANT | DEFAULT | DYNAMIC_EFFECTIVE |
+-- +-------+----------+----------------+----------+--------------------------------+-----------+-------+--------------------------------------------------------------------------------------------------------------------------------------+------------+--------+---------+-------------------+
+-- 1 row in set
+-- ```
+--
+-- ```sql
+--
+-- ```
+--
+-- Expected return result:
+--
+-- ```sql
+--
+-- +-------+----------+----------------+----------+--------------------------------+-----------+-------+--------------------------------------------------------------------------------------------------------------------------------------+------------+--------+---------+-------------------+
+-- | zone  | svr_type | svr_ip         | svr_port | name                           | data_type | value | info                                                                                                                                 | section    | scope  | source  | edit_level        |
+-- +-------+----------+----------------+----------+--------------------------------+-----------+-------+--------------------------------------------------------------------------------------------------------------------------------------+------------+--------+---------+-------------------+
+-- | zone1 | observer | xx.xx.xx.xx    |     2882 | log_disk_utilization_threshold | NULL      | 20    | log disk utilization threshold before reuse log files, should be smaller than log_disk_utilization_limit_threshold. Range: [10, 100) | LOGSERVICE | TENANT | DEFAULT | DYNAMIC_EFFECTIVE |
+-- +-------+----------+----------------+----------+--------------------------------+-----------+-------+--------------------------------------------------------------------------------------------------------------------------------------+------------+--------+---------+-------------------+
+-- 1 row in set
+-- ```--
+--
+-- ==============================================================================
+-- [DDL-128] Oracle mode | VALIDATE
+-- Official source: https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/700.reference/500.sql-reference/100.sql-syntax/300.common-tenant-of-oracle-mode/900.sql-statement-of-oracle-mode/100.ddl-of-oracle-mode/950.alter-system-validate-of-oracle-mode.md
+-- Reference only: the following official page is preserved as SQL comments.
+-- ==============================================================================
+-- # VALIDATE
+--
+-- ## Purpose
+--
+-- The `ALTER SYSTEM VALIDATE` statement is used to perform physical backup verification.
+--
+-- ## Limitations and considerations
+--
+-- * For V4.4.2, the `ALTER SYSTEM VALIDATE` statement is supported starting from V4.4.2 BP2.
+--
+-- * Since verification tasks frequently access backup media to read data, thereby competing for network resources with backup tasks, it is recommended to run verification tasks when the user tenant has not initiated any backup tasks and the system load is low.
+--
+-- * When specifying the verification level for backup verification:
+--
+--   * For version V4.4.2, backup sets and log archive pieces prior to V4.4.2 BP2 do not support basic verification, meaning file integrity verification is not supported.
+--
+--   * For backup sets earlier than V4.3.4, physical verification is not supported, meaning the correctness of physical data and logical consistency verification are not supported.
+--
+-- ## Privilege requirements
+--
+-- This operation must be performed by the administrator user of each tenant. Specifically:
+--
+-- * The default administrator user in MySQL-compatible mode is the `root` user.
+--
+-- * The default administrator user in Oracle-compatible mode is the `SYS` user.
+--
+-- ## Syntax
+--
+-- ```sql
+-- ALTER SYSTEM VALIDATE { BACKUP | BACKUPSET [= 'backup_set_id_list'] | ARCHIVELOG_PIECE [= 'piece_id_list'] }
+--     [ DATA_BACKUP_DEST = 'data_backup_path' ]
+--     [ LOG_ARCHIVE_DEST = 'log_archive_path' ]
+--     [ LEVEL = { 'basic' | 'physical' } ];
+--
+-- backup_set_id_list:
+--     backup_set_id[,backup_set_id,...]
+--
+-- piece_id_list:
+--     piece_id[,piece_id,...]
+-- ```
+--
+-- ## Parameters
+--
+-- | Parameter | Description |
+-- | ------------------ | --------------------------------------------------------- |
+-- | BACKUP | Verify all backup sets and log archive pieces under the entire backup path and archive path in the current user tenant. Specifying a verification path is not supported.`DATA_BACKUP_DEST`or`LOG_ARCHIVE_DEST`), which means it does not support cross-cluster or cold standby scenarios. |
+-- | BACKUPSET | Verify the specified backup set. If the backup set is not specified,`backup_set_id`, then all backup sets under the current backup path will be verified.<main id="notice" type='notice'><h4>Note</h4><p>If you do not specify <code>backup_set_id</code>, the system will retrieve all backup sets under the configured backup path for verification, which can result in a large number of verification tasks and take a considerable amount of time. If you are certain that you do not need to verify all backup sets, it is recommended to specify <code>backup_set_id</code> in the verification command.</p></main> |
+-- | ARCHIVELOG_PIECE | Verify the specified log archive piece. If the archive piece is not specified,`piece_id`, then verify all log archive pieces in the current archive path. <main id="notice" type='notice'><h4>Note</h4><p>If you do not specify <code>piece_id</code>, the system will retrieve all archive pieces in the currently configured archive path for verification, which can result in a large number of verification tasks and take a considerable amount of time. If you are sure that you do not need to verify all archive pieces, it is recommended to specify <code>piece_id</code> in the verification command.</p></main> |
+-- | DATA_BACKUP_DEST | Optional. Specifies the backup path of the data to be verified. If this parameter is not specified, the backup path configured for the current tenant backup is verified by default. <main id="notice" type='notice'><h4>Notice</h4><p>OceanBase Database does not support specifying multiple paths in a single command. Therefore, when verifying an incremental backup set under a specified path by specifying the <code>backup_set_id</code>, an error may occur with code 9120 because information about other backup sets on which the incremental backup set depends cannot be read.</p></main> |
+-- | LOG_ARCHIVE_DEST | Optional. Specifies the log archive path to be verified. If this parameter is not specified, the system will verify the archive path configured for the current tenant by default. |
+-- | LEVEL | Specifies the verification level. Valid values: <ul><li>`basic`: Indicates that only the integrity of the file list is checked.</li> <li>`physical`: Indicates that both the correctness of physical data and logical consistency are checked. </li></ul><p>If this parameter is not specified, the default value is`physical`.</p> |
+--
+-- ## Examples
+--
+-- ### Verify all backup sets and log archive pieces under the entire backup path and archive path
+--
+-- The user tenant initiates a basic verification for all backup sets and archive pieces under the current backup and archive paths.
+--
+-- ```shell
+-- ```
+--
+-- ### Verify a specified backup set or log archive piece
+--
+-- **Verify the backup set**
+--
+-- * The user tenant initiates a basic verification for all backup sets under the current backup path of this tenant.
+--
+--   ```shell
+--   ```
+--
+-- * The user tenant initiates a physical verification for the backup sets with `backup_set_id` 1 and 2 under the current backup path of this tenant.
+--
+--   ```shell
+--   ```
+--
+-- **Verify log archive pieces**
+--
+-- * The user tenant initiates a basic verification for all archive pieces of the current tenant under the current archive path.
+--
+--   ```shell
+--   ```
+--
+-- * The user tenant initiates a physical verification for the log archive pieces with `piece_id` 1 and 2 under the current archive path.
+--
+--   ```shell
+--   ```
+--
+-- ### Verify backup sets or log archive pieces in a specified path
+--
+-- **Verify the backup set**
+--
+-- * The user tenant initiates a basic verification for all backup sets under the specified backup path of this tenant.
+--
+--   ```shell
+--   ```
+--
+-- * A user tenant initiates a physical verification for backup sets with `backup_set_id` 1 or 2 under the specified backup path of this tenant.
+--
+--   ```shell
+--   ```
+--
+-- **Verify log archive pieces**
+--
+-- * The user tenant initiates a basic verification for all archived pieces under the specified archive path.
+--
+--   ```shell
+--   ```
+--
+-- * A user tenant initiates a physical verification for the log archive pieces with `piece_id` 1 and 2 of its own tenant under the specified archive path.
+--
+--   ```shell
+--   ```
+--
+-- ## References
+--
+-- * [Overview of backup verification](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/600.backup-and-recovery/550.backup-validation/100.backup-validation-overview.md)
+--
+-- * [Verify the entire backup and archive paths](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/600.backup-and-recovery/550.backup-validation/200.validate-the-data-backup-dest-and-log-archive-dest.md)
+--
+-- * [Verify a specified backup set or log archive piece](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/600.backup-and-recovery/550.backup-validation/300.validate-the-backupset-and-archivepiece.md)
+--
+-- * [Verify backup sets or log archive pieces in a specified path](https://github.com/oceanbase/oceanbase-doc/blob/017c8d35a015afa04ce1e1ce4b95675e3223c878/en-US/600.manage/600.backup-and-recovery/550.backup-validation/400.validate-the-backupset-or-archivepiece-at-the-specified-dest.md)
