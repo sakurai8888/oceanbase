@@ -8,11 +8,11 @@ This guide walks through installing OceanBase products — OceanBase Server, OAT
 2. [Basic Linux Setup](#2-basic-linux-setup)
 3. [Docker Setup](#3-docker-setup)
 4. [OAT Setup](#4-oat-setup)
-5. [Add and Prepare Host Servers](#5-add-and-prepare-host-servers)
+5. [OAT Add and Prepare Host Servers](#5-add-and-prepare-host-servers)
 6. [MetaDB Installation & Configuration](#6-metadb-installation--configuration)
 7. [InfluxDB Installation](#7-influxdb-installation)
-8. [Docker Container Health Check](#8-docker-container-health-check)
-9. [OMS Installation](#9-oms-oceanbase-migration-service-installation)
+8. [OMS Installation](#8-oms-oceanbase-migration-service-installation)
+9. [Docker Container Health Check](#9-docker-container-health-check)
 10. [Build Docker Images for OBServer](#10-build-docker-images-for-observer)
 11. [Appendix: Web Access & Credentials](#appendix-web-access--credentials)
 
@@ -164,7 +164,7 @@ Access OAT at `http://<IP_of_server>:7000` and log in as `admin`.
 
 ---
 
-## 5. Add and Prepare Host Servers
+## 5. OAT Add and Prepare Host Servers
 
 ### 5.1 Bypass host package dependency checks
 
@@ -300,7 +300,64 @@ Verify task execution (Task ID: 6) until the status displays **Completed (5/5)**
 
 ---
 
-## 8. Docker Container Health Check
+## 8. OMS (OceanBase Migration Service) Installation
+
+### 8.1 Deployment mode selection
+
+Select **Standalone Mode (单体模式)** to deploy all OMS control plane and worker components inside a unified image container.
+
+*(Screenshot to be added: OMS deployment mode.)*
+
+### 8.2 Basic configuration
+
+* **OMS Mirror:** `oms-4.3.2_bp3_x86_all_in_one-amd64-1202605111449.tar`
+* **Product Name:** `oms`
+* **Region:** `ASIA`
+* **Server:** `10.170.0.2`
+* **CPU:** `4 C`
+* **Memory:** `16 G`
+* **HTTP Port:** `8089` (or default management port)
+* **Data Directory:** `/data/admin/oms`
+
+*(Screenshot to be added: OMS basic configuration.)*
+
+### 8.3 MetaDB configuration
+
+Bind OMS to the newly created MetaDB cluster:
+
+* **MetaDB Type:** `MetaDB has been created.`
+* **Select MetaDB:** `metadb`
+* **Tenant Name:** `oms_meta`
+* **Tenant CPU:** `2 C`
+* **Tenant Memory:** `4 G`
+
+*(Screenshot to be added: OMS MetaDB binding.)*
+
+### 8.4 InfluxDB configuration
+
+Bind OMS to the time-series metric storage:
+
+* **Time series database storage:** `InfluxDB has been created.`
+* **Select InfluxDB:** `influxdb`
+* **Database Account:** `influxdb_user`
+
+*(Screenshot to be added: OMS InfluxDB binding.)*
+
+### 8.5 Load balancing configuration
+
+* **Load Balancing Mode:** Select **`do not use`** (direct IP connectivity).
+
+*(Screenshot to be added: OMS load balancing configuration.)*
+
+### 8.6 Task execution
+
+Upon launching Task ID 7, verify progress reaches **Completed (14/14)**.
+
+*(Screenshot to be added: OMS task completion log.)*
+
+---
+
+## 9. Docker Container Health Check
 
 After completing the MetaDB and InfluxDB deployments, run `docker ps -a` on the host to verify the container execution states:
 
@@ -315,63 +372,6 @@ docker ps -a
 * `influxdb` (`influxdb:1.8`) — **Up**
 * `metadb` (`reg.docker.alibaba-inc.com/devtools/metadb:...`) — **Up**
 * `oat` (`reg.docker.alibaba-inc.com/oceanbase/oat:...`) — **Up**
-
----
-
-## 9. OMS (OceanBase Migration Service) Installation
-
-### 9.1 Deployment mode selection
-
-Select **Standalone Mode (单体模式)** to deploy all OMS control plane and worker components inside a unified image container.
-
-*(Screenshot to be added: OMS deployment mode.)*
-
-### 9.2 Basic configuration
-
-* **OMS Mirror:** `oms-4.3.2_bp3_x86_all_in_one-amd64-1202605111449.tar`
-* **Product Name:** `oms`
-* **Region:** `ASIA`
-* **Server:** `10.170.0.2`
-* **CPU:** `4 C`
-* **Memory:** `16 G`
-* **HTTP Port:** `8089` (or default management port)
-* **Data Directory:** `/data/admin/oms`
-
-*(Screenshot to be added: OMS basic configuration.)*
-
-### 9.3 MetaDB configuration
-
-Bind OMS to the newly created MetaDB cluster:
-
-* **MetaDB Type:** `MetaDB has been created.`
-* **Select MetaDB:** `metadb`
-* **Tenant Name:** `oms_meta`
-* **Tenant CPU:** `2 C`
-* **Tenant Memory:** `4 G`
-
-*(Screenshot to be added: OMS MetaDB binding.)*
-
-### 9.4 InfluxDB configuration
-
-Bind OMS to the time-series metric storage:
-
-* **Time series database storage:** `InfluxDB has been created.`
-* **Select InfluxDB:** `influxdb`
-* **Database Account:** `influxdb_user`
-
-*(Screenshot to be added: OMS InfluxDB binding.)*
-
-### 9.5 Load balancing configuration
-
-* **Load Balancing Mode:** Select **`do not use`** (direct IP connectivity).
-
-*(Screenshot to be added: OMS load balancing configuration.)*
-
-### 9.6 Task execution
-
-Upon launching Task ID 7, verify progress reaches **Completed (14/14)**.
-
-*(Screenshot to be added: OMS task completion log.)*
 
 ---
 
