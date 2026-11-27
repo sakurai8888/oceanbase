@@ -147,7 +147,8 @@ and following instruction to input the information:
 #### Verify OAT Access
 Access OAT using http://IP_of_server:7000. Login using admin 
 
-![alt text](verify_oat_access.png)
+<img src="verify_oat_access.png" alt="Description" width="700" />
+
 
 ## 3. Add and Prepare Host Servers
 Before adding servers in OAT, update the system parameter configuration to ignore missing host package dependencies (such as legacy `python2`).
@@ -157,11 +158,50 @@ Before adding servers in OAT, update the system parameter configuration to ignor
 3. Change the parameter value from `["python3"]` to `["python3","python2"]`.
 4. Click **Sure**.
 
-<to be provide images>
+<img src="oat_parameters_modify.png" alt="Description" width="300" />
 
-### Add server steps.
+<p></p>
 
-## 2 Linux Server Setup
+
+<img src="oat_parameters.png" alt="Description" width="700" />
+
+
+
+### Add server steps in OAT
+
+<img src="oat_add_server.png" alt="Description" width="700" />
+
+Fill the following information 
+
+Server IP : IP of the server 
+SSH Port: 22 (default ssh port of linux) 
+Data Center (IDC): IDCO1-ASIA (can create other IDC name)
+Credentials: root (create a new credentia (add credential) name as 'root' for access all the linux server)
+Server Purpose : Check both OBServer and OB Product Services
+User Password: {input the password of admin}
+Docker root directory: /data/docker
+
+<img src="oat_add_server01.png" alt="Description" width="700" />
+
+Initialize Parameters
+
+<img src="oat_add_server02.png" alt="Description" width="400" height="400"/>
+
+
+Verify the results
+
+<img src="oat_add_server_verify.png" alt="Description" width="400" height="400"/>
+
+
+## 4 MetaDB Installation & Configuration
+
+MetaDB serves as the metadata database cluster for OAT and OceanBase management services.
+### Upload the MetaDB Images to OAT images folder
+###
+
+
+
+
 ## 2 Linux Server Setup
 ## 2 Linux Server Setup
 ## 2 Linux Server Setup
