@@ -1,6 +1,11 @@
-use master
+USE [master];
+GO
 
-drop database SQL2022_ComprehensiveDemo;
+IF DB_ID(N'SQL2022_ComprehensiveDemo') IS NOT NULL
+BEGIN
+    ALTER DATABASE [SQL2022_ComprehensiveDemo]
+        SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
 
-
-
+    DROP DATABASE [SQL2022_ComprehensiveDemo];
+END
+GO

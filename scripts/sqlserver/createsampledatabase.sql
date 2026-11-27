@@ -259,16 +259,16 @@ GO
    ============================================================================ */
 
 -- 7A. Scalar Function (Uses SQL Server 2022 GREATEST)
-CREATE FUNCTION [Demo].[fn_CalculateDiscountedPrice]
+CREATE OR ALTER FUNCTION [Demo].[fn_CalculateDiscountedPrice]
 (
-    @UnitPrice       [Demo].[CurrencyAmount],
-    @DiscountPercent DECIMAL(5,2)
+    @UnitPrice       DECIMAL(19, 4),
+    @DiscountPercent DECIMAL(5, 2)
 )
-RETURNS [Demo].[CurrencyAmount]
+RETURNS DECIMAL(19, 4)
 WITH SCHEMABINDING
 AS
 BEGIN
-    DECLARE @FinalPrice [Demo].[CurrencyAmount];
+    DECLARE @FinalPrice DECIMAL(19, 4);
     SET @FinalPrice = GREATEST(0.0000, @UnitPrice * (1.0 - (@DiscountPercent / 100.0)));
     RETURN @FinalPrice;
 END;
@@ -427,6 +427,8 @@ GO
    9. VERIFICATION & EXECUTION TEST
    ============================================================================ */
 
+
+
 -- Test Stored Procedure with Table-Valued Parameter
 DECLARE @NewItems [Demo].[OrderItemTableType];
 INSERT INTO @NewItems (ProductCode, Quantity, UnitPrice)
@@ -444,6 +446,10 @@ EXEC [Demo].[usp_CreateOrderWithItems]
     @GeneratedInvoice = @OutInvoice OUTPUT;
 
 SELECT @OutOrderID AS CreatedOrderID, @OutInvoice AS SequenceInvoiceNumber;
+
+
+
+
 
 -- Query Standard View
 SELECT * FROM [Demo].[vw_CustomerOrderSummary];
