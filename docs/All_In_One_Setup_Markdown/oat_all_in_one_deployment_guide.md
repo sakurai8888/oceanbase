@@ -127,7 +127,7 @@ docker network create --driver bridge --subnet=172.20.0.0/24 --gateway=172.20.0.
 
 ## 2. OAT Setup
 
-#### Upload OceanBase softwares
+#### Upload OceanBase Softwares
 Download the obpoc_20260810.tar.gz and upload to server /data/ob_software. Download winscp and 
 ```
 mkdir -p /data/ob_software
@@ -147,10 +147,11 @@ and following instruction to input the information:
 #### Verify OAT Access
 Access OAT using http://IP_of_server:7000. Login using admin 
 
-<Image to be provided>
+![alt text](verify_oat_access.png)
+
+## 3. Add and Prepare Host Servers
 
 
-## 3. 
 ## 2 Linux Server Setup
 ## 2 Linux Server Setup
 ## 2 Linux Server Setup
