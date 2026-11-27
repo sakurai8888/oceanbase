@@ -1,11 +1,164 @@
-# OceanBase OAT All-In-One Component Deployment Guide
+# OceanBase OAT All-In-One Component Deployment Guide on One Single Server
 
-This guide details the step-by-step procedures for deploying MetaDB, InfluxDB, and OMS (OceanBase Migration Service) via OceanBase Admin Toolkit (OAT).
+This is a installation guide for installation OceanBase products including OceanBase Server ,OceanBase OAT , OceanBase OCP , OceanBase OMS on a single server for OceanBase product testing and evaluation purposes. The objective is to enable every new comer from both SA , Engineer (or even BD teammate) could have hands-on experience and get more familiar with OceanBase products.
+
+**Environment nformation for the installation.**
+
+<table style="width:100%; table-layout:fixed;">
+  <thead>
+    <tr>
+      <th style="width:30%; text-align:left;">Item</th>
+      <th style="width:70%; text-align:left;">Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><th colspan="2" style="text-align:left;">Software</th></tr>
+    <tr><td>Operating System</td><td>Rocky Linux 10</td></tr>
+    <tr><td>Software</td><td>Docker</td></tr>
+    <tr><td></td><td>OceanBase: ocp-ob-obp-odc-oat_20260810 <a href="http://wangsg-lrb.oss-cn-hangzhou.aliyuncs.com/obpoc_20260810.tar.gz?Expires=1796567401&amp;OSSAccessKeyId=LTAI5tAjqC6KWcg3zCHTEoez&amp;Signature=JYe1MffxPc9PkxXi19lpWmgKatY%3D">Download Link</a></td></tr>
+    <tr><th colspan="2" style="text-align:left;">Hardware</th></tr>
+    <tr><td>CPU</td><td>16vCPU</td></tr>
+    <tr><td>Memory</td><td>64GB</td></tr>
+    <tr><td>Disk</td><td>230GB</td></tr>
+  </tbody>
+</table>
+
+<table style="width:100%; table-layout:fixed;">
+  <thead>
+    <tr>
+      <th style="width:35%; text-align:left;">OS Mount Point (or folder)</th>
+      <th style="width:45%; text-align:left;">Purpose</th>
+      <th style="width:20%; text-align:left;">Size Estimation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>/data/docker</td><td>Docker Images and container locations</td><td>100GB</td></tr>
+    <tr><td>/data/observer_data/observer[*]/data/1</td><td rowspan="3"></td><td rowspan="3">40GB</td></tr>
+    <tr><td>/data/observer_data/observer[*]/data/log1</td></tr>
+    <tr><td>/data/observer_data/observer[*]/home/admin</td></tr>
+    <tr><td>/data/ob_software</td><td>OceanBase software packages</td><td>30GB</td></tr>
+    <tr><td>/data/oat_data</td><td>OAT docker volume to store OAT data and also the OCP, OMS docker images and other Oceanbase rpm packages</td><td>10GB</td></tr>
+    <tr><td>/data/influxdb</td><td></td><td>1GB</td></tr>
+    <tr><td>/data/metadb</td><td>MetaDB Docker volume to store OCP and OMS database data</td><td>100GB</td></tr>
+    <tr><td>/data/oms/home/admin</td><td rowspan="2"></td><td rowspan="2">10GB</td></tr>
+    <tr><td>/data/ocp/home/admin</td></tr>
+  </tbody>
+</table>
 
 ---
-## 0. Linux Server Setup
 
-## 1. Add Server in OAT  
+## 0. Basic Linux Setup
+#### Enable ssh password authentication
+
+Execute the following to ensure root can be used to login to server through ssh using password. And ensure sshd statup after server restart.
+
+```
+### Reset root password
+passwd root
+
+
+mkdir -p /etc/ssh/sshd_config.d && \
+cat << 'EOF' > /etc/ssh/sshd_config.d/00-root-password.conf
+PermitRootLogin yes
+PasswordAuthentication yes
+EOF
+sed -i 's/^[#[:space:]]*PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config
+sed -i 's/^[#[:space:]]*PasswordAuthentication.*/PasswordAuthentication yes/' /etc/ssh/sshd_config
+
+
+
+systemctl enable sshd && systemctl restart sshd
+```
+
+
+## 1. Docker Setup
+Run the following command to install Docker
+```bash
+dnf install -y dnf-plugins-core
+dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+dnf list --showduplicates docker-ce | grep 29.9.3
+```
+
+![alt text](docker_repo_check.png)
+
+
+Install Docker : 
+```bash
+dnf install -y \
+  docker-ce-29.9.3* \
+  docker-ce-cli-29.9.3* \
+  containerd.io \
+  docker-buildx-plugin \
+  docker-compose-plugin
+```
+
+Create /data/docker, write /etc/docker/daemon.json before starting the service, apply SELinux file contexts if SELinux is active, and enable Docker:
+```
+mkdir -p /data/docker /etc/docker && \
+cat << 'EOF' > /etc/docker/daemon.json
+{
+  "data-root": "/data/docker"
+}
+EOF
+
+if command -v semanage >/dev/null 2>&1; then
+  semanage fcontext -a -e /var/lib/docker /data/docker
+  restorecon -Rv /data/docker
+fi
+
+systemctl enable --now docker
+```
+
+
+Create a dedicated docker network for observers. This is to ensure the container can have a fix IP.
+```
+docker network create --driver bridge --subnet=172.20.0.0/24 --gateway=172.20.0.1 
+```
+
+
+
+
+
+
+
+
+
+
+
+## 2. OAT Setup
+
+#### Upload OceanBase softwares
+Download the obpoc_20260810.tar.gz and upload to server /data/ob_software. Download winscp and 
+```
+mkdir -p /data/ob_software
+tar -zxvf obpoc_20260810.tar.gz
+```
+
+#### Install OAT
+Go to /data/ob_software/{path of the unzip}/oat/oat-all-in-one-x86
+```
+cd /data/ob_software/{path of the unzip}/oat/oat-all-in-one-x86
+./install.sh
+```
+and following instruction to input the information:
+
+<need to input Images>
+
+#### Verify OAT Access
+Access OAT using http://IP_of_server:7000. Login using admin 
+
+<Image to be provided>
+
+
+## 3. 
+## 2 Linux Server Setup
+## 2 Linux Server Setup
+## 2 Linux Server Setup
+## 2 Linux Server Setup
+## 2 Linux Server Setup
+## 2 Linux Server Setup
+
+## 1. Add Server in OAT
 
 OAT System Parameter Configuration (Bypass Server Dependency).
 Before adding servers in OAT, update the system parameter configuration to ignore missing host package dependencies (such as legacy `python2`).
@@ -171,6 +324,31 @@ Upon launching Task ID 7, verify progress reaches **Completed (14/14)**.
   * **Default Password:** `aa` (or `aaAA11__`)
 
 ---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### Build Docker Images for OBServer
+
+
+![alt text](docker_image_build.png)
+
+
+
+
 
 <!-- Embedded Base64 Image Reference Definitions -->
 [img_system_params]: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==
