@@ -150,7 +150,16 @@ Access OAT using http://IP_of_server:7000. Login using admin
 ![alt text](verify_oat_access.png)
 
 ## 3. Add and Prepare Host Servers
+Before adding servers in OAT, update the system parameter configuration to ignore missing host package dependencies (such as legacy `python2`).
 
+1. Navigate to **Systems and... (系统与安全)** $\rightarrow$ **System parameters (系统参数)**.
+2. Locate `oat.server.ignore_deps` in the parameter table and click **Modify**.
+3. Change the parameter value from `["python3"]` to `["python3","python2"]`.
+4. Click **Sure**.
+
+<to be provide images>
+
+### Add server steps.
 
 ## 2 Linux Server Setup
 ## 2 Linux Server Setup
